@@ -66,6 +66,10 @@
             "php artisan key:generate",
             "php artisan package:discover"
         ],
+        "post-install-cmd": [
+            "php artisan october:util set build",
+            "php artisan package:discover"
+        ],
         "post-update-cmd": [
             "php artisan october:util set build",
             "php artisan package:discover"
@@ -74,7 +78,7 @@
     "config": {
         "preferred-install": "dist",
         "platform": {
-            "php": "7.0"
+            "php": "7.3"
         }
     },
     "minimum-stability": "dev",
@@ -87,6 +91,11 @@
             "recurse": true,
             "replace": false,
             "merge-dev": false
+        },
+        "laravel": {
+            "dont-discover": [
+                "barryvdh/laravel-ide-helper"
+            ]
         }
     }
 }
