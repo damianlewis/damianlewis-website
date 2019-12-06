@@ -1,0 +1,6 @@
+scopes:
+    status:
+        label: Status
+        modelClass: DamianLewis\Portfolio\Models\Attribute
+        conditions: status_id in (:filtered)
+        nameFrom: name

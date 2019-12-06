@@ -1,0 +1,15 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Skill name
+        comment: This is the name to display on the front-end.
+        span: auto
+
+    is_visible:
+        label: Visible
+        type: switch
+        comment: Switch this off to hide the skill on the front-end.
+        span: auto

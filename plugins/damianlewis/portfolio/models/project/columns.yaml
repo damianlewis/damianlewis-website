@@ -1,0 +1,41 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    preview_image:
+        label: Preview
+        type: previewimage
+        width: 1%
+        sortable: false
+
+    title:
+        label: Title
+        type: text
+        searchable: true
+
+    status_code:
+        label: Status
+        type: status
+        relation: status
+        select: code
+
+    completed_at:
+        label: Completed at
+        type: date
+        invisible: true
+
+    is_featured:
+        label: Featured
+        type: featured
+        width: 1%
+
+    created_at:
+        label: Created at
+        type: datetime
+        invisible: true
+
+    updated_at:
+        label: Updated at
+        type: datetime
+        invisible: true

@@ -1,0 +1,27 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Skill
+
+# Model Form Field configuration
+form: $/damianlewis/portfolio/models/skill/fields.yaml
+
+# Model Class name
+modelClass: DamianLewis\Portfolio\Models\Skill
+
+# Default redirect location
+defaultRedirect: damianlewis/portfolio/skills
+
+# Create page
+create:
+    title: Create Skill
+    redirect: damianlewis/portfolio/skills/update/:id
+    redirectClose: damianlewis/portfolio/skills
+
+# Update page
+update:
+    title: Edit Skill
+    redirect: damianlewis/portfolio/skills
+    redirectClose: damianlewis/portfolio/skills

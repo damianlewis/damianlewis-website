@@ -1,0 +1,20 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    is_visible:
+        label: Visible
+        type: visible
+        width: 1%
+
+    name:
+        label: Name
+        type: text
+        searchable: true
+
+    project_count:
+        label: Projects
+        type: number
+        relation: projects
+        useRelationCount: true

@@ -1,0 +1,8 @@
+1.0.1:
+    - Create Projects table
+    - create_attributes_table.php
+    - create_skills_table.php
+    - create_technologies_table.php
+    - create_projects_table.php
+    - seed_attributes.php
+    - seed_dummy_data.php

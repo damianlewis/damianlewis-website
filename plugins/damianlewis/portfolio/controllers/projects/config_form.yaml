@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Project
+
+# Model Form Field configuration
+form: $/damianlewis/portfolio/models/project/fields.yaml
+
+# Model Class name
+modelClass: DamianLewis\Portfolio\Models\Project
+
+# Default redirect location
+defaultRedirect: damianlewis/portfolio/projects
+
+# Create page
+create:
+    title: Create Project
+    redirect: damianlewis/portfolio/projects/update/:id
+    redirectClose: damianlewis/portfolio/projects
+
+# Update page
+update:
+    title: Edit Project
+    redirect: damianlewis/portfolio/projects
+    redirectClose: damianlewis/portfolio/projects
+
+# Preview page
+preview:
+    title: Preview Project

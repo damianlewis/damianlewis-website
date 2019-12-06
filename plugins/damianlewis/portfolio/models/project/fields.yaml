@@ -1,0 +1,148 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Title
+        span: auto
+
+    slug:
+        label: Slug
+        span: auto
+        context:
+            - update
+            - preview
+        preset: title
+
+tabs:
+    fields:
+        tag_line:
+            tab: Details
+            label: Tag line
+            type: text
+
+        summary:
+            tab: Details
+            label: Summary
+            type: textarea
+            size: small
+
+        description:
+            tab: Details
+            label: Description
+            span: full
+            type: richeditor
+            toolbarButtons: paragraphFormat|||bold|italic|quote|align|||undo|redo|||formatOL|formatUL|||insertLink|insertTable|||html|fullscreen
+            size: giant
+
+        skills:
+            tab: Attributes
+            label: Skills
+            span: auto
+            type: taglist
+            mode: relation
+
+        technologies:
+            tab: Attributes
+            label: Technologies
+            span: auto
+            type: taglist
+            mode: relation
+
+        status:
+            tab: Manage
+            label: Status
+            span: auto
+            type: relation
+            nameFrom: name
+            default: 1
+
+        completed_at:
+            tab: Manage
+            label: Completion Date
+            span: auto
+            type: datepicker
+            mode: date
+            format: j M Y
+
+        is_featured:
+            tab: Manage
+            label: Featured
+            span: auto
+            type: switch
+            comment: Switch this on to display this project on the home page.
+
+secondaryTabs:
+    fields:
+        preview_image:
+            tab: Preview Image
+            label: Preview image
+            span: auto
+            type: fileupload
+            mode: image
+            comment: The preview image used in the portfolio list.
+
+        mockup_desktop_image:
+            tab: Mockup Images
+            label: Desktop device image
+            span: left
+            type: fileupload
+            mode: image
+            comment: A mockup of a desktop device.
+
+        mockup_multiple_image:
+            tab: Mockup Images
+            label: Multiple devices image
+            span: left
+            type: fileupload
+            mode: image
+            comment: A mockup of multiple devices.
+
+        mockup_multiple_reversed_image:
+            tab: Mockup Images
+            label: Multiple devices reversed image
+            span: right
+            type: fileupload
+            mode: image
+            comment: A mockup of multiple devices in reverse.
+
+        mockup_multiple_in_sequence_image:
+            tab: Mockup Images
+            label: Multiple devices in sequence image
+            span: left
+            type: fileupload
+            mode: image
+            comment: A mockup of multiple devices in sequence.
+
+        desktop_full_frame_image:
+            tab: Full Frame Images
+            label: Desktop design image
+            span: left
+            type: fileupload
+            mode: image
+            comment: A full frame desktop design image.
+
+        tablet_full_frame_image:
+            tab: Full Frame Images
+            label: Tablet design image
+            span: right
+            type: fileupload
+            mode: image
+            comment: A full frame tablet design image.
+
+        mobile_full_frame_image:
+            tab: Full Frame Images
+            label: Mobile phone design image
+            span: left
+            type: fileupload
+            mode: image
+            comment: A full frame mobile phone design image.
+
+        design_images:
+            tab: Design Images
+            label: Additional designs
+            span: auto
+            type: fileupload
+            mode: image
+            comment: A collection of additional design images.
