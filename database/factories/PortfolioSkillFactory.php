@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use DamianLewis\Portfolio\Models\Skill;
 use Faker\Generator;
 

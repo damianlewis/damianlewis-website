@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use BlogArticleFaker\FakerProvider as BlogArticleFaker;
 use DamianLewis\Portfolio\Models\Attribute;
 use DamianLewis\Portfolio\Models\Project;
