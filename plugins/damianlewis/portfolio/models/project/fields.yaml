@@ -81,7 +81,7 @@ secondaryTabs:
             span: auto
             type: fileupload
             mode: image
-            comment: The preview image used in the portfolio list.
+            comment: The preview image used for the backend list.
 
         mockup_desktop_image:
             tab: Mockup Images
