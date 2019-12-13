@@ -1,0 +1,16 @@
+description = "Page head section."
+==
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    {% if this.page.meta_title %}<meta name="title" content="{{ this.page.meta_title }}">{% endif %}
+    {% if this.page.meta_description %}<meta name="description" content="{{ this.page.meta_description }}">{% endif %}
+    {% if this.environment == 'development' %}
+        <link rel="stylesheet" href="{{ 'assets/development/css/main.css'|theme }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ 'assets/css/main.css'|theme }}">
+    {% endif %}
+    {% styles %}
+    <title>{{ this.page.title }} | {{ this.theme.site_name }}</title>
+</head>

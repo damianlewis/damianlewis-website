@@ -1,0 +1,40 @@
+title = "Home"
+url = "/"
+layout = "default"
+description = "Home page."
+is_hidden = 0
+
+[hero]
+hero = 1
+
+[categories]
+orderBy = "sort_order"
+orderDirection = "asc"
+featured = 1
+limit = 3
+categoryPage = "services/index"
+
+[projects]
+orderBy = "sort_order"
+orderDirection = "asc"
+featured = 1
+limit = 1
+projectPage = "portfolio/project"
+==
+{% partial 'hero' %}
+<div class="[ c-container c-container--wave ]">
+    <div class="c-container__inner">
+        <div class="flex flex-col items-center">
+            {% partial 'services/featured_categories' %}
+            <a class="c-button mt-20 lg:mt-24" href="{{ 'services/index'|page }}">Find out more</a>
+        </div>
+    </div>
+</div>
+
+<div class="c-container bg-red-100">
+    <div class="c-container__inner">
+        <h2>Case Studies</h2>
+        <hr class="border-red-500 mb-20 xl:mb-28">
+        {% partial 'portfolio/projects' %}
+    </div>
+</div>

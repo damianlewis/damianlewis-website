@@ -1,0 +1,23 @@
+description = "Default page layout."
+==
+{% spaceless %}
+<!doctype html>
+<html lang="en">
+
+{% partial 'head' %}
+
+<body>
+<div id="page">
+    {% partial 'header' %}
+
+    <main class="mt-36">
+        {% page %}
+    </main>
+
+    {% partial 'navigation' %}
+</div>
+{% partial 'scripts' %}
+</body>
+
+</html>
+{% endspaceless %}

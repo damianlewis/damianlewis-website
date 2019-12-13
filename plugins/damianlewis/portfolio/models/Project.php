@@ -125,6 +125,20 @@ class Project extends Model
         return $query->where('is_featured', true);
     }
 
+    /**
+     * Get the image used for project the list.
+     *
+     * @param  bool|null  $isReversed
+     * @return File|null
+     */
+    public function getListImage(bool $isReversed = null): ?File
+    {
+        if ($isReversed) {
+            return $this->mockup_multiple_reversed_image;
+        }
+
+        return $this->mockup_multiple_image;
+    }
 
     /**
      * Sets a url attribute for the project page.

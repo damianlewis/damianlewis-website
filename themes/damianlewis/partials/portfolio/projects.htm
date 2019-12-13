@@ -1,0 +1,24 @@
+description = "Template for the portfolio projects component."
+==
+{% for project in projects %}
+    {% set isEven = (loop.index % 2) is even %}
+
+    <div class="mb-32 last:mb-0 md:flex md:items-center md:-ml-16 md:mb-36 lg:mb-40">
+        <div class="mb-16 md:hidden">
+            {% set listImage = project.getListImage() %}
+            <img class="object-contain" src="{{ listImage.getPath() }}" alt="{{ listImage.title }}">
+        </div>
+        <div class="hidden mb-16 md:block md:w-1/2 md:pl-16 md:mb-0{% if isEven %} md:order-last{% endif %}">
+            {% set listImage = project.getListImage(isEven) %}
+            <img class="object-contain" src="{{ listImage.getPath() }}" alt="{{ listImage.title }}">
+        </div>
+
+        <div class="md:w-1/2 md:pl-16">
+            <h3 class="text-grey-900 mb-4">{{ project.title }}</h3>
+            <div class="c-text text-grey-600 mb-12">
+                {{ project.summary|raw }}
+            </div>
+            <a class="c-button" href="{{ project.url }}">View project</a>
+        </div>
+    </div>
+{% endfor %}

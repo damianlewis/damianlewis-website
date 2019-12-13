@@ -1,0 +1,18 @@
+@tailwind base;
+
+// SETTINGS
+@import "settings/settings.fonts";
+
+// ELEMENTS
+@import "elements/elements.breaks";
+@import "elements/elements.headings";
+@import "elements/elements.inline";
+
+@tailwind components;
+
+// COMPONENTS
+@import "components/components.button";
+@import "components/components.container";
+@import "components/components.text";
+
+@tailwind utilities;
