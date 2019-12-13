@@ -1,0 +1,43 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    header:
+        label: Header
+        span: left
+
+    body:
+        label: Body
+        span: right
+        type: richeditor
+        toolbarButtons: bold|italic|||undo|redo|||html|fullscreen
+
+tabs:
+    fields:
+        image:
+            tab: Image
+            label: Mock up image
+            span: auto
+            type: fileupload
+            mode: image
+
+        background_image_tablet:
+            tab: Backgrounds
+            label: Tablet background image
+            span: auto
+            type: fileupload
+            mode: image
+
+        background_image_mobile:
+            tab: Backgrounds
+            label: Mobile background image
+            span: auto
+            type: fileupload
+            mode: image
+
+secondaryTabs:
+    fields:
+        description:
+            label: Description
+            span: full
