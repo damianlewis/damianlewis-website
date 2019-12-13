@@ -7,6 +7,7 @@ namespace DamianLewis\Portfolio\Models;
 use Model;
 use October\Rain\Database\Traits\Nullable;
 use October\Rain\Database\Traits\Sluggable;
+use October\Rain\Database\Traits\Sortable;
 use October\Rain\Database\Traits\Validation;
 use System\Models\File;
 
@@ -14,6 +15,7 @@ class Project extends Model
 {
     use Nullable;
     use Sluggable;
+    use Sortable;
     use Validation;
 
     public $table = 'damianlewis_portfolio_projects';

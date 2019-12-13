@@ -30,6 +30,11 @@ columns:
         type: featured
         width: 1%
 
+    sort_order:
+        label: Order
+        type: number
+        invisible: true
+
     created_at:
         label: Created at
         type: datetime

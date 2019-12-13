@@ -6,6 +6,7 @@ namespace DamianLewis\Portfolio\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
+use Backend\Behaviors\ReorderController;
 use Backend\Classes\Controller;
 use Backend\Widgets\Filter;
 use BackendMenu;
@@ -18,11 +19,13 @@ class Projects extends Controller
 
     public $implement = [
         ListController::class,
-        FormController::class
+        FormController::class,
+        ReorderController::class
     ];
 
     public $listConfig = 'config/list.yaml';
     public $formConfig = 'config/form.yaml';
+    public $reorderConfig = 'config/reorder.yaml';
 
     public function __construct()
     {

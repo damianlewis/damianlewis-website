@@ -23,6 +23,7 @@ class CreateProjectsTable extends Migration
             $table->text('description')->nullable();
             $table->boolean('is_featured')->default(false);
             $table->timestamp('completed_at')->nullable();
+            $table->unsignedInteger('sort_order')->nullable();
             $table->timestamps();
 
             $table->foreign('status_id')
