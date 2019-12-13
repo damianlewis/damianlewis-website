@@ -1,0 +1,89 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Title
+        span: auto
+
+    slug:
+        label: Slug
+        span: auto
+        context:
+            - update
+            - preview
+        preset: title
+
+tabs:
+    fields:
+        description:
+            tab: Description
+            label: Text
+            span: full
+            type: richeditor
+            toolbarButtons: paragraphFormat|||bold|italic|quote|align|||undo|redo|||formatOL|formatUL|||insertLink|insertTable|||html|fullscreen
+            size: giant
+
+        list_image:
+            tab: List
+            label: Image
+            span: auto
+            type: fileupload
+            mode: image
+            comment: The image used for the category list.
+
+        list_text:
+            tab: List
+            label: Text
+            span: auto
+            type: richeditor
+            toolbarButtons: bold|italic|||undo|redo|||html|fullscreen
+
+        featured_icon:
+            tab: Featured
+            label: Icon
+            span: auto
+            type: fileupload
+            mode: image
+            fileTypes: svg,png
+            comment: The icon used for the featured section.
+
+        featured_text:
+            tab: Featured
+            label: Text
+            span: auto
+            type: richeditor
+            toolbarButtons: bold|italic|||undo|redo|||html|fullscreen
+
+        hero_image:
+            tab: Hero
+            label: Image
+            span: auto
+            type: fileupload
+            mode: image
+            comment: The image used for the hero section.
+
+        hero_text:
+            tab: Hero
+            label: Text
+            span: auto
+            type: richeditor
+            toolbarButtons: bold|italic|||undo|redo|||html|fullscreen
+
+secondaryTabs:
+    fields:
+        manage_section:
+            label: Manage
+            type: section
+
+        preview_image:
+            label: Preview image
+            type: fileupload
+            mode: image
+            comment: The preview image used in the backend.
+
+        is_featured:
+            label: Featured
+            type: checkbox
+            comment: Switch this on to display this category on the home page.

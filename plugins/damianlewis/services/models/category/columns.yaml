@@ -1,0 +1,35 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    preview_image:
+        label: Preview
+        type: previewimage
+        width: 1%
+        sortable: false
+
+    title:
+        label: Title
+        type: text
+        searchable: true
+
+    is_featured:
+        label: Featured
+        type: featured
+        width: 1%
+
+    sort_order:
+        label: Order
+        type: number
+        invisible: true
+
+    created_at:
+        label: Created at
+        type: datetime
+        invisible: true
+
+    updated_at:
+        label: Updated at
+        type: datetime
+        invisible: true
