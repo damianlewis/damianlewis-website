@@ -8,8 +8,13 @@ fields:
         comment: This is the name to display on the front-end.
         span: auto
 
-    is_visible:
-        label: Visible
-        type: switch
-        comment: Switch this off to hide the technology on the front-end.
-        span: auto
+secondaryTabs:
+    fields:
+        manage_section:
+            label: Manage
+            type: section
+
+        is_visible:
+            label: Visible
+            type: switch
+            comment: Switch this off to hide the technology on the front-end.

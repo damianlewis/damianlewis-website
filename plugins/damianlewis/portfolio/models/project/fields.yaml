@@ -20,13 +20,15 @@ tabs:
         tag_line:
             tab: Details
             label: Tag line
+            span: auto
             type: text
 
         summary:
             tab: Details
             label: Summary
-            type: textarea
-            size: small
+            span: auto
+            type: richeditor
+            toolbarButtons: bold|italic|||undo|redo|||html|fullscreen
 
         description:
             tab: Details
@@ -49,39 +51,6 @@ tabs:
             span: auto
             type: taglist
             mode: relation
-
-        status:
-            tab: Manage
-            label: Status
-            span: auto
-            type: relation
-            nameFrom: name
-            default: 1
-
-        completed_at:
-            tab: Manage
-            label: Completion Date
-            span: auto
-            type: datepicker
-            mode: date
-            format: j M Y
-
-        is_featured:
-            tab: Manage
-            label: Featured
-            span: auto
-            type: switch
-            comment: Switch this on to display this project on the home page.
-
-secondaryTabs:
-    fields:
-        preview_image:
-            tab: Preview Image
-            label: Preview image
-            span: auto
-            type: fileupload
-            mode: image
-            comment: The preview image used for the backend list.
 
         mockup_desktop_image:
             tab: Mockup Images
@@ -146,3 +115,32 @@ secondaryTabs:
             type: fileupload
             mode: image
             comment: A collection of additional design images.
+
+secondaryTabs:
+    fields:
+        manage_section:
+            label: Manage
+            type: section
+
+        preview_image:
+            label: Preview image
+            type: fileupload
+            mode: image
+            comment: The preview image used for the backend.
+
+        status:
+            label: Status
+            type: relation
+            nameFrom: name
+            default: 1
+
+        completed_at:
+            label: Completion Date
+            type: datepicker
+            mode: date
+            format: j M Y
+
+        is_featured:
+            label: Featured
+            type: checkbox
+            comment: Switch this on to display this project on the home page.

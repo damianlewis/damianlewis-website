@@ -28,6 +28,10 @@ class Skills extends Controller
         parent::__construct();
 
         BackendMenu::setContext('DamianLewis.Portfolio', 'portfolio', 'skills');
+
+        if (in_array($this->action, ['create', 'update'])) {
+            $this->bodyClass = 'compact-container';
+        }
     }
 
     /**
