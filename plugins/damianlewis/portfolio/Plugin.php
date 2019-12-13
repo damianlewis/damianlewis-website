@@ -44,7 +44,7 @@ class Plugin extends PluginBase
                 'label' => 'Portfolio',
                 'url' => Backend::url('damianlewis/portfolio/projects'),
                 'icon' => 'icon-archive',
-                'iconSvg' => 'plugins/damianlewis/portfolio/assets/images/briefcase-icon.svg',
+                'iconSvg' => 'plugins/damianlewis/portfolio/assets/images/icon_briefcase.svg',
                 'permissions' => ['damianlewis.portfolio.*'],
                 'order' => 999,
 
