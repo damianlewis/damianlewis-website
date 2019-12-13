@@ -1,4 +1,4 @@
-<?= $this->makePartial('breadcrumb') ?>
+<?= $this->makePartial('partials/breadcrumb') ?>
 
 <?php if (!$this->fatalError): ?>
 
@@ -35,12 +35,12 @@
                     data-load-indicator="Deleting Technology..."
                     data-request-confirm="Do you really want to delete this technology?">
                 </button>
-                <?= $this->makePartial('cancel') ?>
+                <?= $this->makePartial('partials/cancel') ?>
             </div>
         </div>
 
     <?= Form::close() ?>
 
 <?php else: ?>
-    <?= $this->makePartial('fatal_error') ?>
+    <?= $this->makePartial('partials/fatal_error') ?>
 <?php endif ?>

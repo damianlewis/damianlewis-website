@@ -1,4 +1,4 @@
-<?= $this->makePartial('breadcrumb') ?>
+<?= $this->makePartial('partials/breadcrumb') ?>
 
 <?php if (!$this->fatalError): ?>
 
@@ -27,12 +27,12 @@
                     class="btn btn-default">
                     Create and Close
                 </button>
-                <?= $this->makePartial('cancel') ?>
+                <?= $this->makePartial('partials/cancel') ?>
             </div>
         </div>
 
-    <?= Form::close() ?>
+        <?= Form::close() ?>
 
 <?php else: ?>
-    <?= $this->makePartial('fatal_error') ?>
+    <?= $this->makePartial('partials/fatal_error') ?>
 <?php endif ?>

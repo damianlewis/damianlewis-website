@@ -20,8 +20,8 @@ class Skills extends Controller
         FormController::class
     ];
 
-    public $listConfig = 'config_list.yaml';
-    public $formConfig = 'config_form.yaml';
+    public $listConfig = 'config/list.yaml';
+    public $formConfig = 'config/form.yaml';
 
     public function __construct()
     {

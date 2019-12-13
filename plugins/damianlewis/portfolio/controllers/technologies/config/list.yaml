@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/damianlewis/portfolio/models/project/columns.yaml
+list: $/damianlewis/portfolio/models/technology/columns.yaml
 
 # Model Class name
-modelClass: DamianLewis\Portfolio\Models\Project
+modelClass: DamianLewis\Portfolio\Models\Technology
 
 # List Title
-title: Manage Projects
+title: Manage Technologies
 
 # Link URL for each record
-recordUrl: damianlewis/portfolio/projects/update/:id
+recordUrl: damianlewis/portfolio/technologies/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
@@ -25,8 +25,8 @@ showSetup: true
 
 # Default sorting column
 defaultSort:
-    column: completed_at
-    direction: desc
+    column: name
+    direction: asc
 
 # Display checkboxes next to each record
 showCheckboxes: true
@@ -34,10 +34,8 @@ showCheckboxes: true
 # Toolbar widget configuration
 toolbar:
     # Partial for toolbar buttons
-    buttons: list_toolbar
+    buttons: partials/list_toolbar
 
     # Search widget configuration
     search:
         prompt: backend::lang.list.search_prompt
-
-filter: config_filter.yaml
