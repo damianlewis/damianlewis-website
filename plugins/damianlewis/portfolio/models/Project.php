@@ -40,16 +40,7 @@ class Project extends Model
             'required',
             'unique:damianlewis_portfolio_projects',
             'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i'
-        ],
-        'preview_image' => 'nullable|mimes:jpeg|dimensions:ratio=4/3',
-        'mockup_desktop_image' => 'nullable|mimes:jpeg,png|dimensions:min_width=594',
-        'mockup_multiple_image' => 'nullable|mimes:jpeg,png|dimensions:min_width=546',
-        'mockup_multiple_reversed_image' => 'nullable|mimes:jpeg,png|dimensions:min_width=546',
-        'mockup_multiple_in_sequence_image' => 'nullable|mimes:jpeg,png|dimensions:min_width=1140',
-        'desktop_full_frame_image' => 'nullable|mimes:jpeg,png|dimensions:min_width=1140',
-        'tablet_full_frame_image' => 'nullable|mimes:jpeg,png|dimensions:min_width=696',
-        'mobile_full_frame_image' => 'nullable|mimes:jpeg,png|dimensions:min_width=272',
-        'design_images' => 'nullable|mimes:jpeg,png|dimensions:ratio=4/3'
+        ]
     ];
 
     protected $casts = [
