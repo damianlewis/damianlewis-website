@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio;
 
 use Backend;
+use DamianLewis\Portfolio\Components\Projects;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -16,6 +17,13 @@ class Plugin extends PluginBase
             'description' => 'Create and manage portfolios for showcasing projects.',
             'author' => 'Damian Lewis',
             'icon' => 'icon-briefcase'
+        ];
+    }
+
+    public function registerComponents(): array
+    {
+        return [
+            Projects::class => 'projects'
         ];
     }
 

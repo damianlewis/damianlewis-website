@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Models;
 
+use Cms\Classes\Controller;
 use Model;
+use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Nullable;
 use October\Rain\Database\Traits\Sluggable;
 use October\Rain\Database\Traits\Sortable;
@@ -65,10 +67,21 @@ class Project extends Model
         'is_featured' => 'boolean'
     ];
 
+    /**
+     * @var array Attributes to be appended to the API representation of the model (ex. toArray())
+     */
+    protected $appends = [];
+
+    /**
+     * @var array Attributes to be removed from the API representation of the model (ex. toArray())
+     */
+    protected $hidden = [];
+
+    protected $dates = [
     public $belongsTo = [
         'status' => [
             Attribute::class,
-            'conditions' => "type = 'project.status'"
+            'conditions' => "type = '".Attribute::PROJECT_STATUS."'"
         ]
     ];
 
@@ -99,4 +112,47 @@ class Project extends Model
     public $attachMany = [
         'design_images' => File::class
     ];
+
+    /**
+     * Select projects with an active status.
+     *
+     * @param  Builder  $query
+     * @return Builder
+     */
+    public function scopeActive(Builder $query): Builder
+    {
+        $status = Attribute::where([
+            ['type', Attribute::PROJECT_STATUS],
+            ['code', 'active']
+        ])->firstOrFail();
+
+        return $query->where('status_id', $status->id);
+    }
+
+    /**
+     * Select only the featured projects.
+     *
+     * @param  Builder  $query
+     * @return Builder
+     */
+    public function scopeFeatured(Builder $query): Builder
+    {
+        return $query->where('is_featured', true);
+    }
+
+
+    /**
+     * Sets a url attribute for the project page.
+     *
+     * @param  string  $pageName
+     * @param  Controller  $controller
+     */
+    public function setUrl(string $pageName, Controller $controller): void
+    {
+        $params = [
+            'slug' => $this->slug,
+        ];
+
+        $this->attributes['url'] = $controller->pageUrl($pageName, $params);
+    }
 }
