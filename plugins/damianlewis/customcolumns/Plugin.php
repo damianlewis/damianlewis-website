@@ -118,7 +118,7 @@ class Plugin extends PluginBase
      * @param  File|null  $image
      * @return string
      */
-    public function previewImageListColumn(File $image = null): string
+    public function previewImageListColumn(?File $image): string
     {
         if ($image) {
             return '<img src="'.$image->getThumb(
