@@ -22,26 +22,15 @@ class Project extends Model
 
     public $table = 'damianlewis_portfolio_projects';
 
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'completed_at'
-    ];
-
-    /**
-     * List of attributes to generate unique slugs for.
-     *
-     * @var array
-     */
-    protected $slugs = [
-        'slug' => 'title',
-    ];
-
     protected $nullable = [
         'tag_line',
         'summary',
         'description',
         'completed_at'
+    ];
+
+    protected $slugs = [
+        'slug' => 'title'
     ];
 
     public $rules = [
@@ -78,6 +67,11 @@ class Project extends Model
     protected $hidden = [];
 
     protected $dates = [
+        'created_at',
+        'updated_at',
+        'completed_at'
+    ];
+
     public $belongsTo = [
         'status' => [
             Attribute::class,
