@@ -22,27 +22,6 @@ class Project extends Model
 
     public $table = 'damianlewis_portfolio_projects';
 
-    protected $nullable = [
-        'tag_line',
-        'summary',
-        'description',
-        'completed_at'
-    ];
-
-    protected $slugs = [
-        'slug' => 'title'
-    ];
-
-    public $rules = [
-        'title' => 'required',
-        'slug' => [
-            'sometimes',
-            'required',
-            'unique:damianlewis_portfolio_projects',
-            'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i'
-        ]
-    ];
-
     protected $casts = [
         'is_featured' => 'boolean'
     ];
@@ -61,6 +40,28 @@ class Project extends Model
         'created_at',
         'updated_at',
         'completed_at'
+    ];
+
+    protected $nullable = [
+        'tag_line',
+        'summary',
+        'sort_order',
+        'description',
+        'completed_at'
+    ];
+
+    protected $slugs = [
+        'slug' => 'title'
+    ];
+
+    public $rules = [
+        'title' => 'required',
+        'slug' => [
+            'sometimes',
+            'required',
+            'unique:damianlewis_portfolio_projects',
+            'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i'
+        ]
     ];
 
     public $belongsTo = [
