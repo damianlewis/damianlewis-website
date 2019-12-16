@@ -21,6 +21,10 @@ module.exports = {
         900: '#161616',
       },
     },
+    filter: {
+      'grayscale-100': 'grayscale(100%)',
+      'grayscale-0': 'grayscale(0%)',
+    },
     fontFamily: {
       'heading': ['triplex-serif', 'serif'],
       'body': ['depot-new-web', 'sans-serif'],
@@ -77,14 +81,38 @@ module.exports = {
       50: '150px',
       88: '264px',
     },
+    transitionProperty: {
+      'none': 'none',
+      'bg': 'background-color',
+      'opacity': 'opacity',
+    },
+    transitionDuration: {
+      'default': '100ms',
+    },
+    transitionTimingFunction: {
+      'default': 'ease',
+    },
+    transitionDelay: {},
+    willChange: {},
     extend: {
       borderWidth: {
-        3: '3px'
-      }
+        3: '3px',
+      },
+      opacity: {
+        20: '.2',
+        30: '.3',
+        35: '.35',
+        40: '.4',
+        45: '.45',
+      },
     },
   },
   variants: {
-    margin: ['responsive', 'last']
+    filter: ['hover'],
+    margin: ['responsive', 'last'],
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-filters')(),
+    require('tailwindcss-transitions')(),
+  ],
 }
