@@ -20,6 +20,11 @@ orderDirection = "asc"
 featured = 1
 limit = 1
 projectPage = "portfolio/project"
+
+[clients]
+orderBy = "sort_order"
+orderDirection = "asc"
+active = 1
 ==
 {% partial 'hero' %}
 <div class="[ c-container c-container--wave ]">
@@ -36,5 +41,13 @@ projectPage = "portfolio/project"
         <h2>Case Studies</h2>
         <hr class="border-red-500 mb-20 xl:mb-28">
         {% partial 'portfolio/projects' %}
+    </div>
+</div>
+
+<div class="[ c-container c-container--wave ]">
+    <div class="c-container__inner">
+        <h2>Clients</h2>
+        <hr class="border-red-500 mb-20 xl:mb-28">
+        {% partial 'portfolio/clients' %}
     </div>
 </div>
