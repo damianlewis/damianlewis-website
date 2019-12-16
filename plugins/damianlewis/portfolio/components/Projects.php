@@ -12,7 +12,7 @@ use October\Rain\Database\Collection;
 class Projects extends ComponentBase
 {
     /**
-     * @var Collection|null
+     * @var Collection
      */
     public $projects;
 
@@ -80,7 +80,7 @@ class Projects extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
-    public function onRun()
+    public function onRun(): void
     {
         $this->projects = $this->page['projects'] = $this->getActiveProjects();
 
