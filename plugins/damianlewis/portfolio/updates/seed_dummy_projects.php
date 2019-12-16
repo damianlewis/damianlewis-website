@@ -6,7 +6,7 @@ namespace DamianLewis\Portfolio\Updates;
 
 use Seeder;
 
-class SeedDummyData extends Seeder
+class SeedDummyProjects extends Seeder
 {
     public function run()
     {
