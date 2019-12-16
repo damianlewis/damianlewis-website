@@ -12,7 +12,7 @@ use October\Rain\Database\Collection;
 class Categories extends ComponentBase
 {
     /**
-     * @var Collection|string
+     * @var Collection
      */
     public $categories;
 
