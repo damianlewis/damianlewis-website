@@ -7,3 +7,8 @@
     - seed_attributes.php
     - Seed dummy projects
     - seed_dummy_projects.php
+1.0.2:
+    - Create Clients table
+    - create_clients_table.php
+    - Seed dummy clients
+    - seed_dummy_clients.php

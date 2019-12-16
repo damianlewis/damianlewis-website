@@ -72,6 +72,7 @@
             "plugins/damianlewis/portfolio/updates/seed_skills.php",
             "plugins/damianlewis/portfolio/updates/seed_technologies.php",
             "plugins/damianlewis/portfolio/updates/seed_projects.php",
+            "plugins/damianlewis/portfolio/updates/seed_clients.php",
             "plugins/damianlewis/services/updates/seed_categories.php"
         ]
     },

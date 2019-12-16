@@ -1,0 +1,39 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Client name
+        span: auto
+
+tabs:
+    fields:
+        logo:
+            tab: Logo
+            label: Image
+            span: auto
+            type: fileupload
+            mode: image
+            comment: Coloured version of client logo.
+
+secondaryTabs:
+    fields:
+        manage_section:
+            label: Manage
+            type: section
+
+        logo_width:
+            label: Logo width
+            type: number
+            comment: Constrain the width of the logo.
+
+        logo_opacity:
+            label: Logo opacity
+            type: number
+            comment: Set the opacity of the logo.
+
+        is_active:
+            label: Active
+            type: switch
+            comment: Switch this off to hide the client on the front-end.

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio;
 
 use Backend;
+use DamianLewis\Portfolio\Components\Clients;
 use DamianLewis\Portfolio\Components\Projects;
 use System\Classes\PluginBase;
 
@@ -23,7 +24,8 @@ class Plugin extends PluginBase
     public function registerComponents(): array
     {
         return [
-            Projects::class => 'projects'
+            Projects::class => 'projects',
+            Clients::class => 'clients'
         ];
     }
 
@@ -41,6 +43,10 @@ class Plugin extends PluginBase
             'damianlewis.portfolio.access_project_technologies' => [
                 'tab' => 'Portfolio',
                 'label' => 'Manage the project technologies.'
+            ],
+            'damianlewis.portfolio.access_clients' => [
+                'tab' => 'Portfolio',
+                'label' => 'Manage the client list.'
             ]
         ];
     }
@@ -74,6 +80,12 @@ class Plugin extends PluginBase
                         'url' => Backend::url('damianlewis/portfolio/technologies'),
                         'icon' => 'icon-desktop',
                         'permissions' => ['damianlewis.portfolio.access_project_technologies']
+                    ],
+                    'clients' => [
+                        'label' => 'Clients',
+                        'url' => Backend::url('damianlewis/portfolio/clients'),
+                        'icon' => 'icon-users',
+                        'permissions' => ['damianlewis.portfolio.access_clients']
                     ]
                 ]
             ]
