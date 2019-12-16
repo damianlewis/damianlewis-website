@@ -22,11 +22,26 @@ class Category extends Model
 
     public $table = 'damianlewis_services_categories';
 
+    protected $casts = [
+        'is_featured' => 'boolean'
+    ];
+
+    /**
+     * @var array Attributes to be appended to the API representation of the model (ex. toArray())
+     */
+    protected $appends = [];
+
+    /**
+     * @var array Attributes to be removed from the API representation of the model (ex. toArray())
+     */
+    protected $hidden = [];
+
     protected $nullable = [
         'featured_text',
         'hero_text',
         'list_text',
-        'description'
+        'description',
+        'sort_order'
     ];
 
     protected $slugs = [
@@ -42,20 +57,6 @@ class Category extends Model
             'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i'
         ]
     ];
-
-    protected $casts = [
-        'is_featured' => 'boolean'
-    ];
-
-    /**
-     * @var array Attributes to be appended to the API representation of the model (ex. toArray())
-     */
-    protected $appends = [];
-
-    /**
-     * @var array Attributes to be removed from the API representation of the model (ex. toArray())
-     */
-    protected $hidden = [];
 
     public $attachOne = [
         'preview_image' => File::class,
