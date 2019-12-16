@@ -16,7 +16,7 @@ class CreateTechnologiesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name')->unique();
-            $table->boolean('is_visible')->default(true);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

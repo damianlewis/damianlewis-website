@@ -3,9 +3,9 @@
 # ===================================
 
 columns:
-    is_visible:
-        label: Visible
-        type: visible
+    is_active:
+        label: Active
+        type: active
         width: 1%
 
     name:

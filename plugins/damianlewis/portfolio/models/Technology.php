@@ -17,7 +17,7 @@ class Technology extends Model
     protected $fillable = ['name'];
 
     protected $casts = [
-        'is_visible' => 'boolean'
+        'is_active' => 'boolean'
     ];
 
     public $rules = [

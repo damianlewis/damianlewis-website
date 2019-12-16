@@ -14,7 +14,7 @@ secondaryTabs:
             label: Manage
             type: section
 
-        is_visible:
-            label: Visible
+        is_active:
+            label: Active
             type: switch
             comment: Switch this off to hide the technology on the front-end.

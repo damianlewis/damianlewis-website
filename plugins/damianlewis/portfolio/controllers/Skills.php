@@ -43,6 +43,6 @@ class Skills extends Controller
             return '';
         }
 
-        return $record->is_visible ? '' : 'safe disabled';
+        return $record->is_active ? '' : 'safe disabled';
     }
 }

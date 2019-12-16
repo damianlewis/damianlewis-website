@@ -50,7 +50,7 @@ class Plugin extends PluginBase
     {
         return [
             'status' => [$this, 'statusListColumn'],
-            'visible' => [$this, 'visibleListColumn'],
+            'active' => [$this, 'activeListColumn'],
             'featured' => [$this, 'featuredListColumn'],
             'previewimage' => [$this, 'previewImageListColumn']
         ];
@@ -86,12 +86,12 @@ class Plugin extends PluginBase
     }
 
     /**
-     * @param  bool  $isVisible
+     * @param  bool  $isActive
      * @return string
      */
-    public function visibleListColumn(bool $isVisible): string
+    public function activeListColumn(bool $isActive): string
     {
-        if (!$isVisible) {
+        if (!$isActive) {
             $class = 'oc-icon-toggle-off text-muted';
         } else {
             $class = 'oc-icon-toggle-on text-success';
