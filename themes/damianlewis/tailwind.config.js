@@ -29,6 +29,7 @@ module.exports = {
       'heading': ['triplex-serif', 'serif'],
       'body': ['depot-new-web', 'sans-serif'],
       'button': ['circe', 'sans-serif'],
+      'quote': ['Roboto Slab', 'serif'],
     },
     fontSize: {
       '3xs': '12px',

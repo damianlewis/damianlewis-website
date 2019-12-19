@@ -52,7 +52,9 @@ class Plugin extends PluginBase
             'status' => [$this, 'statusListColumn'],
             'active' => [$this, 'activeListColumn'],
             'featured' => [$this, 'featuredListColumn'],
-            'previewimage' => [$this, 'previewImageListColumn']
+            'previewimage' => [$this, 'previewImageListColumn'],
+            'textlimit' => [$this, 'textLimitListColumn'],
+            'rating' => [$this, 'ratingListColumn']
         ];
     }
 
@@ -122,12 +124,54 @@ class Plugin extends PluginBase
     {
         if ($image) {
             return '<img src="'.$image->getThumb(
-                Settings::get('preview_image_width'),
-                Settings::get('preview_image_height'),
-                ['mode' => Settings::get('preview_image_mode')]
-            ).'">';
+                    Settings::get('preview_image_width'),
+                    Settings::get('preview_image_height'),
+                    ['mode' => Settings::get('preview_image_mode')]
+                ).'">';
         }
 
         return '';
+    }
+
+    /**
+     * @param  string  $text
+     * @param  ListColumn  $column
+     * @return string
+     */
+    public function textLimitListColumn(string $text, ListColumn $column): string
+    {
+        $wordLimit = 100;
+
+        if (array_key_exists('limit', $column->config)) {
+            $wordLimit = $column->config['limit'];
+        }
+
+        return str_limit($text, $wordLimit);
+    }
+
+    public function ratingListColumn(?int $rating, ListColumn $column): string
+    {
+        $max = 5;
+        $stars = '';
+
+        if (!$rating) {
+            return $stars;
+        }
+
+        if (array_key_exists('max', $column->config)) {
+            $max = $column->config['max'];
+        }
+
+        foreach (range(1, $max) as $count) {
+            if ($rating >= $count) {
+                $class = 'icon-star';
+            } else {
+                $class = 'icon-star-o';
+            }
+
+            $stars .= '<span class="'.$class.'" style="color: #cb7f00; margin-right: 2px;"></span>';
+        }
+
+        return $stars;
     }
 }
