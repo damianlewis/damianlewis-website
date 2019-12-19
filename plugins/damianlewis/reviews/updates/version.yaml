@@ -1,0 +1,5 @@
+1.0.1:
+  - Create Testimonials table
+  - create_testimonials_table.php
+  - Seed dummy testimonials
+  - seed_dummy_testimonials.php

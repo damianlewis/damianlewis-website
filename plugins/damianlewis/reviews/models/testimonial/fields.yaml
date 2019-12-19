@@ -1,0 +1,46 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Name
+        span: auto
+
+    company:
+        label: Company
+        span: auto
+
+tabs:
+    fields:
+        quote:
+            tab: Details
+            label: Quote
+            span: auto
+            type: richeditor
+            toolbarButtons: bold|italic|||undo|redo|||html|fullscreen
+
+        image:
+            tab: Details
+            label: Image
+            span: auto
+            type: fileupload
+            mode: image
+
+secondaryTabs:
+    fields:
+        manage_section:
+            label: Manage
+            type: section
+
+        rating:
+            label: Rating
+            type: number
+            step: 1
+            min: 1
+            max: 5
+
+        is_active:
+            label: Active
+            type: switch
+            comment: Switch this off to disable the testimonial.
