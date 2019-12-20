@@ -129,6 +129,44 @@
             "time": "2019-08-12T15:00:31+00:00"
         },
         {
+            "name": "damianlewis/oc-socialmedia-plugin",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/damianlewis/oc-socialmedia-plugin.git",
+                "reference": "3467b4468b2451edd2b0f36003f624d16bd295b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/damianlewis/oc-socialmedia-plugin/zipball/3467b4468b2451edd2b0f36003f624d16bd295b7",
+                "reference": "3467b4468b2451edd2b0f36003f624d16bd295b7",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "october/backend": "^1.0",
+                "october/cms": "^1.0",
+                "october/system": "^1.0",
+                "php": ">=7.1"
+            },
+            "type": "october-plugin",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Damian Lewis",
+                    "email": "damian@damianlewis.co.uk"
+                }
+            ],
+            "description": "A list of social media links associated with a website.",
+            "support": {
+                "source": "https://github.com/damianlewis/oc-socialmedia-plugin/tree/v1.0.2",
+                "issues": "https://github.com/damianlewis/oc-socialmedia-plugin/issues"
+            },
+            "time": "2019-12-19T16:30:48+00:00"
+        },
+        {
             "name": "damianlewis/oc-webpconverter-plugin",
             "version": "v1.1.0",
             "source": {
