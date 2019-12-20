@@ -1,0 +1,20 @@
+description = "Template for the Social Media Links component."
+
+[socialMediaLinks]
+orderBy = "sort_order"
+orderDirection = "asc"
+active = 1
+==
+<div class="flex -ml-4">
+    {% for link in linkList %}
+        <a class="pl-4"
+           href="{{ link.url }}"
+           {% if link.is_blank_target %}target="_blank"{% endif %}
+        >
+            <img src="{{ link.icon.getPath() }}"
+                 width="32"
+                 {% if link.icon.title %}alt="{{ link.icon.title }}"{% endif %}
+            >
+        </a>
+    {% endfor %}
+</div>
