@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio;
 
 use Backend;
-use DamianLewis\Portfolio\Components\Clients;
+use DamianLewis\Portfolio\Components\ClientLogos;
 use DamianLewis\Portfolio\Components\Projects;
 use System\Classes\PluginBase;
 
@@ -25,7 +25,7 @@ class Plugin extends PluginBase
     {
         return [
             Projects::class => 'projects',
-            Clients::class => 'clients'
+            ClientLogos::class => 'clientLogos'
         ];
     }
 
@@ -57,7 +57,7 @@ class Plugin extends PluginBase
             'portfolio' => [
                 'label' => 'Portfolio',
                 'url' => Backend::url('damianlewis/portfolio/projects'),
-                'icon' => 'icon-archive',
+                'icon' => 'icon-briefcase',
                 'iconSvg' => 'plugins/damianlewis/portfolio/assets/images/icon_briefcase.svg',
                 'permissions' => ['damianlewis.portfolio.*'],
                 'order' => 999,

@@ -15,7 +15,7 @@ tabs:
             span: auto
             type: fileupload
             mode: image
-            comment: Coloured version of client logo.
+            comment: Client logo.
 
 secondaryTabs:
     fields:
@@ -33,7 +33,7 @@ secondaryTabs:
             type: number
             comment: Set the opacity of the logo.
 
-        is_active:
-            label: Active
+        is_visible:
+            label: Visible
             type: switch
-            comment: Switch this off to hide the client on the front-end.
+            comment: When disabled the client is hidden on the frontend.
