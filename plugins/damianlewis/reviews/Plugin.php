@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DamianLewis\Reviews;
 
 use Backend;
-use DamianLewis\Reviews\Components\Testimonial;
+use DamianLewis\Reviews\Components\FeaturedTestimonial;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -23,7 +23,7 @@ class Plugin extends PluginBase
     public function registerComponents(): array
     {
         return [
-            Testimonial::class => 'testimonial'
+            FeaturedTestimonial::class => 'featuredTestimonial'
         ];
     }
 

@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace DamianLewis\Reviews\Components;
 
 use Cms\Classes\ComponentBase;
-use DamianLewis\Reviews\Models\Testimonial as TestimonialModel;
+use DamianLewis\Reviews\Models\Testimonial;
 
-class Testimonial extends ComponentBase
+class FeaturedTestimonial extends ComponentBase
 {
     /**
-     * @var TestimonialModel|null
+     * @var Testimonial|null
      */
     private $testimonial;
 
@@ -18,7 +18,7 @@ class Testimonial extends ComponentBase
     {
         return [
             'name' => 'Testimonial',
-            'description' => 'Get a single active testimonial.'
+            'description' => 'Get a featured testimonial.'
         ];
     }
 
@@ -76,7 +76,7 @@ class Testimonial extends ComponentBase
      */
     public function getTestimonialOptions(): array
     {
-        $activeTestimonials = TestimonialModel::active()->get();
+        $activeTestimonials = Testimonial::active()->get();
 
         return $activeTestimonials->pluck('nameAndCompany', 'id')->all();
     }
@@ -84,10 +84,10 @@ class Testimonial extends ComponentBase
     /**
      * Transforms a testimonial model into the data required by the frontend.
      *
-     * @param  TestimonialModel  $testimonial
+     * @param  Testimonial  $testimonial
      * @return array The transformed model data.
      */
-    protected function transformTestimonial(TestimonialModel $testimonial): array
+    protected function transformTestimonial(Testimonial $testimonial): array
     {
         $data = $testimonial->only([
             'name',
@@ -107,10 +107,10 @@ class Testimonial extends ComponentBase
      * Returns the active testimonial model with the given id.
      *
      * @param  int  $id
-     * @return TestimonialModel|null
+     * @return Testimonial|null
      */
-    protected function getActiveTestimonialById(int $id): ?TestimonialModel
+    protected function getActiveTestimonialById(int $id): ?Testimonial
     {
-        return TestimonialModel::active()->where('id', $id)->first();
+        return Testimonial::active()->where('id', $id)->first();
     }
 }
