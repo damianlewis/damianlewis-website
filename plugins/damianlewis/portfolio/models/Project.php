@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Models;
 
-use Cms\Classes\Controller;
 use Model;
 use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Nullable;
@@ -21,38 +20,6 @@ class Project extends Model
     use Validation;
 
     public $table = 'damianlewis_portfolio_projects';
-
-    protected $casts = [
-        'is_featured' => 'boolean'
-    ];
-
-    /**
-     * @var array Attributes to be appended to the API representation of the model (ex. toArray())
-     */
-    protected $appends = [];
-
-    /**
-     * @var array Attributes to be removed from the API representation of the model (ex. toArray())
-     */
-    protected $hidden = [];
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'completed_at'
-    ];
-
-    protected $nullable = [
-        'tag_line',
-        'summary',
-        'sort_order',
-        'description',
-        'completed_at'
-    ];
-
-    protected $slugs = [
-        'slug' => 'title'
-    ];
 
     public $rules = [
         'title' => 'required',
@@ -97,6 +64,24 @@ class Project extends Model
 
     public $attachMany = [
         'design_images' => File::class
+    ];
+
+    protected $dates = [
+        'completed_at'
+    ];
+
+    protected $slugs = [
+        'slug' => 'title'
+    ];
+
+    protected $nullable = [
+        'title',
+        'slug',
+        'tag_line',
+        'summary',
+        'sort_order',
+        'description',
+        'completed_at'
     ];
 
     /**
@@ -144,15 +129,10 @@ class Project extends Model
     /**
      * Sets a url attribute for the project page.
      *
-     * @param  string  $pageName
-     * @param  Controller  $controller
+     * @param  string  $path
      */
-    public function setUrl(string $pageName, Controller $controller): void
+    public function setUrl(string $path): void
     {
-        $params = [
-            'slug' => $this->slug,
-        ];
-
-        $this->attributes['url'] = $controller->pageUrl($pageName, $params);
+        $this->attributes['url'] = url($path, $this->slug);
     }
 }

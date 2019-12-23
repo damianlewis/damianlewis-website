@@ -9,7 +9,7 @@ use Seeder;
 
 class SeedProjects extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         factory(Project::class, 4)->states([
 //            'with preview'

@@ -10,20 +10,19 @@ use Schema;
 
 class CreateProjectsTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('damianlewis_portfolio_projects', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('status_id')->index();
-            $table->string('title');
-            $table->string('slug')->index();
+            $table->string('title')->nullable();
+            $table->string('slug')->nullable()->index();
             $table->string('tag_line')->nullable();
             $table->text('summary')->nullable();
             $table->text('description')->nullable();
-            $table->boolean('is_featured')->default(false);
+            $table->unsignedSmallInteger('sort_order')->nullable();
             $table->timestamp('completed_at')->nullable();
-            $table->unsignedInteger('sort_order')->nullable();
             $table->timestamps();
 
             $table->foreign('status_id')
@@ -66,7 +65,7 @@ class CreateProjectsTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::table('damianlewis_portfolio_project_technology', function (Blueprint $table) {
             $table->dropForeign('damianlewis_portfolio_project_technology_project_id_foreign');

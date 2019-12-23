@@ -8,7 +8,7 @@ use Seeder;
 
 class SeedDummyProjects extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $this->call(SeedSkills::class);
         $this->call(SeedTechnologies::class);

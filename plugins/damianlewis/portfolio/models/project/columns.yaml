@@ -25,11 +25,6 @@ columns:
         type: date
         invisible: true
 
-    is_featured:
-        label: Featured
-        type: featured
-        width: 1%
-
     sort_order:
         label: Order
         type: number

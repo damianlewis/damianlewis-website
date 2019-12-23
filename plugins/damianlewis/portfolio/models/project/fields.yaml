@@ -139,8 +139,3 @@ secondaryTabs:
             type: datepicker
             mode: date
             format: j M Y
-
-        is_featured:
-            label: Featured
-            type: checkbox
-            comment: Switch this on to display this project on the home page.
