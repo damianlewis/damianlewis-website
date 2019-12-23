@@ -7,11 +7,12 @@
   @apply bg-red-500;
   @apply cursor-pointer;
   @apply m-0 px-8;
+  @apply transition-bg;
   padding-top: 13px;
   padding-bottom: 11px;
   //line-height: 14px;
   //height: 14px;
-  transition: background-color 0.1s;
+  //transition: background-color 0.1s;
 
   &,
   &:hover,
