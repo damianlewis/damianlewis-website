@@ -2,10 +2,10 @@
    ========================================================================== */
 
 .c-text {
-  @apply font-body font-light text-xs leading-looser antialiased;
+  @apply font-body font-light text-xs leading-loose antialiased;
 
   @screen lg {
-    @apply text-base;
+    @apply text-base leading-looser;
   }
 }
 
@@ -14,5 +14,13 @@
 
   @screen lg {
     @apply text-xl;
+  }
+}
+
+.c-text--small {
+  @apply text-3xs;
+
+  @screen lg {
+    @apply text-xs;
   }
 }
