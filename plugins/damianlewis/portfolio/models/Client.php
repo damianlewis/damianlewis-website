@@ -60,7 +60,7 @@ class Client extends Model
     ];
 
     /**
-     * Select only the visible categories.
+     * Select visible categories.
      *
      * @param  Builder  $query
      * @return Builder

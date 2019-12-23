@@ -12,6 +12,6 @@ class SeedDummyClients extends Seeder
     public function run(): void
     {
         factory(Client::class, 2)->create();
-        factory(Client::class, 8)->states('active')->create();
+        factory(Client::class, 8)->states('visible')->create();
     }
 }
