@@ -8,6 +8,8 @@ use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
 use BackendMenu;
 use Backend\Classes\Controller;
+use DamianLewis\Pages\Models\Hero;
+use Model;
 
 class Heroes extends Controller
 {
@@ -28,5 +30,14 @@ class Heroes extends Controller
         parent::__construct();
 
         BackendMenu::setContext('DamianLewis.Pages', 'pages', 'heroes');
+    }
+
+    public function listInjectRowClass(Model $record): string
+    {
+        if (!$record instanceof Hero) {
+            return '';
+        }
+
+        return $record->is_active ? '' : 'safe disabled';
     }
 }

@@ -3,6 +3,11 @@
 # ===================================
 
 columns:
+    is_active:
+        label: Active
+        type: active
+        width: 1%
+
     description:
         label: Description
         type: text

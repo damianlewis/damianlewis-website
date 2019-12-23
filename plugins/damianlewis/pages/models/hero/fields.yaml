@@ -38,6 +38,14 @@ tabs:
 
 secondaryTabs:
     fields:
+        manage_section:
+            label: Manage
+            type: section
+
         description:
             label: Description
-            span: full
+
+        is_active:
+            label: Active
+            type: switch
+            comment: When disabled the hero isn't available for selection.
