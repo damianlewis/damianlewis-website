@@ -6,12 +6,11 @@ namespace DamianLewis\Reviews\Components;
 
 use Cms\Classes\ComponentBase;
 use DamianLewis\Reviews\Models\Testimonial as TestimonialModel;
-use System\Models\File;
 
 class Testimonial extends ComponentBase
 {
     /**
-     * @var TestimonialModel
+     * @var TestimonialModel|null
      */
     private $testimonial;
 
@@ -19,7 +18,7 @@ class Testimonial extends ComponentBase
     {
         return [
             'name' => 'Testimonial',
-            'description' => 'Get a single activetestimonial.'
+            'description' => 'Get a single active testimonial.'
         ];
     }
 
@@ -40,31 +39,78 @@ class Testimonial extends ComponentBase
     }
 
     /**
-     * Return the active testimonials as an array with the id as the key and name/company as the value.
+     * Returns an array of active testimonials with the id as the key and name/company as the value.
      *
      * @return array
      */
     public function getTestimonialOptions(): array
     {
-        return TestimonialModel::active()->get()->pluck('nameAndCompany', 'id')->all();
+        $activeTestimonials = TestimonialModel::active()->get();
+
+        return $activeTestimonials->pluck('nameAndCompany', 'id')->all();
     }
 
     public function onRun(): void
     {
-        $this->testimonial = TestimonialModel::where('id', $this->property('testimonial'))->first();
+        $id = (int) $this->property('testimonial');
 
-        $this->page['testimonialDetails'] = $this->testimonial->only(['name', 'company', 'quote', 'image']);
+        $this->testimonial = $this->getActiveTestimonialById($id);
     }
 
     /**
-     * Get the rating value when it's flagged as being included.
+     * Returns a transformed testimonial model for consumption by the frontend.
      *
-     * @return int|null
+     * @return array The transformed model data.
      */
-    public function rating(): ?int
+    public function item(): array
     {
-        if ($this->property('includeRating') == true) {
-            return (int) $this->testimonial->rating;
+        if (!$this->isAvailable()) {
+            return [];
         }
+
+        return $this->transformTestimonial($this->testimonial);
+    }
+
+    /**
+     * Returns true is a testimonial model has been set for the component.
+     *
+     * @return bool
+     */
+    public function isAvailable(): bool
+    {
+        return !!$this->testimonial;
+    }
+
+    /**
+     * Transforms a testimonial model into the data required by the frontend.
+     *
+     * @param  TestimonialModel  $testimonial
+     * @return array The transformed model data.
+     */
+    protected function transformTestimonial(TestimonialModel $testimonial): array
+    {
+        $data = $testimonial->only([
+            'name',
+            'company',
+            'quote',
+            'image'
+        ]);
+
+        if ($this->property('includeRating') == true) {
+            $data = array_add($data, 'rating', $testimonial->rating);
+        }
+
+        return $data;
+    }
+
+    /**
+     * Returns the active testimonial model with the given id.
+     *
+     * @param  int  $id
+     * @return TestimonialModel|null
+     */
+    protected function getActiveTestimonialById(int $id): ?TestimonialModel
+    {
+        return TestimonialModel::active()->where('id', $id)->first();
     }
 }

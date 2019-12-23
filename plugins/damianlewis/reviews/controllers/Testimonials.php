@@ -34,9 +34,6 @@ class Testimonials extends Controller
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function listInjectRowClass(Model $record): string
     {
         if (!$record instanceof Testimonial) {

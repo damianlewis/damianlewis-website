@@ -18,7 +18,7 @@ class CreateTestimonialsTable extends Migration
             $table->string('name')->nullable();
             $table->string('company')->nullable();
             $table->text('quote')->nullable();
-            $table->unsignedSmallInteger('rating')->nullable();
+            $table->unsignedTinyInteger('rating')->nullable();
             $table->boolean('is_active')->default(false);
             $table->timestamps();
         });

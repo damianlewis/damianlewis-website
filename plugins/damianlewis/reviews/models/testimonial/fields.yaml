@@ -43,4 +43,4 @@ secondaryTabs:
         is_active:
             label: Active
             type: switch
-            comment: Switch this off to disable the testimonial.
+            comment: When disabled the testimonial isn't available for selection.
