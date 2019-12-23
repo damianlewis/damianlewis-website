@@ -9,7 +9,10 @@ use DamianLewis\Pages\Models\Hero as HeroModel;
 
 class Hero extends ComponentBase
 {
-    public $hero;
+    /**
+     * @var HeroModel|null
+     */
+    private $hero;
 
     public function componentDetails(): array
     {
@@ -32,17 +35,76 @@ class Hero extends ComponentBase
     }
 
     /**
-     * Return the hero models as an array with the id as the key and description as the value.
+     * Returns an array of active heros with the id as the key and description as the value.
      *
      * @return array
      */
     public function getHeroOptions(): array
     {
-        return HeroModel::all()->pluck('description', 'id')->all();
+        $activeHeroes = HeroModel::active()->get();
+
+        return $activeHeroes->pluck('description', 'id')->all();
     }
 
     public function onRun(): void
     {
-        $this->hero = $this->page['hero'] = HeroModel::where('id', $this->property('hero'))->firstOrFail();
+        $id = (int) $this->property('hero');
+
+        $this->hero = $this->getActiveHeroById($id);
+    }
+
+    /**
+     * Returns a transformed hero model for consumption by the frontend.
+     *
+     * @return array The transformed model data.
+     */
+    public function item(): array
+    {
+        if (!$this->isAvailable()) {
+            return [];
+        }
+
+        return $this->transformItem($this->hero);
+    }
+
+    /**
+     * Returns true if a hero model has been set for the component.
+     *
+     * @return bool
+     */
+    public function isAvailable(): bool
+    {
+        return !!$this->hero;
+    }
+
+    /**
+     * Transforms a hero model into the data required by the frontend.
+     *
+     * @param  HeroModel  $hero
+     * @return array The transformed model data.
+     */
+    protected function transformItem(HeroModel $hero): array
+    {
+        $data = $hero->only([
+            'header',
+            'body',
+            'image'
+        ]);
+
+        return array_merge($data, [
+            'bgTablet' => $hero->background_image_tablet,
+            'bgMobile' => $hero->background_image_mobile
+        ]);
+    }
+
+    /**
+     * Returns the active hero model with the given id.
+     *
+     * @param  int  $id
+     * @return HeroModel|null
+     */
+    protected function getActiveHeroById(int $id): ?HeroModel
+    {
+        return HeroModel::active()->where('id', $id)->first();
     }
 }

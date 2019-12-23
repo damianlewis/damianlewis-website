@@ -37,7 +37,7 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function registerNavigation()
+    public function registerNavigation(): array
     {
         return [
             'pages' => [
