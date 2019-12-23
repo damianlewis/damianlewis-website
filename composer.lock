@@ -130,16 +130,16 @@
         },
         {
             "name": "damianlewis/oc-socialmedia-plugin",
-            "version": "v1.0.2",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/damianlewis/oc-socialmedia-plugin.git",
-                "reference": "3467b4468b2451edd2b0f36003f624d16bd295b7"
+                "reference": "559227949c0118e823f367cf333dce9e29503f67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/damianlewis/oc-socialmedia-plugin/zipball/3467b4468b2451edd2b0f36003f624d16bd295b7",
-                "reference": "3467b4468b2451edd2b0f36003f624d16bd295b7",
+                "url": "https://api.github.com/repos/damianlewis/oc-socialmedia-plugin/zipball/559227949c0118e823f367cf333dce9e29503f67",
+                "reference": "559227949c0118e823f367cf333dce9e29503f67",
                 "shasum": ""
             },
             "require": {
@@ -161,10 +161,10 @@
             ],
             "description": "A list of social media links associated with a website.",
             "support": {
-                "source": "https://github.com/damianlewis/oc-socialmedia-plugin/tree/v1.0.2",
+                "source": "https://github.com/damianlewis/oc-socialmedia-plugin/tree/v1.0.4",
                 "issues": "https://github.com/damianlewis/oc-socialmedia-plugin/issues"
             },
-            "time": "2019-12-19T16:30:48+00:00"
+            "time": "2019-12-23T11:28:59+00:00"
         },
         {
             "name": "damianlewis/oc-webpconverter-plugin",
