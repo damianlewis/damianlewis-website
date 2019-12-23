@@ -10,7 +10,7 @@ use Schema;
 
 class CreateSkillsTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('damianlewis_portfolio_skills', function (Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -21,7 +21,7 @@ class CreateSkillsTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('damianlewis_portfolio_skills');
     }

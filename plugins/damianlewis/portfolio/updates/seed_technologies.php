@@ -9,7 +9,7 @@ use Seeder;
 
 class SeedTechnologies extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         factory(Technology::class, 10)->create();
     }

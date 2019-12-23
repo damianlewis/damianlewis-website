@@ -9,7 +9,7 @@ use Seeder;
 
 class SeedAttributes extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $projectStatuses = [
             ['name' => 'Draft', 'code' => 'draft'],

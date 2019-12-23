@@ -10,7 +10,7 @@ use Schema;
 
 class CreateAttributesTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('damianlewis_portfolio_attributes', function (Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -23,7 +23,7 @@ class CreateAttributesTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('damianlewis_portfolio_attributes');
     }

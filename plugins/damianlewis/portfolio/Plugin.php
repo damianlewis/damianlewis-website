@@ -6,7 +6,7 @@ namespace DamianLewis\Portfolio;
 
 use Backend;
 use DamianLewis\Portfolio\Components\ClientLogos;
-use DamianLewis\Portfolio\Components\Projects;
+use DamianLewis\Portfolio\Components\FeaturedProject;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -24,7 +24,7 @@ class Plugin extends PluginBase
     public function registerComponents(): array
     {
         return [
-            Projects::class => 'projects',
+            FeaturedProject::class => 'featuredProject',
             ClientLogos::class => 'clientLogos'
         ];
     }

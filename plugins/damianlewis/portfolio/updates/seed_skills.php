@@ -9,7 +9,7 @@ use Seeder;
 
 class SeedSkills extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         factory(Skill::class, 10)->create();
     }

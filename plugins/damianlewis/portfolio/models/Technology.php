@@ -13,13 +13,6 @@ class Technology extends Model
 
     public $table = 'damianlewis_portfolio_technologies';
 
-//    protected $guarded = [];
-    protected $fillable = ['name'];
-
-    protected $casts = [
-        'is_active' => 'boolean'
-    ];
-
     public $rules = [
         'name' => 'required'
     ];
@@ -29,5 +22,11 @@ class Technology extends Model
             Project::class,
             'table' => 'damianlewis_portfolio_project_technology'
         ]
+    ];
+
+    protected $fillable = ['name'];
+
+    protected $casts = [
+        'is_active' => 'boolean'
     ];
 }

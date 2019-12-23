@@ -13,13 +13,6 @@ class Skill extends Model
 
     public $table = 'damianlewis_portfolio_skills';
 
-//    protected $guarded = [];
-    protected $fillable = ['name'];
-
-    protected $casts = [
-        'is_active' => 'boolean'
-    ];
-
     public $rules = [
         'name' => 'required'
     ];
@@ -29,5 +22,11 @@ class Skill extends Model
             Project::class,
             'table' => 'damianlewis_portfolio_project_skill'
         ]
+    ];
+
+    protected $fillable = ['name'];
+
+    protected $casts = [
+        'is_active' => 'boolean'
     ];
 }
