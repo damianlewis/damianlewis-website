@@ -3,16 +3,21 @@
 # ===================================
 
 columns:
-    preview_image:
-        label: Preview
-        type: previewimage
+    is_visible:
+        label: Visible
+        type: visible
         width: 1%
-        sortable: false
 
     title:
         label: Title
         type: text
         searchable: true
+
+    preview_image:
+        label: Preview
+        type: previewimage
+        width: 1%
+        sortable: false
 
     is_featured:
         label: Featured

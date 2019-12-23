@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DamianLewis\Services;
 
 use Backend;
-use DamianLewis\Services\Components\Categories;
+use DamianLewis\Services\Components\FeaturedCategories;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -23,7 +23,7 @@ class Plugin extends PluginBase
     public function registerComponents(): array
     {
         return [
-            Categories::class => 'categories'
+            FeaturedCategories::class => 'featuredCategories'
         ];
     }
 

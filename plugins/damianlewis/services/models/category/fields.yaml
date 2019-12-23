@@ -86,4 +86,9 @@ secondaryTabs:
         is_featured:
             label: Featured
             type: checkbox
-            comment: Switch this on to display this category on the home page.
+            comment: When enabled the category is displayed on the home page.
+
+        is_visible:
+            label: Visible
+            type: checkbox
+            comment: When disabled the category is hidden on the frontend.

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DamianLewis\Services\Models;
 
-use Cms\Classes\Controller;
 use Model;
 use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Nullable;
@@ -20,33 +19,29 @@ class Category extends Model
     use Sortable;
     use Validation;
 
+    /**
+     * The attributes on which the category list can be ordered.
+     *
+     * @var array
+     */
+    public static $orderByOptions = [
+        'sort_order' => 'Sort order',
+        'created_at' => 'Created date',
+        'updated_at' => 'Updated date',
+        'title' => 'Title'
+    ];
+
+    /**
+     * The direction the category list can be ordered.
+     *
+     * @var array
+     */
+    public static $orderDirectionOptions = [
+        'asc' => 'Ascending',
+        'desc' => 'Descending'
+    ];
+
     public $table = 'damianlewis_services_categories';
-
-    protected $casts = [
-        'is_featured' => 'boolean'
-    ];
-
-    /**
-     * @var array Attributes to be appended to the API representation of the model (ex. toArray())
-     */
-    protected $appends = [];
-
-    /**
-     * @var array Attributes to be removed from the API representation of the model (ex. toArray())
-     */
-    protected $hidden = [];
-
-    protected $nullable = [
-        'featured_text',
-        'hero_text',
-        'list_text',
-        'description',
-        'sort_order'
-    ];
-
-    protected $slugs = [
-        'slug' => 'title'
-    ];
 
     public $rules = [
         'title' => 'required',
@@ -65,6 +60,25 @@ class Category extends Model
         'featured_icon' => File::class
     ];
 
+    protected $casts = [
+        'is_featured' => 'boolean',
+        'is_visible' => 'boolean'
+    ];
+
+    protected $slugs = [
+        'slug' => 'title'
+    ];
+
+    protected $nullable = [
+        'title',
+        'slug',
+        'featured_text',
+        'hero_text',
+        'list_text',
+        'description',
+        'sort_order'
+    ];
+
     /**
      * Select only the featured categories.
      *
@@ -77,17 +91,51 @@ class Category extends Model
     }
 
     /**
-     * Sets a url attribute for the category page.
+     * Select only the visible categories.
      *
-     * @param  string  $pageName
-     * @param  Controller  $controller
+     * @param  Builder  $query
+     * @return Builder
      */
-    public function setUrl(string $pageName, Controller $controller)
+    public function scopeVisible(Builder $query): Builder
     {
-        $params = [
-            'slug' => $this->slug,
-        ];
+        return $query->where('is_visible', true);
+    }
 
-        $this->attributes['url'] = $controller->pageUrl($pageName, $params);
+    /**
+     * Returns an ordered collection of categories for the frontend.
+     *
+     * @param  Builder  $query
+     * @param  array  $options
+     * @return Builder
+     */
+    public function scopeFrontEndCollection(Builder $query, array $options = []): Builder
+    {
+        /**
+         * @var bool $featured
+         * @var int $limit
+         * @var string $orderBy
+         * @var string $orderDirection
+         */
+        extract(array_merge([
+            'featured' => false,
+            'limit' => null,
+            'orderBy' => 'sort_order',
+            'orderDirection' => 'asc'
+        ], $options));
+
+        $sortOrderByValid = in_array($orderBy, array_keys(self::$orderByOptions));
+        $sortOrderDirectionValid = in_array($orderDirection, array_keys(self::$orderDirectionOptions));
+
+        return $query
+            ->visible()
+            ->when($featured, function ($query) {
+                return $query->featured();
+            })
+            ->when($limit > 0, function ($query) use ($limit) {
+                return $query->take($limit);
+            })
+            ->when($sortOrderByValid && $sortOrderDirectionValid, function ($query) use ($orderBy, $orderDirection) {
+                return $query->orderBy($orderBy, $orderDirection);
+            });
     }
 }
