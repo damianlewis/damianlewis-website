@@ -1,6 +1,6 @@
-description = "Template for the portfolio projects component."
+description = "Template for the portfolio plugin projects component."
 ==
-{% for project in projects %}
+{% for project in activeProjects %}
     {% set isEven = (loop.index % 2) is even %}
 
     <div class="mb-32 last:mb-0 md:flex md:items-center md:-ml-16 md:mb-36 lg:mb-40">

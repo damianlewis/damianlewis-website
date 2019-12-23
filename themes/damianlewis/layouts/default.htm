@@ -4,19 +4,20 @@ description = "Default page layout."
 <!doctype html>
 <html lang="en">
 
-{% partial 'head' %}
+{% partial 'site/head' %}
 
 <body>
 <div id="page">
-    {% partial 'header' %}
+    {% partial 'common/header' %}
 
     <main class="mt-36">
         {% page %}
     </main>
 
-    {% partial 'navigation' %}
+    {% partial 'common/footer' %}
+    {% partial 'navigation/main_menu' %}
 </div>
-{% partial 'scripts' %}
+{% partial 'site/scripts' %}
 </body>
 
 </html>

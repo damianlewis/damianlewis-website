@@ -1,0 +1,46 @@
+description = "Page footer section."
+
+[links]
+orderBy = "sort_order"
+orderDirection = "asc"
+==
+<div class="px-8 py-16 bg-grey-700 md:px-12 lg:px-50">
+    <div class="md:flex md:-ml-16">
+        <div class="mb-16 md:mb-0 md:w-1/3 md:pl-16 lg:w-1/2">
+            <h3 class="text-white mb-2">What I do</h3>
+            <div class="[ c-text c-text--large ] text-grey-300">
+                {% content 'footer/about.htm' %}
+            </div>
+        </div>
+
+        <div class="md:flex md:justify-between md:w-2/3 md:pl-16 lg:w-1/2">
+            <div class="mb-16 md:mb-0">
+                <h3 class="text-white mb-2">Site Links</h3>
+                <nav class="[ c-text c-text--large ] text-grey-300">
+                    <ul>
+                        <li><a href="{{ 'about'|page }}">About</a></li>
+                        <li><a href="{{ 'services'|page }}">Services</a></li>
+                        <li><a href="{{ 'casestudies'|page }}">Case Studies</a></li>
+                        <li><a href="{{ 'contact'|page }}">Contact</a></li>
+                        <li><a href="{{ 'privacy'|page }}">Privacy Policy</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div>
+                <div class="mb-16">
+                    <h3 class="text-white mb-2">Email me at</h3>
+                    <a class="[ c-text c-text--large ] text-grey-300" href="mailto:damian@damianlewis.co.uk">damian@damianlewis.co.uk</a>
+                </div>
+                {% if links.isAvailable %}
+                    {% partial 'common/social_media_links' links=links.collection %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="[ c-text c-text--small ] text-center bg-grey-800 text-grey-400 px-8 py-4">
+    &copy; Copyright {{ 'now'|date('Y') }} Damian Lewis<br class="md:hidden"><span
+            class="hidden md:inline"> &ndash; </span>Web Developer Hertfordshire UK
+</footer>
