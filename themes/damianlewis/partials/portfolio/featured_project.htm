@@ -1,0 +1,15 @@
+description = "Template for the portfolio plugin featured project component."
+==
+<div class="md:flex md:items-center md:-ml-16">
+    <div class="mb-16 md:w-1/2 md:mb-0 md:pl-16">
+        <img src="{{ item.image.getPath() }}" alt="{{ item.image.title }}">
+    </div>
+
+    <div class="md:w-1/2 md:pl-16">
+        <h3 class="text-grey-900 mb-4">{{ item.title }}</h3>
+        <div class="c-text text-grey-600 mb-12">
+            {{ item.text|raw }}
+        </div>
+        <a class="c-button" href="{{ item.url }}">View project</a>
+    </div>
+</div>

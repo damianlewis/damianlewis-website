@@ -12,13 +12,6 @@ orderBy = "sort_order"
 orderDirection = "asc"
 limit = 3
 
-[projects]
-orderBy = "sort_order"
-orderDirection = "asc"
-featured = 1
-limit = 1
-projectPage = "portfolio/project"
-
 [clientLogos]
 orderBy = "sort_order"
 orderDirection = "asc"
@@ -26,6 +19,10 @@ orderDirection = "asc"
 [testimonial]
 testimonial = 8
 includeRating = 1
+
+[featuredProject]
+project = 5
+projectPage = "portfolio/project"
 ==
 {% if hero.isAvailable %}
     {% partial 'common/hero' item=hero.item %}
@@ -42,13 +39,15 @@ includeRating = 1
     </div>
 {% endif %}
 
-<div class="c-container bg-red-100">
-    <div class="c-container__inner">
-        <h2>Case Studies</h2>
-        <hr class="border-red-500 mb-20 xl:mb-28">
-        {% partial 'portfolio/projects' %}
+{% if featuredProject.isAvailable %}
+    <div class="c-container bg-red-100">
+        <div class="c-container__inner">
+            <h2>Case Studies</h2>
+            <hr class="border-red-500 mb-20 xl:mb-28">
+            {% partial 'portfolio/featured_project' item=featuredProject.item %}
+        </div>
     </div>
-</div>
+{% endif %}
 
 {% if clientLogos.isAvailable %}
     <div class="[ c-container c-container--wave ]">
