@@ -18,8 +18,8 @@ $factory->state(Link::class, 'blank', function () {
     ];
 });
 
-$factory->state(Link::class, 'active', function () {
+$factory->state(Link::class, 'visible', function () {
     return [
-        'is_active' => true
+        'is_visible' => true
     ];
 });
