@@ -52,7 +52,7 @@ class Testimonial extends Model
     }
 
     /**
-     * Select only the active testimonials.
+     * Select active testimonials.
      *
      * @param  Builder  $query
      * @return Builder

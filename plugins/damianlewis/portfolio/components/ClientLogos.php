@@ -49,31 +49,6 @@ class ClientLogos extends ComponentBase
     }
 
     /**
-     * Returns an array of order by options.
-     *
-     * @return array
-     */
-    public function getOrderByOptions(): array
-    {
-        return Client::$orderByOptions;
-    }
-
-    /**
-     * Returns an array of order direction options.
-     *
-     * @return array
-     */
-    public function getOrderDirectionOptions(): array
-    {
-        return Client::$orderDirectionOptions;
-    }
-
-    public function onRun(): void
-    {
-        $this->clients = $this->getClients();
-    }
-
-    /**
      * Returns an array of transformed clients for consumption by the frontend.
      *
      * @return array The transformed collection.
@@ -105,20 +80,29 @@ class ClientLogos extends ComponentBase
         return false;
     }
 
-    /**
-     * Return an ordered collection of clients.
-     *
-     * @return Collection
-     */
-    protected function getClients(): Collection
+    public function onRun(): void
     {
-        $options = [
-            'limit' => (int) $this->property('limit'),
-            'orderBy' => $this->property('orderBy'),
-            'orderDirection' => $this->property('orderDirection')
-        ];
+        $this->clients = $this->getClients();
+    }
 
-        return Client::frontEndCollection($options)->get();
+    /**
+     * Returns an array of order by options.
+     *
+     * @return array
+     */
+    public function getOrderByOptions(): array
+    {
+        return Client::$orderByOptions;
+    }
+
+    /**
+     * Returns an array of order direction options.
+     *
+     * @return array
+     */
+    public function getOrderDirectionOptions(): array
+    {
+        return Client::$orderDirectionOptions;
     }
 
     /**
@@ -149,5 +133,21 @@ class ClientLogos extends ComponentBase
                 'opacity' => $category->logo_opacity
             ];
         };
+    }
+
+    /**
+     * Return an ordered collection of clients.
+     *
+     * @return Collection
+     */
+    protected function getClients(): Collection
+    {
+        $options = [
+            'limit' => (int) $this->property('limit'),
+            'orderBy' => $this->property('orderBy'),
+            'orderDirection' => $this->property('orderDirection')
+        ];
+
+        return Client::frontEndCollection($options)->get();
     }
 }

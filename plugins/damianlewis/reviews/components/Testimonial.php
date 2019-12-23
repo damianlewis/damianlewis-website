@@ -39,25 +39,6 @@ class Testimonial extends ComponentBase
     }
 
     /**
-     * Returns an array of active testimonials with the id as the key and name/company as the value.
-     *
-     * @return array
-     */
-    public function getTestimonialOptions(): array
-    {
-        $activeTestimonials = TestimonialModel::active()->get();
-
-        return $activeTestimonials->pluck('nameAndCompany', 'id')->all();
-    }
-
-    public function onRun(): void
-    {
-        $id = (int) $this->property('testimonial');
-
-        $this->testimonial = $this->getActiveTestimonialById($id);
-    }
-
-    /**
      * Returns a transformed testimonial model for consumption by the frontend.
      *
      * @return array The transformed model data.
@@ -79,6 +60,25 @@ class Testimonial extends ComponentBase
     public function isAvailable(): bool
     {
         return !!$this->testimonial;
+    }
+
+    public function onRun(): void
+    {
+        $id = (int) $this->property('testimonial');
+
+        $this->testimonial = $this->getActiveTestimonialById($id);
+    }
+
+    /**
+     * Returns an array of active testimonials with the id as the key and name/company as the value.
+     *
+     * @return array
+     */
+    public function getTestimonialOptions(): array
+    {
+        $activeTestimonials = TestimonialModel::active()->get();
+
+        return $activeTestimonials->pluck('nameAndCompany', 'id')->all();
     }
 
     /**

@@ -38,7 +38,7 @@ class Hero extends Model
     ];
 
     /**
-     * Select only the active links.
+     * Select active links.
      *
      * @param  Builder  $query
      * @return Builder

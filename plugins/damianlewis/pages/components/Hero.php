@@ -35,25 +35,6 @@ class Hero extends ComponentBase
     }
 
     /**
-     * Returns an array of active heros with the id as the key and description as the value.
-     *
-     * @return array
-     */
-    public function getHeroOptions(): array
-    {
-        $activeHeroes = HeroModel::active()->get();
-
-        return $activeHeroes->pluck('description', 'id')->all();
-    }
-
-    public function onRun(): void
-    {
-        $id = (int) $this->property('hero');
-
-        $this->hero = $this->getActiveHeroById($id);
-    }
-
-    /**
      * Returns a transformed hero model for consumption by the frontend.
      *
      * @return array The transformed model data.
@@ -75,6 +56,25 @@ class Hero extends ComponentBase
     public function isAvailable(): bool
     {
         return !!$this->hero;
+    }
+
+    public function onRun(): void
+    {
+        $id = (int) $this->property('hero');
+
+        $this->hero = $this->getActiveHeroById($id);
+    }
+
+    /**
+     * Returns an array of active heros with the id as the key and description as the value.
+     *
+     * @return array
+     */
+    public function getHeroOptions(): array
+    {
+        $activeHeroes = HeroModel::active()->get();
+
+        return $activeHeroes->pluck('description', 'id')->all();
     }
 
     /**

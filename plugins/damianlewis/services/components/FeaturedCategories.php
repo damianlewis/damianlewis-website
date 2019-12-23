@@ -49,31 +49,6 @@ class FeaturedCategories extends ComponentBase
     }
 
     /**
-     * Returns an array of order by options.
-     *
-     * @return array
-     */
-    public function getOrderByOptions(): array
-    {
-        return Category::$orderByOptions;
-    }
-
-    /**
-     * Returns an array of order direction options.
-     *
-     * @return array
-     */
-    public function getOrderDirectionOptions(): array
-    {
-        return Category::$orderDirectionOptions;
-    }
-
-    public function onRun(): void
-    {
-        $this->categories = $this->getCategories();
-    }
-
-    /**
      * Returns an array of transformed categories for consumption by the frontend.
      *
      * @return array The transformed collection.
@@ -105,21 +80,29 @@ class FeaturedCategories extends ComponentBase
         return false;
     }
 
-    /**
-     * Returns an ordered collection of featured service categories.
-     *
-     * @return Collection
-     */
-    protected function getCategories(): Collection
+    public function onRun(): void
     {
-        $options = [
-            'featured' => true,
-            'limit' => (int) $this->property('limit'),
-            'orderBy' => $this->property('orderBy'),
-            'orderDirection' => $this->property('orderDirection')
-        ];
+        $this->categories = $this->getCategories();
+    }
 
-        return Category::frontEndCollection($options)->get();
+    /**
+     * Returns an array of order by options.
+     *
+     * @return array
+     */
+    public function getOrderByOptions(): array
+    {
+        return Category::$orderByOptions;
+    }
+
+    /**
+     * Returns an array of order direction options.
+     *
+     * @return array
+     */
+    public function getOrderDirectionOptions(): array
+    {
+        return Category::$orderDirectionOptions;
     }
 
     /**
@@ -153,5 +136,22 @@ class FeaturedCategories extends ComponentBase
                 'text' => $category->featured_text
             ]);
         };
+    }
+
+    /**
+     * Returns an ordered collection of featured service categories.
+     *
+     * @return Collection
+     */
+    protected function getCategories(): Collection
+    {
+        $options = [
+            'featured' => true,
+            'limit' => (int) $this->property('limit'),
+            'orderBy' => $this->property('orderBy'),
+            'orderDirection' => $this->property('orderDirection')
+        ];
+
+        return Category::frontEndCollection($options)->get();
     }
 }

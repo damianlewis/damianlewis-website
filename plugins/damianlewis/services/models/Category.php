@@ -80,7 +80,7 @@ class Category extends Model
     ];
 
     /**
-     * Select only the featured categories.
+     * Select featured categories.
      *
      * @param  Builder  $query
      * @return Builder
@@ -91,7 +91,7 @@ class Category extends Model
     }
 
     /**
-     * Select only the visible categories.
+     * Select visible categories.
      *
      * @param  Builder  $query
      * @return Builder

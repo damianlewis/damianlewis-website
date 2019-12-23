@@ -39,35 +39,6 @@ class FeaturedProject extends ComponentBase
     }
 
     /**
-     * Return an array of CMS pages.
-     *
-     * @return array
-     */
-    public function getProjectPageOptions(): array
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
-    }
-
-    /**
-     * Returns an array of active projects with the id as the key and title as the value.
-     *
-     * @return array
-     */
-    public function getProjectOptions(): array
-    {
-        $activeProjects = Project::active()->get();
-
-        return $activeProjects->pluck('title', 'id')->all();
-    }
-
-    public function onRun(): void
-    {
-        $id = (int) $this->property('project');
-
-        $this->project = $this->getActiveProjectById($id);
-    }
-
-    /**
      * Returns a transformed project model for consumption by the frontend.
      *
      * @return array
@@ -93,25 +64,33 @@ class FeaturedProject extends ComponentBase
         return !!$this->project;
     }
 
-    /**
-     * Returns the active project model with the given id.
-     *
-     * @param  int  $id
-     * @return Project|null
-     */
-    protected function getActiveProjectById(int $id): ?Project
+    public function onRun(): void
     {
-        return Project::active()->where('id', $id)->first();
+        $id = (int) $this->property('project');
+
+        $this->project = $this->getActiveProjectById($id);
     }
 
     /**
-     * Set the page URL for the  project.
+     * Return an array of CMS pages.
      *
-     * @param  Project  $project
+     * @return array
      */
-    protected function setProjectUrl(Project $project): void
+    public function getProjectPageOptions(): array
     {
-        $project->setUrl($this->property('projectPage'));
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+
+    /**
+     * Returns an array of active projects with the id as the key and title as the value.
+     *
+     * @return array
+     */
+    public function getProjectOptions(): array
+    {
+        $activeProjects = Project::active()->get();
+
+        return $activeProjects->pluck('title', 'id')->all();
     }
 
     /**
@@ -131,5 +110,26 @@ class FeaturedProject extends ComponentBase
             'text' => $project->summary,
             'image' => $project->mockup_multiple_image
         ]);
+    }
+
+    /**
+     * Returns the active project model with the given id.
+     *
+     * @param  int  $id
+     * @return Project|null
+     */
+    protected function getActiveProjectById(int $id): ?Project
+    {
+        return Project::active()->where('id', $id)->first();
+    }
+
+    /**
+     * Set the page URL for the  project.
+     *
+     * @param  Project  $project
+     */
+    protected function setProjectUrl(Project $project): void
+    {
+        $project->setUrl($this->property('projectPage'));
     }
 }
