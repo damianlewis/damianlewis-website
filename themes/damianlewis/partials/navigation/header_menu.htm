@@ -1,0 +1,12 @@
+description = "The header menu"
+
+[viewBag]
+
+[staticMenu]
+code = "header-menu"
+==
+<navigation :is-visible="showNavigation">
+    {% for item in menuItems %}
+        <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+    {% endfor %}
+</navigation>

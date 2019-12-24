@@ -1,0 +1,11 @@
+name: 'Footer menu'
+items:
+    -
+        title: Services
+        type: cms-page
+        code: ''
+        reference: services/index
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
