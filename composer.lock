@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "690729dabb8e78025ee1b7ebdc67af7b",
+    "content-hash": "f7fd0328aa450a85135a617add434940",
     "packages": [
         {
             "name": "composer/installers",
@@ -127,6 +127,43 @@
                 "zikula"
             ],
             "time": "2019-08-12T15:00:31+00:00"
+        },
+        {
+            "name": "damianlewis/oc-contact-plugin",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/damianlewis/oc-contact-plugin.git",
+                "reference": "c11ae09c62b9d69918df353c96e8bc891c235cc4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/damianlewis/oc-contact-plugin/zipball/c11ae09c62b9d69918df353c96e8bc891c235cc4",
+                "reference": "c11ae09c62b9d69918df353c96e8bc891c235cc4",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "october/cms": "^1.0",
+                "october/system": "^1.0",
+                "php": ">= 7.1"
+            },
+            "type": "october-plugin",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Damian Lewis",
+                    "email": "damian@damianlewis.co.uk"
+                }
+            ],
+            "description": "The contact details associated with a website.",
+            "support": {
+                "source": "https://github.com/damianlewis/oc-contact-plugin/tree/v1.0.0",
+                "issues": "https://github.com/damianlewis/oc-contact-plugin/issues"
+            },
+            "time": "2019-12-23T20:22:37+00:00"
         },
         {
             "name": "damianlewis/oc-socialmedia-plugin",
@@ -2439,6 +2476,50 @@
                 "shell"
             ],
             "time": "2019-12-06T14:19:43+00:00"
+        },
+        {
+            "name": "rainlab/pages-plugin",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rainlab/pages-plugin.git",
+                "reference": "ac2257f7ccae835bf794346c7e31b3c312e6f820"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rainlab/pages-plugin/zipball/ac2257f7ccae835bf794346c7e31b3c312e6f820",
+                "reference": "ac2257f7ccae835bf794346c7e31b3c312e6f820",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.5.9"
+            },
+            "type": "october-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexey Bobkov",
+                    "email": "aleksey.bobkov@gmail.com",
+                    "role": "Co-founder"
+                },
+                {
+                    "name": "Samuel Georges",
+                    "email": "daftspunky@gmail.com",
+                    "role": "Co-founder"
+                }
+            ],
+            "description": "Pages plugin for October CMS",
+            "homepage": "https://octobercms.com/plugin/rainlab-pages",
+            "keywords": [
+                "october",
+                "octobercms",
+                "pages"
+            ],
+            "time": "2019-09-27T07:14:56+00:00"
         },
         {
             "name": "ramsey/uuid",
