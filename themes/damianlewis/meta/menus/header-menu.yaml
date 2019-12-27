@@ -1,9 +1,22 @@
 items:
     -
         title: Services
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: services/index
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Case Studies'
+        type: cms-page
+        code: ''
+        reference: portfolio/index
         viewBag:
             isHidden: '0'
             cssClass: ''

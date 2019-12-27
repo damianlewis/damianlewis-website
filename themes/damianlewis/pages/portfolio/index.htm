@@ -1,0 +1,28 @@
+title = "Projects"
+url = "/portfolio/projects"
+layout = "default"
+description = "Portfolio projects list page."
+is_hidden = 0
+
+[hero]
+hero = 2
+
+[projects]
+orderBy = "sort_order"
+orderDirection = "asc"
+featured = 1
+projectPage = "portfolio/project"
+==
+{#{% set projectsList = projects.getProjects() %}#}
+
+{% if hero.isAvailable %}
+    {% partial 'common/hero' item=hero.item %}
+{% endif %}
+
+{% if projects > 0 %}
+    <div class="[ c-container c-container--wave ]">
+        <div class="c-container__inner">
+            {% partial 'portfolio/projects' %}
+        </div>
+    </div>
+{%  endif %}
