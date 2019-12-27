@@ -6,15 +6,26 @@ namespace DamianLewis\Portfolio\Components;
 
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
+use DamianLewis\Portfolio\Classes\Transformers\ProjectsTransformer;
 use DamianLewis\Portfolio\Models\Project;
 use October\Rain\Database\Collection;
 
 class Projects extends ComponentBase
 {
     /**
+     * @var ProjectsTransformer
+     */
+    private $transformer;
+
+    /**
      * @var Collection
      */
-    public $projects;
+    private $collection;
+
+    /**
+     * @var array
+     */
+    private $transformedProjects;
 
     public function componentDetails(): array
     {
@@ -31,33 +42,22 @@ class Projects extends ComponentBase
                 'title' => 'Order by',
                 'description' => 'The attribute to order the projects by.',
                 'type' => 'dropdown',
-                'options' => [
-                    'sort_order' => 'Sort Order',
-                    'completed_at' => 'Completed Date',
-                    'created_at' => 'Created Date',
-                    'updated_at' => 'Updated Date',
-                    'title' => 'Title'
-                ],
                 'default' => 'sort_order'
             ],
             'orderDirection' => [
                 'title' => 'Order direction',
                 'type' => 'dropdown',
-                'options' => [
-                    'asc' => 'Ascending',
-                    'desc' => 'Descending'
-                ],
                 'default' => 'asc'
             ],
             'featured' => [
                 'title' => 'Featured',
-                'description' => 'Only display featured projects.',
+                'description' => 'Display only featured projects.',
                 'type' => 'checkbox',
                 'default' => false
             ],
             'limit' => [
                 'title' => 'Maximum',
-                'description' => 'Maximum number of project to display.',
+                'description' => 'Maximum number of projects to display.',
                 'type' => 'string',
                 'validationPattern' => '^[\d]*$',
                 'validationMessage' => 'The value can only contain numbers.',
@@ -70,6 +70,40 @@ class Projects extends ComponentBase
         ];
     }
 
+    public function init(): void
+    {
+        $this->transformer = new ProjectsTransformer();
+    }
+
+    public function onRun(): void
+    {
+        $this->transformer->setProperties($this->getProperties());
+
+        $this->collection = $this->fetchProjects();
+
+        $this->page['projects'] = $this->getTransformedProjects();
+    }
+
+    /**
+     * Returns an array of order by options.
+     *
+     * @return array
+     */
+    public function getOrderByOptions(): array
+    {
+        return Project::$orderByOptions;
+    }
+
+    /**
+     * Returns an array of order direction options.
+     *
+     * @return array
+     */
+    public function getOrderDirectionOptions(): array
+    {
+        return Project::$orderDirectionOptions;
+    }
+
     /**
      * Return an array of CMS pages.
      *
@@ -80,42 +114,34 @@ class Projects extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
-    public function onRun(): void
-    {
-        $this->projects = $this->page['projects'] = $this->getActiveProjects();
-
-        $this->setUrlForProjects($this->projects);
-    }
-
     /**
-     * Return an ordered collection of active portfolio projects.
+     * Returns an ordered collection of projects from the database.
      *
      * @return Collection
      */
-    protected function getActiveProjects(): Collection
+    protected function fetchProjects(): Collection
     {
-        $limit = $this->property('limit');
+        $options = [
+            'featured' => $this->property('featured') == true,
+            'limit' => (int) $this->property('limit'),
+            'orderBy' => $this->property('orderBy'),
+            'orderDirection' => $this->property('orderDirection')
+        ];
 
-        return Project::active()
-            ->when($this->property('featured'), function ($query) {
-                return $query->featured();
-            })
-            ->when($limit > 0, function ($query) use ($limit) {
-                return $query->take($limit);
-            })
-            ->orderBy($this->property('orderBy'), $this->property('orderDirection'))
-            ->get();
+        return Project::frontEndCollection($options)->get();
     }
 
     /**
-     * Set the page URL for the portfolio projects.
+     * Returns an array of transformed project models.
      *
-     * @param  Collection  $projects
+     * @return array
      */
-    protected function setUrlForProjects(Collection $projects): void
+    protected function getTransformedProjects(): array
     {
-        $projects->each(function (Project $project) {
-            $project->setUrl($this->property('projectPage'), $this->controller);
-        });
+        if ($this->transformedProjects !== null) {
+            return $this->transformedProjects;
+        }
+
+        return $this->transformedProjects = $this->transformer->transformCollection($this->collection);
     }
 }

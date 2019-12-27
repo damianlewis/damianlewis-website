@@ -5,38 +5,27 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Http\Controllers;
 
 use DamianLewis\Portfolio\Classes\ApiController;
-use DamianLewis\Portfolio\Http\Transformers\ProjectsTransformer;
+use DamianLewis\Portfolio\Classes\Transformers\ProjectsTransformer;
 use DamianLewis\Portfolio\Models\Project;
 use Illuminate\Http\JsonResponse;
 
 class ProjectsController extends ApiController
 {
-    /**
-     * @var ProjectsTransformer
-     */
-    protected $transformer;
-
-    /**
-     * ProjectsController constructor.
-     *
-     * @param  ProjectsTransformer  $transformer
-     */
-    public function __construct(ProjectsTransformer $transformer)
+    public function __construct()
     {
         parent::__construct();
-
-        $this->transformer = $transformer;
     }
 
     /**
+     * @param  ProjectsTransformer  $transformer
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(ProjectsTransformer $transformer): JsonResponse
     {
         $projects = Project::all();
 
         return $this->respond([
-            'data' => $this->transformer->transformCollection($projects)
+            'data' => $transformer->transformCollection($projects)
         ]);
     }
 

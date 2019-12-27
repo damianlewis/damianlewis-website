@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DamianLewis\Portfolio\Classes;
+namespace DamianLewis\Portfolio\Classes\Transformers;
 
-use Illuminate\Database\Eloquent\Collection;
+use October\Rain\Database\Collection;
 
 abstract class Transformer
 {
