@@ -38,21 +38,15 @@ class Projects extends Controller
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function listInjectRowClass(Model $record): string
     {
         if (!$record instanceof Project) {
             return '';
         }
 
-        return $record->status->code == 'archived' ? 'safe disabled' : '';
+        return ($record->is_hidden || $record->status->code != 'active') ? 'safe disabled' : '';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function listFilterExtendScopes(Filter $filter): void
     {
         $filter->addScopes([

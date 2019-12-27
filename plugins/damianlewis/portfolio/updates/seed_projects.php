@@ -11,31 +11,32 @@ class SeedProjects extends Seeder
 {
     public function run(): void
     {
-        factory(Project::class, 4)->states([
-//            'with preview'
+        factory(Project::class, 4)->create();
+
+        factory(Project::class, 8)->states([
+            'active',
+            'with skills',
+            'with technologies'
         ])->create();
 
-        factory(Project::class, 10)->states([
+        factory(Project::class, 2)->states([
             'active',
             'with skills',
             'with technologies',
-//            'with preview'
+            'featured'
+        ])->create();
+
+        factory(Project::class)->states([
+            'active',
+            'with skills',
+            'with technologies',
+            'hidden'
         ])->create();
 
         factory(Project::class, 2)->states([
             'archived',
             'with skills',
-            'with technologies',
-//            'with preview'
+            'with technologies'
         ])->create();
-
-//        factory(Project::class)->states([
-//            'active',
-//            'with skills',
-//            'with technologies',
-//            'with preview',
-//            'with device images',
-//            'with full frame images'
-//        ])->create();
     }
 }

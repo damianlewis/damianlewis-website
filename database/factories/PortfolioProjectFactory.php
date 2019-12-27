@@ -56,6 +56,18 @@ $factory->state(Project::class, 'archived', function () {
     ];
 });
 
+$factory->state(Project::class, 'featured', function () {
+    return [
+        'is_featured' => true
+    ];
+});
+
+$factory->state(Project::class, 'hidden', function () {
+    return [
+        'is_hidden'=>true
+    ];
+});
+
 $factory->state(Project::class, 'with skills', function () {
     $total = Skill::count();
 

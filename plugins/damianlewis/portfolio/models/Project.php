@@ -19,6 +19,28 @@ class Project extends Model
     use Sortable;
     use Validation;
 
+    /**
+     * The attributes on which the projects can be ordered.
+     *
+     * @var array
+     */
+    public static $orderByOptions = [
+        'sort_order' => 'Sort order',
+        'created_at' => 'Created date',
+        'updated_at' => 'Updated date',
+        'title' => 'Title'
+    ];
+
+    /**
+     * The direction the projects can be ordered.
+     *
+     * @var array
+     */
+    public static $orderDirectionOptions = [
+        'asc' => 'Ascending',
+        'desc' => 'Descending'
+    ];
+
     public $table = 'damianlewis_portfolio_projects';
 
     public $rules = [
@@ -66,6 +88,11 @@ class Project extends Model
         'design_images' => File::class
     ];
 
+    protected $casts = [
+        'is_featured' => 'boolean',
+        'is_hidden' => 'boolean'
+    ];
+
     protected $dates = [
         'completed_at'
     ];
@@ -92,16 +119,13 @@ class Project extends Model
      */
     public function scopeActive(Builder $query): Builder
     {
-        $status = Attribute::where([
-            ['type', Attribute::PROJECT_STATUS],
-            ['code', 'active']
-        ])->firstOrFail();
+        $status = Attribute::activeProjectStatus();
 
         return $query->where('status_id', $status->id);
     }
 
     /**
-     * Select only the featured projects.
+     * Select featured projects.
      *
      * @param  Builder  $query
      * @return Builder
@@ -112,27 +136,52 @@ class Project extends Model
     }
 
     /**
-     * Get the image used for project the list.
+     * Select visible projects.
      *
-     * @param  bool|null  $isReversed
-     * @return File|null
+     * @param  Builder  $query
+     * @return Builder
      */
-    public function getListImage(bool $isReversed = null): ?File
+    public function scopeVisible(Builder $query): Builder
     {
-        if ($isReversed) {
-            return $this->mockup_multiple_reversed_image;
-        }
-
-        return $this->mockup_multiple_image;
+        return $query->where('is_hidden', false);
     }
 
     /**
-     * Sets a url attribute for the project page.
+     * Returns an ordered collection of projects for the frontend.
      *
-     * @param  string  $path
+     * @param  Builder  $query
+     * @param  array  $options
+     * @return Builder
      */
-    public function setUrl(string $path): void
+    public function scopeFrontEndCollection(Builder $query, array $options = []): Builder
     {
-        $this->attributes['url'] = url($path, $this->slug);
+        /**
+         * @var bool $featured
+         * @var int $limit
+         * @var string $orderBy
+         * @var string $orderDirection
+         */
+        extract(array_merge([
+            'featured' => false,
+            'limit' => null,
+            'orderBy' => 'sort_order',
+            'orderDirection' => 'asc'
+        ], $options));
+
+        $sortOrderByValid = in_array($orderBy, array_keys(self::$orderByOptions));
+        $sortOrderDirectionValid = in_array($orderDirection, array_keys(self::$orderDirectionOptions));
+
+        return $query
+            ->active()
+            ->visible()
+            ->when($featured, function ($query) {
+                return $query->featured();
+            })
+            ->when($limit > 0, function ($query) use ($limit) {
+                return $query->take($limit);
+            })
+            ->when($sortOrderByValid && $sortOrderDirectionValid, function ($query) use ($orderBy, $orderDirection) {
+                return $query->orderBy($orderBy, $orderDirection);
+            });
     }
 }

@@ -139,3 +139,13 @@ secondaryTabs:
             type: datepicker
             mode: date
             format: j M Y
+
+        is_featured:
+            label: Featured
+            type: checkbox
+            comment: When enabled the project becomes a featured project.
+
+        is_hidden:
+            label: Hidden
+            type: checkbox
+            comment: When enabled the project is hidden from the frontend.

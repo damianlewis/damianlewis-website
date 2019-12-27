@@ -13,4 +13,12 @@ class Attribute extends Model
     public $timestamps = false;
 
     protected $table = 'damianlewis_portfolio_attributes';
+
+    public static function activeProjectStatus(): self
+    {
+        return self::where([
+            ['type', Attribute::PROJECT_STATUS],
+            ['code', 'active']
+        ])->firstOrFail();
+    }
 }
