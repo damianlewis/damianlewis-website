@@ -14,7 +14,7 @@ secondaryTabs:
             label: Manage
             type: section
 
-        is_active:
-            label: Active
-            type: switch
-            comment: Switch this off to hide the skill on the front-end.
+        is_hidden:
+            label: Hidden
+            type: checkbox
+            comment: When enabled the skill is hidden from the frontend.

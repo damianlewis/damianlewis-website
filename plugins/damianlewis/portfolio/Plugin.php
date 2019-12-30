@@ -9,6 +9,7 @@ use Backend;
 use DamianLewis\Portfolio\Classes\Providers\TransformerServiceProvider;
 use DamianLewis\Portfolio\Components\ClientLogos;
 use DamianLewis\Portfolio\Components\FeaturedProject;
+use DamianLewis\Portfolio\Components\Project;
 use DamianLewis\Portfolio\Components\Projects;
 use System\Classes\PluginBase;
 
@@ -33,6 +34,7 @@ class Plugin extends PluginBase
     {
         return [
             Projects::class => 'projects',
+            Project::class => 'project',
             FeaturedProject::class => 'featuredProject',
             ClientLogos::class => 'clientLogos'
         ];

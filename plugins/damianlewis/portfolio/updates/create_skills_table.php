@@ -16,7 +16,7 @@ class CreateSkillsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name')->unique();
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_hidden')->default(false);
             $table->timestamps();
         });
     }

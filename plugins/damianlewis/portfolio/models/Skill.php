@@ -27,6 +27,6 @@ class Skill extends Model
     protected $fillable = ['name'];
 
     protected $casts = [
-        'is_active' => 'boolean'
+        'is_hidden' => 'boolean'
     ];
 }
