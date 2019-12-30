@@ -13,19 +13,19 @@ use October\Rain\Database\Collection;
 class Projects extends ComponentBase
 {
     /**
-     * @var ProjectsTransformer
-     */
-    private $transformer;
-
-    /**
      * @var Collection
      */
-    private $collection;
+    protected $collection;
 
     /**
      * @var array
      */
-    private $transformedProjects;
+    protected $transformedProjects;
+
+    /**
+     * @var ProjectsTransformer
+     */
+    protected $transformer;
 
     public function componentDetails(): array
     {
@@ -72,14 +72,14 @@ class Projects extends ComponentBase
 
     public function init(): void
     {
-        $this->transformer = new ProjectsTransformer();
+        $this->transformer = resolve(ProjectsTransformer::class);
     }
 
     public function onRun(): void
     {
-        $this->transformer->setProperties($this->getProperties());
+        $this->transformer->setBasePath($this->property('projectPage'));
 
-        $this->collection = $this->fetchProjects();
+        $this->collection = $this->getProjects();
 
         $this->page['projects'] = $this->getTransformedProjects();
     }
@@ -119,7 +119,7 @@ class Projects extends ComponentBase
      *
      * @return Collection
      */
-    protected function fetchProjects(): Collection
+    protected function getProjects(): Collection
     {
         $options = [
             'featured' => $this->property('featured') == true,
@@ -132,7 +132,7 @@ class Projects extends ComponentBase
     }
 
     /**
-     * Returns an array of transformed project models.
+     * Returns an array of transformed projects.
      *
      * @return array
      */

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio;
 
+use App;
 use Backend;
+use DamianLewis\Portfolio\Classes\Providers\TransformerServiceProvider;
 use DamianLewis\Portfolio\Components\ClientLogos;
 use DamianLewis\Portfolio\Components\FeaturedProject;
 use DamianLewis\Portfolio\Components\Projects;
@@ -20,6 +22,11 @@ class Plugin extends PluginBase
             'author' => 'Damian Lewis',
             'icon' => 'icon-briefcase'
         ];
+    }
+
+    public function boot()
+    {
+        App::register(TransformerServiceProvider::class);
     }
 
     public function registerComponents(): array

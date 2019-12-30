@@ -6,7 +6,7 @@ namespace DamianLewis\Portfolio\Classes\Transformers;
 
 use Model;
 
-interface Transformable
+interface TransformerInterface
 {
     /**
      * Transform the attributes of the given model.

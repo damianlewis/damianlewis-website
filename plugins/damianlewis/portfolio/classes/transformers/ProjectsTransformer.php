@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
+use DamianLewis\Portfolio\Classes\UrlGenerator;
+use DamianLewis\Portfolio\Classes\UrlGeneratorInterface;
+use DamianLewis\Portfolio\Models\Project;
 use Model;
 
-class ProjectsTransformer extends Transformer implements Transformable
+class ProjectsTransformer extends Transformer implements TransformerInterface, UrlGeneratorInterface
 {
-    /**
-     * @var array
-     */
-    private $properties;
+    use UrlGenerator;
 
     /**
      * Transforms the given project model to include the attributes required by the frontend.
@@ -21,27 +21,23 @@ class ProjectsTransformer extends Transformer implements Transformable
      */
     public function transformItem(Model $item): array
     {
+        if (!$item instanceof Project) {
+            return [];
+        }
+
+        $fileTransformer = resolve(FileTransformer::class);
+
         $data = $item->only([
             'title'
         ]);
 
         $data = array_merge($data, [
             'text' => $item->summary,
-            'image' => $item->mockup_multiple_image,
-            'imageReversed' => $item->mockup_multiple_reversed_image,
-            'url' => url($this->properties['projectPage'], $item->slug)
+            'image' => $fileTransformer->transformItem($item->mockup_multiple_image),
+            'imageReversed' => $fileTransformer->transformItem($item->mockup_multiple_reversed_image),
+            'url' => $this->getUrl([$item->slug])
         ]);
 
         return $data;
-    }
-
-    /**
-     * Sets the properties used by the transformer.
-     *
-     * @param  array  $properties
-     */
-    public function setProperties(array $properties = []): void
-    {
-        $this->properties = $properties;
     }
 }
