@@ -55,7 +55,7 @@ is_hidden = 0
         <div class="c-container bg-red-100">
             <div class="c-container__inner">
                 <h2>Designs</h2>
-                <hr class="border-red-500 mb-12 lg:mb-16 xl:mb-20">
+                <hr class="border-red-500 mb-16 lg:mb-16 xl:mb-20">
                 <div class="-mt-8 md:-mt-12">
                     {% for additionalImage in project.additionalImages %}
                         <div class="pt-8 md:pt-12 mx-auto">
@@ -67,6 +67,14 @@ is_hidden = 0
                         </div>
                     {% endfor %}
                 </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if project.testimonial %}
+        <div class="[ c-container c-container--wave ]">
+            <div class="c-container__inner">
+                {% partial 'portfolio/testimonial' testimonial=project.testimonial %}
             </div>
         </div>
     {% endif %}
