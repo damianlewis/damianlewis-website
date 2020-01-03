@@ -130,16 +130,16 @@
         },
         {
             "name": "damianlewis/oc-contact-plugin",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/damianlewis/oc-contact-plugin.git",
-                "reference": "c11ae09c62b9d69918df353c96e8bc891c235cc4"
+                "reference": "1ada803e73a3cb76393ce2b0b5a5088ac265640e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/damianlewis/oc-contact-plugin/zipball/c11ae09c62b9d69918df353c96e8bc891c235cc4",
-                "reference": "c11ae09c62b9d69918df353c96e8bc891c235cc4",
+                "url": "https://api.github.com/repos/damianlewis/oc-contact-plugin/zipball/1ada803e73a3cb76393ce2b0b5a5088ac265640e",
+                "reference": "1ada803e73a3cb76393ce2b0b5a5088ac265640e",
                 "shasum": ""
             },
             "require": {
@@ -160,10 +160,10 @@
             ],
             "description": "The contact details associated with a website.",
             "support": {
-                "source": "https://github.com/damianlewis/oc-contact-plugin/tree/v1.0.0",
+                "source": "https://github.com/damianlewis/oc-contact-plugin/tree/v1.0.1",
                 "issues": "https://github.com/damianlewis/oc-contact-plugin/issues"
             },
-            "time": "2019-12-23T20:22:37+00:00"
+            "time": "2019-12-31T08:55:22+00:00"
         },
         {
             "name": "damianlewis/oc-socialmedia-plugin",

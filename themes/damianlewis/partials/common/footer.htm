@@ -23,19 +23,21 @@ orderDirection = "asc"
                 {% partial 'navigation/footer_menu' %}
             </div>
 
-            <div class="md:pl-16 lg:pl-0">
-                {% if contactDetails.email %}
-                    <div class="mb-16">
-                        <h3 class="text-white mb-2">Email me at</h3>
-                        <a class="[ c-text c-text--large ] text-grey-300"
-                           href="mailto:{{ html_email(contactDetails.email) }}">{{ html_email(contactDetails.email) }}</a>
-                    </div>
-                {% endif %}
+            {% if contactDetails.email or links.isAvailable %}
+                <div class="md:pl-16 lg:pl-0">
+                    {% if contactDetails.email %}
+                        <div class="mb-16">
+                            <h3 class="text-white mb-2">Email me at</h3>
+                            <a class="[ c-text c-text--large ] text-grey-300"
+                               href="mailto:{{ html_email(contactDetails.email) }}">{{ html_email(contactDetails.email) }}</a>
+                        </div>
+                    {% endif %}
 
-                {% if links.isAvailable %}
-                    {% partial 'common/social_media_links' links=links.collection %}
-                {% endif %}
-            </div>
+                    {% if links.isAvailable %}
+                        {% partial 'common/social_media_links' links=links.collection %}
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>
