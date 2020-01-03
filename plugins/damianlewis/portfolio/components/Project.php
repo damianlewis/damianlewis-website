@@ -11,9 +11,9 @@ use DamianLewis\Portfolio\Models\Project as ProjectModel;
 class Project extends ComponentBase
 {
     /**
-     * @var ProjectModel|null
+     * @var ProjectTransformer
      */
-    protected $item;
+    protected $transformer;
 
     /**
      * @var array
@@ -21,9 +21,9 @@ class Project extends ComponentBase
     protected $transformedProject;
 
     /**
-     * @var ProjectTransformer
+     * @var ProjectModel|null
      */
-    protected $transformer;
+    protected $item;
 
     public function componentDetails()
     {
@@ -61,7 +61,7 @@ class Project extends ComponentBase
     }
 
     /**
-     * Returns a transformed project.
+     * Returns the transformed project.
      *
      * @return array
      */

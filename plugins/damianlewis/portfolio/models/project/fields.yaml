@@ -52,6 +52,13 @@ tabs:
             type: taglist
             mode: relation
 
+        testimonial:
+            tab: Testimonial
+            span: auto
+            type: relation
+            nameFrom: nameAndCompany
+            scope: active
+
         mockup_desktop_image:
             tab: Mockup Images
             label: Desktop device image

@@ -42,5 +42,10 @@ secondaryTabs:
 
         is_active:
             label: Active
-            type: switch
-            comment: When disabled the testimonial isn't available for selection.
+            type: checkbox
+            comment: When enabled the testimonial is available for selection.
+
+        is_hidden:
+            label: Hidden
+            type: checkbox
+            comment: When enabled the testimonial is hidden from the frontend.

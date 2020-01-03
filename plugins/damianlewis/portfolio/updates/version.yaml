@@ -12,3 +12,8 @@
     - create_clients_table.php
     - Seed dummy clients
     - seed_dummy_clients.php
+1.0.3:
+    - Create Testimonials table
+    - create_testimonials_table.php
+    - Seed dummy testimonials
+    - seed_dummy_testimonials.php

@@ -53,6 +53,10 @@ class Project extends Model
         ]
     ];
 
+    public $hasOne = [
+        'testimonial' => Testimonial::class
+    ];
+
     public $belongsTo = [
         'status' => [
             Attribute::class,

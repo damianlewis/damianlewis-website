@@ -9,6 +9,7 @@ use Backend;
 use DamianLewis\Portfolio\Classes\Providers\TransformerServiceProvider;
 use DamianLewis\Portfolio\Components\ClientLogos;
 use DamianLewis\Portfolio\Components\FeaturedProject;
+use DamianLewis\Portfolio\Components\Testimonial;
 use DamianLewis\Portfolio\Components\Project;
 use DamianLewis\Portfolio\Components\Projects;
 use System\Classes\PluginBase;
@@ -36,7 +37,8 @@ class Plugin extends PluginBase
             Projects::class => 'projects',
             Project::class => 'project',
             FeaturedProject::class => 'featuredProject',
-            ClientLogos::class => 'clientLogos'
+            ClientLogos::class => 'clientLogos',
+            Testimonial::class => 'testimonial'
         ];
     }
 
@@ -58,6 +60,10 @@ class Plugin extends PluginBase
             'damianlewis.portfolio.access_clients' => [
                 'tab' => 'Portfolio',
                 'label' => 'Manage the client list.'
+            ],
+            'damianlewis.portfolio.access_testimonials' => [
+                'tab' => 'Portfolio',
+                'label' => 'Manage the testimonials.'
             ]
         ];
     }
@@ -97,6 +103,12 @@ class Plugin extends PluginBase
                         'url' => Backend::url('damianlewis/portfolio/clients'),
                         'icon' => 'icon-users',
                         'permissions' => ['damianlewis.portfolio.access_clients']
+                    ],
+                    'testimonials' => [
+                        'label' => 'Testimonials',
+                        'url' => Backend::url('damianlewis/portfolio/testimonials'),
+                        'icon' => 'icon-thumbs-up',
+                        'permissions' => ['damianlewis.portfolio.access_testimonials']
                     ]
                 ]
             ]

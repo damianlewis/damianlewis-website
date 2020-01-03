@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DamianLewis\Reviews\Models;
+namespace DamianLewis\Portfolio\Models;
 
 use Model;
 use October\Rain\Database\Builder;
@@ -15,7 +15,7 @@ class Testimonial extends Model
     use Nullable;
     use Validation;
 
-    public $table = 'damianlewis_reviews_testimonials';
+    public $table = 'damianlewis_portfolio_testimonials';
 
     public $rules = [
         'name' => 'required',
@@ -23,12 +23,17 @@ class Testimonial extends Model
         'rating' => 'integer|nullable|min:1|max:5'
     ];
 
+    public $belongsTo = [
+        'project' => Project::class
+    ];
+
     public $attachOne = [
         'image' => File::class
     ];
 
     protected $casts = [
-        'is_active' => 'boolean'
+        'is_active' => 'boolean',
+        'is_hidden' => 'boolean'
     ];
 
     protected $nullable = [
@@ -60,5 +65,16 @@ class Testimonial extends Model
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('is_active', true);
+    }
+
+    /**
+     * Select visible testimonials.
+     *
+     * @param  Builder  $query
+     * @return Builder
+     */
+    public function scopeVisible(Builder $query): Builder
+    {
+        return $query->where('is_hidden', false);
     }
 }

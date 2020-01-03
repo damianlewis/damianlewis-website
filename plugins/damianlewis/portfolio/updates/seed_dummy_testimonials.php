@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DamianLewis\Reviews\Updates;
+namespace DamianLewis\Portfolio\Updates;
 
-use DamianLewis\Reviews\Models\Testimonial;
+use DamianLewis\Portfolio\Models\Testimonial;
 use Seeder;
 
 class SeedDummyTestimonials extends Seeder
@@ -13,5 +13,6 @@ class SeedDummyTestimonials extends Seeder
     {
         factory(Testimonial::class, 4)->create();
         factory(Testimonial::class, 6)->states(['active', 'rated'])->create();
+        factory(Testimonial::class, 2)->states(['active', 'hidden', 'rated'])->create();
     }
 }

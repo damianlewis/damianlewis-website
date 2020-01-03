@@ -64,7 +64,7 @@ $factory->state(Project::class, 'featured', function () {
 
 $factory->state(Project::class, 'hidden', function () {
     return [
-        'is_hidden'=>true
+        'is_hidden' => true
     ];
 });
 

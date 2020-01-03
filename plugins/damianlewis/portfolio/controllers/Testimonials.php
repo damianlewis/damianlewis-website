@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace DamianLewis\Reviews\Controllers;
+namespace DamianLewis\Portfolio\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
 use BackendMenu;
 use Backend\Classes\Controller;
-use DamianLewis\Reviews\Models\Testimonial;
+use DamianLewis\Portfolio\Models\Testimonial;
 use Model;
 
 class Testimonials extends Controller
 {
-    public $requiredPermissions = ['damianlewis.reviews.access_testimonials'];
+    public $requiredPermissions = ['damianlewis.portfolio.access_testimonials'];
 
     public $implement = [
         ListController::class,
@@ -27,7 +27,7 @@ class Testimonials extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('DamianLewis.Reviews', 'reviews', 'testimonials');
+        BackendMenu::setContext('DamianLewis.Portfolio', 'portfolio', 'testimonials');
 
         if (in_array($this->action, ['create', 'update'])) {
             $this->bodyClass = 'compact-container';
@@ -40,6 +40,6 @@ class Testimonials extends Controller
             return '';
         }
 
-        return $record->is_active ? '' : 'safe disabled';
+        return ($record->is_hidden || !$record->is_active) ? 'safe disabled' : '';
     }
 }

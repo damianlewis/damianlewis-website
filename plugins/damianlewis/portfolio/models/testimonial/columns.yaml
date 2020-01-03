@@ -3,9 +3,9 @@
 # ===================================
 
 columns:
-    is_active:
-        label: Active
-        type: active
+    is_hidden:
+        label: Visible
+        type: hidden
         width: 1%
 
     name:
@@ -26,6 +26,11 @@ columns:
     rating:
         label: Rating
         type: rating
+
+    is_active:
+        label: Active
+        type: active
+        width: 1%
 
     created_at:
         label: Created at

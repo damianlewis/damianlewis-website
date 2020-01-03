@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use DamianLewis\Reviews\Models\Testimonial;
+use DamianLewis\Portfolio\Models\Testimonial;
 use Faker\Generator;
 
 $factory->define(Testimonial::class, function (Generator $faker) {
@@ -22,5 +22,11 @@ $factory->state(Testimonial::class, 'rated', function (Generator $faker) {
 $factory->state(Testimonial::class, 'active', function () {
     return [
         'is_active' => true
+    ];
+});
+
+$factory->state(Testimonial::class, 'hidden', function () {
+    return [
+        'is_hidden' => true
     ];
 });

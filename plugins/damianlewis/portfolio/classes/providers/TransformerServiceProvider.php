@@ -8,6 +8,7 @@ use DamianLewis\Portfolio\Classes\Transformers\AttributeTransformer;
 use DamianLewis\Portfolio\Classes\Transformers\FileTransformer;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectsTransformer;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectTransformer;
+use DamianLewis\Portfolio\Classes\Transformers\TestimonialTransformer;
 use October\Rain\Support\ServiceProvider;
 
 class TransformerServiceProvider extends ServiceProvider
@@ -28,6 +29,10 @@ class TransformerServiceProvider extends ServiceProvider
 
         $this->app->bind(ProjectTransformer::class, function () {
             return new ProjectTransformer();
+        });
+
+        $this->app->bind(TestimonialTransformer::class, function () {
+            return new TestimonialTransformer();
         });
     }
 }
