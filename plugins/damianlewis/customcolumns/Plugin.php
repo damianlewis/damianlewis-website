@@ -95,12 +95,10 @@ class Plugin extends PluginBase
     public function activeListColumn(bool $isActive): string
     {
         if ($isActive) {
-            $class = 'oc-icon-toggle-on text-success';
-        } else {
-            $class = 'oc-icon-toggle-off text-muted';
+            return '<span class="oc-icon-check text-success"></span>';
         }
 
-        return '<span class="'.$class.'"></span>';
+        return '';
     }
 
     /**
@@ -126,7 +124,6 @@ class Plugin extends PluginBase
     {
         if ($isFeatured) {
             return '<span class="oc-icon-check text-success"></span>';
-//            return '<span class="list-badge badge-success"><i class="icon-check"></i></span>';
         }
 
         return '';
