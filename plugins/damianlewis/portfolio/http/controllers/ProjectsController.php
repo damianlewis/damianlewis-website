@@ -6,16 +6,12 @@ namespace DamianLewis\Portfolio\Http\Controllers;
 
 use DamianLewis\Portfolio\Classes\ApiController;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectsTransformer;
+use DamianLewis\Portfolio\Classes\Transformers\ProjectTransformer;
 use DamianLewis\Portfolio\Models\Project;
 use Illuminate\Http\JsonResponse;
 
 class ProjectsController extends ApiController
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * @param  ProjectsTransformer  $transformer
      * @return JsonResponse
@@ -31,9 +27,10 @@ class ProjectsController extends ApiController
 
     /**
      * @param  int  $id
+     * @param  ProjectTransformer  $transformer
      * @return JsonResponse
      */
-    public function show(int $id): JsonResponse
+    public function show(int $id, ProjectTransformer $transformer): JsonResponse
     {
         $project = Project::find($id);
 
@@ -41,14 +38,8 @@ class ProjectsController extends ApiController
             return $this->respondedNotFound('Project not found');
         }
 
-//        try {
-//            $data = $this->transformer->transformItem($project);
-//        } catch (\ApplicationException $exception) {
-//            return
-//        }
-
         return $this->respond([
-            'data' => $this->transformer->transformItem($project)
+            'data' => $transformer->transformItem($project)
         ]);
     }
 
