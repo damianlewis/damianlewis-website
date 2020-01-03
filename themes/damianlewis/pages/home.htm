@@ -16,13 +16,13 @@ limit = 3
 orderBy = "sort_order"
 orderDirection = "asc"
 
-[featuredTestimonial]
-testimonial = 8
-includeRating = 1
-
 [featuredProject]
 project = 5
 projectPage = "portfolio/project"
+
+[testimonial]
+id = 5
+includeRating = 0
 ==
 {% if hero.isAvailable %}
     {% partial 'common/hero' item=hero.item %}
@@ -59,10 +59,10 @@ projectPage = "portfolio/project"
     </div>
 {% endif %}
 
-{% if featuredTestimonial.isAvailable %}
+{% if testimonial %}
     <div class="c-container bg-red-100">
         <div class="c-container__inner">
-            {% partial 'reviews/testimonial' item=featuredTestimonial.item %}
+            {% partial 'portfolio/testimonial' testimonial=testimonial %}
         </div>
     </div>
 {% endif %}
