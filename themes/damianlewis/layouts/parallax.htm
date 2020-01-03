@@ -1,12 +1,12 @@
-description = "Default page layout."
+description = "For use with parallax scrolling."
 ==
 {% spaceless %}
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full overflow-hidden">
 
 {% partial 'site/head' %}
 
-<body>
+<body class="c-parallax h-full">
     <div id="page">
         {% partial 'common/header' %}
 
@@ -18,7 +18,7 @@ description = "Default page layout."
         {% partial 'navigation/header_menu' %}
     </div>
 
-    {% partial 'site/scripts' %}
+{% partial 'site/scripts' %}
 </body>
 
 </html>

@@ -1,6 +1,73 @@
 title = "Project"
 url = "/portfolio/project/:slug"
-layout = "default"
+layout = "parallax"
 description = "Portfolio project details page."
 is_hidden = 0
+
+[project]
 ==
+<div class="c-container bg-red-100">
+    <div class="c-container__inner pb-88 md:pb-94 lg:pb-132">
+        <h1 class="text-center text-grey-900">{{ project.title }}</h1>
+        <hr class="border-red-500 mx-auto mb-8 xl:mb-28">
+        <p class="[ c-text c-text--large ] text-grey-600 text-center">{{ project.tagLine }}</p>
+    </div>
+</div>
+
+<div class="c-container">
+    <div class="c-container__inner">
+        <div class="shadow-lg -mt-88 mb-20 md:-mt-94 lg:-mt-132 xl:mb-24">
+            <img class="object-cover object-left-top h-12 rounded-t-lg"
+                 src="{{ 'assets/images/browser_toolbar.svg'|theme }}"
+                 alt="">
+            <div class="overflow-hidden h-160 md:h-172 lg:h-248">
+                <div class="c-parallax__item">
+                    <picture>
+                        <source srcset="{{ project.mobileImage.path }}" media="(max-width: 544px)">
+                        <source srcset="{{ project.tabletImage.path }}" media="(max-width: 768px)">
+                        <source srcset="{{ project.desktopImage.path }}" media="(max-width: 1024px)">
+                        <img src="{{ project.desktopImage.path }}" alt="{{ project.desktopImage.title }}">
+                    </picture>
+                </div>
+            </div>
+        </div>
+
+        <h2>Overview</h2>
+        <hr class="border-red-500 mb-12 lg:mb-16 xl:mb-20">
+        <div class="c-text c-post text-grey-600 mb-20">
+            {{ project.text|raw }}
+        </div>
+
+        {% if project.mockupImage %}
+            <img class="mb-20" src="{{ project.mockupImage.path }}" alt="{{ project.mockupImage.title }}">
+        {% endif %}
+
+        {% if project.skills %}
+            {% partial 'common/attributes' attributes=project.skills icon='assets/icons/skills.svg'|theme %}
+        {% endif %}
+
+        {% if project.technologies %}
+            {% partial 'common/attributes' attributes=project.technologies icon='assets/icons/technology.svg'|theme %}
+        {% endif %}
+    </div>
+
+    {% if project.additionalImages %}
+        <div class="c-container bg-red-100">
+            <div class="c-container__inner">
+                <h2>Designs</h2>
+                <hr class="border-red-500 mb-12 lg:mb-16 xl:mb-20">
+                <div class="-mt-8 md:-mt-12">
+                    {% for additionalImage in project.additionalImages %}
+                        <div class="pt-8 md:pt-12 mx-auto">
+                            <div class="shadow-lg overflow-hidden">
+                                <img class="object-cover object-left-top h-4 rounded-t-sm sm:h-6 sm:rounded-t md:h-8 lg:h-12 lg:rounded-t-lg"
+                                     src="{{ 'assets/images/browser_toolbar.svg'|theme }}" alt="">
+                                <img src="{{ additionalImage.path }}" alt="{{ additionalImage.title }}">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>

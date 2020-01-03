@@ -12,8 +12,11 @@
 @tailwind components;
 
 // COMPONENTS
+@import "components/component.attributes";
 @import "components/components.button";
 @import "components/components.container";
+@import "components/component.parallax";
+@import "components/component.post";
 @import "components/components.text";
 
 @tailwind utilities;

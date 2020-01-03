@@ -80,7 +80,16 @@ module.exports = {
       36: '108px',
       40: '120px',
       50: '150px',
+      68: '204px',
+      82: '246px',
       88: '264px',
+      94: '282px',
+      132: '396px',
+      138: '414px',
+      160: '480px',
+      172: '516px',
+      248: '744px',
+      380: '1140px'
     },
     transitionProperty: {
       'none': 'none',
@@ -106,6 +115,9 @@ module.exports = {
         40: '.4',
         45: '.45',
       },
+      maxWidth: {
+        380: '1140px'
+      }
     },
   },
   variants: {

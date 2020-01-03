@@ -2,7 +2,7 @@
    ========================================================================== */
 
 .c-text {
-  @apply font-body font-light text-xs leading-loose antialiased;
+  @apply font-body font-light text-xs leading-loosest antialiased;
 
   @screen lg {
     @apply text-base leading-looser;
@@ -10,7 +10,7 @@
 }
 
 .c-text--large {
-  @apply text-base;
+  @apply text-base leading-looser;
 
   @screen lg {
     @apply text-xl;
