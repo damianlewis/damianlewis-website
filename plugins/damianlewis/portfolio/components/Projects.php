@@ -6,26 +6,21 @@ namespace DamianLewis\Portfolio\Components;
 
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
-use DamianLewis\Portfolio\Classes\Transformers\ProjectsTransformer;
+use DamianLewis\Portfolio\Classes\Transformers\ProjectListTransformer;
 use DamianLewis\Portfolio\Models\Project;
 use October\Rain\Database\Collection;
 
 class Projects extends ComponentBase
 {
     /**
-     * @var Collection
+     * @var array|null
      */
-    protected $collection;
+    protected ?array $transformedProjects = null;
 
     /**
-     * @var array
+     * @var ProjectListTransformer
      */
-    protected $transformedProjects;
-
-    /**
-     * @var ProjectsTransformer
-     */
-    protected $transformer;
+    protected ProjectListTransformer $transformer;
 
     public function componentDetails(): array
     {
@@ -72,16 +67,15 @@ class Projects extends ComponentBase
 
     public function init(): void
     {
-        $this->transformer = resolve(ProjectsTransformer::class);
+        $this->transformer = resolve(ProjectListTransformer::class);
     }
 
     public function onRun(): void
     {
+        $projects = $this->getProjects();
+
         $this->transformer->setBasePath($this->property('projectPage'));
-
-        $this->collection = $this->getProjects();
-
-        $this->page['projects'] = $this->getTransformedProjects();
+        $this->page['projects'] = $this->transformProjects($projects);
     }
 
     /**
@@ -134,14 +128,15 @@ class Projects extends ComponentBase
     /**
      * Returns an array of transformed projects.
      *
+     * @param  Collection  $projects
      * @return array
      */
-    protected function getTransformedProjects(): array
+    protected function transformProjects(Collection $projects): array
     {
         if ($this->transformedProjects !== null) {
             return $this->transformedProjects;
         }
 
-        return $this->transformedProjects = $this->transformer->transformCollection($this->collection);
+        return $this->transformedProjects = $this->transformer->transformCollection($projects);
     }
 }

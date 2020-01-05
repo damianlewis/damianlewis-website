@@ -33,7 +33,7 @@ secondaryTabs:
             type: number
             comment: Set the opacity of the logo.
 
-        is_visible:
-            label: Visible
-            type: switch
-            comment: When disabled the client is hidden on the frontend.
+        is_hidden:
+            label: Hidden
+            type: checkbox
+            comment: When enabled the client is hidden from the frontend.

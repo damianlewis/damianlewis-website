@@ -4,17 +4,22 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Components;
 
-use Closure;
 use Cms\Classes\ComponentBase;
+use DamianLewis\Portfolio\Classes\Transformers\ClientLogosTransformer;
 use DamianLewis\Portfolio\Models\Client;
 use October\Rain\Database\Collection;
 
 class ClientLogos extends ComponentBase
 {
     /**
-     * @var Collection
+     * @var ClientLogosTransformer
      */
-    private $clients;
+    protected ClientLogosTransformer $transformer;
+
+    /**
+     * @var array|null
+     */
+    protected ?array $transformedClients = null;
 
     public function componentDetails(): array
     {
@@ -48,41 +53,17 @@ class ClientLogos extends ComponentBase
         ];
     }
 
-    /**
-     * Returns an array of transformed clients for consumption by the frontend.
-     *
-     * @return array The transformed collection.
-     */
-    public function collection(): array
+
+    public function init(): void
     {
-        if (!$this->isAvailable()) {
-            return [];
-        }
-
-        return $this->transformCollection($this->clients);
-    }
-
-    /**
-     * Returns true if a collection of clients has been fetched from the database.
-     *
-     * @return bool
-     */
-    public function isAvailable(): bool
-    {
-        if ($this->clients === null) {
-            return false;
-        }
-
-        if ($this->clients->count() > 0) {
-            return true;
-        }
-
-        return false;
+        $this->transformer = resolve(ClientLogosTransformer::class);
     }
 
     public function onRun(): void
     {
-        $this->clients = $this->getClients();
+        $clients = $this->getClients();
+
+        $this->page['clientLogos'] = $this->transformClients($clients);
     }
 
     /**
@@ -106,37 +87,7 @@ class ClientLogos extends ComponentBase
     }
 
     /**
-     * Transforms a clients collection into the data required by the frontend.
-     *
-     * @param  Collection  $clients
-     * @return array
-     */
-    protected function transformCollection(Collection $clients): array
-    {
-        return array_map(
-            $this->transformItem(),
-            $clients->all()
-        );
-    }
-
-    /**
-     * Transforms a client model into the data required by the frontend.
-     *
-     * @return Closure
-     */
-    protected function transformItem(): Closure
-    {
-        return function (Client $category) {
-            return [
-                'image' => $category->logo,
-                'width' => $category->logo_width,
-                'opacity' => $category->logo_opacity
-            ];
-        };
-    }
-
-    /**
-     * Return an ordered collection of clients.
+     * Return an ordered collection of clients from the database.
      *
      * @return Collection
      */
@@ -149,5 +100,20 @@ class ClientLogos extends ComponentBase
         ];
 
         return Client::frontEndCollection($options)->get();
+    }
+
+    /**
+     * Returns an array of transformed clients.
+     *
+     * @param  Collection  $clients
+     * @return array
+     */
+    protected function transformClients(Collection $clients): array
+    {
+        if ($this->transformedClients !== null) {
+            return $this->transformedClients;
+        }
+
+        return $this->transformedClients = $this->transformer->transformCollection($clients);
     }
 }

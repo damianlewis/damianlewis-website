@@ -3,9 +3,9 @@
 # ===================================
 
 columns:
-    is_visible:
+    is_hidden:
         label: Visible
-        type: visible
+        type: hidden
         width: 1%
 
     name:

@@ -5,14 +5,20 @@ declare(strict_types=1);
 namespace DamianLewis\Pages\Components;
 
 use Cms\Classes\ComponentBase;
+use DamianLewis\Pages\Classes\Transformers\HeroTransformer;
 use DamianLewis\Pages\Models\Hero as HeroModel;
 
 class Hero extends ComponentBase
 {
     /**
-     * @var HeroModel|null
+     * @var HeroTransformer
      */
-    private $hero;
+    protected HeroTransformer $transformer;
+
+    /**
+     * @var array|null
+     */
+    protected ?array $transformedHero = null;
 
     public function componentDetails(): array
     {
@@ -25,7 +31,7 @@ class Hero extends ComponentBase
     public function defineProperties(): array
     {
         return [
-            'hero' => [
+            'id' => [
                 'title' => 'Hero',
                 'description' => 'The hero section to display',
                 'type' => 'dropdown',
@@ -34,35 +40,17 @@ class Hero extends ComponentBase
         ];
     }
 
-    /**
-     * Returns a transformed hero model for consumption by the frontend.
-     *
-     * @return array The transformed model data.
-     */
-    public function item(): array
+    public function init(): void
     {
-        if (!$this->isAvailable()) {
-            return [];
-        }
-
-        return $this->transformItem($this->hero);
-    }
-
-    /**
-     * Returns true if a hero model has been set for the component.
-     *
-     * @return bool
-     */
-    public function isAvailable(): bool
-    {
-        return !!$this->hero;
+        $this->transformer = resolve(HeroTransformer::class);
     }
 
     public function onRun(): void
     {
-        $id = (int) $this->property('hero');
+        $id = (int) $this->property('id');
+        $hero = $this->getHeroById($id);
 
-        $this->hero = $this->getActiveHeroById($id);
+        $this->page['hero'] = $this->transformHero($hero);
     }
 
     /**
@@ -70,41 +58,43 @@ class Hero extends ComponentBase
      *
      * @return array
      */
-    public function getHeroOptions(): array
+    public function getIdOptions(): array
     {
-        $activeHeroes = HeroModel::active()->get();
+        $heroes = HeroModel::active()->get();
 
-        return $activeHeroes->pluck('description', 'id')->all();
+        return $heroes->pluck('description', 'id')->all();
     }
 
     /**
-     * Transforms a hero model into the data required by the frontend.
-     *
-     * @param  HeroModel  $hero
-     * @return array The transformed model data.
-     */
-    protected function transformItem(HeroModel $hero): array
-    {
-        $data = $hero->only([
-            'header',
-            'body',
-            'image'
-        ]);
-
-        return array_merge($data, [
-            'bgTablet' => $hero->background_image_tablet,
-            'bgMobile' => $hero->background_image_mobile
-        ]);
-    }
-
-    /**
-     * Returns the active hero model with the given id.
+     * Returns a hero from the database with the given id.
      *
      * @param  int  $id
      * @return HeroModel|null
      */
-    protected function getActiveHeroById(int $id): ?HeroModel
+    protected function getHeroById(int $id): ?HeroModel
     {
-        return HeroModel::active()->where('id', $id)->first();
+        return HeroModel::query()
+            ->active()
+            ->where('id', $id)
+            ->first();
+    }
+
+    /**
+     * Returns the transformed hero.
+     *
+     * @param  HeroModel|null  $hero
+     * @return array|null
+     */
+    protected function transformHero(?HeroModel $hero): ?array
+    {
+        if ($this->transformedHero !== null) {
+            return $this->transformedHero;
+        }
+
+        if ($hero !== null) {
+            return $this->transformedHero = $this->transformer->transformItem($hero);
+        }
+
+        return null;
     }
 }

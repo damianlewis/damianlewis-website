@@ -4,19 +4,17 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
-use DamianLewis\Portfolio\Models\Testimonial;
+use DamianLewis\Portfolio\Classes\UrlGenerator;
+use DamianLewis\Portfolio\Models\Project;
 use DamianLewis\Transformer\Classes\FileTransformer;
+use DamianLewis\Transformer\Classes\Transformer;
 use DamianLewis\Transformer\Classes\TransformerInterface;
 use Model;
 
-class TestimonialTransformer implements TransformerInterface
+class ProjectItemTransformer extends Transformer implements TransformerInterface
 {
+    use UrlGenerator;
     use Transformers;
-
-    /**
-     * @var bool
-     */
-    protected bool $includeRating = false;
 
     public function __construct()
     {
@@ -28,29 +26,24 @@ class TestimonialTransformer implements TransformerInterface
      */
     public function transformItem(Model $item): array
     {
-        if (!$item instanceof Testimonial) {
+        if (!$item instanceof Project) {
             return [];
         }
 
         $data = $item->only([
-            'name',
-            'company',
-            'quote'
+            'title'
         ]);
 
-        $data = array_merge($data, [
-            'image' => $this->transformFile($item->image)
-        ]);
-
-        if ($this->includeRating === true) {
-            $data = array_add($data, 'rating', $item->rating);
+        if ($slug = $item->slug !== null) {
+            $slug = $this->getUrl([$item->slug]);
         }
 
-        return $data;
-    }
+        $data = array_merge($data, [
+            'text' => $item->summary,
+            'image' => $this->transformFile($item->mockup_multiple_image),
+            'url' => $slug
+        ]);
 
-    public function setIncludeRating(bool $isIncluded): void
-    {
-        $this->includeRating = $isIncluded;
+        return $data;
     }
 }

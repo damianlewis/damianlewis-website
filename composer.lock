@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7fd0328aa450a85135a617add434940",
+    "content-hash": "8c4dd4d82fadd924d1104cfb5cfde250",
     "packages": [
         {
             "name": "composer/installers",
@@ -202,6 +202,44 @@
                 "issues": "https://github.com/damianlewis/oc-socialmedia-plugin/issues"
             },
             "time": "2019-12-23T17:16:01+00:00"
+        },
+        {
+            "name": "damianlewis/oc-transformer-plugin",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/damianlewis/oc-transformer-plugin.git",
+                "reference": "58a751b2f0689577def747d19f4e073b32a43f62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/damianlewis/oc-transformer-plugin/zipball/58a751b2f0689577def747d19f4e073b32a43f62",
+                "reference": "58a751b2f0689577def747d19f4e073b32a43f62",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.7",
+                "laravel/framework": "5.5.*",
+                "october/rain": "^1.0",
+                "october/system": "^1.0",
+                "php": ">= 7.1"
+            },
+            "type": "october-plugin",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Damian Lewis",
+                    "email": "damian@damianlewis.co.uk"
+                }
+            ],
+            "description": "Transformer package for October CMS.",
+            "support": {
+                "source": "https://github.com/damianlewis/oc-transformer-plugin/tree/v1.1.0",
+                "issues": "https://github.com/damianlewis/oc-transformer-plugin/issues"
+            },
+            "time": "2020-01-04T15:29:34+00:00"
         },
         {
             "name": "damianlewis/oc-webpconverter-plugin",
@@ -6140,6 +6178,6 @@
     },
     "platform-dev": [],
     "platform-overrides": {
-        "php": "7.3"
+        "php": "7.4"
     }
 }

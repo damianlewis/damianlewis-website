@@ -5,16 +5,24 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
 use DamianLewis\Portfolio\Models\Project;
+use DamianLewis\Transformer\Classes\FileTransformer;
+use DamianLewis\Transformer\Classes\TransformerInterface;
 use Model;
 use October\Rain\Database\Collection;
 
 class ProjectTransformer implements TransformerInterface
 {
+    use Transformers;
+
+    public function __construct()
+    {
+        $this->fileTransformer = resolve(FileTransformer::class);
+        $this->attributeTransformer = resolve(AttributeTransformer::class);
+        $this->testimonialTransformer = resolve(TestimonialTransformer::class);
+    }
+
     /**
-     * Transforms the given project model to include the attributes required by the frontend.
-     *
-     * @param  Model  $item
-     * @return array
+     * @inheritDoc
      */
     public function transformItem(Model $item): array
     {
@@ -22,12 +30,8 @@ class ProjectTransformer implements TransformerInterface
             return [];
         }
 
-        $attributeTransformer = resolve(AttributeTransformer::class);
-        $fileTransformer = resolve(FileTransformer::class);
-        $testimonialTransformer = resolve(TestimonialTransformer::class);
-
         $data = $item->only([
-            'title',
+            'title'
         ]);
 
         $skills = $this->getRelation($item, 'skills');
@@ -37,14 +41,14 @@ class ProjectTransformer implements TransformerInterface
         $data = array_merge($data, [
             'text' => $item->description,
             'tagLine' => $item->tag_line,
-            'skills' => $attributeTransformer->transformCollection($skills),
-            'technologies' => $attributeTransformer->transformCollection($technologies),
-            'testimonial' => $testimonial !== null ? $testimonialTransformer->transformItem($testimonial) : [],
-            'mobileImage' => $fileTransformer->transformItem($item->mobile_full_frame_image),
-            'tabletImage' => $fileTransformer->transformItem($item->tablet_full_frame_image),
-            'desktopImage' => $fileTransformer->transformItem($item->desktop_full_frame_image),
-            'mockupImage' => $fileTransformer->transformItem($item->mockup_multiple_in_sequence_image),
-            'additionalImages' => $fileTransformer->transformCollection($item->design_images)
+            'skills' => $this->transformAttributes($skills),
+            'technologies' => $this->transformAttributes($technologies),
+            'testimonial' => $this->transformTestimonial($testimonial),
+            'mobileImage' => $this->transformFile($item->mobile_full_frame_image),
+            'tabletImage' => $this->transformFile($item->tablet_full_frame_image),
+            'desktopImage' => $this->transformFile($item->desktop_full_frame_image),
+            'mockupImage' => $this->transformFile($item->mockup_multiple_in_sequence_image),
+            'additionalImages' => $this->transformFiles($item->design_images)
         ]);
 
         return $data;

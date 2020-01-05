@@ -6,29 +6,37 @@ namespace DamianLewis\Portfolio\Components;
 
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
+use DamianLewis\Portfolio\Classes\Transformers\ProjectItemTransformer;
 use DamianLewis\Portfolio\Models\Project;
 
 class FeaturedProject extends ComponentBase
 {
     /**
-     * @var Project|null
+     * @var ProjectItemTransformer
      */
-    private $project;
+    protected ProjectItemTransformer $transformer;
+
+    /**
+     * @var array|null
+     */
+    protected ?array $transformedProject = null;
 
     public function componentDetails(): array
     {
         return [
             'name' => 'Featured Project',
-            'description' => 'Get a featured portfolio project.'
+            'description' => 'Get an active project.'
         ];
     }
 
     public function defineProperties(): array
     {
         return [
-            'project' => [
+            'id' => [
                 'title' => 'Project',
-                'type' => 'dropdown'
+                'type' => 'dropdown',
+                'description' => 'The project to display.',
+                'placeholder' => 'Select a project'
             ],
             'projectPage' => [
                 'title' => 'Project page',
@@ -38,37 +46,18 @@ class FeaturedProject extends ComponentBase
         ];
     }
 
-    /**
-     * Returns a transformed project model for consumption by the frontend.
-     *
-     * @return array
-     */
-    public function item(): array
+    public function init(): void
     {
-        if (!$this->isAvailable()) {
-            return [];
-        }
-
-        $this->setProjectUrl($this->project);
-
-        return $this->transformProject($this->project);
-    }
-
-    /**
-     * Returns true is a project model has been set for the component.
-     *
-     * @return bool
-     */
-    public function isAvailable(): bool
-    {
-        return !!$this->project;
+        $this->transformer = resolve(ProjectItemTransformer::class);
     }
 
     public function onRun(): void
     {
-        $id = (int) $this->property('project');
+        $id = (int) $this->property('id');
+        $project = $this->getProjectById($id);
 
-        $this->project = $this->getActiveProjectById($id);
+        $this->transformer->setBasePath($this->property('projectPage'));
+        $this->page['featuredProject'] = $this->transformProject($project);
     }
 
     /**
@@ -86,50 +75,44 @@ class FeaturedProject extends ComponentBase
      *
      * @return array
      */
-    public function getProjectOptions(): array
+    public function getIdOptions(): array
     {
-        $activeProjects = Project::active()->get();
+        $projects = Project::active()->get();
 
-        return $activeProjects->pluck('title', 'id')->all();
+        return $projects->pluck('title', 'id')->all();
     }
 
     /**
-     * Transforms a project model into the data required by the frontend.
-     *
-     * @param  Project  $project
-     * @return array
-     */
-    protected function transformProject(Project $project): array
-    {
-        $data = $project->only([
-            'title',
-            'url'
-        ]);
-
-        return array_merge($data, [
-            'text' => $project->summary,
-            'image' => $project->mockup_multiple_image
-        ]);
-    }
-
-    /**
-     * Returns the active project model with the given id.
+     * Returns a project from the database with the given id.
      *
      * @param  int  $id
      * @return Project|null
      */
-    protected function getActiveProjectById(int $id): ?Project
+    protected function getProjectById(int $id): ?Project
     {
-        return Project::active()->where('id', $id)->first();
+        return Project::query()
+            ->active()
+            ->visible()
+            ->where('id', $id)
+            ->first();
     }
 
     /**
-     * Set the page URL for the  project.
+     * Returns the transformed project.
      *
-     * @param  Project  $project
+     * @param  Project|null  $project
+     * @return array|null
      */
-    protected function setProjectUrl(Project $project): void
+    protected function transformProject(?Project $project): ?array
     {
-        $project->setUrl($this->property('projectPage'));
+        if ($this->transformedProject !== null) {
+            return $this->transformedProject;
+        }
+
+        if ($project !== null) {
+            return $this->transformedProject = $this->transformer->transformItem($project);
+        }
+
+        return null;
     }
 }

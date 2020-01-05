@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Http\Controllers;
 
 use DamianLewis\Portfolio\Classes\ApiController;
-use DamianLewis\Portfolio\Classes\Transformers\ProjectsTransformer;
+use DamianLewis\Portfolio\Classes\Transformers\ProjectListTransformer;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectTransformer;
 use DamianLewis\Portfolio\Models\Project;
 use Illuminate\Http\JsonResponse;
@@ -13,10 +13,10 @@ use Illuminate\Http\JsonResponse;
 class ProjectsController extends ApiController
 {
     /**
-     * @param  ProjectsTransformer  $transformer
+     * @param  ProjectListTransformer  $transformer
      * @return JsonResponse
      */
-    public function index(ProjectsTransformer $transformer): JsonResponse
+    public function index(ProjectListTransformer $transformer): JsonResponse
     {
         $projects = Project::all();
 

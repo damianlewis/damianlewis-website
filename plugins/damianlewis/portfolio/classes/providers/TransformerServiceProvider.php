@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Providers;
 
-use DamianLewis\Portfolio\Classes\Transformers\AttributeTransformer;
-use DamianLewis\Portfolio\Classes\Transformers\FileTransformer;
-use DamianLewis\Portfolio\Classes\Transformers\ProjectsTransformer;
+use DamianLewis\Portfolio\Classes\Transformers\ProjectListTransformer;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectTransformer;
 use DamianLewis\Portfolio\Classes\Transformers\TestimonialTransformer;
+use DamianLewis\Transformer\Classes\AttributeTransformer;
+use DamianLewis\Transformer\Classes\FileTransformer;
 use October\Rain\Support\ServiceProvider;
 
 class TransformerServiceProvider extends ServiceProvider
@@ -23,8 +23,8 @@ class TransformerServiceProvider extends ServiceProvider
             return new AttributeTransformer();
         });
 
-        $this->app->bind(ProjectsTransformer::class, function () {
-            return new ProjectsTransformer();
+        $this->app->bind(ProjectListTransformer::class, function () {
+            return new ProjectListTransformer();
         });
 
         $this->app->bind(ProjectTransformer::class, function () {

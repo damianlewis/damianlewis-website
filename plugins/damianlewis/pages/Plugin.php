@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace DamianLewis\Pages;
 
+use App;
 use Backend;
+use DamianLewis\Pages\Classes\Providers\TransformerServiceProvider;
 use DamianLewis\Pages\Components\Hero;
 use System\Classes\PluginBase;
 
@@ -18,6 +20,11 @@ class Plugin extends PluginBase
             'author' => 'Damian Lewis',
             'icon' => 'icon-files-o'
         ];
+    }
+
+    public function boot()
+    {
+        App::register(TransformerServiceProvider::class);
     }
 
     public function registerComponents(): array

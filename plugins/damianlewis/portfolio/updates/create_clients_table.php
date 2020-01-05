@@ -15,11 +15,11 @@ class CreateClientsTable extends Migration
         Schema::create('damianlewis_portfolio_clients', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->unsignedSmallInteger('logo_width')->nullable();
             $table->unsignedSmallInteger('logo_opacity')->nullable();
             $table->unsignedSmallInteger('sort_order')->nullable();
-            $table->boolean('is_visible')->default(false);
+            $table->boolean('is_hidden')->default(false);
             $table->timestamps();
         });
     }

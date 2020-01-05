@@ -11,8 +11,8 @@ $factory->define(Client::class, function (Generator $faker) {
     ];
 });
 
-$factory->state(Client::class, 'visible', function () {
+$factory->state(Client::class, 'hidden', function () {
     return [
-        'is_visible' => true
+        'is_hidden' => true
     ];
 });

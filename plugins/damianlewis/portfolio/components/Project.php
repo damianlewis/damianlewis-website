@@ -13,17 +13,12 @@ class Project extends ComponentBase
     /**
      * @var ProjectTransformer
      */
-    protected $transformer;
+    protected ProjectTransformer $transformer;
 
     /**
-     * @var array
+     * @var array|null
      */
-    protected $transformedProject;
-
-    /**
-     * @var ProjectModel|null
-     */
-    protected $item;
+    protected ?array $transformedProject = null;
 
     public function componentDetails()
     {
@@ -40,9 +35,9 @@ class Project extends ComponentBase
 
     public function onRun(): void
     {
-        $this->item = $this->getProjectBySlug($this->param('slug'));
+        $project = $this->getProjectBySlug($this->param('slug'));
 
-        $this->page['project'] = $this->getTransformedProject();
+        $this->page['project'] = $this->transformProject($project);
     }
 
     /**
@@ -63,14 +58,19 @@ class Project extends ComponentBase
     /**
      * Returns the transformed project.
      *
-     * @return array
+     * @param  ProjectModel|null  $project
+     * @return array|null
      */
-    protected function getTransformedProject(): array
+    protected function transformProject(?ProjectModel $project): ?array
     {
         if ($this->transformedProject !== null) {
             return $this->transformedProject;
         }
 
-        return $this->transformedProject = $this->transformer->transformItem($this->item);
+        if ($project !== null) {
+            return $this->transformedProject = $this->transformer->transformItem($project);
+        }
+
+        return null;
     }
 }

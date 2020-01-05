@@ -13,17 +13,12 @@ class Testimonial extends ComponentBase
     /**
      * @var TestimonialTransformer
      */
-    protected $transformer;
+    protected TestimonialTransformer $transformer;
 
     /**
-     * @var array
+     * @var array|null
      */
-    protected $transformedTestimonial;
-
-    /**
-     * @var TestimonialModel|null
-     */
-    protected $item;
+    protected ?array $transformedTestimonial = null;
 
     public function componentDetails(): array
     {
@@ -38,7 +33,9 @@ class Testimonial extends ComponentBase
         return [
             'id' => [
                 'title' => 'Testimonial',
-                'type' => 'dropdown'
+                'type' => 'dropdown',
+                'description' => 'The testimonial to display',
+                'placeholder' => 'Select a testimonial'
             ],
             'includeRating' => [
                 'title' => 'Ratings',
@@ -57,12 +54,10 @@ class Testimonial extends ComponentBase
     public function onRun(): void
     {
         $id = (int) $this->property('id');
+        $testimonial = $this->getTestimonialById($id);
 
         $this->transformer->setIncludeRating($this->property('includeRating') == true);
-
-        $this->item = $this->getTestimonialById($id);
-
-        $this->page['testimonial'] = $this->getTransformedTestimonial();
+        $this->page['testimonial'] = $this->transformTestimonial($testimonial);
     }
 
     /**
@@ -95,14 +90,19 @@ class Testimonial extends ComponentBase
     /**
      * Returns the transformed testimonial.
      *
-     * @return array
+     * @param  TestimonialModel|null  $testimonial
+     * @return array|null
      */
-    protected function getTransformedTestimonial(): array
+    protected function transformTestimonial(?TestimonialModel $testimonial): ?array
     {
         if ($this->transformedTestimonial !== null) {
             return $this->transformedTestimonial;
         }
 
-        return $this->transformedTestimonial = $this->transformer->transformItem($this->item);
+        if ($testimonial !== null) {
+            return $this->transformedTestimonial = $this->transformer->transformItem($testimonial);
+        }
+
+        return null;
     }
 }

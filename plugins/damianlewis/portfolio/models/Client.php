@@ -50,10 +50,11 @@ class Client extends Model
     ];
 
     protected $casts = [
-        'is_visible' => 'boolean'
+        'is_hidden' => 'boolean'
     ];
 
     protected $nullable = [
+        'name',
         'logo_width',
         'logo_opacity',
         'sort_order'
@@ -67,7 +68,7 @@ class Client extends Model
      */
     public function scopeVisible(Builder $query): Builder
     {
-        return $query->where('is_visible', true);
+        return $query->where('is_hidden', false);
     }
 
     /**

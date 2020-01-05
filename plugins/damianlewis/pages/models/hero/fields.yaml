@@ -47,5 +47,5 @@ secondaryTabs:
 
         is_active:
             label: Active
-            type: switch
-            comment: When disabled the hero isn't available for selection.
+            type: checkbox
+            comment: When enabled the hero is available for selection.
