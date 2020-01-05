@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
+use DamianLewis\Portfolio\Classes\PortfolioTransformers;
 use DamianLewis\Portfolio\Models\Project;
+use DamianLewis\Shared\Classes\CommonTransformers;
 use DamianLewis\Transformer\Classes\FileTransformer;
 use DamianLewis\Transformer\Classes\TransformerInterface;
 use Model;
@@ -12,7 +14,8 @@ use October\Rain\Database\Collection;
 
 class ProjectTransformer implements TransformerInterface
 {
-    use Transformers;
+    use CommonTransformers;
+    use PortfolioTransformers;
 
     public function __construct()
     {

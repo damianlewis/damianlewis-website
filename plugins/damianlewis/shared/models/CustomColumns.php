@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DamianLewis\CustomColumns\Models;
+namespace DamianLewis\Shared\Models;
 
 use Model;
 use October\Rain\Database\Traits\Validation;
 use System\Behaviors\SettingsModel;
 
-class Settings extends Model
+class CustomColumns extends Model
 {
     use Validation;
 
@@ -16,11 +16,11 @@ class Settings extends Model
         SettingsModel::class
     ];
 
-    public $settingsCode = 'damianlewis_custom_columns_settings';
+    public string $settingsCode = 'damianlewis_custom_columns_settings';
 
-    public $settingsFields = 'fields.yaml';
+    public string $settingsFields = 'fields.yaml';
 
-    public $rules = [
+    public array $rules = [
         'preview_image_width' => 'integer',
         'preview_image_height' => 'integer'
     ];

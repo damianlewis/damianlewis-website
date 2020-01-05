@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DamianLewis\Portfolio\Classes;
+namespace DamianLewis\Shared\Classes;
 
 interface UrlGeneratorInterface
 {

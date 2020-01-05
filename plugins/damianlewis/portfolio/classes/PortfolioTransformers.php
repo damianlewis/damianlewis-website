@@ -2,21 +2,16 @@
 
 declare(strict_types=1);
 
-namespace DamianLewis\Portfolio\Classes\Transformers;
+namespace DamianLewis\Portfolio\Classes;
 
+use DamianLewis\Portfolio\Classes\Transformers\AttributeTransformer;
+use DamianLewis\Portfolio\Classes\Transformers\TestimonialTransformer;
 use DamianLewis\Portfolio\Models\Testimonial;
-use DamianLewis\Transformer\Classes\FileTransformer;
 use Model;
 use October\Rain\Database\Collection;
-use System\Models\File;
 
-trait Transformers
+trait PortfolioTransformers
 {
-    /**
-     * @var FileTransformer
-     */
-    protected FileTransformer $fileTransformer;
-
     /**
      * @var AttributeTransformer
      */
@@ -26,36 +21,6 @@ trait Transformers
      * @var TestimonialTransformer
      */
     protected TestimonialTransformer $testimonialTransformer;
-
-    /**
-     * Transforms the given file model or returns null.
-     *
-     * @param  Model|null  $model
-     * @return array|null
-     */
-    protected function transformFile(?Model $model): ?array
-    {
-        if ($model instanceof File) {
-            return $this->fileTransformer->transformItem($model);
-        }
-
-        return null;
-    }
-
-    /**
-     * Transforms the given file collection or returns null.
-     *
-     * @param  Collection  $collection
-     * @return array|null
-     */
-    protected function transformFiles(Collection $collection): ?array
-    {
-        if ($collection->count() > 0) {
-            return $this->fileTransformer->transformCollection($collection);
-        }
-
-        return null;
-    }
 
     /**
      * Transforms the given attributes collection or returns null.

@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
 use DamianLewis\Portfolio\Models\Testimonial;
+use DamianLewis\Shared\Classes\CommonTransformers;
 use DamianLewis\Transformer\Classes\FileTransformer;
 use DamianLewis\Transformer\Classes\TransformerInterface;
 use Model;
 
 class TestimonialTransformer implements TransformerInterface
 {
-    use Transformers;
+    use CommonTransformers;
 
     /**
      * @var bool

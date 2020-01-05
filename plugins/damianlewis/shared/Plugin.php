@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DamianLewis\CustomColumns;
+namespace DamianLewis\Shared;
 
+use App;
 use Backend\Classes\ListColumn;
-use DamianLewis\CustomColumns\Models\Settings;
+use DamianLewis\Shared\Classes\Providers\TransformerServiceProvider;
+use DamianLewis\Shared\Models\CustomColumns;
 use Model;
 use System\Classes\PluginBase;
 use System\Models\File;
@@ -15,32 +17,27 @@ class Plugin extends PluginBase
     public function pluginDetails(): array
     {
         return [
-            'name' => 'Custom Columns',
-            'description' => 'Provides custom columns for the backend lists.',
+            'name' => 'Shared',
+            'description' => 'Common functionality used across plugins.',
             'author' => 'Damian Lewis',
-            'icon' => 'icon-columns'
+            'icon' => 'icon-leaf'
         ];
     }
 
-    public function registerPermissions(): array
+    public function boot()
     {
-        return [
-            'damianlewis.custom_columns.access_settings' => [
-                'tab' => 'Portfolio',
-                'label' => 'Manage the portfolio settings.'
-            ],
-        ];
+        App::register(TransformerServiceProvider::class);
     }
 
     public function registerSettings(): array
     {
         return [
-            'settings' => [
+            'customColumns' => [
                 'label' => 'Custom Columns',
                 'description' => 'Manage the settings for the custom backend column types.',
                 'icon' => 'icon-columns',
                 'permissions' => ['damianlewis.custom_columns.access_settings'],
-                'class' => Settings::class,
+                'class' => CustomColumns::class,
                 'order' => 999
             ]
         ];
@@ -137,10 +134,10 @@ class Plugin extends PluginBase
     {
         if ($image) {
             return '<img src="'.$image->getThumb(
-                    Settings::get('preview_image_width'),
-                    Settings::get('preview_image_height'),
-                    ['mode' => Settings::get('preview_image_mode')]
-                ).'">';
+                CustomColumns::get('preview_image_width'),
+                CustomColumns::get('preview_image_height'),
+                ['mode' => CustomColumns::get('preview_image_mode')]
+            ).'">';
         }
 
         return '';

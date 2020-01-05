@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
 use DamianLewis\Portfolio\Models\Client;
+use DamianLewis\Shared\Classes\CommonTransformers;
 use DamianLewis\Transformer\Classes\FileTransformer;
 use DamianLewis\Transformer\Classes\Transformer;
 use DamianLewis\Transformer\Classes\TransformerInterface;
@@ -12,7 +13,7 @@ use Model;
 
 class ClientLogosTransformer extends Transformer implements TransformerInterface
 {
-    use Transformers;
+    use CommonTransformers;
 
     public function __construct()
     {

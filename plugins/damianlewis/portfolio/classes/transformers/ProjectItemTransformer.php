@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
-use DamianLewis\Portfolio\Classes\UrlGenerator;
 use DamianLewis\Portfolio\Models\Project;
+use DamianLewis\Shared\Classes\CommonTransformers;
+use DamianLewis\Shared\Classes\UrlGenerator;
 use DamianLewis\Transformer\Classes\FileTransformer;
 use DamianLewis\Transformer\Classes\Transformer;
 use DamianLewis\Transformer\Classes\TransformerInterface;
@@ -14,7 +15,7 @@ use Model;
 class ProjectItemTransformer extends Transformer implements TransformerInterface
 {
     use UrlGenerator;
-    use Transformers;
+    use CommonTransformers;
 
     public function __construct()
     {

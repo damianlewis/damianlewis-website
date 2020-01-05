@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace DamianLewis\Pages\Classes\Transformers;
 
 use DamianLewis\Pages\Models\Hero;
+use DamianLewis\Shared\Classes\CommonTransformers;
 use DamianLewis\Transformer\Classes\FileTransformer;
 use DamianLewis\Transformer\Classes\TransformerInterface;
 use Model;
-use System\Models\File;
 
 class HeroTransformer implements TransformerInterface
 {
-    /**
-     * @var FileTransformer
-     */
-    protected FileTransformer $fileTransformer;
+    use CommonTransformers;
 
     public function __construct()
     {
@@ -43,20 +40,5 @@ class HeroTransformer implements TransformerInterface
         ]);
 
         return $data;
-    }
-
-    /**
-     * Transforms the given file model or returns null.
-     *
-     * @param  Model|null  $model
-     * @return array|null
-     */
-    protected function transformFile(?Model $model): ?array
-    {
-        if ($model instanceof File) {
-            return $this->fileTransformer->transformItem($model);
-        }
-
-        return null;
     }
 }
