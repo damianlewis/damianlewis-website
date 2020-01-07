@@ -15,8 +15,6 @@ class Testimonial extends Model
     use Nullable;
     use Validation;
 
-    public $table = 'damianlewis_portfolio_testimonials';
-
     public $rules = [
         'name' => 'required',
         'quote' => 'required',
@@ -30,6 +28,8 @@ class Testimonial extends Model
     public $attachOne = [
         'image' => File::class
     ];
+
+    protected $table = 'damianlewis_portfolio_testimonials';
 
     protected $casts = [
         'is_active' => 'boolean',

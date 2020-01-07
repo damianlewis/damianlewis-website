@@ -167,20 +167,21 @@
         },
         {
             "name": "damianlewis/oc-socialmedia-plugin",
-            "version": "v1.0.5",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/damianlewis/oc-socialmedia-plugin.git",
-                "reference": "e4b867be93e7dcc7a53a906ad2fcc820f38ef67d"
+                "reference": "8f591fd8a797e248dd2d1c099f7e31f35d05014e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/damianlewis/oc-socialmedia-plugin/zipball/e4b867be93e7dcc7a53a906ad2fcc820f38ef67d",
-                "reference": "e4b867be93e7dcc7a53a906ad2fcc820f38ef67d",
+                "url": "https://api.github.com/repos/damianlewis/oc-socialmedia-plugin/zipball/8f591fd8a797e248dd2d1c099f7e31f35d05014e",
+                "reference": "8f591fd8a797e248dd2d1c099f7e31f35d05014e",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
+                "laravel/framework": "5.5.*",
                 "october/backend": "^1.0",
                 "october/cms": "^1.0",
                 "october/system": "^1.0",
@@ -198,10 +199,10 @@
             ],
             "description": "A list of social media links associated with a website.",
             "support": {
-                "source": "https://github.com/damianlewis/oc-socialmedia-plugin/tree/v1.0.5",
+                "source": "https://github.com/damianlewis/oc-socialmedia-plugin/tree/v1.0.6",
                 "issues": "https://github.com/damianlewis/oc-socialmedia-plugin/issues"
             },
-            "time": "2019-12-23T17:16:01+00:00"
+            "time": "2020-01-07T12:49:14+00:00"
         },
         {
             "name": "damianlewis/oc-transformer-plugin",

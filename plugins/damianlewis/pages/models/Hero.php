@@ -15,8 +15,6 @@ class Hero extends Model
     use Nullable;
     use Validation;
 
-    public $table = 'damianlewis_pages_heroes';
-
     public $rules = [
         'description' => 'required'
     ];
@@ -26,6 +24,8 @@ class Hero extends Model
         'background_image_tablet' => File::class,
         'background_image_mobile' => File::class
     ];
+
+    protected $table = 'damianlewis_pages_heroes';
 
     protected $casts = [
         'is_active' => 'boolean'

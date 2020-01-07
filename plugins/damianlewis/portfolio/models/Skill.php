@@ -11,8 +11,6 @@ class Skill extends Model
 {
     use Validation;
 
-    public $table = 'damianlewis_portfolio_skills';
-
     public $rules = [
         'name' => 'required'
     ];
@@ -23,6 +21,8 @@ class Skill extends Model
             'table' => 'damianlewis_portfolio_project_skill'
         ]
     ];
+
+    protected $table = 'damianlewis_portfolio_skills';
 
     protected $fillable = ['name'];
 

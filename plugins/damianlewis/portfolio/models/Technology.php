@@ -11,8 +11,6 @@ class Technology extends Model
 {
     use Validation;
 
-    public $table = 'damianlewis_portfolio_technologies';
-
     public $rules = [
         'name' => 'required'
     ];
@@ -23,6 +21,8 @@ class Technology extends Model
             'table' => 'damianlewis_portfolio_project_technology'
         ]
     ];
+
+    protected $table = 'damianlewis_portfolio_technologies';
 
     protected $fillable = ['name'];
 

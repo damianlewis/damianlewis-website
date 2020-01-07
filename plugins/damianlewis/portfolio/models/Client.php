@@ -39,8 +39,6 @@ class Client extends Model
         'desc' => 'Descending'
     ];
 
-    public $table = 'damianlewis_portfolio_clients';
-
     public $rules = [
         'name' => 'required'
     ];
@@ -48,6 +46,8 @@ class Client extends Model
     public $attachOne = [
         'logo' => File::class
     ];
+
+    protected $table = 'damianlewis_portfolio_clients';
 
     protected $casts = [
         'is_hidden' => 'boolean'

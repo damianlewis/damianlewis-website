@@ -41,8 +41,6 @@ class Project extends Model
         'desc' => 'Descending'
     ];
 
-    public $table = 'damianlewis_portfolio_projects';
-
     public $rules = [
         'title' => 'required',
         'slug' => [
@@ -91,6 +89,8 @@ class Project extends Model
     public $attachMany = [
         'design_images' => File::class
     ];
+
+    protected $table = 'damianlewis_portfolio_projects';
 
     protected $casts = [
         'is_featured' => 'boolean',
