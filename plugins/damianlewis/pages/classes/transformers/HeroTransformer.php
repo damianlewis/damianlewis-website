@@ -5,19 +5,14 @@ declare(strict_types=1);
 namespace DamianLewis\Pages\Classes\Transformers;
 
 use DamianLewis\Pages\Models\Hero;
-use DamianLewis\Shared\Classes\CommonTransformers;
-use DamianLewis\Transformer\Classes\FileTransformer;
+use DamianLewis\Transformer\Classes\CanTransform;
 use DamianLewis\Transformer\Classes\TransformerInterface;
+use DamianLewis\Transformer\Classes\Transformers\FileTransformer;
 use Model;
 
 class HeroTransformer implements TransformerInterface
 {
-    use CommonTransformers;
-
-    public function __construct()
-    {
-        $this->fileTransformer = resolve(FileTransformer::class);
-    }
+    use CanTransform;
 
     /**
      * @inheritDoc
@@ -33,10 +28,12 @@ class HeroTransformer implements TransformerInterface
             'body'
         ]);
 
+        $fileTransformer = resolve(FileTransformer::class);
+
         $data = array_merge($data, [
-            'image' => $this->transformFile($item->image),
-            'bgTablet' => $this->transformFile($item->background_image_tablet),
-            'bgMobile' => $this->transformFile($item->background_image_mobile)
+            'image' => $this->transformItemOrNull($fileTransformer, $item->image),
+            'bgTablet' => $this->transformItemOrNull($fileTransformer, $item->background_image_tablet),
+            'bgMobile' => $this->transformItemOrNull($fileTransformer, $item->background_image_mobile)
         ]);
 
         return $data;

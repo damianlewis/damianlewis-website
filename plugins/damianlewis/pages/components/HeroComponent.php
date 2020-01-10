@@ -4,22 +4,12 @@ declare(strict_types=1);
 
 namespace DamianLewis\Pages\Components;
 
-use Cms\Classes\ComponentBase;
 use DamianLewis\Pages\Classes\Transformers\HeroTransformer;
-use DamianLewis\Pages\Models\Hero as HeroModel;
+use DamianLewis\Pages\Models\Hero;
+use DamianLewis\Transformer\Components\TransformerComponent;
 
-class Hero extends ComponentBase
+class HeroComponent extends TransformerComponent
 {
-    /**
-     * @var HeroTransformer
-     */
-    protected HeroTransformer $transformer;
-
-    /**
-     * @var array|null
-     */
-    protected ?array $transformedHero = null;
-
     public function componentDetails(): array
     {
         return [
@@ -50,7 +40,9 @@ class Hero extends ComponentBase
         $id = (int) $this->property('id');
         $hero = $this->getHeroById($id);
 
-        $this->page['hero'] = $this->transformHero($hero);
+        if ($hero !== null) {
+            $this->page['hero'] = $this->transformItem($hero);
+        }
     }
 
     /**
@@ -60,7 +52,7 @@ class Hero extends ComponentBase
      */
     public function getIdOptions(): array
     {
-        $heroes = HeroModel::active()->get();
+        $heroes = Hero::active()->get();
 
         return $heroes->pluck('description', 'id')->all();
     }
@@ -69,32 +61,12 @@ class Hero extends ComponentBase
      * Returns a hero from the database with the given id.
      *
      * @param  int  $id
-     * @return HeroModel|null
+     * @return Hero|null
      */
-    protected function getHeroById(int $id): ?HeroModel
+    protected function getHeroById(int $id): ?Hero
     {
-        return HeroModel::query()
-            ->active()
+        return Hero::active()
             ->where('id', $id)
             ->first();
-    }
-
-    /**
-     * Returns the transformed hero.
-     *
-     * @param  HeroModel|null  $hero
-     * @return array|null
-     */
-    protected function transformHero(?HeroModel $hero): ?array
-    {
-        if ($this->transformedHero !== null) {
-            return $this->transformedHero;
-        }
-
-        if ($hero !== null) {
-            return $this->transformedHero = $this->transformer->transformItem($hero);
-        }
-
-        return null;
     }
 }
