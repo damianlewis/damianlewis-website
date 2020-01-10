@@ -206,21 +206,22 @@
         },
         {
             "name": "damianlewis/oc-transformer-plugin",
-            "version": "v1.1.0",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/damianlewis/oc-transformer-plugin.git",
-                "reference": "58a751b2f0689577def747d19f4e073b32a43f62"
+                "reference": "116eefadbd429b5a488e20bf5563ab941f156a08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/damianlewis/oc-transformer-plugin/zipball/58a751b2f0689577def747d19f4e073b32a43f62",
-                "reference": "58a751b2f0689577def747d19f4e073b32a43f62",
+                "url": "https://api.github.com/repos/damianlewis/oc-transformer-plugin/zipball/116eefadbd429b5a488e20bf5563ab941f156a08",
+                "reference": "116eefadbd429b5a488e20bf5563ab941f156a08",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "^1.7",
                 "laravel/framework": "5.5.*",
+                "october/cms": "^1.0",
                 "october/rain": "^1.0",
                 "october/system": "^1.0",
                 "php": ">= 7.1"
@@ -237,10 +238,10 @@
             ],
             "description": "Transformer package for October CMS.",
             "support": {
-                "source": "https://github.com/damianlewis/oc-transformer-plugin/tree/v1.1.0",
+                "source": "https://github.com/damianlewis/oc-transformer-plugin/tree/v1.2.2",
                 "issues": "https://github.com/damianlewis/oc-transformer-plugin/issues"
             },
-            "time": "2020-01-04T15:29:34+00:00"
+            "time": "2020-01-10T09:09:24+00:00"
         },
         {
             "name": "damianlewis/oc-webpconverter-plugin",
