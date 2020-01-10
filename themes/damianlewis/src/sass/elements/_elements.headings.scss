@@ -1,8 +1,13 @@
-/* Container
+/* Headings
    ========================================================================== */
 
+%heading{
+  @apply font-heading font-light tracking-tight leading-tightest antialiased;
+}
+
 h1 {
-  @apply font-heading font-light text-5xl tracking-tight leading-tightest antialiased;
+  @extend %heading;
+  @apply text-5xl;
 
   @screen lg {
     @apply text-6xl;
@@ -10,7 +15,8 @@ h1 {
 }
 
 h2 {
-  @apply font-heading font-light text-4xl tracking-tight leading-tightest antialiased;
+  @extend %heading;
+  @apply text-4xl;
 
   @screen lg {
     @apply text-5xl;
@@ -18,9 +24,19 @@ h2 {
 }
 
 h3 {
-  @apply font-heading font-light text-3xl tracking-tight leading-tightest antialiased;
+  @extend %heading;
+  @apply text-3xl;
 
   @screen lg {
     @apply text-4xl;
+  }
+}
+
+h4 {
+  @extend %heading;
+  @apply text-2xl;
+
+  @screen lg {
+    @apply text-3xl;
   }
 }

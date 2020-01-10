@@ -1,0 +1,14 @@
+description = "Template for an accordion list."
+
+[viewBag]
+==
+{% if list|length > 0 %}
+    <accordion-list
+            title="{{ name }}"
+            open-button="{{ 'assets/icons/open.svg'|theme }}"
+            close-button="{{ 'assets/icons/close.svg'|theme }}"
+            :list="{{ list|json_encode() }}">
+    </accordion-list>
+{% else %}
+    <span class="c-text text-grey-600">{{ name }}</span>
+{% endif %}

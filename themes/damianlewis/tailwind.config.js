@@ -117,7 +117,7 @@ module.exports = {
       },
       maxWidth: {
         380: '1140px'
-      }
+      },
     },
   },
   variants: {

@@ -1,0 +1,28 @@
+/* Lobotomized Owl Spacing
+   ========================================================================== */
+
+@responsive {
+  .spacing + .spacing-0 {
+    @apply mt-0;
+  }
+
+  .spacing + .spacing-4 {
+    @apply mt-4;
+  }
+
+  .spacing + .spacing-8 {
+    @apply mt-8;
+  }
+
+  .spacing + .spacing-12 {
+    @apply mt-12;
+  }
+
+  .spacing + .spacing-16 {
+    @apply mt-16;
+  }
+
+  .spacing + .spacing-24 {
+    @apply mt-24;
+  }
+}

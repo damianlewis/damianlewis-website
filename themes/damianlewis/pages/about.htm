@@ -1,0 +1,39 @@
+title = "About"
+url = "/about"
+layout = "default"
+description = "About me page."
+is_hidden = 0
+
+[pageHero]
+id = 2
+
+[categorisedSkills]
+==
+{% if hero %}
+    {% partial 'common/hero' %}
+{% endif %}
+
+<div class="[ c-container c-container--wave ]">
+    <div class="c-container__inner">
+        <h2 class="text-grey-900">Background</h2>
+        <hr class="border-red-500 mb-12 lg:mb-16 xl:mb-20">
+        <div class="c-text c-post text-grey-600">
+            {% content 'about/background.htm' %}
+        </div>
+    </div>
+</div>
+
+{% for category in rootCategories %}
+    {% set isEven = (loop.index % 2) is even %}
+    <div class="[ c-container{% if isEven %} c-container--wave{% endif %} ]{% if not isEven %} bg-red-100{% endif %}">
+        <div class="c-container__inner">
+            <h2 class="text-grey-900">{{ category.name }}</h2>
+            <hr class="border-red-500 mb-12 lg:mb-16 xl:mb-20">
+            {% for subCategory in category.categories %}
+                <div class="spacing spacing-12 lg:spacing-16">
+                    {% partial 'about/skills_category' name=subCategory.name skills=subCategory.skills %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}

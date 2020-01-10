@@ -1,6 +1,15 @@
 name: 'Footer menu'
 items:
     -
+        title: About
+        type: cms-page
+        code: ''
+        reference: about
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
         title: Services
         nesting: ''
         type: cms-page
@@ -15,9 +24,13 @@ items:
             isExternal: '0'
     -
         title: 'Case Studies'
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: portfolio/index
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
