@@ -9,7 +9,7 @@ use DamianLewis\Portfolio\Models\Category;
 use DamianLewis\Transformer\Components\TransformerComponent;
 use October\Rain\Database\Collection;
 
-class SkillsComponent extends TransformerComponent
+class CategorisedSkills extends TransformerComponent
 {
     public function componentDetails(): array
     {

@@ -9,7 +9,7 @@ use Backend;
 use DamianLewis\Portfolio\Classes\Providers\TransformerServiceProvider;
 use DamianLewis\Portfolio\Components\ClientLogos;
 use DamianLewis\Portfolio\Components\FeaturedProject;
-use DamianLewis\Portfolio\Components\SkillsComponent;
+use DamianLewis\Portfolio\Components\CategorisedSkills;
 use DamianLewis\Portfolio\Components\Testimonial;
 use DamianLewis\Portfolio\Components\Project;
 use DamianLewis\Portfolio\Components\Projects;
@@ -39,7 +39,7 @@ class Plugin extends PluginBase
             FeaturedProject::class => 'featuredProject',
             Project::class => 'project',
             Projects::class => 'projects',
-            SkillsComponent::class => 'skillsComponent',
+            CategorisedSkills::class => 'categorisedSkills',
             Testimonial::class => 'testimonial'
         ];
     }

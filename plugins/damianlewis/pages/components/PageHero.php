@@ -8,7 +8,7 @@ use DamianLewis\Pages\Classes\Transformers\HeroTransformer;
 use DamianLewis\Pages\Models\Hero;
 use DamianLewis\Transformer\Components\TransformerComponent;
 
-class HeroComponent extends TransformerComponent
+class PageHero extends TransformerComponent
 {
     public function componentDetails(): array
     {

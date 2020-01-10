@@ -7,7 +7,7 @@ namespace DamianLewis\Pages;
 use App;
 use Backend;
 use DamianLewis\Pages\Classes\Providers\TransformerServiceProvider;
-use DamianLewis\Pages\Components\HeroComponent;
+use DamianLewis\Pages\Components\PageHero;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -30,7 +30,7 @@ class Plugin extends PluginBase
     public function registerComponents(): array
     {
         return [
-            HeroComponent::class => 'heroComponent'
+            PageHero::class => 'pageHero'
         ];
     }
 
