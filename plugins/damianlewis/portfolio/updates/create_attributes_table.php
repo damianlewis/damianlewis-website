@@ -15,10 +15,10 @@ class CreateAttributesTable extends Migration
         Schema::create('damianlewis_portfolio_attributes', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('type');
-            $table->string('name');
+            $table->string('type')->nullable();
+            $table->string('name')->nullable();
             $table->string('label')->nullable();
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->timestamps();
         });
     }

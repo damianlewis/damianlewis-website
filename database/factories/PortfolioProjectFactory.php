@@ -15,7 +15,7 @@ $factory->define(Project::class, function (Generator $faker) {
 
     $attribute = Attribute::where([
         ['type', Attribute::PROJECT_STATUS],
-        ['code', 'draft']
+        ['code', Attribute::ATTRIBUTE_CODE_DRAFT]
     ])->firstOrFail();
 
     return [
@@ -33,7 +33,7 @@ $factory->define(Project::class, function (Generator $faker) {
 $factory->state(Project::class, 'active', function () {
     $attribute = Attribute::where([
         ['type', Attribute::PROJECT_STATUS],
-        ['code', 'active']
+        ['code', Attribute::ATTRIBUTE_CODE_ACTIVE]
     ])->firstOrFail();
 
     return [
@@ -46,7 +46,7 @@ $factory->state(Project::class, 'active', function () {
 $factory->state(Project::class, 'archived', function () {
     $attribute = Attribute::where([
         ['type', Attribute::PROJECT_STATUS],
-        ['code', 'archived']
+        ['code', Attribute::ATTRIBUTE_CODE_ARCHIVED]
     ])->firstOrFail();
 
     return [
@@ -69,19 +69,14 @@ $factory->state(Project::class, 'hidden', function () {
 });
 
 $factory->state(Project::class, 'with skills', function () {
-    $total = Skill::count();
-
     return [
-        'skills' => Skill::inRandomOrder()->take(rand(1, $total))->get()->all()
+        'skills' => Skill::inRandomOrder()->take(rand(1, 8))->get()->all()
     ];
 });
 
-
 $factory->state(Project::class, 'with technologies', function () {
-    $total = Technology::count();
-
     return [
-        'technologies' => Technology::inRandomOrder()->take(rand(1, $total))->get()->all()
+        'technologies' => Skill::inRandomOrder()->take(rand(1, 8))->get()->all()
     ];
 });
 

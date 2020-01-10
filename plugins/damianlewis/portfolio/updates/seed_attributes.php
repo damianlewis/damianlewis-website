@@ -12,9 +12,9 @@ class SeedAttributes extends Seeder
     public function run(): void
     {
         $projectStatuses = [
-            ['name' => 'Draft', 'code' => 'draft'],
-            ['name' => 'Active', 'code' => 'active'],
-            ['name' => 'Archived', 'code' => 'archived']
+            ['name' => 'Draft', 'code' => Attribute::ATTRIBUTE_CODE_DRAFT],
+            ['name' => 'Active', 'code' => Attribute::ATTRIBUTE_CODE_ACTIVE],
+            ['name' => 'Archived', 'code' => Attribute::ATTRIBUTE_CODE_ARCHIVED]
         ];
 
         foreach ($projectStatuses as $status) {

@@ -5,20 +5,38 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Models;
 
 use Model;
+use October\Rain\Database\Builder;
+use October\Rain\Database\Traits\Nullable;
 
 class Attribute extends Model
 {
-    const PROJECT_STATUS = 'project.status';
+    use Nullable;
 
-    public $timestamps = false;
+    const PROJECT_STATUS = 'project.status';
+    const ATTRIBUTE_CODE_DRAFT = 'draft';
+    const ATTRIBUTE_CODE_ACTIVE = 'active';
+    const ATTRIBUTE_CODE_ARCHIVED = 'archived';
 
     protected $table = 'damianlewis_portfolio_attributes';
 
-    public static function activeProjectStatus(): self
+    protected $nullable = [
+        'type',
+        'name',
+        'label',
+        'code'
+    ];
+
+    /**
+     * Select the active project status.
+     *
+     * @param  Builder  $query
+     * @return Builder
+     */
+    public function scopeActiveProjectStatus(Builder $query): Builder
     {
-        return self::where([
+        return $query->where(
             ['type', Attribute::PROJECT_STATUS],
-            ['code', 'active']
-        ])->firstOrFail();
+            ['code', Attribute::ATTRIBUTE_CODE_ACTIVE]
+        );
     }
 }
