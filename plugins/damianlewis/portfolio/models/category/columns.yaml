@@ -8,12 +8,6 @@ columns:
         type: text
         searchable: true
 
-    category_name:
-        label: Category
-        relation: category
-        select: name
-        searchable: true
-
     is_hidden:
         label: Visible
         type: hidden

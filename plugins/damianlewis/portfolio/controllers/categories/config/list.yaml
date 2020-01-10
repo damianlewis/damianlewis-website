@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/damianlewis/portfolio/models/skill/columns.yaml
+list: $/damianlewis/portfolio/models/category/columns.yaml
 
 # Model Class name
-modelClass: DamianLewis\Portfolio\Models\Skill
+modelClass: DamianLewis\Portfolio\Models\Category
 
 # List Title
-title: Manage Skills
+title: Manage Categories
 
 # Link URL for each record
-recordUrl: damianlewis/portfolio/skills/update/:id
+recordUrl: damianlewis/portfolio/categories/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

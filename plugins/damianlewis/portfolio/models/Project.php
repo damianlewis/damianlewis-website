@@ -6,6 +6,7 @@ namespace DamianLewis\Portfolio\Models;
 
 use Model;
 use October\Rain\Database\Builder;
+use October\Rain\Database\Collection;
 use October\Rain\Database\Traits\Nullable;
 use October\Rain\Database\Traits\Sluggable;
 use October\Rain\Database\Traits\Sortable;
@@ -67,11 +68,11 @@ class Project extends Model
             Skill::class,
             'table' => 'damianlewis_portfolio_project_skill',
             'timestamps' => true
-        ],
-        'technologies' => [
-            Technology::class,
-            'table' => 'damianlewis_portfolio_project_technology',
-            'timestamps' => true
+//        ],
+//        'technologies' => [
+//            Technology::class,
+//            'table' => 'damianlewis_portfolio_project_technology',
+//            'timestamps' => true
         ]
     ];
 
@@ -106,6 +107,7 @@ class Project extends Model
     ];
 
     protected $nullable = [
+        'status_id',
         'title',
         'slug',
         'tag_line',

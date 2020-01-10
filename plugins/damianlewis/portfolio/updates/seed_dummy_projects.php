@@ -11,7 +11,6 @@ class SeedDummyProjects extends Seeder
     public function run(): void
     {
         $this->call(SeedSkills::class);
-        $this->call(SeedTechnologies::class);
         $this->call(SeedProjects::class);
     }
 }

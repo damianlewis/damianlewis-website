@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DamianLewis\Shared\Classes\Providers;
 
-use DamianLewis\Transformer\Classes\FileTransformer;
+use DamianLewis\Transformer\Classes\Transformers\FileTransformer;
 use October\Rain\Support\ServiceProvider;
 
 class TransformerServiceProvider extends ServiceProvider

@@ -4,7 +4,7 @@
 
 fields:
     name:
-        label: Skill name
+        label: Category name
         comment: This is the name to display on the front-end.
         span: auto
 
@@ -14,23 +14,13 @@ secondaryTabs:
             label: Manage
             type: section
 
-        category:
-            label: Category
-            comment: The category this skill belongs to.
-            type: relation
-            emptyOption: Select a category
-            trigger:
-                action: enable
-                field: parent
-                condition: value[]
-
         parent:
             label: Parent
-            comment: To create nested skills select a parent.
+            comment: To create nested categories select a parent.
             type: relation
             emptyOption: Select a parent category
 
         is_hidden:
             label: Hidden
             type: checkbox
-            comment: When enabled the skill is hidden from the frontend.
+            comment: When enabled the category is hidden from the frontend.

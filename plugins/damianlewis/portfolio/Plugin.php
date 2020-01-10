@@ -9,6 +9,7 @@ use Backend;
 use DamianLewis\Portfolio\Classes\Providers\TransformerServiceProvider;
 use DamianLewis\Portfolio\Components\ClientLogos;
 use DamianLewis\Portfolio\Components\FeaturedProject;
+use DamianLewis\Portfolio\Components\SkillsComponent;
 use DamianLewis\Portfolio\Components\Testimonial;
 use DamianLewis\Portfolio\Components\Project;
 use DamianLewis\Portfolio\Components\Projects;
@@ -34,10 +35,11 @@ class Plugin extends PluginBase
     public function registerComponents(): array
     {
         return [
-            Projects::class => 'projects',
-            Project::class => 'project',
-            FeaturedProject::class => 'featuredProject',
             ClientLogos::class => 'clientLogos',
+            FeaturedProject::class => 'featuredProject',
+            Project::class => 'project',
+            Projects::class => 'projects',
+            SkillsComponent::class => 'skillsComponent',
             Testimonial::class => 'testimonial'
         ];
     }
@@ -49,13 +51,17 @@ class Plugin extends PluginBase
                 'tab' => 'Portfolio',
                 'label' => 'Manage the projects.'
             ],
-            'damianlewis.portfolio.access_project_skills' => [
+            'damianlewis.portfolio.access_skills' => [
                 'tab' => 'Portfolio',
-                'label' => 'Manage the project skills.'
+                'label' => 'Manage the skills.'
             ],
-            'damianlewis.portfolio.access_project_technologies' => [
+//            'damianlewis.portfolio.access_project_technologies' => [
+//                'tab' => 'Portfolio',
+//                'label' => 'Manage the project technologies.'
+//            ],
+            'damianlewis.portfolio.access_categories' => [
                 'tab' => 'Portfolio',
-                'label' => 'Manage the project technologies.'
+                'label' => 'Manage the skill categories.'
             ],
             'damianlewis.portfolio.access_clients' => [
                 'tab' => 'Portfolio',
@@ -90,13 +96,19 @@ class Plugin extends PluginBase
                         'label' => 'Skills',
                         'url' => Backend::url('damianlewis/portfolio/skills'),
                         'icon' => 'icon-graduation-cap',
-                        'permissions' => ['damianlewis.portfolio.access_project_skills']
+                        'permissions' => ['damianlewis.portfolio.access_skills']
                     ],
-                    'technologies' => [
-                        'label' => 'Technologies',
-                        'url' => Backend::url('damianlewis/portfolio/technologies'),
-                        'icon' => 'icon-desktop',
-                        'permissions' => ['damianlewis.portfolio.access_project_technologies']
+//                    'technologies' => [
+//                        'label' => 'Technologies',
+//                        'url' => Backend::url('damianlewis/portfolio/technologies'),
+//                        'icon' => 'icon-desktop',
+//                        'permissions' => ['damianlewis.portfolio.access_project_technologies']
+//                    ],
+                    'categories' => [
+                        'label' => 'Categories',
+                        'url' => Backend::url('damianlewis/portfolio/categories'),
+                        'icon' => 'icon-list-ul',
+                        'permissions' => ['damianlewis.portfolio.access_categories']
                     ],
                     'clients' => [
                         'label' => 'Clients',

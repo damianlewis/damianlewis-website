@@ -4,4 +4,5 @@ Route::group([
     'prefix' => 'api/v1'
 ], function () {
     Route::resource('projects', 'ProjectsController', ['only' => ['index', 'show']]);
+    Route::resource('categories', 'CategoriesController', ['only' => ['index', 'show']]);
 });
