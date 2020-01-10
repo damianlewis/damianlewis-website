@@ -7,7 +7,7 @@ namespace DamianLewis\Shared\Classes;
 interface UrlGeneratorInterface
 {
     /**
-     * Sets the base path used by a URI.
+     * Sets the base path.
      *
      * @param  string  $path
      */

@@ -26,6 +26,11 @@ trait UrlGenerator
         return url($this->basePath, $parameters);
     }
 
+    /**
+     * Sets the base path used to generate the URL.
+     *
+     * @param  string  $path
+     */
     public function setBasePath(string $path): void
     {
         $this->basePath = $path;
