@@ -9,7 +9,7 @@ trait UrlGenerator
     /**
      * @var string
      */
-    protected string $basePath = '';
+    protected ?string $basePath = null;
 
     /**
      * Returns a URL for the given parameters.
@@ -17,13 +17,13 @@ trait UrlGenerator
      * @param  array  $parameters
      * @return string
      */
-    public function getUrl(array $parameters = []): ?string
+    public function getUrl(array $parameters = []): string
     {
-        if ($this->basePath === '') {
-            return null;
+        if ($this->basePath !== null) {
+            return url($this->basePath, $parameters);
         }
 
-        return url($this->basePath, $parameters);
+        return url('', $parameters);
     }
 
     /**
