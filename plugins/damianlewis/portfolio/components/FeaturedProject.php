@@ -4,28 +4,23 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Components;
 
-use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectItemTransformer;
 use DamianLewis\Portfolio\Models\Project;
+use DamianLewis\Transformer\Components\TransformerComponent;
 
-class FeaturedProject extends ComponentBase
+class FeaturedProject extends TransformerComponent
 {
     /**
      * @var ProjectItemTransformer
      */
-    protected ProjectItemTransformer $transformer;
-
-    /**
-     * @var array|null
-     */
-    protected ?array $transformedProject = null;
+    protected $transformer;
 
     public function componentDetails(): array
     {
         return [
             'name' => 'Featured Project',
-            'description' => 'Get an active project.'
+            'description' => 'Select a project to be featured.'
         ];
     }
 
@@ -56,8 +51,10 @@ class FeaturedProject extends ComponentBase
         $id = (int) $this->property('id');
         $project = $this->getProjectById($id);
 
-        $this->transformer->setBasePath($this->property('projectPage'));
-        $this->page['featuredProject'] = $this->transformProject($project);
+        if ($project !== null) {
+            $this->transformer->setBasePath($this->property('projectPage'));
+            $this->page['project'] = $this->transformItem($project);
+        }
     }
 
     /**
@@ -86,33 +83,13 @@ class FeaturedProject extends ComponentBase
      * Returns a project from the database with the given id.
      *
      * @param  int  $id
-     * @return Project|null
+     * @return ProjectDetails|null
      */
     protected function getProjectById(int $id): ?Project
     {
-        return Project::query()
-            ->active()
+        return Project::active()
             ->visible()
             ->where('id', $id)
             ->first();
-    }
-
-    /**
-     * Returns the transformed project.
-     *
-     * @param  Project|null  $project
-     * @return array|null
-     */
-    protected function transformProject(?Project $project): ?array
-    {
-        if ($this->transformedProject !== null) {
-            return $this->transformedProject;
-        }
-
-        if ($project !== null) {
-            return $this->transformedProject = $this->transformer->transformItem($project);
-        }
-
-        return null;
     }
 }
