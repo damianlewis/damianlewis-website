@@ -4,7 +4,7 @@ layout = "default"
 description = "Home page."
 is_hidden = 0
 
-[hero]
+[pageHero]
 id = 1
 
 [featuredCategories]
@@ -12,20 +12,19 @@ orderBy = "sort_order"
 orderDirection = "asc"
 limit = 3
 
-[clientLogos]
-orderBy = "sort_order"
-orderDirection = "asc"
-
 [featuredProject]
 id = 5
 projectPage = "portfolio/project"
 
-[testimonial]
+[featuredTestimonial]
 id = 5
-includeRating = 0
+
+[clientLogos]
+orderBy = "sort_order"
+orderDirection = "asc"
 ==
 {% if hero %}
-    {% partial 'common/hero' hero=hero %}
+    {% partial 'common/hero' %}
 {% endif %}
 
 {% if featuredCategories.isAvailable %}
@@ -39,22 +38,22 @@ includeRating = 0
     </div>
 {% endif %}
 
-{% if featuredProject %}
+{% if project %}
     <div class="c-container bg-red-100">
         <div class="c-container__inner">
             <h2 class="text-grey-900">Case Studies</h2>
             <hr class="border-red-500 mb-20 xl:mb-28">
-            {% partial 'portfolio/featured_project' project=featuredProject %}
+            {% partial 'portfolio/featured_project' %}
         </div>
     </div>
 {% endif %}
 
-{% if clientLogos|length > 0 %}
+{% if logos|length > 0 %}
     <div class="[ c-container c-container--wave ]">
         <div class="c-container__inner">
             <h2 class="text-grey-900">Clients</h2>
             <hr class="border-red-500 mb-20 xl:mb-28">
-            {% partial 'portfolio/clients' logos=clientLogos %}
+            {% partial 'common/logos' %}
         </div>
     </div>
 {% endif %}
@@ -62,7 +61,7 @@ includeRating = 0
 {% if testimonial %}
     <div class="c-container bg-red-100">
         <div class="c-container__inner">
-            {% partial 'portfolio/testimonial' testimonial=testimonial %}
+            {% partial 'portfolio/testimonial' %}
         </div>
     </div>
 {% endif %}
