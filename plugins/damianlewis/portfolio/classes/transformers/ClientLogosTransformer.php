@@ -5,20 +5,15 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
 use DamianLewis\Portfolio\Models\Client;
-use DamianLewis\Shared\Classes\CommonTransformers;
-use DamianLewis\Transformer\Classes\FileTransformer;
+use DamianLewis\Transformer\Classes\CanTransform;
 use DamianLewis\Transformer\Classes\Transformer;
 use DamianLewis\Transformer\Classes\TransformerInterface;
+use DamianLewis\Transformer\Classes\Transformers\FileTransformer;
 use Model;
 
 class ClientLogosTransformer extends Transformer implements TransformerInterface
 {
-    use CommonTransformers;
-
-    public function __construct()
-    {
-        $this->fileTransformer = resolve(FileTransformer::class);
-    }
+    use CanTransform;
 
     /**
      * @inheritDoc
@@ -29,8 +24,10 @@ class ClientLogosTransformer extends Transformer implements TransformerInterface
             return [];
         }
 
+        $fileTransformer = resolve(FileTransformer::class);
+
         return [
-            'image' => $this->transformFile($item->logo),
+            'image' => $this->transformItemOrNull($fileTransformer, $item->logo),
             'width' => $item->logo_width,
             'opacity' => $item->logo_opacity
         ];

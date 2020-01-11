@@ -4,23 +4,13 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Components;
 
-use Cms\Classes\ComponentBase;
 use DamianLewis\Portfolio\Classes\Transformers\ClientLogosTransformer;
 use DamianLewis\Portfolio\Models\Client;
+use DamianLewis\Transformer\Components\TransformerComponent;
 use October\Rain\Database\Collection;
 
-class ClientLogos extends ComponentBase
+class ClientLogos extends TransformerComponent
 {
-    /**
-     * @var ClientLogosTransformer
-     */
-    protected ClientLogosTransformer $transformer;
-
-    /**
-     * @var array|null
-     */
-    protected ?array $transformedClients = null;
-
     public function componentDetails(): array
     {
         return [
@@ -63,7 +53,7 @@ class ClientLogos extends ComponentBase
     {
         $clients = $this->getClients();
 
-        $this->page['clientLogos'] = $this->transformClients($clients);
+        $this->page['logos'] = $this->transformCollection($clients);
     }
 
     /**
@@ -100,20 +90,5 @@ class ClientLogos extends ComponentBase
         ];
 
         return Client::frontEndCollection($options)->get();
-    }
-
-    /**
-     * Returns an array of transformed clients.
-     *
-     * @param  Collection  $clients
-     * @return array
-     */
-    protected function transformClients(Collection $clients): array
-    {
-        if ($this->transformedClients !== null) {
-            return $this->transformedClients;
-        }
-
-        return $this->transformedClients = $this->transformer->transformCollection($clients);
     }
 }
