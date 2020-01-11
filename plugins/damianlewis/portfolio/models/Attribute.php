@@ -34,9 +34,9 @@ class Attribute extends Model
      */
     public function scopeActiveProjectStatus(Builder $query): Builder
     {
-        return $query->where(
+        return $query->where([
             ['type', Attribute::PROJECT_STATUS],
             ['code', Attribute::ATTRIBUTE_CODE_ACTIVE]
-        );
+        ]);
     }
 }
