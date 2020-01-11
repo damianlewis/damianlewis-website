@@ -5,24 +5,20 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
 use DamianLewis\Portfolio\Models\Testimonial;
-use DamianLewis\Shared\Classes\CommonTransformers;
-use DamianLewis\Transformer\Classes\FileTransformer;
+use DamianLewis\Transformer\Classes\CanTransform;
+use DamianLewis\Transformer\Classes\Transformer;
 use DamianLewis\Transformer\Classes\TransformerInterface;
+use DamianLewis\Transformer\Classes\Transformers\FileTransformer;
 use Model;
 
-class TestimonialTransformer implements TransformerInterface
+class TestimonialTransformer extends Transformer implements TransformerInterface
 {
-    use CommonTransformers;
+    use CanTransform;
 
     /**
      * @var bool
      */
     protected bool $includeRating = false;
-
-    public function __construct()
-    {
-        $this->fileTransformer = resolve(FileTransformer::class);
-    }
 
     /**
      * @inheritDoc
@@ -39,8 +35,10 @@ class TestimonialTransformer implements TransformerInterface
             'quote'
         ]);
 
+        $fileTransformer = resolve(FileTransformer::class);
+
         $data = array_merge($data, [
-            'image' => $this->transformFile($item->image)
+            'image' => $this->transformItemOrNull($fileTransformer, $item->image)
         ]);
 
         if ($this->includeRating === true) {

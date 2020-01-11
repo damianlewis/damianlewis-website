@@ -10,9 +10,7 @@ use DamianLewis\Portfolio\Classes\Providers\TransformerServiceProvider;
 use DamianLewis\Portfolio\Components\ClientLogos;
 use DamianLewis\Portfolio\Components\FeaturedProject;
 use DamianLewis\Portfolio\Components\CategorisedSkills;
-use DamianLewis\Portfolio\Components\Testimonial;
-use DamianLewis\Portfolio\Components\Project;
-use DamianLewis\Portfolio\Components\Projects;
+use DamianLewis\Portfolio\Components\FeaturedTestimonial;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -40,7 +38,7 @@ class Plugin extends PluginBase
             Project::class => 'project',
             Projects::class => 'projects',
             CategorisedSkills::class => 'categorisedSkills',
-            Testimonial::class => 'testimonial'
+            FeaturedTestimonial::class => 'featuredTestimonial'
         ];
     }
 

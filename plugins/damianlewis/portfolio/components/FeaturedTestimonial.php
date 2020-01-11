@@ -4,27 +4,22 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Components;
 
-use Cms\Classes\ComponentBase;
 use DamianLewis\Portfolio\Classes\Transformers\TestimonialTransformer;
-use DamianLewis\Portfolio\Models\Testimonial as TestimonialModel;
+use DamianLewis\Portfolio\Models\Testimonial;
+use DamianLewis\Transformer\Components\TransformerComponent;
 
-class Testimonial extends ComponentBase
+class FeaturedTestimonial extends TransformerComponent
 {
     /**
      * @var TestimonialTransformer
      */
-    protected TestimonialTransformer $transformer;
-
-    /**
-     * @var array|null
-     */
-    protected ?array $transformedTestimonial = null;
+    protected $transformer;
 
     public function componentDetails(): array
     {
         return [
             'name' => 'Testimonial',
-            'description' => 'Get an active testimonial.'
+            'description' => 'Select a testimonial to be featured.'
         ];
     }
 
@@ -56,8 +51,10 @@ class Testimonial extends ComponentBase
         $id = (int) $this->property('id');
         $testimonial = $this->getTestimonialById($id);
 
-        $this->transformer->setIncludeRating($this->property('includeRating') == true);
-        $this->page['testimonial'] = $this->transformTestimonial($testimonial);
+        if ($testimonial !== null) {
+            $this->transformer->setIncludeRating($this->property('includeRating') == true);
+            $this->page['testimonial'] = $this->transformItem($testimonial);
+        }
     }
 
     /**
@@ -67,7 +64,7 @@ class Testimonial extends ComponentBase
      */
     public function getIdOptions(): array
     {
-        $testimonials = TestimonialModel::active()->get();
+        $testimonials = Testimonial::active()->get();
 
         return $testimonials->pluck('nameAndCompany', 'id')->all();
     }
@@ -76,33 +73,13 @@ class Testimonial extends ComponentBase
      * Returns a testimonial from the database with the given id.
      *
      * @param  int  $id
-     * @return TestimonialModel|null
+     * @return Testimonial|null
      */
-    protected function getTestimonialById(int $id): ?TestimonialModel
+    protected function getTestimonialById(int $id): ?Testimonial
     {
-        return TestimonialModel::query()
-            ->active()
+        return Testimonial::active()
             ->visible()
             ->where('id', $id)
             ->first();
-    }
-
-    /**
-     * Returns the transformed testimonial.
-     *
-     * @param  TestimonialModel|null  $testimonial
-     * @return array|null
-     */
-    protected function transformTestimonial(?TestimonialModel $testimonial): ?array
-    {
-        if ($this->transformedTestimonial !== null) {
-            return $this->transformedTestimonial;
-        }
-
-        if ($testimonial !== null) {
-            return $this->transformedTestimonial = $this->transformer->transformItem($testimonial);
-        }
-
-        return null;
     }
 }
