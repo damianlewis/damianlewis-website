@@ -4,29 +4,24 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Components;
 
-use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectListTransformer;
 use DamianLewis\Portfolio\Models\Project;
+use DamianLewis\Transformer\Components\TransformerComponent;
 use October\Rain\Database\Collection;
 
-class Projects extends ComponentBase
+class ProjectsList extends TransformerComponent
 {
-    /**
-     * @var array|null
-     */
-    protected ?array $transformedProjects = null;
-
     /**
      * @var ProjectListTransformer
      */
-    protected ProjectListTransformer $transformer;
+    protected $transformer;
 
     public function componentDetails(): array
     {
         return [
             'name' => 'Projects',
-            'description' => 'Get a collection of active projects.'
+            'description' => 'Get a collection of projects.'
         ];
     }
 
@@ -75,7 +70,7 @@ class Projects extends ComponentBase
         $projects = $this->getProjects();
 
         $this->transformer->setBasePath($this->property('projectPage'));
-        $this->page['projects'] = $this->transformProjects($projects);
+        $this->page['projects'] = $this->transformCollection($projects);
     }
 
     /**
@@ -123,20 +118,5 @@ class Projects extends ComponentBase
         ];
 
         return Project::frontEndCollection($options)->get();
-    }
-
-    /**
-     * Returns an array of transformed projects.
-     *
-     * @param  Collection  $projects
-     * @return array
-     */
-    protected function transformProjects(Collection $projects): array
-    {
-        if ($this->transformedProjects !== null) {
-            return $this->transformedProjects;
-        }
-
-        return $this->transformedProjects = $this->transformer->transformCollection($projects);
     }
 }

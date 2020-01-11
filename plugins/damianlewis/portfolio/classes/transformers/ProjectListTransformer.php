@@ -15,14 +15,14 @@ class ProjectListTransformer extends ProjectItemTransformer implements Transform
      */
     public function transformItem(Model $item): array
     {
-        $data = parent::transformItem($item);
-
         if (!$item instanceof Project) {
             return [];
         }
 
+        $data = parent::transformItem($item);
+
         $data = array_merge($data, [
-            'imageReversed' => $this->transformFile($item->mockup_multiple_reversed_image),
+            'imageReversed' => $this->transformItemOrNull($this->fileTransformer, $item->mockup_multiple_reversed_image)
         ]);
 
         return $data;
