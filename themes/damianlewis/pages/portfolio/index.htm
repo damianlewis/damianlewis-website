@@ -4,20 +4,20 @@ layout = "default"
 description = "Portfolio projects list page."
 is_hidden = 0
 
-[hero]
+[pageHero]
 hero = 2
 
-[projects]
+[projectsList]
 orderBy = "sort_order"
 orderDirection = "asc"
 featured = 1
 projectPage = "portfolio/project"
 ==
-{% if hero.isAvailable %}
-    {% partial 'common/hero' item=hero.item %}
+{% if hero %}
+    {% partial 'common/hero' %}
 {% endif %}
 
-{% if projects > 0 %}
+{% if projects|length > 0 %}
     <div class="[ c-container c-container--wave ]">
         <div class="c-container__inner">
             {% partial 'portfolio/projects' %}
