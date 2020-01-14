@@ -1,32 +1,15 @@
 {
-    "name": "october/october",
-    "description": "OctoberCMS",
-    "homepage": "https://octobercms.com",
+    "name": "damianlewis/damianlewis-website",
+    "description": "October CMS website for Damian Lewis",
+    "homepage": "https://damianlewis.co.uk",
     "type": "project",
-    "keywords": [
-        "october",
-        "cms",
-        "octobercms",
-        "laravel"
-    ],
-    "license": "MIT",
+    "license": "proprietary",
     "authors": [
         {
-            "name": "Alexey Bobkov",
-            "email": "aleksey.bobkov@gmail.com",
-            "role": "Co-founder"
+            "name": "Damian Lewis",
+            "email": "damian@lewis.co.uk",
+            "role": "Developer"
         },
-        {
-            "name": "Samuel Georges",
-            "email": "daftspunky@gmail.com",
-            "role": "Co-founder"
-        },
-        {
-            "name": "Luke Towers",
-            "email": "octobercms@luketowers.ca",
-            "homepage": "https://luketowers.ca",
-            "role": "Maintainer"
-        }
     ],
     "repositories": [
         {
@@ -46,13 +29,6 @@
             "url": "https://github.com/damianlewis/oc-webpconverter-plugin"
         }
     ],
-    "support": {
-        "issues": "https://github.com/octobercms/october/issues",
-        "forum": "https://octobercms.com/forum/",
-        "docs": "https://octobercms.com/docs/",
-        "irc": "irc://irc.freenode.net/october",
-        "source": "https://github.com/octobercms/october"
-    },
     "require": {
         "php": ">=7.0",
         "ext-mbstring": "*",
@@ -90,16 +66,10 @@
         ]
     },
     "scripts": {
-        "post-create-project-cmd": [
-            "php artisan key:generate",
-            "php artisan package:discover"
-        ],
         "post-install-cmd": [
-            "php artisan october:util set build",
             "php artisan package:discover"
         ],
         "post-update-cmd": [
-            "php artisan october:util set build",
             "php artisan package:discover"
         ]
     },
