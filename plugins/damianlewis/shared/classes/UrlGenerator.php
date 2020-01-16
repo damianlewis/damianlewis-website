@@ -27,6 +27,22 @@ trait UrlGenerator
     }
 
     /**
+     * Returns a URL if the URI isn't an empty value.
+     *
+     * @param  string|null  $uri
+     * @param  array  $parameters
+     * @return string|null
+     */
+    public function getUrlOrNull(?string $uri, array $parameters = []): ?string
+    {
+        if (empty($uri)) {
+            return null;
+        }
+
+        return $this->getUrl($parameters);
+    }
+
+    /**
      * Sets the base path used to generate the URL.
      *
      * @param  string  $path
