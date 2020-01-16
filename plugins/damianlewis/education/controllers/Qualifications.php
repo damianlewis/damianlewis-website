@@ -20,9 +20,26 @@ class Qualifications extends Controller
         ReorderController::class
     ];
 
-    public $listConfig = 'config/list.yaml';
-    public $formConfig = 'config/form.yaml';
-    public $reorderConfig = 'config/reorder.yaml';
+    /**
+     * Reference to the list behaviour configuration file.
+     *
+     * @var string
+     */
+    public string $listConfig = 'config/list.yaml';
+
+    /**
+     * Reference to the form behaviour configuration file.
+     *
+     * @var string
+     */
+    public string $formConfig = 'config/form.yaml';
+
+    /**
+     * Reference to the reorder behaviour configuration file.
+     *
+     * @var string
+     */
+    public string $reorderConfig = 'config/reorder.yaml';
 
     public function __construct()
     {
@@ -35,6 +52,12 @@ class Qualifications extends Controller
         }
     }
 
+    /**
+     * Returns a CSS class name for a list row (<tr class="...">).
+     *
+     * @param  Model  $record  The populated model used for the column
+     * @return string HTML view
+     */
     public function listInjectRowClass(Model $record): string
     {
         if (!$record instanceof Qualification) {

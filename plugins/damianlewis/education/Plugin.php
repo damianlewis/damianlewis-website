@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace DamianLewis\Education;
 
+use App;
 use Backend;
+use DamianLewis\Education\Classes\Providers\TransformerServiceProvider;
+use Damianlewis\Education\Components\QualificationsList;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -16,6 +19,18 @@ class Plugin extends PluginBase
             'description' => 'No description provided yet...',
             'author' => 'Damian Lewis',
             'icon' => 'icon-graduation-cap'
+        ];
+    }
+
+    public function boot()
+    {
+        App::register(TransformerServiceProvider::class);
+    }
+
+    public function registerComponents(): array
+    {
+        return [
+            QualificationsList::class => 'qualificationsList'
         ];
     }
 
@@ -36,6 +51,7 @@ class Plugin extends PluginBase
                 'label' => 'Education',
                 'url' => Backend::url('damianlewis/education/qualifications'),
                 'icon' => 'icon-graduation-cap',
+                'iconSvg' => 'plugins/damianlewis/education/assets/images/icon_education.svg',
                 'permissions' => ['damianlewis.education.*'],
                 'order' => 999,
 
