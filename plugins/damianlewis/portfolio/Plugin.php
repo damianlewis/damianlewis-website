@@ -11,6 +11,7 @@ use DamianLewis\Portfolio\Components\ClientLogos;
 use DamianLewis\Portfolio\Components\FeaturedProject;
 use DamianLewis\Portfolio\Components\CategorisedSkills;
 use DamianLewis\Portfolio\Components\FeaturedTestimonial;
+use DamianLewis\Portfolio\Components\ProjectDetails;
 use DamianLewis\Portfolio\Components\ProjectsList;
 use System\Classes\PluginBase;
 
@@ -36,6 +37,7 @@ class Plugin extends PluginBase
         return [
             ClientLogos::class => 'clientLogos',
             FeaturedProject::class => 'featuredProject',
+            ProjectDetails::class => 'projectDetails',
             ProjectsList::class => 'projectsList',
             CategorisedSkills::class => 'categorisedSkills',
             FeaturedTestimonial::class => 'featuredTestimonial'
