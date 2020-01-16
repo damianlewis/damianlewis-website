@@ -8,6 +8,10 @@ is_hidden = 0
 id = 2
 
 [categorisedSkills]
+
+[qualificationsList]
+orderBy = "sort_order"
+orderDirection = "asc"
 ==
 {% if hero %}
     {% partial 'common/hero' %}
@@ -20,6 +24,20 @@ id = 2
         <div class="c-text c-post text-grey-600">
             {% content 'about/background.htm' %}
         </div>
+
+        {% if qualifications %}
+            <div class="mt-20">
+                <h3 class="h4 text-grey-900 mb-8">Qualifications</h3>
+                <ul>
+                {% for qualification in qualifications %}
+                    <li class="spacing spacing-6">
+                        <div class="[ c-text c-text--large ] text-grey-600">{{ qualification.title }}</div>
+                        <div class="[ c-text c-text--small ] text-grey-600">Awarded: {{ qualification.score }}</div>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
 </div>
 
