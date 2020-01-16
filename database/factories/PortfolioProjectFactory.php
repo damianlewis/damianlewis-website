@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use BlogArticleFaker\FakerProvider as BlogArticleFaker;
 use DamianLewis\Portfolio\Models\Attribute;
+use DamianLewis\Portfolio\Models\Category;
 use DamianLewis\Portfolio\Models\Project;
 use DamianLewis\Portfolio\Models\Skill;
-use DamianLewis\Portfolio\Models\Technology;
 use Faker\Generator;
 use Illuminate\Http\UploadedFile;
 
@@ -69,14 +69,26 @@ $factory->state(Project::class, 'hidden', function () {
 });
 
 $factory->state(Project::class, 'with skills', function () {
+    $category = Category::root()
+        ->where('name', Category::CATEGORY_NAME_SKILLS)
+        ->first();
+
+    $skills = $category->flattened_skills;
+
     return [
-        'skills' => Skill::inRandomOrder()->take(rand(1, 8))->get()->all()
+        'skills' => $skills->random(rand(1, 8))->all()
     ];
 });
 
 $factory->state(Project::class, 'with technologies', function () {
+    $category = Category::root()
+        ->where('name', Category::CATEGORY_NAME_TECHNOLOGIES)
+        ->first();
+
+    $skills = $category->flattened_skills;
+
     return [
-        'technologies' => Skill::inRandomOrder()->take(rand(1, 8))->get()->all()
+        'technologies' => $skills->random(rand(1, 8))->all()
     ];
 });
 

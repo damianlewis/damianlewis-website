@@ -53,10 +53,6 @@ class Plugin extends PluginBase
                 'tab' => 'Portfolio',
                 'label' => 'Manage the skills.'
             ],
-//            'damianlewis.portfolio.access_project_technologies' => [
-//                'tab' => 'Portfolio',
-//                'label' => 'Manage the project technologies.'
-//            ],
             'damianlewis.portfolio.access_categories' => [
                 'tab' => 'Portfolio',
                 'label' => 'Manage the skill categories.'
@@ -96,12 +92,6 @@ class Plugin extends PluginBase
                         'icon' => 'icon-graduation-cap',
                         'permissions' => ['damianlewis.portfolio.access_skills']
                     ],
-//                    'technologies' => [
-//                        'label' => 'Technologies',
-//                        'url' => Backend::url('damianlewis/portfolio/technologies'),
-//                        'icon' => 'icon-desktop',
-//                        'permissions' => ['damianlewis.portfolio.access_project_technologies']
-//                    ],
                     'categories' => [
                         'label' => 'Categories',
                         'url' => Backend::url('damianlewis/portfolio/categories'),

@@ -16,27 +16,27 @@ class SeedProjects extends Seeder
         factory(Project::class, 8)->states([
             'active',
             'with skills',
-//            'with technologies'
+            'with technologies'
         ])->create();
 
         factory(Project::class, 2)->states([
             'active',
             'with skills',
-//            'with technologies',
+            'with technologies',
             'featured'
         ])->create();
 
         factory(Project::class)->states([
             'active',
             'with skills',
-//            'with technologies',
+            'with technologies',
             'hidden'
         ])->create();
 
         factory(Project::class, 2)->states([
             'archived',
             'with skills',
-//            'with technologies'
+            'with technologies'
         ])->create();
     }
 }

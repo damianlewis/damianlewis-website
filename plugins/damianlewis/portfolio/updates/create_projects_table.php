@@ -36,7 +36,10 @@ class CreateProjectsTable extends Migration
             $table->engine = 'InnoDB';
             $table->unsignedInteger('project_id');
             $table->unsignedInteger('skill_id');
-            $table->primary(['project_id', 'skill_id'], 'damianlewis_portfolio_project_skill_primary');
+            $table->primary([
+                'project_id',
+                'skill_id'
+            ], 'damianlewis_portfolio_project_skill_primary');
             $table->timestamps();
 
             $table->foreign('project_id')
@@ -49,30 +52,33 @@ class CreateProjectsTable extends Migration
                 ->onDelete('cascade');
         });
 
-//        Schema::create('damianlewis_portfolio_project_technology', function (Blueprint $table) {
-//            $table->engine = 'InnoDB';
-//            $table->unsignedInteger('project_id');
-//            $table->unsignedInteger('technology_id');
-//            $table->primary(['project_id', 'technology_id'], 'damianlewis_portfolio_project_technology_primary');
-//            $table->timestamps();
-//
-//            $table->foreign('project_id')
-//                ->references('id')
-//                ->on('damianlewis_portfolio_projects')
-//                ->onDelete('cascade');
-//            $table->foreign('technology_id')
-//                ->references('id')
-//                ->on('damianlewis_portfolio_technologies')
-//                ->onDelete('cascade');
-//        });
+        Schema::create('damianlewis_portfolio_project_technology', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->unsignedInteger('project_id');
+            $table->unsignedInteger('skill_id');
+            $table->primary([
+                'project_id',
+                'skill_id'
+            ], 'damianlewis_portfolio_project_technology_primary');
+            $table->timestamps();
+
+            $table->foreign('project_id')
+                ->references('id')
+                ->on('damianlewis_portfolio_projects')
+                ->onDelete('cascade');
+            $table->foreign('skill_id')
+                ->references('id')
+                ->on('damianlewis_portfolio_skills')
+                ->onDelete('cascade');
+        });
     }
 
     public function down(): void
     {
-//        Schema::table('damianlewis_portfolio_project_technology', function (Blueprint $table) {
-//            $table->dropForeign('damianlewis_portfolio_project_technology_project_id_foreign');
-//            $table->dropForeign('damianlewis_portfolio_project_technology_technology_id_foreign');
-//        });
+        Schema::table('damianlewis_portfolio_project_technology', function (Blueprint $table) {
+            $table->dropForeign('damianlewis_portfolio_project_technology_project_id_foreign');
+            $table->dropForeign('damianlewis_portfolio_project_technology_skill_id_foreign');
+        });
 
         Schema::table('damianlewis_portfolio_project_skill', function (Blueprint $table) {
             $table->dropForeign('damianlewis_portfolio_project_skill_project_id_foreign');
@@ -83,7 +89,7 @@ class CreateProjectsTable extends Migration
             $table->dropForeign('damianlewis_portfolio_projects_status_id_foreign');
         });
 
-//        Schema::dropIfExists('damianlewis_portfolio_project_technology');
+        Schema::dropIfExists('damianlewis_portfolio_project_technology');
         Schema::dropIfExists('damianlewis_portfolio_project_skill');
         Schema::dropIfExists('damianlewis_portfolio_projects');
     }

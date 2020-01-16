@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Models;
 
 use Model;
+use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Nullable;
 use October\Rain\Database\Traits\SimpleTree;
 use October\Rain\Database\Traits\Sortable;
@@ -30,7 +31,8 @@ class Skill extends Model
     public $belongsToMany = [
         'projects' => [
             Project::class,
-            'table' => 'damianlewis_portfolio_project_skill'
+            'table' => 'damianlewis_portfolio_project_skill',
+            'timestamps' => true
         ]
     ];
 
@@ -45,4 +47,51 @@ class Skill extends Model
         'name',
         'sort_order'
     ];
+
+    /**
+     * @var Category
+     */
+    protected Category $rootCategory;
+
+    /**
+     * Returns the root category for the skill.
+     *
+     * @return Category
+     */
+    public function getRootCategoryAttribute(): Category
+    {
+        $this->setRootCategoryForSkill($this);
+
+        return $this->rootCategory;
+    }
+
+    /**
+     * Traverses the skills looking for the parent category.
+     *
+     * @param  Skill  $skill
+     */
+    protected function setRootCategoryForSkill(Skill $skill): void
+    {
+        if ($skill->parent()->exists()) {
+            $this->setRootCategoryForSkill($skill->parent);
+        }
+
+        if ($skill->category()->exists()) {
+            $this->setRootCategory($skill->category);
+        }
+    }
+
+    /**
+     * Traverses the categories looking for the root category.
+     *
+     * @param  Category  $category
+     */
+    protected function setRootCategory(Category $category): void
+    {
+        $this->rootCategory = $category;
+
+        if ($category->parent()->exists()) {
+            $this->setRootCategory($category->parent);
+        }
+    }
 }

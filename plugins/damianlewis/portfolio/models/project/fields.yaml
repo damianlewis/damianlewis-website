@@ -44,6 +44,8 @@ tabs:
             span: auto
             type: taglist
             mode: relation
+            nameFrom: name
+            options: true
 
         technologies:
             tab: Attributes
@@ -51,6 +53,8 @@ tabs:
             span: auto
             type: taglist
             mode: relation
+            nameFrom: name
+            options: true
 
         testimonial:
             tab: Testimonial

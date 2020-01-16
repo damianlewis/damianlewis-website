@@ -6,7 +6,6 @@ namespace DamianLewis\Portfolio\Models;
 
 use Model;
 use October\Rain\Database\Builder;
-use October\Rain\Database\Collection;
 use October\Rain\Database\Traits\Nullable;
 use October\Rain\Database\Traits\Sluggable;
 use October\Rain\Database\Traits\Sortable;
@@ -68,11 +67,11 @@ class Project extends Model
             Skill::class,
             'table' => 'damianlewis_portfolio_project_skill',
             'timestamps' => true
-//        ],
-//        'technologies' => [
-//            Technology::class,
-//            'table' => 'damianlewis_portfolio_project_technology',
-//            'timestamps' => true
+        ],
+        'technologies' => [
+            Skill::class,
+            'table' => 'damianlewis_portfolio_project_technology',
+            'timestamps' => true
         ]
     ];
 
@@ -125,7 +124,7 @@ class Project extends Model
      */
     public function scopeActive(Builder $query): Builder
     {
-        $status = Attribute::activeProjectStatus();
+        $status = Attribute::activeProjectStatus()->firstOrFail();
 
         return $query->where('status_id', $status->id);
     }
@@ -189,5 +188,49 @@ class Project extends Model
             ->when($sortOrderByValid && $sortOrderDirectionValid, function ($query) use ($orderBy, $orderDirection) {
                 return $query->orderBy($orderBy, $orderDirection);
             });
+    }
+
+//    public function getCategory(Category $category)
+//    {
+//        if ($category->children()->exists()) {
+//            $categories = $category->getChildren();
+//
+//            return $categories->map([$this, 'getCategory']);
+//        }
+//
+//        return $category;
+//    }
+
+//    public function getSkill(Skill $skill)
+//    {
+//        if ($skill->children()->exists()) {
+//            $skills = $skill->getChildren();
+//
+//            return $skills->map([$this, 'getSkill']);
+//        }
+//
+//        return $skill->name;
+//    }
+
+    public function getSkillsOptions(): array
+    {
+        $category = Category::root()
+            ->where('name', Category::CATEGORY_NAME_SKILLS)
+            ->first();
+
+        $skills = $category->flattened_skills;
+
+        return $skills->pluck('name', 'id')->all();
+    }
+
+    public function getTechnologiesOptions(): array
+    {
+        $category = Category::root()
+            ->where('name', Category::CATEGORY_NAME_TECHNOLOGIES)
+            ->first();
+
+        $skills = $category->flattened_skills;
+
+        return $skills->pluck('name', 'id')->all();
     }
 }

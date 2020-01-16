@@ -6,6 +6,7 @@ namespace DamianLewis\Portfolio\Models;
 
 use Model;
 use October\Rain\Database\Builder;
+use October\Rain\Database\Collection;
 use October\Rain\Database\Traits\Nullable;
 use October\Rain\Database\Traits\SimpleTree;
 use October\Rain\Database\Traits\Sortable;
@@ -44,6 +45,11 @@ class Category extends Model
     ];
 
     /**
+     * @var array
+     */
+    protected array $flattenedSkills;
+
+    /**
      * Select visible categories.
      *
      * @param  Builder  $query
@@ -63,5 +69,75 @@ class Category extends Model
     public function scopeRoot(Builder $query): Builder
     {
         return $query->whereNull('parent_id');
+    }
+
+    /**
+     * Returns a collection of flattened skills for the category.
+     *
+     * @return \October\Rain\Support\Collection
+     */
+    public function getFlattenedSkillsAttribute(): \October\Rain\Support\Collection
+    {
+        $this->flattenedSkills = [];
+
+        $this->flattenSkillsForCategory($this);
+
+        return collect($this->flattenedSkills);
+    }
+
+    /**
+     * Flattens the skills for the given category.
+     *
+     * @param  Category  $category
+     * @return void
+     */
+    public function flattenSkillsForCategory(Category $category): void
+    {
+        if ($category->children()->exists()) {
+            $this->flattenSkillsForCategories($category->getChildren());
+        }
+
+        if ($category->skills()->exists()) {
+            $this->flattenSkills($category->skills);
+        }
+    }
+
+    /**
+     * Appends a skill to the flattened skills array.
+     *
+     * @param  Skill  $skill
+     * @return void
+     */
+    public function flattenSkill(Skill $skill): void
+    {
+        if ($skill->children()->exists()) {
+            $this->flattenSkills($skill->getChildren());
+        }
+
+        $relations = $skill->getRelations();
+        unset($relations['children']);
+        $skill->setRelations($relations);
+
+        $this->flattenedSkills[] = $skill;
+    }
+
+    /**
+     * Flatten the skills for the given category collection.
+     *
+     * @param  Collection  $categories
+     */
+    protected function flattenSkillsForCategories(Collection $categories): void
+    {
+        $categories->each([$this, 'flattenSkillsForCategory']);
+    }
+
+    /**
+     * Flattens the skills for the given skills collection.
+     *
+     * @param  Collection  $skills
+     */
+    protected function flattenSkills(Collection $skills): void
+    {
+        $skills->each([$this, 'flattenSkill']);
     }
 }

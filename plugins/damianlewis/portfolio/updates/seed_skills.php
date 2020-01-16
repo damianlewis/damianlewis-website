@@ -13,8 +13,12 @@ class SeedSkills extends Seeder
 {
     public function run(): void
     {
-        $skillsCategory = Category::rootSkills()->first();
-        $technologiesCategory = Category::rootTechnologies()->first();
+        $skillsCategory = Category::root()
+            ->where('name', Category::CATEGORY_NAME_SKILLS)
+            ->first();
+        $technologiesCategory = Category::root()
+            ->where('name', Category::CATEGORY_NAME_TECHNOLOGIES)
+            ->first();
 
         $skillsCategory->children()->saveMany($this->createCategorisedSkills());
         $technologiesCategory->children()->saveMany($this->createCategorisedSkills());

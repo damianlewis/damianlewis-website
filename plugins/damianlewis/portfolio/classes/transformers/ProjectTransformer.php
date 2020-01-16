@@ -4,25 +4,18 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
-use DamianLewis\Portfolio\Classes\PortfolioTransformers;
 use DamianLewis\Portfolio\Models\Project;
-use DamianLewis\Shared\Classes\CommonTransformers;
-use DamianLewis\Transformer\Classes\FileTransformer;
+use DamianLewis\Shared\Classes\HasRelation;
+use DamianLewis\Transformer\Classes\CanTransform;
+use DamianLewis\Transformer\Classes\Transformer;
 use DamianLewis\Transformer\Classes\TransformerInterface;
+use DamianLewis\Transformer\Classes\Transformers\FileTransformer;
 use Model;
-use October\Rain\Database\Collection;
 
-class ProjectTransformer implements TransformerInterface
+class ProjectTransformer extends Transformer implements TransformerInterface
 {
-    use CommonTransformers;
-    use PortfolioTransformers;
-
-    public function __construct()
-    {
-        $this->fileTransformer = resolve(FileTransformer::class);
-        $this->attributeTransformer = resolve(AttributeTransformer::class);
-        $this->testimonialTransformer = resolve(TestimonialTransformer::class);
-    }
+    use CanTransform;
+    use HasRelation;
 
     /**
      * @inheritDoc
@@ -37,6 +30,10 @@ class ProjectTransformer implements TransformerInterface
             'title'
         ]);
 
+        $fileTransformer = resolve(FileTransformer::class);
+        $skillTransformer = resolve(SkillTransformer::class);
+        $testimonialTransformer = resolve(TestimonialTransformer::class);
+
         $skills = $this->getRelation($item, 'skills');
         $technologies = $this->getRelation($item, 'technologies');
         $testimonial = $this->getRelation($item, 'testimonial')->first();
@@ -44,28 +41,16 @@ class ProjectTransformer implements TransformerInterface
         $data = array_merge($data, [
             'text' => $item->description,
             'tagLine' => $item->tag_line,
-            'skills' => $this->transformAttributes($skills),
-            'technologies' => $this->transformAttributes($technologies),
-            'testimonial' => $this->transformTestimonial($testimonial),
-            'mobileImage' => $this->transformFile($item->mobile_full_frame_image),
-            'tabletImage' => $this->transformFile($item->tablet_full_frame_image),
-            'desktopImage' => $this->transformFile($item->desktop_full_frame_image),
-            'mockupImage' => $this->transformFile($item->mockup_multiple_in_sequence_image),
-            'additionalImages' => $this->transformFiles($item->design_images)
+            'skills' => $this->transformCollectionOrNull($skillTransformer, $skills),
+            'technologies' => $this->transformCollectionOrNull($skillTransformer, $technologies),
+            'testimonial' => $this->transformItemOrNull($testimonialTransformer, $testimonial),
+            'mobileImage' => $this->transformItemOrNull($fileTransformer, $item->mobile_full_frame_image),
+            'tabletImage' => $this->transformItemOrNull($fileTransformer, $item->tablet_full_frame_image),
+            'desktopImage' => $this->transformItemOrNull($fileTransformer, $item->desktop_full_frame_image),
+            'mockupImage' => $this->transformItemOrNull($fileTransformer, $item->mockup_multiple_in_sequence_image),
+            'additionalImages' => $this->transformCollectionOrNull($fileTransformer, $item->design_images)
         ]);
 
         return $data;
-    }
-
-    /**
-     * Returns a collection of visible relationships.
-     *
-     * @param  Model  $item
-     * @param  string  $relation
-     * @return Collection
-     */
-    protected function getRelation(Model $item, string $relation): Collection
-    {
-        return $item->$relation()->where('is_hidden', false)->get();
     }
 }
