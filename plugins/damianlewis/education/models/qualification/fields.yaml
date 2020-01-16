@@ -1,0 +1,29 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Title
+        span: auto
+
+    score:
+        label: Score
+        span: auto
+
+secondaryTabs:
+    fields:
+        manage_section:
+            label: Manage
+            type: section
+
+        completed_at:
+            label: Completion Date
+            type: datepicker
+            mode: date
+            format: j M Y
+
+        is_hidden:
+            label: Hidden
+            type: checkbox
+            comment: When enabled the qualification is hidden from the frontend.
