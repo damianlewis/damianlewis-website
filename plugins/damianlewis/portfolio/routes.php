@@ -5,4 +5,5 @@ Route::group([
 ], function () {
     Route::resource('projects', 'ProjectsController', ['only' => ['index', 'show']]);
     Route::resource('categories', 'CategoriesController', ['only' => ['index', 'show']]);
+    Route::resource('skills', 'SkillsController', ['only' => ['index', 'show']]);
 });

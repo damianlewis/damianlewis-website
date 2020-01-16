@@ -31,7 +31,10 @@ class CategoriesController extends ApiController
      */
     public function show(int $id, CategoriesTransformer $transformer): JsonResponse
     {
-        $category = Category::find($id);
+//        $category = Category::find($id);
+        $category = Category::root()
+            ->where('name', Category::CATEGORY_NAME_SKILLS)
+            ->first();
 
         if (!$category) {
             return $this->respondedNotFound('Project not found');
@@ -40,6 +43,8 @@ class CategoriesController extends ApiController
         return $this->respond([
             'data' => $transformer->transformItem($category)
         ]);
+//        return $this->respond([
+//            'data' => $category->flattened_skills
+//        ]);
     }
-
 }
