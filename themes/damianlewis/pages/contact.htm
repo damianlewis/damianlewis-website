@@ -1,0 +1,19 @@
+title = "Contact"
+url = "/contact"
+layout = "default"
+description = "Contact and enquiry page."
+is_hidden = 0
+
+[pageHero]
+
+[contactForm]
+==
+{% if hero %}
+    {% partial 'common/hero' %}
+{% endif %}
+
+<div class="[ c-container c-container--wave ]">
+    <div class="c-container__inner">
+        {% component 'contactForm' %}
+    </div>
+</div>

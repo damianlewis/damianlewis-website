@@ -2,9 +2,13 @@ name: 'Footer menu'
 items:
     -
         title: About
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: about
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -23,14 +27,19 @@ items:
             cssClass: ''
             isExternal: '0'
     -
-        title: 'Case Studies'
-        nesting: ''
+        title: Work
         type: cms-page
-        url: ''
         code: ''
         reference: portfolio/index
-        cmsPage: ''
-        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Contact
+        type: cms-page
+        code: ''
+        reference: contact
         viewBag:
             isHidden: '0'
             cssClass: ''
