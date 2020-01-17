@@ -1,7 +1,7 @@
 /* Headings
    ========================================================================== */
 
-%heading{
+%heading {
   @apply font-heading font-light tracking-tight leading-tightest antialiased;
 }
 
@@ -38,5 +38,23 @@ h4 {
 
   @screen lg {
     @apply text-3xl;
+  }
+}
+
+h5 {
+  @extend %heading;
+  @apply text-xl;
+
+  @screen lg {
+    @apply text-2xl;
+  }
+}
+
+h6 {
+  @extend %heading;
+  @apply text-lg;
+
+  @screen lg {
+    @apply text-xl;
   }
 }
