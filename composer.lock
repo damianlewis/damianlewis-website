@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c4dd4d82fadd924d1104cfb5cfde250",
+    "content-hash": "75e60ef31466eca5fa7321f3ad3847d6",
     "packages": [
         {
             "name": "composer/installers",
@@ -1046,6 +1046,46 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
+            "name": "janvince/smallcontactform",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jan-vince/smallcontactform.git",
+                "reference": "8e147455e6c8f10a4dc1440a6ebd0641eba68423"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jan-vince/smallcontactform/zipball/8e147455e6c8f10a4dc1440a6ebd0641eba68423",
+                "reference": "8e147455e6c8f10a4dc1440a6ebd0641eba68423",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=7.0"
+            },
+            "type": "october-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Vince"
+                }
+            ],
+            "description": "Simple but flexible multi language contact form builder with custom fields, validation and passive antispam",
+            "homepage": "http://www.vince.cz",
+            "keywords": [
+                "cms",
+                "contact",
+                "form",
+                "laravel",
+                "october",
+                "octobercms"
+            ],
+            "time": "2019-11-30T15:24:17+00:00"
+        },
+        {
             "name": "jenssegers/date",
             "version": "v3.5.0",
             "source": {
@@ -1801,6 +1841,7 @@
                 "cron",
                 "schedule"
             ],
+            "abandoned": "dragonmantank/cron-expression",
             "time": "2019-12-28T04:23:06+00:00"
         },
         {
@@ -6169,7 +6210,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "wikimedia/composer-merge-plugin": 20
+        "wikimedia/composer-merge-plugin": 20,
+        "janvince/smallcontactform": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
