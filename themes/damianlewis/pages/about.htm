@@ -29,29 +29,41 @@ orderDirection = "asc"
             <div class="mt-20">
                 <h3 class="h4 text-grey-900 mb-8">Qualifications</h3>
                 <ul>
-                {% for qualification in qualifications %}
-                    <li class="spacing spacing-6">
-                        <div class="[ c-text c-text--large ] text-grey-600">{{ qualification.title }}</div>
-                        <div class="[ c-text c-text--small ] text-grey-600">Awarded: {{ qualification.score }}</div>
-                    </li>
-                {% endfor %}
+                    {% for qualification in qualifications %}
+                        <li class="spacing spacing-6">
+                            <div class="[ c-text c-text--large ] text-grey-600">{{ qualification.title }}</div>
+                            <div class="[ c-text c-text--small ] text-grey-600">Awarded: {{ qualification.score }}</div>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         {% endif %}
     </div>
 </div>
 
-{% for category in rootCategories %}
-    {% set isEven = (loop.index % 2) is even %}
-    <div class="[ c-container{% if isEven %} c-container--wave{% endif %} ]{% if not isEven %} bg-red-100{% endif %}">
-        <div class="c-container__inner">
-            <h2 class="text-grey-900">{{ category.name }}</h2>
-            <hr class="border-red-500 mb-12 lg:mb-16 xl:mb-20">
-            {% for subCategory in category.categories %}
-                <div class="spacing spacing-12 lg:spacing-16">
-                    {% partial 'about/skills_category' name=subCategory.name skills=subCategory.skills %}
+{% if rootCategories|length > 0 %}
+    <div id="accordion-list">
+        {% for category in rootCategories %}
+            {% set isEven = (loop.index % 2) is even %}
+            <div class="[ c-container{% if isEven %} c-container--wave{% endif %} ]{% if not isEven %} bg-red-100{% endif %}">
+                <div class="c-container__inner">
+                    <h2 class="text-grey-900">{{ category.name }}</h2>
+                    <hr class="border-red-500 mb-12 lg:mb-16 xl:mb-20">
+                    {% for subCategory in category.categories %}
+                        <div class="spacing spacing-12 lg:spacing-16">
+                            {% partial 'about/skills_category' name=subCategory.name skills=subCategory.skills %}
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
-{% endfor %}
+{% endif %}
+
+{% put scripts %}
+    {% if this.environment == 'development' %}
+        <script src="{{ 'assets/development/js/accordion_list.js'|theme }}"></script>
+    {% else %}
+        <script src="{{ 'assets/js/accordion_list.js'|theme }}"></script>
+    {% endif %}
+{% endput %}

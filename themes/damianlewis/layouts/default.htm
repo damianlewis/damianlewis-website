@@ -7,18 +7,11 @@ description = "Default page layout."
 {% partial 'site/head' %}
 
 <body>
-    <div id="page">
-        {% partial 'common/header' %}
-
-        <main class="mt-36">
-            {% page %}
-        </main>
-
-        {% partial 'common/footer' %}
-        {% partial 'navigation/header_menu' %}
-    </div>
-
+    {% partial 'site/navigation' %}
+    {% partial 'site/main' %}
+    {% partial 'site/footer' %}
     {% partial 'site/scripts' %}
+    {% scripts %}
 </body>
 
 </html>

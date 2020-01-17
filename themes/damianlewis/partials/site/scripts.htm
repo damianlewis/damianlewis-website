@@ -5,9 +5,9 @@ description = "Page scripts"
 {% if this.environment == 'development' %}
     <script src="{{ 'assets/development/js/manifest.js'|theme }}"></script>
     <script src="{{ 'assets/development/js/vendor.js'|theme }}"></script>
-    <script src="{{ 'assets/development/js/main.js'|theme }}"></script>
+    <script src="{{ 'assets/development/js/navigation.js'|theme }}"></script>
 {% else %}
     <script src="{{ 'assets/js/manifest.js'|theme }}"></script>
     <script src="{{ 'assets/js/vendor.js'|theme }}"></script>
-    <script src="{{ 'assets/js/main.js'|theme }}"></script>
+    <script src="{{ 'assets/js/navigation.js'|theme }}"></script>
 {% endif %}
