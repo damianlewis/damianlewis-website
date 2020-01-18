@@ -56,7 +56,7 @@ class QualificationsList extends TransformerComponent
     {
         $qualifications = $this->getQualifications();
 
-        $this->transformer->setIncludeCompletedDate($this->property('includeCompletedDate') === true);
+        $this->transformer->setIncludeCompletedDate($this->property('includeCompletedDate') == true);
 
         $this->page['qualifications'] = $this->transformCollection($qualifications);
     }
