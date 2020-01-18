@@ -6,7 +6,6 @@ use BlogArticleFaker\FakerProvider as BlogArticleFaker;
 use DamianLewis\Portfolio\Models\Attribute;
 use DamianLewis\Portfolio\Models\Category;
 use DamianLewis\Portfolio\Models\Project;
-use DamianLewis\Portfolio\Models\Skill;
 use Faker\Generator;
 use Illuminate\Http\UploadedFile;
 
