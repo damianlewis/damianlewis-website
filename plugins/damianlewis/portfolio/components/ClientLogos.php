@@ -39,7 +39,7 @@ class ClientLogos extends TransformerComponent
                 'type' => 'string',
                 'validationPattern' => '^[\d]*$',
                 'validationMessage' => 'The value can only contain numbers.',
-            ],
+            ]
         ];
     }
 

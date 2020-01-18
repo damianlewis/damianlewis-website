@@ -15,7 +15,7 @@ class CategorisedSkills extends TransformerComponent
     {
         return [
             'name' => 'Skills',
-            'description' => 'Get a categorised collection of skills.'
+            'description' => 'Get a collection of categorised skills.'
         ];
     }
 
