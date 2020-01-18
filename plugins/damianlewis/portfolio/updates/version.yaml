@@ -18,3 +18,8 @@
     - create_testimonials_table.php
     - Seed dummy testimonials
     - seed_dummy_testimonials.php
+1.0.4:
+    - Create Services table
+    - create_services_table.php
+    - Seed dummy services
+    - seed_dummy_services.php

@@ -111,8 +111,8 @@ class Project extends Model
         'slug',
         'tag_line',
         'summary',
-        'sort_order',
         'description',
+        'sort_order',
         'completed_at'
     ];
 
