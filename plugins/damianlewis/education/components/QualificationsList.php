@@ -41,7 +41,7 @@ class QualificationsList extends TransformerComponent
             'includeCompletedDate' => [
                 'title' => 'Completed date',
                 'type' => 'checkbox',
-                'description' => 'Include the completed date..',
+                'description' => 'Include the completed date.',
                 'default' => false
             ]
         ];
