@@ -1,5 +1,0 @@
-1.0.1:
-    - Create Categories table
-    - create_categories_table.php
-    - Seed dummy categories
-    - seed_dummy_categories.php
