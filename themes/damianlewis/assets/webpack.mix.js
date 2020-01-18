@@ -3,7 +3,7 @@ require('mix-tailwindcss')
 
 let config = {
   srcPath: 'src',
-  distPath: mix.inProduction() ? 'assets' : 'assets/development',
+  distPath: mix.inProduction() ? '' : 'development',
 }
 
 mix.js(`${config.srcPath}/js/navigation.js`, 'js').
