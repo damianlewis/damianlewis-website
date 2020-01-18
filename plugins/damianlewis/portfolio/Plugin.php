@@ -10,9 +10,11 @@ use DamianLewis\Portfolio\Classes\Providers\TransformerServiceProvider;
 use DamianLewis\Portfolio\Components\ClientLogos;
 use DamianLewis\Portfolio\Components\FeaturedProject;
 use DamianLewis\Portfolio\Components\CategorisedSkills;
+use DamianLewis\Portfolio\Components\FeaturedServices;
 use DamianLewis\Portfolio\Components\FeaturedTestimonial;
 use DamianLewis\Portfolio\Components\ProjectDetails;
 use DamianLewis\Portfolio\Components\ProjectsList;
+use DamianLewis\Portfolio\Components\ServicesList;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -40,6 +42,8 @@ class Plugin extends PluginBase
             ProjectDetails::class => 'projectDetails',
             ProjectsList::class => 'projectsList',
             CategorisedSkills::class => 'categorisedSkills',
+            FeaturedServices::class => 'featuredServices',
+            ServicesList::class => 'servicesList',
             FeaturedTestimonial::class => 'featuredTestimonial'
         ];
     }
@@ -54,6 +58,10 @@ class Plugin extends PluginBase
             'damianlewis.portfolio.access_skills' => [
                 'tab' => 'Portfolio',
                 'label' => 'Manage the skills.'
+            ],
+            'damianlewis.portfolio.access_services' => [
+                'tab' => 'Portfolio',
+                'label' => 'Manage the services.'
             ],
             'damianlewis.portfolio.access_categories' => [
                 'tab' => 'Portfolio',
@@ -93,6 +101,12 @@ class Plugin extends PluginBase
                         'url' => Backend::url('damianlewis/portfolio/skills'),
                         'icon' => 'icon-graduation-cap',
                         'permissions' => ['damianlewis.portfolio.access_skills']
+                    ],
+                    'services' => [
+                        'label' => 'Services',
+                        'url' => Backend::url('damianlewis/portfolio/services'),
+                        'icon' => 'icon-wrench',
+                        'permissions' => ['damianlewis.portfolio.access_services']
                     ],
                     'categories' => [
                         'label' => 'Categories',
