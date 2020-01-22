@@ -1,0 +1,26 @@
+/* Headings
+   ========================================================================== */
+
+.heading-1 {
+  @extend h1;
+}
+
+.heading-2 {
+  @extend h2;
+}
+
+.heading-3 {
+  @extend h3;
+}
+
+.heading-4 {
+  @extend h4;
+}
+
+.heading-5 {
+  @extend h5;
+}
+
+.heading-6 {
+  @extend h6;
+}

@@ -1,0 +1,27 @@
+description = "Displays a testimonial."
+==
+<div class="md:flex md:items-center md:c-layout-y-16 xl:c-layout-y-24">
+    <div class="md:w-1/2">
+        <blockquote class="font-quote font-light text-base leading-normal antialiased text-grey-900 md:text-lg">
+            {{ testimonial.quote|raw }}
+            <footer class="mt-8">
+                <cite class="font-heading font-light not-italic text-lg tracking-tight leading-tight antialiased text-grey-900">
+                    {{ testimonial.name }}
+                    {% if testimonial.company %}
+                        <span class="block text-base text-grey-600 mt-1">{{ testimonial.company }}</span>
+                    {% endif %}
+                </cite>
+            </footer>
+        </blockquote>
+
+        {% if testimonial.rating %}
+            <div class="mt-4">
+                {% partial 'common/rating' max=5 rating=testimonial.rating %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="hidden md:block md:w-1/2">
+        <img src="{{ testimonial.image.path }}" alt="{{ testimonial.image.title }}">
+    </div>
+</div>

@@ -1,0 +1,22 @@
+description = "Displays a list of projects."
+==
+<div class="c-layout-x-32 md:c-layout-x-32 lg:c-layout-x-40">
+    {% for project in projects %}
+        {% set isEven = (loop.index % 2) is even %}
+        <div class="md:flex md:items-center md:c-layout-y-16">
+            <div class="md:w-1/2{% if isEven %} md:order-last{% endif %}">
+                {% set image = isEven ? project.imageReversed : project.image %}
+                <img class="md:hidden" src="{{ project.image.path }}" alt="{{ project.image.title }}">
+                <img class="hidden md:block" src="{{ image.path }}" alt="{{ image.title }}">
+            </div>
+
+            <div class="md:w-1/2 mt-16 md:mt-0">
+                <h3 class="text-grey-900 mb-4">{{ project.title }}</h3>
+                <div class="c-content">
+                    {{ project.text|raw }}
+                </div>
+                <a class="c-button mt-16" href="{{ project.url }}">View project</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,30 @@
+@tailwind base;
+
+// SETTINGS
+@import "settings/settings.fonts";
+@import "settings/settings.icons";
+
+// ELEMENTS
+@import "elements/elements.breaks";
+@import "elements/elements.headings";
+@import "elements/elements.inline";
+
+@tailwind components;
+
+// COMPONENTS
+@import "components/components.button";
+@import "components/components.container";
+@import "components/components.content";
+@import "components/components.divider";
+@import "components/components.layout";
+@import "components/components.parallax";
+@import "components/components.text";
+@import "components/components.underline";
+
+// PLUGINS
+@import "plugins/plugins.scf-contactForm";
+
+@tailwind utilities;
+
+// UTILITIES
+@import "utilities/utilities.headings";

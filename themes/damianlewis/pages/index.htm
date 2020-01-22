@@ -1,0 +1,67 @@
+title = "Home"
+url = "/"
+layout = "default"
+description = "Home page."
+is_hidden = 0
+
+[pageHero]
+id = 1
+
+[featuredProject]
+id = 5
+projectPage = "portfolio/project"
+
+[featuredTestimonial]
+id = 5
+includeRating = 0
+
+[clientLogos]
+orderBy = "sort_order"
+orderDirection = "asc"
+
+[featuredServices]
+orderBy = "sort_order"
+orderDirection = "asc"
+limit = 3
+includeIcon = 1
+==
+{% if hero %}
+    {% partial 'common/hero' %}
+{% endif %}
+
+{% if services %}
+    <div class="[ c-container c-container--wave ]">
+        <div class="c-container__inner">
+            <div class="flex flex-col items-center">
+                {% partial 'services/featured_services' %}
+                <a class="c-button mt-20 lg:mt-24" href="{{ 'services/index'|page }}">Find out more</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if project %}
+    <div class="[ c-container c-container--tint ]">
+        <div class="c-container__inner pb-36 lg:pb-40">
+            {% partial 'headings/h2_with_divider' heading='Case Studies' %}
+            {% partial 'portfolio/featured_project' %}
+        </div>
+    </div>
+{% endif %}
+
+{% if logos|length > 0 %}
+    <div class="[ c-container c-container--wave ]">
+        <div class="c-container__inner md:pb-36 lg:pb-40">
+            {% partial 'headings/h2_with_divider' heading='Clients' %}
+            {% partial 'common/logos' %}
+        </div>
+    </div>
+{% endif %}
+
+{% if testimonial %}
+    <div class="[ c-container c-container--tint ]">
+        <div class="c-container__inner">
+            {% partial 'portfolio/testimonial' %}
+        </div>
+    </div>
+{% endif %}

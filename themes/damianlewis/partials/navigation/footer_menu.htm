@@ -1,0 +1,14 @@
+description = "The footer menu"
+
+[viewBag]
+
+[staticMenu]
+code = "footer-menu"
+==
+<nav class="[ c-text c-text--large ] text-grey-300">
+    <ul>
+        {% for item in menuItems %}
+            <li><a class="[ c-underline c-underline--footer ]" href="{{ item.url }}">{{ item.title }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>

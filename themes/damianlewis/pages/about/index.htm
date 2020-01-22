@@ -1,0 +1,70 @@
+title = "About"
+url = "/about"
+layout = "default"
+description = "About me page."
+is_hidden = 0
+
+[pageHero]
+id = 1
+
+[categorisedSkills]
+
+[qualificationsList]
+orderBy = "sort_order"
+orderDirection = "asc"
+includeCompletedDate = 1
+==
+{% if hero %}
+    {% partial 'common/hero' %}
+{% endif %}
+
+<div class="[ c-container c-container--wave ]">
+    <div class="c-container__inner">
+        {% partial 'headings/h2_with_divider' heading='Background' %}
+        <div class="c-content">
+            {% content 'about/background.htm' %}
+        </div>
+
+        {% if qualifications %}
+            <div class="mt-20">
+                {% partial 'headings/h3_as_h4' heading='Qualifications' %}
+                <ul class="c-layout-x-8">
+                    {% for qualification in qualifications %}
+                        <li>
+                            <div class="[ c-text c-text--large ] text-grey-600">{{ qualification.title }}</div>
+                            <div class="[ c-text c-text--small ] text-grey-600">Awarded: {{ qualification.score }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if rootCategories|length > 0 %}
+    <div id="accordion-list">
+        {% for category in rootCategories %}
+            {% set isEven = (loop.index % 2) is even %}
+            <div class="[ c-container c-container--{% if isEven %}wave{% endif %}{% if not isEven %}tint{% endif %} ]">
+                <div class="c-container__inner{% if not isEven %} pb-32 lg:pb-36{% endif %}">
+                    {% partial 'headings/h2_with_divider' heading=category.name %}
+                    <ul class="c-layout-x-16 lg:c-layout-x-24">
+                        {% for subCategory in category.categories %}
+                            <li>
+                                {% partial 'about/skills_category' name=subCategory.name skills=subCategory.skills %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% put scripts %}
+    {% if this.environment == 'development' %}
+        <script src="{{ 'assets/development/js/accordion_list.js'|theme }}"></script>
+    {% else %}
+        <script src="{{ 'assets/js/accordion_list.js'|theme }}"></script>
+    {% endif %}
+{% endput %}

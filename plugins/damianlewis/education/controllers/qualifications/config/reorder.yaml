@@ -1,0 +1,17 @@
+# ===================================
+#  Reorder Behavior Config
+# ===================================
+
+# Reorder Title
+title: Reorder Qualifications
+
+# Attribute name
+nameFrom: title
+
+# Model Class name
+modelClass: DamianLewis\Education\Models\Qualification
+
+# Toolbar widget configuration
+toolbar:
+  # Partial for toolbar buttons
+  buttons: partials/reorder_toolbar

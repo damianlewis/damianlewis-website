@@ -1,0 +1,27 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Category
+
+# Model Form Field configuration
+form: $/damianlewis/portfolio/models/category/fields.yaml
+
+# Model Class name
+modelClass: DamianLewis\Portfolio\Models\Category
+
+# Default redirect location
+defaultRedirect: damianlewis/portfolio/categories
+
+# Create page
+create:
+    title: Create Category
+    redirect: damianlewis/portfolio/categories/update/:id
+    redirectClose: damianlewis/portfolio/categories
+
+# Update page
+update:
+    title: Edit Category
+    redirect: damianlewis/portfolio/categories
+    redirectClose: damianlewis/portfolio/categories

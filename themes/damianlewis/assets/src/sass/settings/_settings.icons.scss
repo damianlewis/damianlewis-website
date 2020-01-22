@@ -1,0 +1,36 @@
+/* Icons
+   ========================================================================== */
+
+$icon-font-family: 'damianlewis' !default;
+$icon-font-path: '/themes/damianlewis/assets/fonts' !default;
+$icon-css-prefix: 'icon' !default;
+
+$icon-var-star: "\e900";
+$icon-var-star-outline: "\e901";
+
+@font-face {
+  font-family: $icon-font-family;
+  font-style: normal;
+  font-weight: normal;
+  font-display: auto;
+  src: url('#{$icon-font-path}/#{$icon-font-family}.eot?6f9i7z');
+  src: url('#{$icon-font-path}/#{$icon-font-family}.eot?6f9i7z#iefix') format('embedded-opentype'),
+  url('#{$icon-font-path}/#{$icon-font-family}.ttf?6f9i7z') format('truetype'),
+  url('#{$icon-font-path}/#{$icon-font-family}.woff?6f9i7z') format('woff'),
+  url('#{$icon-font-path}/#{$icon-font-family}.svg?6f9i7z##{$icon-font-family}') format('svg');
+}
+
+.#{$icon-css-prefix} {
+  display: inline-block;
+  font-family: $icon-font-family;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.#{$icon-css-prefix}-star:before { content: $icon-var-star; }
+.#{$icon-css-prefix}-star-outline:before { content: $icon-var-star-outline; }

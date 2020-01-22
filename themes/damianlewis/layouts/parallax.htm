@@ -1,0 +1,18 @@
+description = "For use with parallax scrolling."
+==
+{% spaceless %}
+<!doctype html>
+<html lang="en" class="h-full overflow-hidden">
+
+{% partial 'site/head' %}
+
+<body class="c-parallax h-full">
+    {% partial 'site/navigation' %}
+    {% partial 'site/main' %}
+    {% partial 'site/footer' %}
+    {% partial 'site/scripts' %}
+    {% scripts %}
+</body>
+
+</html>
+{% endspaceless %}

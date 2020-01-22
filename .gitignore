@@ -1,5 +1,6 @@
 /bootstrap/compiled.php
 /vendor
+/tmp
 .env
 _ide_helper.php
 .phpstorm.meta.php

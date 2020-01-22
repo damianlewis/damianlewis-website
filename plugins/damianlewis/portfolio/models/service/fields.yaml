@@ -1,0 +1,42 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Title
+        span: auto
+
+tabs:
+    fields:
+        description:
+            tab: Details
+            label: Description
+            span: auto
+            type: richeditor
+            toolbarButtons: paragraphFormat|||bold|italic|quote|align|||undo|redo|||formatOL|formatUL|||insertLink|insertTable|||html|fullscreen
+            size: giant
+
+        icon:
+            tab: Details
+            label: Icon
+            span: auto
+            type: fileupload
+            mode: image
+            fileTypes: svg,png
+
+secondaryTabs:
+    fields:
+        manage_section:
+            label: Manage
+            type: section
+
+        is_featured:
+            label: Featured
+            type: checkbox
+            comment: When enabled the service becomes a featured service.
+
+        is_hidden:
+            label: Hidden
+            type: checkbox
+            comment: When enabled the service is hidden from the frontend.

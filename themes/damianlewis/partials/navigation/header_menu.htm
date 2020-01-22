@@ -1,0 +1,11 @@
+description = "The header menu"
+
+[viewBag]
+
+[staticMenu]
+code = "header-menu"
+==
+<navigation
+        :is-visible="showNavigation"
+        :list="{{ menuItems|json_encode() }}">
+</navigation>

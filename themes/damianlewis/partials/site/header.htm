@@ -1,0 +1,13 @@
+description = "Page header section containing logo and main navigation."
+==
+<header class="absolute top-0 z-20 flex justify-between items-center w-full p-8 md:px-12 lg:fixed lg:px-16"
+        :class="{'fixed': showNavigation}">
+    <a href="{{ 'index'|page }}">
+        <img class="h-20" src="{{ 'assets/images/logo.svg'|theme }}" alt="Logo">
+    </a>
+
+    <navigation-button
+            :is-active="showNavigation"
+            @toggle="showNavigation = !showNavigation">
+    </navigation-button>
+</header>

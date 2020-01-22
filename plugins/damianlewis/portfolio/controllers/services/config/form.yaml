@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Service
+
+# Model Form Field configuration
+form: $/damianlewis/portfolio/models/service/fields.yaml
+
+# Model Class name
+modelClass: DamianLewis\Portfolio\Models\Service
+
+# Default redirect location
+defaultRedirect: damianlewis/portfolio/services
+
+# Create page
+create:
+    title: Create Service
+    redirect: damianlewis/portfolio/services/update/:id
+    redirectClose: damianlewis/portfolio/services
+
+# Update page
+update:
+    title: Edit Service
+    redirect: damianlewis/portfolio/services
+    redirectClose: damianlewis/portfolio/services
+
+# Preview page
+preview:
+    title: Preview Service

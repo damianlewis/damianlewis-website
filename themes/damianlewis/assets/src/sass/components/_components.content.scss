@@ -1,0 +1,67 @@
+/* Content
+   ========================================================================== */
+
+$headings: (
+        1: 32,
+        2: 24,
+        3: 16,
+        4: 12
+);
+
+.c-content {
+  @each $size-outer, $margin-outer in $headings {
+    h#{$size-outer} {
+      @each $size-inner, $margin-inner in $headings {
+        ~ h#{$size-inner} {
+          @apply mt-#{$margin-inner};
+        }
+      }
+    }
+  }
+
+  h1 {
+    @apply mb-8;
+  }
+
+  h2 {
+    @apply mb-4;
+  }
+
+  h3, h4 {
+    @apply mb-2;
+  }
+
+  p, ul {
+    @extend .c-text;
+    @apply text-grey-600;
+
+    + p {
+      @apply mt-8;
+    }
+  }
+
+  a {
+    @extend .c-underline;
+  }
+
+  ul {
+    @apply list-disc list-inside;
+
+    + ul {
+      @apply mt-8;
+    }
+  }
+}
+
+.c-content--large {
+  p, ul {
+    @extend .c-text;
+    @extend .c-text--large;
+  }
+}
+
+.c-content--footer {
+  p, ul {
+    @apply text-grey-300;
+  }
+}

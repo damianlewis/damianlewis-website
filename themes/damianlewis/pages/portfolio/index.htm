@@ -1,0 +1,26 @@
+title = "Projects"
+url = "/portfolio/projects"
+layout = "default"
+description = "Portfolio projects list page."
+is_hidden = 0
+
+[pageHero]
+id = 1
+
+[projectsList]
+orderBy = "sort_order"
+orderDirection = "asc"
+featured = 1
+projectPage = "portfolio/project"
+==
+{% if hero %}
+    {% partial 'common/hero' %}
+{% endif %}
+
+{% if projects|length > 0 %}
+    <div class="[ c-container c-container--wave ]">
+        <div class="c-container__inner md:pb-32 lg:pt-28 lg:pb-40 xl:pt-32 xl:pb-52">
+            {% partial 'portfolio/projects' %}
+        </div>
+    </div>
+{%  endif %}

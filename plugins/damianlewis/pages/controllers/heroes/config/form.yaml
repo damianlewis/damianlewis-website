@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Hero
+
+# Model Form Field configuration
+form: $/damianlewis/pages/models/hero/fields.yaml
+
+# Model Class name
+modelClass: DamianLewis\Pages\Models\Hero
+
+# Default redirect location
+defaultRedirect: damianlewis/pages/heroes
+
+# Create page
+create:
+    title: Create Hero
+    redirect: damianlewis/pages/heroes/update/:id
+    redirectClose: damianlewis/pages/heroes
+
+# Update page
+update:
+    title: Edit Hero
+    redirect: damianlewis/pages/heroes
+    redirectClose: damianlewis/pages/heroes
+
+# Preview page
+preview:
+    title: Preview Hero

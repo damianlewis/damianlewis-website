@@ -1,0 +1,63 @@
+name: 'Footer menu'
+items:
+    -
+        title: About
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: about/index
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Services
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: services/index
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Work
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: portfolio/index
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Contact
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: contact/index
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Privacy Policy'
+        type: cms-page
+        code: ''
+        reference: privacy-policy
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

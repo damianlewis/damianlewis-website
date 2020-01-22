@@ -1,0 +1,51 @@
+description = "Page footer section."
+
+[links]
+orderBy = "sort_order"
+orderDirection = "asc"
+
+[contactDetails]
+
+[viewBag]
+==
+<div class="c-container">
+    <div class="c-container__inner bg-grey-700 pb-16 lg:pb-20 xl:pb-24">
+        <div class="lg:flex lg:c-layout-y-16">
+            <div class="lg:w-1/2">
+                {% partial 'headings/h3_for_footer' heading='What I do' %}
+                <div class="[ c-content c-content--large c-content--footer ]">
+                    {% content 'footer/about.htm' %}
+                </div>
+            </div>
+
+            <div class="mt-16 md:flex md:c-layout-y-16 lg:mt-0 lg:justify-between lg:ml-0 lg:w-1/2">
+                <div class="lg:pl-0">
+                    {% partial 'headings/h3_for_footer' heading='Site Links' %}
+                    {% partial 'navigation/footer_menu' %}
+                </div>
+
+                {% if contactDetails.email or links.isAvailable %}
+                    <div class="mt-16 md:mt-0">
+                        {% if contactDetails.email %}
+                            {% partial 'headings/h3_for_footer' heading='Email me at' %}
+                            <a class="[ c-text c-text--large ][ c-underline c-underline--footer ] text-grey-300"
+                               href="mailto:{{ html_email(contactDetails.email) }}">{{ html_email(contactDetails.email) }}</a>
+                        {% endif %}
+
+                        {% if links.isAvailable %}
+                            <div class="mt-16">
+                                {% partial 'common/links' links=links.collection %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="[ c-text c-text--small ] text-center bg-grey-800 text-grey-400 px-8 py-4">
+    &copy; Copyright {{ 'now'|date('Y') }} Damian Lewis
+    <br class="md:hidden">
+    <span class="hidden md:inline"> &ndash; </span>{% content 'footer/seo.txt' %}
+</footer>

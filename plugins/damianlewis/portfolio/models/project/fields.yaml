@@ -1,0 +1,162 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Title
+        span: auto
+
+    slug:
+        label: Slug
+        span: auto
+        context:
+            - update
+            - preview
+        preset: title
+
+tabs:
+    fields:
+        tag_line:
+            tab: Details
+            label: Tag line
+            span: auto
+            type: text
+
+        summary:
+            tab: Details
+            label: Summary
+            span: auto
+            type: richeditor
+            toolbarButtons: bold|italic|||undo|redo|||html|fullscreen
+
+        description:
+            tab: Details
+            label: Description
+            span: full
+            type: richeditor
+            toolbarButtons: paragraphFormat|||bold|italic|quote|align|||undo|redo|||formatOL|formatUL|||insertLink|insertTable|||html|fullscreen
+            size: giant
+
+        skills:
+            tab: Attributes
+            label: Skills
+            span: auto
+            type: taglist
+            mode: relation
+            nameFrom: name
+            options: true
+
+        technologies:
+            tab: Attributes
+            label: Technologies
+            span: auto
+            type: taglist
+            mode: relation
+            nameFrom: name
+            options: true
+
+        testimonial:
+            tab: Testimonial
+            span: auto
+            type: relation
+            nameFrom: nameAndCompany
+            scope: active
+
+        mockup_desktop_image:
+            tab: Mockup Images
+            label: Desktop device image
+            span: left
+            type: fileupload
+            mode: image
+            comment: A mockup of a desktop device.
+
+        mockup_multiple_image:
+            tab: Mockup Images
+            label: Multiple devices image
+            span: left
+            type: fileupload
+            mode: image
+            comment: A mockup of multiple devices.
+
+        mockup_multiple_reversed_image:
+            tab: Mockup Images
+            label: Multiple devices reversed image
+            span: right
+            type: fileupload
+            mode: image
+            comment: A mockup of multiple devices in reverse.
+
+        mockup_multiple_in_sequence_image:
+            tab: Mockup Images
+            label: Multiple devices in sequence image
+            span: left
+            type: fileupload
+            mode: image
+            comment: A mockup of multiple devices in sequence.
+
+        desktop_full_frame_image:
+            tab: Full Frame Images
+            label: Desktop design image
+            span: left
+            type: fileupload
+            mode: image
+            comment: A full frame desktop design image.
+
+        tablet_full_frame_image:
+            tab: Full Frame Images
+            label: Tablet design image
+            span: right
+            type: fileupload
+            mode: image
+            comment: A full frame tablet design image.
+
+        mobile_full_frame_image:
+            tab: Full Frame Images
+            label: Mobile phone design image
+            span: left
+            type: fileupload
+            mode: image
+            comment: A full frame mobile phone design image.
+
+        design_images:
+            tab: Design Images
+            label: Additional designs
+            span: auto
+            type: fileupload
+            mode: image
+            comment: A collection of additional design images.
+
+secondaryTabs:
+    fields:
+        manage_section:
+            label: Manage
+            type: section
+
+        preview_image:
+            label: Preview image
+            type: fileupload
+            mode: image
+            comment: The preview image used for the backend.
+
+        status:
+            label: Status
+            type: relation
+            nameFrom: name
+            default: 1
+
+        completed_at:
+            label: Completion Date
+            type: datepicker
+            mode: date
+            format: j M Y
+
+        is_featured:
+            label: Featured
+            type: checkbox
+            comment: When enabled the project becomes a featured project.
+
+        is_hidden:
+            label: Hidden
+            type: checkbox
+            comment: When enabled the project is hidden from the frontend.

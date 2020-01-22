@@ -1,0 +1,26 @@
+/* Layout
+   ========================================================================== */
+
+$sizes: (0, 1, 4, 8, 12, 16, 24, 32, 36, 40);
+
+@responsive {
+  @each $size in $sizes {
+    .c-layout-x-#{$size} {
+      > * + * {
+        @apply mt-#{$size};
+      }
+    }
+
+    .c-layout-y-#{$size} {
+      @if $size == 0 {
+        @apply ml-#{$size};
+      } @else {
+        @apply -ml-#{$size};
+      }
+
+      > * {
+        @apply pl-#{$size};
+      }
+    }
+  }
+}

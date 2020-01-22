@@ -1,0 +1,26 @@
+/* Button
+   ========================================================================== */
+
+.c-button {
+  @apply inline-block;
+  @apply font-button font-bold text-white text-sm text-center align-middle uppercase whitespace-no-wrap antialiased;
+  @apply bg-red-500;
+  @apply cursor-pointer;
+  @apply m-0 px-8;
+  @apply transition-bg;
+  padding-top: 13px;
+  padding-bottom: 11px;
+
+  &,
+  &:hover,
+  &:active,
+  &:focus {
+    @apply no-underline;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    @apply bg-red-700;
+  }
+}

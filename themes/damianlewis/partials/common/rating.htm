@@ -1,0 +1,9 @@
+description = "Displays a star rating."
+
+[viewBag]
+==
+<div class="c-layout-y-1">
+    {% for count in range(1, max) %}
+        <i class="icon{% if rating >= count %} icon-star{% else %} icon-star-outline{% endif %} text-sm text-red-500"></i>
+    {% endfor %}
+</div>

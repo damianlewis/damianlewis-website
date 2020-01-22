@@ -1,0 +1,24 @@
+/* Underline
+   ========================================================================== */
+
+.c-underline {
+  @apply relative inline-block;
+
+  &::after {
+    content: '';
+    height: 2px;
+    @apply absolute left-0 bottom-0 w-0 bg-red-500 transition-width;
+  }
+
+  &:hover {
+    &::after {
+      @apply w-full;
+    }
+  }
+}
+
+.c-underline--footer {
+  &::after {
+    @apply bg-grey-300;
+  }
+}
