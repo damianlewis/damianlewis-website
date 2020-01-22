@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "75e60ef31466eca5fa7321f3ad3847d6",
+    "content-hash": "43b56f1238a3f89ae58298757315b70b",
     "packages": [
         {
             "name": "composer/installers",
@@ -164,6 +164,45 @@
                 "issues": "https://github.com/damianlewis/oc-contact-plugin/issues"
             },
             "time": "2019-12-31T08:55:22+00:00"
+        },
+        {
+            "name": "damianlewis/oc-googletagmanager-plugin",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/damianlewis/oc-googletagmanager-plugin.git",
+                "reference": "a71700b7c7c711cfdd3b0149db6417de0cb46b8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/damianlewis/oc-googletagmanager-plugin/zipball/a71700b7c7c711cfdd3b0149db6417de0cb46b8d",
+                "reference": "a71700b7c7c711cfdd3b0149db6417de0cb46b8d",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "laravel/framework": "5.5.*",
+                "october/cms": "^1.0",
+                "october/rain": "^1.0",
+                "october/system": "^1.0",
+                "php": ">=7.1"
+            },
+            "type": "october-plugin",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Damian Lewis",
+                    "email": "damian@damianlewis.co.uk"
+                }
+            ],
+            "description": "Provides Google Tag Manager integration for October CMS.",
+            "support": {
+                "source": "https://github.com/damianlewis/oc-googletagmanager-plugin/tree/v1.1.2",
+                "issues": "https://github.com/damianlewis/oc-googletagmanager-plugin/issues"
+            },
+            "time": "2020-01-22T17:42:12+00:00"
         },
         {
             "name": "damianlewis/oc-socialmedia-plugin",
@@ -2295,6 +2334,7 @@
                 "php",
                 "stylesheet"
             ],
+            "abandoned": true,
             "time": "2017-03-28T22:19:25+00:00"
         },
         {

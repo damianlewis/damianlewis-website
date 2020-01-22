@@ -7,9 +7,10 @@ description = "No header or footer"
 {% partial 'site/head' %}
 
 <body>
-<main>
-    {% page %}
-</main>
+    {% partial 'site/gtmnoscript' %}
+    <main>
+        {% page %}
+    </main>
 </body>
 
 </html>
