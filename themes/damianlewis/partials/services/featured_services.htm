@@ -1,0 +1,15 @@
+description = "Displays a list of featured services."
+==
+<div class="c-layout-x-24 md:flex md:c-layout-x-0 md:c-layout-y-16">
+    {% for service in services %}
+        <div class="flex flex-col items-center md:w-1/{{ services|length }}">
+            {% if service.icon %}
+                <img class="h-18 mb-8" src="{{ service.icon.path }}" alt="{{ service.icon.title }}">
+            {% endif %}
+            <h2 class="text-grey-900 text-center mb-4">{{ service.title }}</h2>
+            <div class="c-content text-center">
+                {{ service.text|raw }}
+            </div>
+        </div>
+    {% endfor %}
+</div>

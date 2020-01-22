@@ -3,16 +3,13 @@
 
 .c-button {
   @apply inline-block;
-  @apply font-button font-bold text-white text-xs text-center align-middle uppercase whitespace-no-wrap antialiased;
+  @apply font-button font-bold text-white text-sm text-center align-middle uppercase whitespace-no-wrap antialiased;
   @apply bg-red-500;
   @apply cursor-pointer;
   @apply m-0 px-8;
   @apply transition-bg;
   padding-top: 13px;
   padding-bottom: 11px;
-  //line-height: 14px;
-  //height: 14px;
-  //transition: background-color 0.1s;
 
   &,
   &:hover,

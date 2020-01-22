@@ -2,5 +2,9 @@
    ========================================================================== */
 
 em {
-   @apply not-italic text-red-500;
- }
+  @apply not-italic text-red-500;
+}
+
+strong {
+  @apply font-bold text-red-500;
+}

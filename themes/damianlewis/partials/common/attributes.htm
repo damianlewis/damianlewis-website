@@ -1,11 +1,15 @@
-<div class="c-attributes">
+description = "Displays a list of attributes."
+
+[viewBag]
+==
+<div class="md:flex md:items-center">
     {% if icon %}
-        <img class="c-attributes__icon" src="{{ icon }}" alt="Icon">
+        <img class="mb-4 md:mb-0 md:mr-4" src="{{ icon }}" alt="Icon">
     {% endif %}
 
-    <div class="[ c-text c-text--small ] c-attributes text-grey-600">
+    <div class="[ c-text c-text--small ] text-grey-600 md:c-divider md:flex">
         {% for attribute in attributes %}
-            <div class="c-attributes__name whitespace-no-wrap">{{ attribute.name }}</div>
+            <div class="whitespace-no-wrap">{{ attribute.name }}</div>
         {% endfor %}
     </div>
 </div>

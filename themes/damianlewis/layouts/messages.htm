@@ -1,0 +1,31 @@
+description = "Layout for static message pages."
+
+[staticPage]
+useContent = 0
+default = 0
+==
+{% spaceless %}
+<!doctype html>
+<html lang="en">
+
+{% partial 'site/head' %}
+
+<body>
+    {% partial 'site/navigation' %}
+    <main class="mt-36">
+        <div class="c-container">
+            <div class="c-container__inner">
+                <h1 class="text-grey-900 mb-8">{{ this.page.title }}</h1>
+                <div class="[ c-content c-content--large ]">
+                    {% placeholder Message %}
+                </div>
+            </div>
+        </div>
+    </main>
+    {% partial 'site/footer' %}
+    {% partial 'site/scripts' %}
+    {% scripts %}
+</body>
+
+</html>
+{% endspaceless %}

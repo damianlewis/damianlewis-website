@@ -2,18 +2,24 @@
    ========================================================================== */
 
 .c-container {
+  //@apply flex flex-col items-center;
 }
 
 .c-container__inner {
   @apply px-8 pt-16 pb-24;
+  //max-width: 1440px;
 
   @screen md {
-    @apply px-12;
+    @apply px-12 pt-20;
   }
 
   @screen lg {
-    @apply px-50;
+    @apply px-50 pt-24 pb-32;
   }
+}
+
+.c-container--tint {
+  @apply bg-red-100;
 }
 
 .c-container--wave {

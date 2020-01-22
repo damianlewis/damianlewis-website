@@ -21,7 +21,7 @@ mix.browserSync({
   reloadOnRestart: true,
   notify: false,
   files: [
-    './**/*.+(htm|txt|css|js)',
-    '../../plugins/**/*.+(php|yaml|htm)',
+    '../**/*.+(htm|txt|css|js)',
+    '../../../plugins/**/*.+(php|yaml|htm)',
   ],
 })

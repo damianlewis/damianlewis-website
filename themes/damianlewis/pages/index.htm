@@ -7,31 +7,33 @@ is_hidden = 0
 [pageHero]
 id = 1
 
-[featuredCategories]
-orderBy = "sort_order"
-orderDirection = "asc"
-limit = 3
-
 [featuredProject]
 id = 5
 projectPage = "portfolio/project"
 
 [featuredTestimonial]
 id = 5
+includeRating = 0
 
 [clientLogos]
 orderBy = "sort_order"
 orderDirection = "asc"
+
+[featuredServices]
+orderBy = "sort_order"
+orderDirection = "asc"
+limit = 3
+includeIcon = 1
 ==
 {% if hero %}
     {% partial 'common/hero' %}
 {% endif %}
 
-{% if featuredCategories.isAvailable %}
+{% if services %}
     <div class="[ c-container c-container--wave ]">
         <div class="c-container__inner">
             <div class="flex flex-col items-center">
-                {% partial 'services/featured_categories' categories=featuredCategories.collection %}
+                {% partial 'services/featured_services' %}
                 <a class="c-button mt-20 lg:mt-24" href="{{ 'services/index'|page }}">Find out more</a>
             </div>
         </div>
@@ -39,10 +41,9 @@ orderDirection = "asc"
 {% endif %}
 
 {% if project %}
-    <div class="c-container bg-red-100">
-        <div class="c-container__inner">
-            <h2 class="text-grey-900">Case Studies</h2>
-            <hr class="border-red-500 mb-20 xl:mb-28">
+    <div class="[ c-container c-container--tint ]">
+        <div class="c-container__inner pb-36 lg:pb-40">
+            {% partial 'headings/h2_with_divider' heading='Case Studies' %}
             {% partial 'portfolio/featured_project' %}
         </div>
     </div>
@@ -50,16 +51,15 @@ orderDirection = "asc"
 
 {% if logos|length > 0 %}
     <div class="[ c-container c-container--wave ]">
-        <div class="c-container__inner">
-            <h2 class="text-grey-900">Clients</h2>
-            <hr class="border-red-500 mb-20 xl:mb-28">
+        <div class="c-container__inner md:pb-36 lg:pb-40">
+            {% partial 'headings/h2_with_divider' heading='Clients' %}
             {% partial 'common/logos' %}
         </div>
     </div>
 {% endif %}
 
 {% if testimonial %}
-    <div class="c-container bg-red-100">
+    <div class="[ c-container c-container--tint ]">
         <div class="c-container__inner">
             {% partial 'portfolio/testimonial' %}
         </div>

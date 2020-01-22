@@ -12,12 +12,14 @@
 @tailwind components;
 
 // COMPONENTS
-@import "components/component.attributes";
 @import "components/components.button";
 @import "components/components.container";
-@import "components/component.parallax";
-@import "components/component.post";
+@import "components/components.content";
+@import "components/components.divider";
+@import "components/components.layout";
+@import "components/components.parallax";
 @import "components/components.text";
+@import "components/components.underline";
 
 // PLUGINS
 @import "plugins/plugins.scf-contactForm";
@@ -26,4 +28,3 @@
 
 // UTILITIES
 @import "utilities/utilities.headings";
-@import "utilities/utilities.spacing";

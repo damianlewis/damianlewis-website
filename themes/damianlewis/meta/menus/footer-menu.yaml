@@ -6,7 +6,7 @@ items:
         type: cms-page
         url: ''
         code: ''
-        reference: about
+        reference: about/index
         cmsPage: ''
         replace: ''
         viewBag:
@@ -28,18 +28,35 @@ items:
             isExternal: '0'
     -
         title: Work
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: portfolio/index
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
     -
         title: Contact
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: contact/index
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Privacy Policy'
         type: cms-page
         code: ''
-        reference: contact
+        reference: privacy-policy
         viewBag:
             isHidden: '0'
             cssClass: ''

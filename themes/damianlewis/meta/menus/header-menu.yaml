@@ -1,13 +1,9 @@
 items:
     -
         title: About
-        nesting: ''
         type: cms-page
-        url: ''
         code: ''
-        reference: about
-        cmsPage: ''
-        replace: ''
+        reference: about/index
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -27,9 +23,13 @@ items:
             isExternal: '0'
     -
         title: Work
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: portfolio/index
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -38,7 +38,7 @@ items:
         title: Contact
         type: cms-page
         code: ''
-        reference: contact
+        reference: contact/index
         viewBag:
             isHidden: '0'
             cssClass: ''

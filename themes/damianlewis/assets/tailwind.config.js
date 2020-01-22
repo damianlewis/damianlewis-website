@@ -21,10 +21,6 @@ module.exports = {
         900: '#161616',
       },
     },
-    filter: {
-      'grayscale-100': 'grayscale(100%)',
-      'grayscale-0': 'grayscale(0%)',
-    },
     fontFamily: {
       'heading': ['triplex-serif', 'serif'],
       'body': ['depot-new-web', 'sans-serif'],
@@ -32,11 +28,8 @@ module.exports = {
       'quote': ['Roboto Slab', 'serif'],
     },
     fontSize: {
-      '3xs': '12px',
-      '2xs': '13px',
-      'xs': '14px',
-      'sm': '16px',
-      'base': '17px',
+      'sm': '14px',
+      'base': '16px',
       'lg': '18px',
       'xl': '19px',
       '2xl': '21px',
@@ -45,23 +38,11 @@ module.exports = {
       '5xl': '36px',
       '6xl': '48px',
     },
-    letterSpacing: {
-      tightest: '-0.075',
-      tighter: '-0.05em',
-      tight: '-0.025em',
-      normal: '0',
-      wide: '0.025em',
-      wider: '0.05em',
-      widest: '0.075em',
-    },
     lineHeight: {
-      tightest: 1.125,
-      tighter: 1.25,
-      tight: 1.375,
-      normal: 1.5,
-      loose: 1.625,
-      looser: 1.75,
-      loosest: 1.875,
+      'tight': 1.125,
+      'snug': 1.625,
+      'normal': 1.75,
+      'relaxed': 1.875,
     },
     spacing: {
       0: '0',
@@ -79,7 +60,10 @@ module.exports = {
       32: '96px',
       36: '108px',
       40: '120px',
+      44: '132px',
       50: '150px',
+      52: '156px',
+      60: '180px',
       68: '204px',
       82: '246px',
       88: '264px',
@@ -89,21 +73,30 @@ module.exports = {
       160: '480px',
       172: '516px',
       248: '744px',
-      380: '1140px'
+      380: '1140px',
     },
     transitionProperty: {
       'none': 'none',
+      'all': 'all',
       'bg': 'background-color',
+      'color': 'color',
       'opacity': 'opacity',
+      'width': 'width',
     },
     transitionDuration: {
       'default': '100ms',
     },
     transitionTimingFunction: {
       'default': 'ease',
+      'ease-in': 'ease-in',
+      'ease-out': 'ease-out',
     },
     transitionDelay: {},
     willChange: {},
+    filter: {
+      'grayscale-100': 'grayscale(100%)',
+      'grayscale-0': 'grayscale(0%)',
+    },
     extend: {
       borderWidth: {
         3: '3px',
@@ -115,17 +108,26 @@ module.exports = {
         40: '.4',
         45: '.45',
       },
-      maxWidth: {
-        380: '1140px'
-      },
     },
   },
   variants: {
     filter: ['hover'],
-    margin: ['responsive', 'last'],
   },
   plugins: [
-    require('tailwindcss-filters')(),
     require('tailwindcss-transitions')(),
+    require('tailwindcss-filters')(),
   ],
+  corePlugins: {
+    borderCollapse: false,
+    container: false,
+    fill: false,
+    float: false,
+    maxWidth: false,
+    maxHeight: false,
+    minHeight: false,
+    minWidth: false,
+    placeholderColor: false,
+    stroke: false,
+    tableLayout: false,
+  },
 }

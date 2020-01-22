@@ -1,15 +1,15 @@
 description = "Displays a featured project."
 ==
-<div class="md:flex md:items-center md:-ml-16">
-    <div class="mb-16 md:w-1/2 md:mb-0 md:pl-16">
+<div class="md:flex md:items-center md:c-layout-y-16">
+    <div class="md:w-1/2">
         <img src="{{ project.image.path }}" alt="{{ project.image.title }}">
     </div>
 
-    <div class="md:w-1/2 md:pl-16">
+    <div class="md:w-1/2 mt-16 md:mt-0">
         <h3 class="text-grey-900 mb-4">{{ project.title }}</h3>
-        <div class="c-text text-grey-600 mb-12">
+        <div class="c-content">
             {{ project.text|raw }}
         </div>
-        <a class="c-button" href="{{ project.url }}">View project</a>
+        <a class="c-button mt-16" href="{{ project.url }}">View project</a>
     </div>
 </div>

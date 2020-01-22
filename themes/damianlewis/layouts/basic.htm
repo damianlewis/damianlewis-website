@@ -1,0 +1,16 @@
+description = "No header or footer"
+==
+{% spaceless %}
+<!doctype html>
+<html lang="en">
+
+{% partial 'site/head' %}
+
+<body>
+<main>
+    {% page %}
+</main>
+</body>
+
+</html>
+{% endspaceless %}

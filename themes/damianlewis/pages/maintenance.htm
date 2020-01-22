@@ -1,12 +1,17 @@
-title = "Maintenance."
+title = "Maintenance"
 url = "/maintenance"
-layout = "default"
-description = "Maintenance mode page"
+layout = "basic"
+description = "Maintenance mode."
 is_hidden = 0
 ==
 <div class="c-container">
     <div class="c-container__inner">
-        <h1 class="text-grey-900 mb-8">Maintenance</h1>
-        <p class="[ c-text c-text--large ] text-grey-600">We're sorry, but the site is currently down for maintenance. Please check back later.</p>
+        <div class="flex flex-col">
+            <img class="h-60 md:hidden" src="{{ 'assets/images/full_logo_vertical.svg'|theme }}" alt="Full logo">
+            <img class="hidden h-40 md:block" src="{{ 'assets/images/full_logo_horizontal.svg'|theme }}" alt="Full logo">
+        </div>
+        <div class="[ c-content c-content--large ] text-center mt-24">
+            {% content 'messages/maintenance.htm' %}
+        </div>
     </div>
 </div>

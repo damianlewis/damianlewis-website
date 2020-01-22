@@ -3,4 +3,34 @@ url = "/services"
 layout = "default"
 description = "Services list page."
 is_hidden = 0
+
+[pageHero]
+id = 1
+
+[servicesList]
+orderBy = "sort_order"
+orderDirection = "asc"
+includeIcon = 1
 ==
+{% if hero %}
+    {% partial 'common/hero' %}
+{% endif %}
+
+<div class="[ c-container c-container--wave ]">
+    <div class="c-container__inner">
+        {% partial 'headings/h2_with_divider' heading='Philosophy' %}
+        <div class="c-content">
+            {% content 'services/philosophy.htm' %}
+        </div>
+    </div>
+</div>
+
+{% if services %}
+    <div class="[ c-container c-container--tint ]">
+        <div class="c-container__inner pt-24 lg:pt-32">
+            <div class="flex flex-col items-center">
+                {% partial 'services/services' %}
+            </div>
+        </div>
+    </div>
+{% endif %}

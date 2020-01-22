@@ -2,19 +2,17 @@
    ========================================================================== */
 
 #scf-form-contactForm {
-  .form-group {
-    @extend .spacing;
-    @extend .spacing-8;
-  }
-
   .control-label {
-    @extend .h6;
+    @extend h6;
     @apply block text-grey-600 mb-2;
+
+    @screen md {
+      @apply w-1/2;
+    }
   }
 
   .form-control {
     @extend .c-text;
-    @extend .c-text--large;
     @apply bg-grey-100 border border-grey-300 text-grey-600 px-2;
   }
 

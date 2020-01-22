@@ -5,6 +5,9 @@ description = "Contact and enquiry page."
 is_hidden = 0
 
 [pageHero]
+id = 1
+
+[contactDetails]
 
 [contactForm]
 ==
@@ -14,6 +17,11 @@ is_hidden = 0
 
 <div class="[ c-container c-container--wave ]">
     <div class="c-container__inner">
-        {% component 'contactForm' %}
+        <div class="c-content">
+            {% content 'contact/instruction.htm' %}
+        </div>
+        <div class="mt-12">
+            {% component 'contactForm' %}
+        </div>
     </div>
 </div>

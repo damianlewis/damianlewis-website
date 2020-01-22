@@ -1,1 +1,3 @@
-static-pages: {  }
+static-pages:
+    404: {  }
+    error: {  }

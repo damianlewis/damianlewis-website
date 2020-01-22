@@ -5,13 +5,14 @@ description = "About me page."
 is_hidden = 0
 
 [pageHero]
-id = 2
+id = 1
 
 [categorisedSkills]
 
 [qualificationsList]
 orderBy = "sort_order"
 orderDirection = "asc"
+includeCompletedDate = 1
 ==
 {% if hero %}
     {% partial 'common/hero' %}
@@ -19,18 +20,17 @@ orderDirection = "asc"
 
 <div class="[ c-container c-container--wave ]">
     <div class="c-container__inner">
-        <h2 class="text-grey-900">Background</h2>
-        <hr class="border-red-500 mb-12 lg:mb-16 xl:mb-20">
-        <div class="c-text c-post text-grey-600">
+        {% partial 'headings/h2_with_divider' heading='Background' %}
+        <div class="c-content">
             {% content 'about/background.htm' %}
         </div>
 
         {% if qualifications %}
             <div class="mt-20">
-                <h3 class="h4 text-grey-900 mb-8">Qualifications</h3>
-                <ul>
+                {% partial 'headings/h3_as_h4' heading='Qualifications' %}
+                <ul class="c-layout-x-8">
                     {% for qualification in qualifications %}
-                        <li class="spacing spacing-6">
+                        <li>
                             <div class="[ c-text c-text--large ] text-grey-600">{{ qualification.title }}</div>
                             <div class="[ c-text c-text--small ] text-grey-600">Awarded: {{ qualification.score }}</div>
                         </li>
@@ -45,15 +45,16 @@ orderDirection = "asc"
     <div id="accordion-list">
         {% for category in rootCategories %}
             {% set isEven = (loop.index % 2) is even %}
-            <div class="[ c-container{% if isEven %} c-container--wave{% endif %} ]{% if not isEven %} bg-red-100{% endif %}">
-                <div class="c-container__inner">
-                    <h2 class="text-grey-900">{{ category.name }}</h2>
-                    <hr class="border-red-500 mb-12 lg:mb-16 xl:mb-20">
-                    {% for subCategory in category.categories %}
-                        <div class="spacing spacing-12 lg:spacing-16">
-                            {% partial 'about/skills_category' name=subCategory.name skills=subCategory.skills %}
-                        </div>
-                    {% endfor %}
+            <div class="[ c-container c-container--{% if isEven %}wave{% endif %}{% if not isEven %}tint{% endif %} ]">
+                <div class="c-container__inner{% if not isEven %} pb-32 lg:pb-36{% endif %}">
+                    {% partial 'headings/h2_with_divider' heading=category.name %}
+                    <ul class="c-layout-x-16 lg:c-layout-x-24">
+                        {% for subCategory in category.categories %}
+                            <li>
+                                {% partial 'about/skills_category' name=subCategory.name skills=subCategory.skills %}
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         {% endfor %}

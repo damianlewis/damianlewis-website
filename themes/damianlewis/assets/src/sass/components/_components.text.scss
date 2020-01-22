@@ -1,26 +1,18 @@
-/* Typography
+/* Text
    ========================================================================== */
 
 .c-text {
-  @apply font-body font-light text-xs leading-loosest antialiased;
+  @apply font-body font-light text-base leading-normal antialiased;
 
   @screen lg {
-    @apply text-base leading-looser;
+    @apply leading-relaxed;
   }
 }
 
 .c-text--large {
-  @apply text-base leading-looser;
-
-  @screen lg {
-    @apply text-xl;
-  }
+  @apply text-lg;
 }
 
 .c-text--small {
-  @apply text-3xs;
-
-  @screen lg {
-    @apply text-xs;
-  }
+  @apply text-sm;
 }

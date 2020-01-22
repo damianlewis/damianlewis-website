@@ -8,36 +8,38 @@ orderDirection = "asc"
 
 [viewBag]
 ==
-<div class="px-8 py-16 bg-grey-700 md:px-12 lg:px-50">
-    <div class="lg:flex lg:-ml-16">
-        <div class="mb-16 lg:mb-0 lg:w-1/2 lg:pl-16">
-            <h3 class="text-white mb-2">What I do</h3>
-            <div class="[ c-text c-text--large ] text-grey-300">
-                {% content 'footer/about.htm' %}
-            </div>
-        </div>
-
-        <div class="md:flex md:-ml-16 lg:justify-between lg:ml-0 lg:pl-16 lg:w-1/2">
-            <div class="mb-16 md:pl-16 md:mb-0 lg:pl-0">
-                <h3 class="text-white mb-2">Site Links</h3>
-                {% partial 'navigation/footer_menu' %}
-            </div>
-
-            {% if contactDetails.email or links.isAvailable %}
-                <div class="md:pl-16 lg:pl-0">
-                    {% if contactDetails.email %}
-                        <div class="mb-16">
-                            <h3 class="text-white mb-2">Email me at</h3>
-                            <a class="[ c-text c-text--large ] text-grey-300"
-                               href="mailto:{{ html_email(contactDetails.email) }}">{{ html_email(contactDetails.email) }}</a>
-                        </div>
-                    {% endif %}
-
-                    {% if links.isAvailable %}
-                        {% partial 'common/social_media_links' links=links.collection %}
-                    {% endif %}
+<div class="c-container">
+    <div class="c-container__inner bg-grey-700 pb-16 lg:pb-20 xl:pb-24">
+        <div class="lg:flex lg:c-layout-y-16">
+            <div class="lg:w-1/2">
+                {% partial 'headings/h3_for_footer' heading='What I do' %}
+                <div class="[ c-content c-content--large c-content--footer ]">
+                    {% content 'footer/about.htm' %}
                 </div>
-            {% endif %}
+            </div>
+
+            <div class="mt-16 md:flex md:c-layout-y-16 lg:mt-0 lg:justify-between lg:ml-0 lg:w-1/2">
+                <div class="lg:pl-0">
+                    {% partial 'headings/h3_for_footer' heading='Site Links' %}
+                    {% partial 'navigation/footer_menu' %}
+                </div>
+
+                {% if contactDetails.email or links.isAvailable %}
+                    <div class="mt-16 md:mt-0">
+                        {% if contactDetails.email %}
+                            {% partial 'headings/h3_for_footer' heading='Email me at' %}
+                            <a class="[ c-text c-text--large ][ c-underline c-underline--footer ] text-grey-300"
+                               href="mailto:{{ html_email(contactDetails.email) }}">{{ html_email(contactDetails.email) }}</a>
+                        {% endif %}
+
+                        {% if links.isAvailable %}
+                            <div class="mt-16">
+                                {% partial 'common/links' links=links.collection %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
@@ -45,5 +47,5 @@ orderDirection = "asc"
 <footer class="[ c-text c-text--small ] text-center bg-grey-800 text-grey-400 px-8 py-4">
     &copy; Copyright {{ 'now'|date('Y') }} Damian Lewis
     <br class="md:hidden">
-    <span class="hidden md:inline"> &ndash; </span>Web Developer Hertfordshire UK
+    <span class="hidden md:inline"> &ndash; </span>{% content 'footer/seo.txt' %}
 </footer>
