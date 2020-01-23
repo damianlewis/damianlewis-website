@@ -2,10 +2,10 @@
     <div>
         <div class="flex items-center justify-between">
             <span class="c-text text-grey-600 cursor-pointer" @click="isOpen = !isOpen">{{ title }}</span>
-            <button class="h-6" @click="isOpen = !isOpen">
+            <a href="#" class="h-6" @click.prevent="isOpen = !isOpen">
                 <img v-if="isOpen" :src="closeButton" class="h-full" alt="Close icon">
                 <img v-else :src="openButton" class="h-full" alt="Open icon">
-            </button>
+            </a>
         </div>
 
         <div class="overflow-hidden" :class="{'accordion--closed': !isOpen, 'accordion--open': isOpen}">
