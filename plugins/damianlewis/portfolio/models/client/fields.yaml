@@ -30,7 +30,13 @@ secondaryTabs:
 
         logo_opacity:
             label: Logo opacity
-            type: number
+            type: dropdown
+            options:
+                25: 25
+                30: 30
+                35: 35
+                40: 40
+            default: 25
             comment: Set the opacity of the logo.
 
         is_hidden:
