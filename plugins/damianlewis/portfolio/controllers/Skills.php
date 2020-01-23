@@ -6,6 +6,7 @@ namespace DamianLewis\Portfolio\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
+use Backend\Behaviors\ReorderController;
 use BackendMenu;
 use Backend\Classes\Controller;
 use DamianLewis\Portfolio\Models\Skill;
@@ -17,11 +18,13 @@ class Skills extends Controller
 
     public $implement = [
         ListController::class,
-        FormController::class
+        FormController::class,
+        ReorderController::class
     ];
 
     public $listConfig = 'config/list.yaml';
     public $formConfig = 'config/form.yaml';
+    public $reorderConfig = 'config/reorder.yaml';
 
     public function __construct()
     {
