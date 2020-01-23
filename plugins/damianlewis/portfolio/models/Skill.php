@@ -43,8 +43,7 @@ class Skill extends Model
 
     protected $nullable = [
         'parent_id',
-        'name',
-        'sort_order'
+        'name'
     ];
 
     /**

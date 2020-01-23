@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('name')->nullable();
             $table->unsignedSmallInteger('logo_width')->nullable();
             $table->unsignedSmallInteger('logo_opacity')->nullable();
-            $table->unsignedSmallInteger('sort_order')->nullable();
+            $table->unsignedSmallInteger('sort_order')->default(0);
             $table->boolean('is_hidden')->default(false);
             $table->timestamps();
         });

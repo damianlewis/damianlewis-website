@@ -18,7 +18,7 @@ class CreateServicesTable extends Migration
             $table->unsignedInteger('category_id')->nullable()->index();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->unsignedSmallInteger('sort_order')->nullable();
+            $table->unsignedSmallInteger('sort_order')->default(0);
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_hidden')->default(false);
             $table->timestamps();

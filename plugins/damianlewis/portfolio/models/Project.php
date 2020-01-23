@@ -112,7 +112,6 @@ class Project extends Model
         'tag_line',
         'summary',
         'description',
-        'sort_order',
         'completed_at'
     ];
 
