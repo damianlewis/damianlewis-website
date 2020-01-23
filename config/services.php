@@ -17,6 +17,7 @@ return [
     'mailgun' => [
         'domain' => '',
         'secret' => '',
+        'endpoint' => 'api.eu.mailgun.net',
     ],
 
     'mandrill' => [
