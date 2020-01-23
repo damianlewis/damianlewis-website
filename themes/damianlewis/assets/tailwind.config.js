@@ -126,6 +126,7 @@ module.exports = {
     maxHeight: false,
     minHeight: false,
     minWidth: false,
+    outline: false,
     placeholderColor: false,
     stroke: false,
     tableLayout: false,

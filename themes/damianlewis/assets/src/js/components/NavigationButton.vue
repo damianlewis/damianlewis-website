@@ -1,9 +1,9 @@
 <template>
-    <button class="button" :class="{'button--active': isActive}" @click="$emit('toggle')">
+    <a href="#" class="button" :class="{'button--active': isActive}" @click.prevent="$emit('toggle')">
         <span class="button__box">
             <span class="button__inner"></span>
         </span>
-    </button>
+    </a>
 </template>
 
 <script>
@@ -23,10 +23,6 @@
 
     .button {
         @apply block cursor-pointer;
-
-        &:focus {
-            @apply outline-none;
-        }
     }
 
     .button__box {
