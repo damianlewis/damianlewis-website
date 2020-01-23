@@ -1,5 +1,6 @@
 const mix = require('laravel-mix')
 require('mix-tailwindcss')
+require('laravel-mix-purgecss')
 
 let config = {
   srcPath: 'src',
@@ -12,7 +13,11 @@ mix.js(`${config.srcPath}/js/navigation.js`, 'js').
 mix.extract(['vue'])
 
 mix.sass(`${config.srcPath}/sass/main.scss`, 'css').
-  tailwind()
+  tailwind().
+  purgeCss({
+    extensions: ['htm', 'vue'],
+    folders: ['../'],
+  })
 
 mix.setPublicPath(config.distPath)
 
