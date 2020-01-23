@@ -66,7 +66,6 @@ class Qualification extends Model
     protected array $nullable = [
         'title',
         'score',
-        'sort_order',
         'completed_at'
     ];
 
