@@ -49,7 +49,8 @@
         "damianlewis/oc-transformer-plugin": "^1.0",
         "rainlab/pages-plugin": "^1.3",
         "janvince/smallcontactform": "dev-master",
-        "damianlewis/oc-googletagmanager-plugin": "^1.1"
+        "damianlewis/oc-googletagmanager-plugin": "^1.1",
+        "october/drivers-plugin": "^1.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.7",
