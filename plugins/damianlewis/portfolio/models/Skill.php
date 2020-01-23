@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Models;
 
 use Model;
-use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Nullable;
 use October\Rain\Database\Traits\SimpleTree;
 use October\Rain\Database\Traits\Sortable;
