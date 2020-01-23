@@ -40,8 +40,7 @@ class Category extends Model
 
     protected $nullable = [
         'parent_id',
-        'name',
-        'sort_order'
+        'name'
     ];
 
     /**

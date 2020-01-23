@@ -56,8 +56,7 @@ class Client extends Model
     protected $nullable = [
         'name',
         'logo_width',
-        'logo_opacity',
-        'sort_order'
+        'logo_opacity'
     ];
 
     /**

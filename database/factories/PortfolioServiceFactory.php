@@ -8,7 +8,7 @@ use Faker\Generator;
 $factory->define(Service::class, function (Generator $faker) {
     return [
         'title' => ucwords($faker->unique()->words(rand(3, 6), true)),
-        'description' => $faker->paragraph(3, true),
+        'description' => $faker->paragraph(3, true)
     ];
 });
 

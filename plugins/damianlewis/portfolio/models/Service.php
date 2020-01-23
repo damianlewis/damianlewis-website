@@ -74,8 +74,7 @@ class Service extends Model
     protected array $nullable = [
         'category_id',
         'title',
-        'description',
-        'sort_order'
+        'description'
     ];
 
     /**

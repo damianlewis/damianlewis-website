@@ -17,7 +17,7 @@ class CreateQualificationsTable extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->string('score')->nullable();
-            $table->unsignedSmallInteger('sort_order')->nullable();
+            $table->unsignedSmallInteger('sort_order')->default(0);
             $table->boolean('is_hidden')->default(false);
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();

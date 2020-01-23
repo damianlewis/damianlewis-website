@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration
             $table->string('tag_line')->nullable();
             $table->text('summary')->nullable();
             $table->text('description')->nullable();
-            $table->unsignedSmallInteger('sort_order')->nullable();
+            $table->unsignedSmallInteger('sort_order')->default(0);
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_hidden')->default(false);
             $table->timestamp('completed_at')->nullable();
