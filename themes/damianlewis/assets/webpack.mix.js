@@ -1,4 +1,5 @@
 const mix = require('laravel-mix')
+const CompressionPlugin = require('compression-webpack-plugin')
 require('mix-tailwindcss')
 require('laravel-mix-purgecss')
 
@@ -18,6 +19,14 @@ mix.sass(`${config.srcPath}/sass/main.scss`, 'css').
     extensions: ['htm', 'vue'],
     folders: ['../'],
   })
+
+if (mix.inProduction()) {
+  mix.webpackConfig({
+    plugins: [
+      new CompressionPlugin(),
+    ],
+  })
+}
 
 mix.setPublicPath(config.distPath)
 
