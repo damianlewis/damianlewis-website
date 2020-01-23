@@ -17,7 +17,7 @@ class CreateSkillsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('parent_id')->nullable()->index();
             $table->unsignedInteger('category_id')->nullable()->index();
-            $table->string('name')->nullable()->unique();
+            $table->string('name')->nullable();
             $table->unsignedSmallInteger('sort_order')->default(0);
             $table->boolean('is_hidden')->default(false);
             $table->timestamps();
