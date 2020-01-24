@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "974c10fb174877414717d09164ed6d46",
+    "content-hash": "46b8a530c27007f7edc01187493d65c5",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2020,6 +2020,7 @@
                 "scss",
                 "stylesheet"
             ],
+            "abandoned": "scssphp/scssphp",
             "time": "2019-06-18T21:15:44+00:00"
         },
         {
@@ -3550,6 +3551,50 @@
                 "pages"
             ],
             "time": "2019-09-27T07:14:56+00:00"
+        },
+        {
+            "name": "rainlab/sitemap-plugin",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rainlab/sitemap-plugin.git",
+                "reference": "ce52e1d3537334650634c7c467bd085c40291d99"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rainlab/sitemap-plugin/zipball/ce52e1d3537334650634c7c467bd085c40291d99",
+                "reference": "ce52e1d3537334650634c7c467bd085c40291d99",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.5.9"
+            },
+            "type": "october-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexey Bobkov",
+                    "email": "aleksey.bobkov@gmail.com",
+                    "role": "Co-founder"
+                },
+                {
+                    "name": "Samuel Georges",
+                    "email": "daftspunky@gmail.com",
+                    "role": "Co-founder"
+                }
+            ],
+            "description": "Sitemap plugin for October CMS",
+            "homepage": "https://octobercms.com/plugin/rainlab-sitemap",
+            "keywords": [
+                "Sitemap",
+                "october",
+                "octobercms"
+            ],
+            "time": "2019-05-18T13:29:40+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
