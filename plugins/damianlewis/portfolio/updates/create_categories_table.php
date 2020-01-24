@@ -17,8 +17,10 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('parent_id')->nullable()->index();
             $table->string('name')->nullable();
-            $table->unsignedSmallInteger('sort_order')->default(0);
             $table->boolean('is_hidden')->default(false);
+            $table->unsignedInteger('nest_left')->nullable();
+            $table->unsignedInteger('nest_right')->nullable();
+            $table->unsignedInteger('nest_depth')->nullable();
             $table->timestamps();
 
             $table->foreign('parent_id')
