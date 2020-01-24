@@ -42,6 +42,7 @@ $headings: (
 
   a {
     @extend .c-underline;
+    @apply text-red-800;
   }
 
   ul {
