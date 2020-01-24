@@ -1,15 +1,13 @@
 description = "Page head section."
 
+[viewBag]
+
 [tagManager]
 
-[viewBag]
+[SeoCmsPage]
 ==
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    {% if this.page.meta_title %}<meta name="title" content="{{ this.page.meta_title }}">{% endif %}
-    {% if this.page.meta_description %}<meta name="description" content="{{ this.page.meta_description }}">{% endif %}
+    {% component 'SeoCmsPage' %}
     {% if this.environment == 'development' %}
         <link rel="stylesheet" href="{{ 'assets/development/css/main.css'|theme }}">
     {% else %}
@@ -19,5 +17,4 @@ description = "Page head section."
         {% component 'tagManager' %}
     {% endif %}
     {% styles %}
-    <title>{{ this.page.title }} | {{ this.theme.site_name }}</title>
 </head>
