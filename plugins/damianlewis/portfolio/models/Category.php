@@ -7,16 +7,14 @@ namespace DamianLewis\Portfolio\Models;
 use Model;
 use October\Rain\Database\Builder;
 use October\Rain\Database\Collection;
+use October\Rain\Database\Traits\NestedTree;
 use October\Rain\Database\Traits\Nullable;
-use October\Rain\Database\Traits\SimpleTree;
-use October\Rain\Database\Traits\Sortable;
 use October\Rain\Halcyon\Traits\Validation;
 
 class Category extends Model
 {
+    use NestedTree;
     use Nullable;
-    use SimpleTree;
-    use Sortable;
     use Validation;
 
     const CATEGORY_NAME_SKILLS = 'Skills';

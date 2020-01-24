@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Models;
 
 use Model;
+use October\Rain\Database\Traits\NestedTree;
 use October\Rain\Database\Traits\Nullable;
-use October\Rain\Database\Traits\SimpleTree;
-use October\Rain\Database\Traits\Sortable;
 use October\Rain\Database\Traits\Validation;
 
 class Skill extends Model
 {
+    use NestedTree;
     use Nullable;
-    use SimpleTree;
-    use Sortable;
     use Validation;
 
     public $rules = [
@@ -46,50 +44,20 @@ class Skill extends Model
         'name'
     ];
 
-    /**
-     * @var Category
-     */
-    protected Category $rootCategory;
 
     /**
      * Returns the root category for the skill.
      *
-     * @return Category
+     * @return Category|null
      */
-    public function getRootCategoryAttribute(): Category
+    public function getRootCategoryAttribute(): ?Category
     {
-        $this->setRootCategoryForSkill($this);
+        $rootSkill = $this->getRoot();
 
-        return $this->rootCategory;
-    }
-
-    /**
-     * Traverses the skills looking for the parent category.
-     *
-     * @param  Skill  $skill
-     */
-    protected function setRootCategoryForSkill(Skill $skill): void
-    {
-        if ($skill->parent()->exists()) {
-            $this->setRootCategoryForSkill($skill->parent);
+        if ($rootSkill->category()->doesntExist()) {
+            return null;
         }
 
-        if ($skill->category()->exists()) {
-            $this->setRootCategory($skill->category);
-        }
-    }
-
-    /**
-     * Traverses the categories looking for the root category.
-     *
-     * @param  Category  $category
-     */
-    protected function setRootCategory(Category $category): void
-    {
-        $this->rootCategory = $category;
-
-        if ($category->parent()->exists()) {
-            $this->setRootCategory($category->parent);
-        }
+        return $rootSkill->category->getRoot();
     }
 }
