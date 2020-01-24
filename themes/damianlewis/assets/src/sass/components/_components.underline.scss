@@ -6,8 +6,8 @@
 
   &::after {
     content: '';
-    height: 2px;
-    @apply absolute left-0 bottom-0 w-0 bg-red-500 transition-width;
+    height: 1px;
+    @apply absolute left-0 bottom-0 w-0 bg-red-700 transition-width;
   }
 
   &:hover {
