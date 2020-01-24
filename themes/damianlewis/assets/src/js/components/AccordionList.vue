@@ -8,9 +8,9 @@
             </a>
         </div>
 
-        <div class="overflow-hidden" :class="{'accordion--closed': !isOpen, 'accordion--open': isOpen}">
-            <div v-for="item in list" class="[ c-text c-text--small ] text-grey-600">{{ item.name }}</div>
-        </div>
+        <ul class="list-disc list-inside overflow-hidden" :class="{'accordion--closed': !isOpen, 'accordion--open': isOpen}">
+            <li v-for="item in list" class="[ c-text c-text--small ] text-grey-600">{{ item.name }}</li>
+        </ul>
     </div>
 </template>
 
