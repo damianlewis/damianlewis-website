@@ -46,6 +46,7 @@ tabs:
             mode: relation
             nameFrom: name
             options: true
+            customTags: false
 
         technologies:
             tab: Attributes
@@ -55,6 +56,7 @@ tabs:
             mode: relation
             nameFrom: name
             options: true
+            customTags: false
 
         testimonial:
             tab: Testimonial
