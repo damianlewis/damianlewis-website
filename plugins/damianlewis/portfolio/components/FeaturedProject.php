@@ -27,12 +27,6 @@ class FeaturedProject extends TransformerComponent
     public function defineProperties(): array
     {
         return [
-            'id' => [
-                'title' => 'Project',
-                'type' => 'dropdown',
-                'description' => 'The project to display.',
-                'placeholder' => 'Select a project'
-            ],
             'projectPage' => [
                 'title' => 'Project page',
                 'description' => 'The page used to display the project details.',
@@ -48,8 +42,7 @@ class FeaturedProject extends TransformerComponent
 
     public function onRun(): void
     {
-        $id = (int) $this->property('id');
-        $project = $this->getProjectById($id);
+        $project = $this->getFirstActiveFeaturedProject();
 
         if ($project !== null) {
             $this->transformer->setBasePath($this->property('projectPage'));
@@ -68,28 +61,15 @@ class FeaturedProject extends TransformerComponent
     }
 
     /**
-     * Returns an array of active projects with the id as the key and title as the value.
+     * Returns the first active featured project from the database.
      *
-     * @return array
-     */
-    public function getIdOptions(): array
-    {
-        $projects = Project::active()->get();
-
-        return $projects->pluck('title', 'id')->all();
-    }
-
-    /**
-     * Returns a project from the database with the given id.
-     *
-     * @param  int  $id
      * @return ProjectDetails|null
      */
-    protected function getProjectById(int $id): ?Project
+    protected function getFirstActiveFeaturedProject(): ?Project
     {
         return Project::active()
+            ->featured()
             ->visible()
-            ->where('id', $id)
             ->first();
     }
 }
