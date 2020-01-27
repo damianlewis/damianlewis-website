@@ -34,3 +34,8 @@ secondaryTabs:
             label: Hidden
             type: checkbox
             comment: When enabled the skill is hidden from the frontend.
+
+        is_project_only:
+            label: Project only
+            type: checkbox
+            comment: When enabled the skill is only included in projects.

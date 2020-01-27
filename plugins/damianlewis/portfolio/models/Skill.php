@@ -36,14 +36,14 @@ class Skill extends Model
     protected $table = 'damianlewis_portfolio_skills';
 
     protected $casts = [
-        'is_hidden' => 'boolean'
+        'is_hidden' => 'boolean',
+        'is_project_only' => 'boolean'
     ];
 
     protected $nullable = [
         'parent_id',
         'name'
     ];
-
 
     /**
      * Returns the root category for the skill.
