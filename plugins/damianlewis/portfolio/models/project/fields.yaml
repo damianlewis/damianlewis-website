@@ -61,7 +61,7 @@ tabs:
             span: auto
             type: relation
             nameFrom: nameAndCompany
-            scope: active
+            emptyOption: Select a testimonial to display
 
         mockup_desktop_image:
             tab: Mockup Images

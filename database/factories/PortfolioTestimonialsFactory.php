@@ -19,9 +19,9 @@ $factory->state(Testimonial::class, 'rated', function (Generator $faker) {
     ];
 });
 
-$factory->state(Testimonial::class, 'active', function () {
+$factory->state(Testimonial::class, 'featured', function () {
     return [
-        'is_active' => true
+        'is_featured' => true
     ];
 });
 
