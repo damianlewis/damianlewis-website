@@ -85,3 +85,9 @@ $headings: (
     @apply text-grey-300;
   }
 }
+
+.c-content--quote {
+  p {
+    @apply font-quote text-grey-900;
+  }
+}
