@@ -32,7 +32,7 @@ class Testimonial extends Model
     protected $table = 'damianlewis_portfolio_testimonials';
 
     protected $casts = [
-        'is_active' => 'boolean',
+        'is_featured' => 'boolean',
         'is_hidden' => 'boolean'
     ];
 
@@ -57,14 +57,14 @@ class Testimonial extends Model
     }
 
     /**
-     * Select active testimonials.
+     * Select featured testimonials.
      *
      * @param  Builder  $query
      * @return Builder
      */
-    public function scopeActive(Builder $query): Builder
+    public function scopeFeatured(Builder $query): Builder
     {
-        return $query->where('is_active', true);
+        return $query->where('is_featured', true);
     }
 
     /**

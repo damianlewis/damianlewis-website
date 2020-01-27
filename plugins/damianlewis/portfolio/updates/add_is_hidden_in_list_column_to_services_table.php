@@ -8,12 +8,12 @@ use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 use Schema;
 
-class HideServicesInServicesList extends Migration
+class AddIsHiddenInListColumnToServicesTable extends Migration
 {
     public function up()
     {
         Schema::table('damianlewis_portfolio_services', function (Blueprint $table) {
-            $table->boolean('is_hidden_in_list')->default(false);
+            $table->boolean('is_hidden_in_list')->default(false)->after('is_hidden');
         });
     }
 

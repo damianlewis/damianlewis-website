@@ -40,10 +40,10 @@ secondaryTabs:
             min: 1
             max: 5
 
-        is_active:
-            label: Active
+        is_featured:
+            label: Featured
             type: checkbox
-            comment: When enabled the testimonial is available for selection.
+            comment: When enabled the testimonial becomes a featured testimonial.
 
         is_hidden:
             label: Hidden

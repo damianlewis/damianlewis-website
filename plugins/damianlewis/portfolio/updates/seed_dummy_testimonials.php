@@ -14,8 +14,8 @@ class SeedDummyTestimonials extends Seeder
     {
         if (App::environment() == 'development') {
             factory(Testimonial::class, 4)->create();
-            factory(Testimonial::class, 6)->states(['active', 'rated'])->create();
-            factory(Testimonial::class, 2)->states(['active', 'hidden', 'rated'])->create();
+            factory(Testimonial::class, 6)->states(['rated'])->create();
+            factory(Testimonial::class, 2)->states(['featured', 'hidden', 'rated'])->create();
         }
     }
 }
