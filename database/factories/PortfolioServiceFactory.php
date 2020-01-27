@@ -23,3 +23,9 @@ $factory->state(Service::class, 'hidden', function () {
         'is_hidden' => true
     ];
 });
+
+$factory->state(Service::class, 'hidden in list', function () {
+    return [
+        'is_hidden_in_list' => true
+    ];
+});
