@@ -2,8 +2,10 @@ description = "Displays a testimonial."
 ==
 <div class="md:flex md:items-center md:c-layout-y-16 xl:c-layout-y-24">
     <div class="md:w-1/2">
-        <blockquote class="font-quote font-light text-base leading-normal antialiased text-grey-900 md:text-lg">
-            {{ testimonial.quote|raw }}
+        <blockquote>
+            <div class="[ c-content c-content--quote ]">
+                {{ testimonial.quote|raw }}
+            </div>
             <footer class="mt-8">
                 <cite class="font-heading font-light not-italic text-lg tracking-tight leading-tight antialiased text-grey-900">
                     {{ testimonial.name }}
@@ -13,6 +15,7 @@ description = "Displays a testimonial."
                 </cite>
             </footer>
         </blockquote>
+
 
         {% if testimonial.rating %}
             <div class="mt-4">

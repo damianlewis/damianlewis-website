@@ -11,6 +11,7 @@ $headings: (
 .c-content {
   @each $size-outer, $margin-outer in $headings {
     h#{$size-outer} {
+      @apply text-grey-900;
       @each $size-inner, $margin-inner in $headings {
         ~ h#{$size-inner} {
           @apply mt-#{$margin-inner};
@@ -31,13 +32,24 @@ $headings: (
     @apply mb-2;
   }
 
-  p, ul {
-    @extend .c-text;
-    @apply text-grey-600;
+  p, ul, blockquote {
+    @apply font-light text-base leading-normal antialiased;
+
+    @screen lg {
+      @apply leading-relaxed;
+    }
 
     + p {
       @apply mt-8;
     }
+
+    + blockquote {
+      @apply mt-8;
+    }
+  }
+
+  p, ul {
+    @apply text-grey-600 font-body;
   }
 
   a {
@@ -52,17 +64,30 @@ $headings: (
       @apply mt-8;
     }
   }
+
+  blockquote {
+    @apply border-l-3 border-red-500 py-2 px-4;
+
+    p {
+      @apply font-quote text-grey-900;
+    }
+  }
 }
 
 .c-content--large {
   p, ul {
-    @extend .c-text;
-    @extend .c-text--large;
+    @apply text-lg;
   }
 }
 
 .c-content--footer {
   p, ul {
     @apply text-grey-300;
+  }
+}
+
+.c-content--quote {
+  p {
+    @apply font-quote text-grey-900;
   }
 }
