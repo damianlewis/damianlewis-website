@@ -18,3 +18,19 @@ columns:
         label: Visible
         type: hidden
         width: 1%
+
+    is_project_only:
+        label: Project only
+        type: hidden
+        width: 1%
+        invisible: true
+
+    created_at:
+        label: Created at
+        type: datetime
+        invisible: true
+
+    updated_at:
+        label: Updated at
+        type: datetime
+        invisible: true
