@@ -36,6 +36,11 @@ secondaryTabs:
             type: checkbox
             comment: When enabled the service becomes a featured service.
 
+        is_hidden_in_list:
+            label: Hide in list
+            type: checkbox
+            comment: When enabled the service is hidden from the services list page.
+
         is_hidden:
             label: Hidden
             type: checkbox

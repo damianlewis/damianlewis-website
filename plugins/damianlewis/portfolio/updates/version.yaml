@@ -23,3 +23,6 @@
     - create_services_table.php
     - Seed dummy services
     - seed_dummy_services.php
+1.0.5:
+    - Hide services in services list
+    - hide_services_in_services_list.php

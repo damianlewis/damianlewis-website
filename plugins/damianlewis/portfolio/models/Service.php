@@ -63,7 +63,8 @@ class Service extends Model
 
     protected $casts = [
         'is_featured' => 'boolean',
-        'is_hidden' => 'boolean'
+        'is_hidden' => 'boolean',
+        'is_hidden_in_list' => 'boolean'
     ];
 
     /**
@@ -100,6 +101,17 @@ class Service extends Model
     }
 
     /**
+     * Select in list services.
+     *
+     * @param  Builder  $query
+     * @return Builder
+     */
+    public function scopeInList(Builder $query): Builder
+    {
+        return $query->where('is_hidden_in_list', false);
+    }
+
+    /**
      * Returns an ordered collection of services for the frontend.
      *
      * @param  Builder  $query
@@ -110,12 +122,14 @@ class Service extends Model
     {
         /**
          * @var bool $featured
+         * @var bool $inList
          * @var int $limit
          * @var string $orderBy
          * @var string $orderDirection
          */
         extract(array_merge([
             'featured' => false,
+            'inList' => false,
             'limit' => null,
             'orderBy' => 'sort_order',
             'orderDirection' => 'asc'
@@ -128,6 +142,9 @@ class Service extends Model
             ->visible()
             ->when($featured, function ($query) {
                 return $query->featured();
+            })
+            ->when($inList, function ($query) {
+                return $query->inList();
             })
             ->when($limit > 0, function ($query) use ($limit) {
                 return $query->take($limit);
