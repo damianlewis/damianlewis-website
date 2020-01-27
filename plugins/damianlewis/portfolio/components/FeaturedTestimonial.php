@@ -26,12 +26,6 @@ class FeaturedTestimonial extends TransformerComponent
     public function defineProperties(): array
     {
         return [
-            'id' => [
-                'title' => 'Testimonial',
-                'type' => 'dropdown',
-                'description' => 'The testimonial to display',
-                'placeholder' => 'Select a testimonial'
-            ],
             'includeRating' => [
                 'title' => 'Ratings',
                 'type' => 'checkbox',
@@ -48,8 +42,7 @@ class FeaturedTestimonial extends TransformerComponent
 
     public function onRun(): void
     {
-        $id = (int) $this->property('id');
-        $testimonial = $this->getTestimonialById($id);
+        $testimonial = $this->getFirstFeaturedTestimonial();
 
         if ($testimonial !== null) {
             $this->transformer->setIncludeRating($this->property('includeRating') == true);
@@ -70,16 +63,14 @@ class FeaturedTestimonial extends TransformerComponent
     }
 
     /**
-     * Returns a testimonial from the database with the given id.
+     * Returns the first featured testimonial from the database.
      *
-     * @param  int  $id
      * @return Testimonial|null
      */
-    protected function getTestimonialById(int $id): ?Testimonial
+    protected function getFirstFeaturedTestimonial(): ?Testimonial
     {
-        return Testimonial::active()
+        return Testimonial::featured()
             ->visible()
-            ->where('id', $id)
             ->first();
     }
 }
