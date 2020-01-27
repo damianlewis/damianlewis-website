@@ -28,6 +28,7 @@ class SkillTransformer extends Transformer implements TransformerInterface
         ]);
 
         $data = array_merge($data, [
+            'isProjectOnly' => $item->is_project_only === true,
             'skills' => $this->transformCollectionOrNull($this, $item->getChildren())
         ]);
 
