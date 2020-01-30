@@ -22,6 +22,10 @@
   @apply bg-red-100;
 }
 
+.c-container--dark {
+  @apply bg-grey-700;
+}
+
 .c-container--wave {
   @apply relative;
 
