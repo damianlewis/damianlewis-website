@@ -13,7 +13,9 @@ robot_follow = "follow"
     <div class="c-container__inner mx-auto pb-88 md:pb-94 lg:pb-132">
         <h1 class="text-center text-grey-900">{{ project.title }}</h1>
         <hr class="border-red-500 mx-auto mb-8 xl:mb-28">
-        <p class="[ c-text c-text--large ] text-grey-600 text-center">{{ project.tagLine }}</p>
+        {% if project.tagLine %}
+            <p class="[ c-text c-text--large ] text-grey-600 text-center">{{ project.tagLine }}</p>
+        {% endif %}
     </div>
 </div>
 
