@@ -10,7 +10,7 @@ robot_follow = "follow"
 [projectDetails]
 ==
 <div class="[ c-container c-container--tint ]">
-    <div class="c-container__inner pb-88 md:pb-94 lg:pb-132">
+    <div class="c-container__inner mx-auto pb-88 md:pb-94 lg:pb-132">
         <h1 class="text-center text-grey-900">{{ project.title }}</h1>
         <hr class="border-red-500 mx-auto mb-8 xl:mb-28">
         <p class="[ c-text c-text--large ] text-grey-600 text-center">{{ project.tagLine }}</p>
@@ -18,7 +18,7 @@ robot_follow = "follow"
 </div>
 
 <div class="c-container">
-    <div class="c-container__inner">
+    <div class="c-container__inner mx-auto">
         <div class="shadow-lg -mt-88 md:-mt-94 lg:-mt-132">
             <img class="object-cover object-left-top h-12 rounded-t-lg"
                  src="{{ 'assets/images/browser_toolbar.svg'|theme }}"
@@ -59,7 +59,7 @@ robot_follow = "follow"
 
     {% if project.additionalImages %}
         <div class="[ c-container c-container--tint ]">
-            <div class="c-container__inner pb-36 md:pb-44 xl:pb-60">
+            <div class="c-container__inner mx-auto pb-36 md:pb-44 xl:pb-60">
                 {% partial 'headings/h2_with_divider' heading='Designs' %}
                 <div class="c-layout-x-8 md:c-layout-x-12 lg:c-layout-x-24 xl:c-layout-x-32">
                     {% for additionalImage in project.additionalImages %}
@@ -78,7 +78,7 @@ robot_follow = "follow"
 
     {% if project.testimonial %}
         <div class="[ c-container c-container--wave ]">
-            <div class="c-container__inner md:pb-32 lg:pb-40">
+            <div class="c-container__inner mx-auto md:pb-32 lg:pb-40">
                 {% partial 'portfolio/testimonial' testimonial=project.testimonial %}
             </div>
         </div>

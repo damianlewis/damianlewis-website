@@ -20,7 +20,7 @@ includeIcon = 1
 {% endif %}
 
 <div class="[ c-container c-container--wave ]">
-    <div class="c-container__inner">
+    <div class="c-container__inner mx-auto">
         {% partial 'headings/h2_with_divider' heading='Philosophy' %}
         <div class="c-content">
             {% content 'services/philosophy.htm' %}
@@ -30,7 +30,7 @@ includeIcon = 1
 
 {% if services %}
     <div class="[ c-container c-container--tint ]">
-        <div class="c-container__inner pt-24 lg:pt-32">
+        <div class="c-container__inner mx-auto pt-24 lg:pt-32">
             <div class="flex flex-col items-center">
                 {% partial 'services/services' %}
             </div>

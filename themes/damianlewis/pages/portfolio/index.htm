@@ -31,6 +31,7 @@ projectPage = "portfolio/additional-project"
 
 {% if featuredProjectsList.projects|length > 0 %}
     <div class="[ c-container c-container--wave ]">
+        <div class="c-container__inner mx-auto md:pb-32 lg:pt-28 lg:pb-40 xl:pt-32 xl:pb-52">
             {% partial 'portfolio/projects' projects=featuredProjectsList.projects %}
         </div>
     </div>
