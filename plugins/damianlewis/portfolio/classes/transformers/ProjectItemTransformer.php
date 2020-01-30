@@ -44,7 +44,8 @@ class ProjectItemTransformer extends Transformer implements TransformerInterface
 
         $data = array_merge($data, [
             'text' => $item->summary,
-            'image' => $this->transformItemOrNull($this->fileTransformer, $item->mockup_multiple_image),
+            'previewImage' => $this->transformItemOrNull($this->fileTransformer, $item->preview_image),
+            'mockupImage' => $this->transformItemOrNull($this->fileTransformer, $item->mockup_multiple_image),
             'url' => $this->getUrlOrNull($slug, [$slug])
         ]);
 

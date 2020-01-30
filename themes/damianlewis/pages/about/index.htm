@@ -22,7 +22,7 @@ includeCompletedDate = 1
 {% endif %}
 
 <div class="[ c-container c-container--wave ]">
-    <div class="c-container__inner">
+    <div class="c-container__inner mx-auto">
         {% partial 'headings/h2_with_divider' heading='Background' %}
         <div class="c-content">
             {% content 'about/background.htm' %}
@@ -49,7 +49,7 @@ includeCompletedDate = 1
         {% for category in rootCategories %}
             {% set isEven = (loop.index % 2) is even %}
             <div class="[ c-container {% if isEven %}c-container--wave{% else %}c-container--tint{% endif %} ]">
-                <div class="c-container__inner{% if not isEven %} pb-32 lg:pb-36{% endif %}">
+                <div class="c-container__inner mx-auto{% if not isEven %} pb-32 lg:pb-36{% endif %}">
                     {% partial 'headings/h2_with_divider' heading=category.name %}
                     <ul class="c-layout-x-16 lg:c-layout-x-24">
                         {% for subCategory in category.categories %}
