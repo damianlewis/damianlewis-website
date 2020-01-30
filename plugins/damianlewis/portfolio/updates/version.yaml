@@ -24,7 +24,7 @@
     - Seed dummy services
     - seed_dummy_services.php
 1.0.5:
-    - Hide services in services list
+    - Allow services to be hidden in services list
     - add_is_hidden_in_list_column_to_services_table.php
 1.0.6:
     - Create featured testimonial

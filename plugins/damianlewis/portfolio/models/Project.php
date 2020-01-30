@@ -140,6 +140,17 @@ class Project extends Model
     }
 
     /**
+     * Select not featured projects.
+     *
+     * @param  Builder  $query
+     * @return Builder
+     */
+    public function scopeNotFeatured(Builder $query): Builder
+    {
+        return $query->where('is_featured', false);
+    }
+
+    /**
      * Select visible projects.
      *
      * @param  Builder  $query
@@ -161,12 +172,14 @@ class Project extends Model
     {
         /**
          * @var bool $featured
+         * @var bool $notFeatured
          * @var int $limit
          * @var string $orderBy
          * @var string $orderDirection
          */
         extract(array_merge([
             'featured' => false,
+            'notFeatured' => false,
             'limit' => null,
             'orderBy' => 'sort_order',
             'orderDirection' => 'asc'
@@ -180,6 +193,9 @@ class Project extends Model
             ->visible()
             ->when($featured, function ($query) {
                 return $query->featured();
+            })
+            ->when($notFeatured, function ($query) {
+                return $query->notFeatured();
             })
             ->when($limit > 0, function ($query) use ($limit) {
                 return $query->take($limit);

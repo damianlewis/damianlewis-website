@@ -17,6 +17,11 @@ class ProjectsList extends TransformerComponent
      */
     protected $transformer;
 
+    /**
+     * @var array
+     */
+    public array $projects;
+
     public function componentDetails(): array
     {
         return [
@@ -43,7 +48,13 @@ class ProjectsList extends TransformerComponent
                 'title' => 'Featured',
                 'description' => 'Display only featured projects.',
                 'type' => 'checkbox',
-                'default' => false
+                'default' => true
+            ],
+            'notFeatured' => [
+                'title' => 'Non featured',
+                'description' => 'Display only non featured projects.',
+                'type' => 'checkbox',
+                'default' => true
             ],
             'limit' => [
                 'title' => 'Maximum',
@@ -70,7 +81,7 @@ class ProjectsList extends TransformerComponent
         $projects = $this->getProjects();
 
         $this->transformer->setBasePath($this->property('projectPage'));
-        $this->page['projects'] = $this->transformCollection($projects);
+        $this->page['projects'] = $this->projects = $this->transformCollection($projects);
     }
 
     /**
@@ -112,6 +123,7 @@ class ProjectsList extends TransformerComponent
     {
         $options = [
             'featured' => $this->property('featured') == true,
+            'notFeatured' => $this->property('notFeatured') == true,
             'limit' => (int) $this->property('limit'),
             'orderBy' => $this->property('orderBy'),
             'orderDirection' => $this->property('orderDirection')
