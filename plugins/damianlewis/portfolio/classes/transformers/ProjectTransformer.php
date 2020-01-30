@@ -48,6 +48,7 @@ class ProjectTransformer extends Transformer implements TransformerInterface
             'tabletImage' => $this->transformItemOrNull($fileTransformer, $item->tablet_full_frame_image),
             'desktopImage' => $this->transformItemOrNull($fileTransformer, $item->desktop_full_frame_image),
             'mockupImage' => $this->transformItemOrNull($fileTransformer, $item->mockup_multiple_in_sequence_image),
+            'previewImage' => $this->transformItemOrNull($fileTransformer, $item->preview_image),
             'additionalImages' => $this->transformCollectionOrNull($fileTransformer, $item->design_images)
         ]);
 

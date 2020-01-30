@@ -10,20 +10,39 @@ robot_follow = "follow"
 [pageHero]
 id = 1
 
-[projectsList]
+[projectsList featuredProjectsList]
 orderBy = "sort_order"
 orderDirection = "asc"
 featured = 1
+notFeatured = 0
 projectPage = "portfolio/project"
+
+[projectsList nonFeaturedProjectsList]
+orderBy = "sort_order"
+orderDirection = "asc"
+featured = 0
+notFeatured = 1
+limit = 6
+projectPage = "portfolio/additional-project"
 ==
 {% if hero %}
     {% partial 'common/hero' %}
 {% endif %}
 
-{% if projects|length > 0 %}
+{% if featuredProjectsList.projects|length > 0 %}
     <div class="[ c-container c-container--wave ]">
-        <div class="c-container__inner md:pb-32 lg:pt-28 lg:pb-40 xl:pt-32 xl:pb-52">
-            {% partial 'portfolio/projects' %}
+        <div class="c-container__inner mx-auto md:pb-32 lg:pt-28 lg:pb-40 xl:pt-32 xl:pb-52">
+            {% partial 'portfolio/projects' projects=featuredProjectsList.projects %}
         </div>
     </div>
-{%  endif %}
+{% endif %}
+
+{% if nonFeaturedProjectsList.projects|length > 0 %}
+    <div class="[ c-container c-container--tint ]">
+        <div class="c-container__inner mx-auto pt-24 lg:pt-32">
+            <div class="flex flex-col items-center">
+                {% partial 'portfolio/additional_projects' projects=nonFeaturedProjectsList.projects %}
+            </div>
+        </div>
+    </div>
+{% endif %}

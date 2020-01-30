@@ -1,7 +1,7 @@
-title = "Project"
-url = "/portfolio/project/:slug"
-layout = "parallax"
-description = "Portfolio project details page."
+title = "Additional Project"
+url = "/portfolio/additional-project/:slug"
+layout = "default"
+description = "Portfolio project details page for additional projects."
 meta_description = "I'm Damian Lewis, a freelance web designer and developer based in St Albans, Hertfordshire. I design and build bespoke websites and applications for a wide range of businesses."
 is_hidden = 0
 robot_index = "index"
@@ -22,18 +22,11 @@ robot_follow = "follow"
 <div class="c-container">
     <div class="c-container__inner mx-auto">
         <div class="shadow-lg -mt-88 md:-mt-94 lg:-mt-132">
-            <img class="object-cover object-left-top h-12 rounded-t-lg"
+            <img class="object-cover object-left-top h-4 rounded-t-sm sm:h-6 sm:rounded-t md:h-8 lg:h-12 lg:rounded-t-lgg"
                  src="{{ 'assets/images/browser_toolbar.svg'|theme }}"
                  alt="">
-            <div class="overflow-hidden h-160 md:h-172 lg:h-248">
-                <div class="c-parallax__item">
-                    <picture>
-                        <source srcset="{{ project.mobileImage.path }}" media="(max-width: 544px)">
-                        <source srcset="{{ project.tabletImage.path }}" media="(max-width: 768px)">
-                        <source srcset="{{ project.desktopImage.path }}" media="(max-width: 1024px)">
-                        <img src="{{ project.desktopImage.path }}" alt="{{ project.desktopImage.title }}">
-                    </picture>
-                </div>
+            <div class="">
+                <img class="" src="{{ project.previewImage.path }}" alt="{{ project.previewImage.title }}">
             </div>
         </div>
 
@@ -43,10 +36,6 @@ robot_follow = "follow"
                 {{ project.text|raw }}
             </div>
         </div>
-
-        {% if project.mockupImage %}
-            <img class="mt-16 xl:mt-32" src="{{ project.mockupImage.path }}" alt="{{ project.mockupImage.title }}">
-        {% endif %}
 
         <div class="c-layout-x-8 mt-16">
             {% if project.skills %}
