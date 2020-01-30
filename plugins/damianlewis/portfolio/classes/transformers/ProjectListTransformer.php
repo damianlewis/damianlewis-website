@@ -22,7 +22,10 @@ class ProjectListTransformer extends ProjectItemTransformer implements Transform
         $data = parent::transformItem($item);
 
         $data = array_merge($data, [
-            'imageReversed' => $this->transformItemOrNull($this->fileTransformer, $item->mockup_multiple_reversed_image)
+            'mockupImageReversed' => $this->transformItemOrNull(
+                $this->fileTransformer,
+                $item->mockup_multiple_reversed_image
+            )
         ]);
 
         return $data;
