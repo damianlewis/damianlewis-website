@@ -58,7 +58,7 @@ $headings: (
   }
 
   ul {
-    @apply list-disc list-inside;
+    @apply list-disc pl-12;
 
     + ul {
       @apply mt-8;
