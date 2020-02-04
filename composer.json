@@ -18,6 +18,10 @@
         },
         {
             "type": "vcs",
+            "url": "https://github.com/damianlewis/oc-agent-plugin"
+        },
+        {
+            "type": "vcs",
             "url": "https://github.com/damianlewis/oc-googletagmanager-plugin"
         },
         {
@@ -51,7 +55,8 @@
         "janvince/smallcontactform": "dev-master",
         "damianlewis/oc-googletagmanager-plugin": "^1.1",
         "october/drivers-plugin": "^1.0@dev",
-        "rainlab/sitemap-plugin": "^1.0"
+        "rainlab/sitemap-plugin": "^1.0",
+        "damianlewis/oc-agent-plugin": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.7",

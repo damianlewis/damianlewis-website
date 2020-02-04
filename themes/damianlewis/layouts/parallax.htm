@@ -2,11 +2,11 @@ description = "For use with parallax scrolling."
 ==
 {% spaceless %}
 <!doctype html>
-<html lang="en" class="h-full overflow-hidden">
+<html lang="en"{% if agent('browser') == 'Chrome' or agent('browser') == 'Opera' %} class="h-full overflow-hidden"{% endif %}>
 
 {% partial 'site/head' %}
 
-<body class="c-parallax h-full">
+<body{% if agent('browser') == 'Chrome' or agent('browser') == 'Opera' %} class="c-parallax h-full"{% endif %}>
     {% partial 'site/gtmnoscript' %}
     {% partial 'site/navigation' %}
     {% partial 'site/main' %}
