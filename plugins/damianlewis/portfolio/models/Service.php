@@ -62,9 +62,9 @@ class Service extends Model
     protected $table = 'damianlewis_portfolio_services';
 
     protected $casts = [
+        'is_listed' => 'boolean',
         'is_featured' => 'boolean',
-        'is_hidden' => 'boolean',
-        'is_hidden_in_list' => 'boolean'
+        'is_hidden' => 'boolean'
     ];
 
     /**
@@ -101,14 +101,14 @@ class Service extends Model
     }
 
     /**
-     * Select in list services.
+     * Select listed services.
      *
      * @param  Builder  $query
      * @return Builder
      */
-    public function scopeInList(Builder $query): Builder
+    public function scopeListed(Builder $query): Builder
     {
-        return $query->where('is_hidden_in_list', false);
+        return $query->where('is_listed', true);
     }
 
     /**
@@ -122,14 +122,14 @@ class Service extends Model
     {
         /**
          * @var bool $featured
-         * @var bool $inList
+         * @var bool $listed
          * @var int $limit
          * @var string $orderBy
          * @var string $orderDirection
          */
         extract(array_merge([
             'featured' => false,
-            'inList' => false,
+            'listed' => false,
             'limit' => null,
             'orderBy' => 'sort_order',
             'orderDirection' => 'asc'
@@ -143,8 +143,8 @@ class Service extends Model
             ->when($featured, function ($query) {
                 return $query->featured();
             })
-            ->when($inList, function ($query) {
-                return $query->inList();
+            ->when($listed, function ($query) {
+                return $query->listed();
             })
             ->when($limit > 0, function ($query) use ($limit) {
                 return $query->take($limit);
