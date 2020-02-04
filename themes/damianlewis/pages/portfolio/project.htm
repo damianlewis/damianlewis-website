@@ -26,7 +26,7 @@ robot_follow = "follow"
                  src="{{ 'assets/images/browser_toolbar.svg'|theme }}"
                  alt="">
             <div class="overflow-hidden h-160 md:h-172 lg:h-248">
-                <div class="c-parallax__item">
+                <div{% if agent('browser') == 'Chrome' or agent('browser') == 'Opera' %} class="c-parallax__item"{% endif %}>
                     <picture>
                         <source srcset="{{ project.mobileImage.path }}" media="(max-width: 544px)">
                         <source srcset="{{ project.tabletImage.path }}" media="(max-width: 768px)">
