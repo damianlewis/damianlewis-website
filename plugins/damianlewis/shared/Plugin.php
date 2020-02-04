@@ -50,6 +50,7 @@ class Plugin extends PluginBase
             'active' => [$this, 'activeListColumn'],
             'hidden' => [$this, 'hiddenListColumn'],
             'featured' => [$this, 'featuredListColumn'],
+            'listed' => [$this, 'listedListColumn'],
             'previewimage' => [$this, 'previewImageListColumn'],
             'textlimit' => [$this, 'textLimitListColumn'],
             'rating' => [$this, 'ratingListColumn']
@@ -120,6 +121,19 @@ class Plugin extends PluginBase
     public function featuredListColumn(bool $isFeatured): string
     {
         if ($isFeatured) {
+            return '<span class="oc-icon-check text-success"></span>';
+        }
+
+        return '';
+    }
+
+    /**
+     * @param  bool  $isListed
+     * @return string
+     */
+    public function listedListColumn(bool $isListed): string
+    {
+        if ($isListed) {
             return '<span class="oc-icon-check text-success"></span>';
         }
 

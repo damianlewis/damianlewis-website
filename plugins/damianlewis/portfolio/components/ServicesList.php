@@ -89,14 +89,14 @@ class ServicesList extends TransformerComponent
     }
 
     /**
-     * Return an ordered collection of in list services from the database.
+     * Return an ordered collection of listed services from the database.
      *
      * @return Collection
      */
     protected function getServices(): Collection
     {
         $options = [
-            'inList' => true,
+            'listed' => true,
             'limit' => (int) $this->property('limit'),
             'orderBy' => $this->property('orderBy'),
             'orderDirection' => $this->property('orderDirection')
