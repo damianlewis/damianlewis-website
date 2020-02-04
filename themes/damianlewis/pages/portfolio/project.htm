@@ -9,6 +9,13 @@ robot_follow = "follow"
 
 [projectDetails]
 ==
+<?php
+function onEnd()
+{
+    $this->page->meta_title = $this['project']['title'];
+}
+?>
+==
 <div class="[ c-container c-container--tint ]">
     <div class="c-container__inner mx-auto pb-88 md:pb-94 lg:pb-132">
         <h1 class="text-center text-grey-900">{{ project.title }}</h1>
