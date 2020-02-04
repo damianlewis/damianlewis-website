@@ -13,16 +13,16 @@ columns:
         type: text
         searchable: true
 
+    is_listed:
+        label: Listed
+        type: listed
+        width: 1%
+        invisible: true
+
     is_featured:
         label: Featured
         type: featured
         width: 1%
-
-    is_hidden_in_list:
-        label: Hidden in list
-        type: hidden
-        width: 1%
-        invisible: true
 
     sort_order:
         label: Order
