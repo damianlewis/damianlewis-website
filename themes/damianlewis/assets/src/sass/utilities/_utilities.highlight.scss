@@ -1,6 +1,6 @@
-/* Inline
+/* Highlight
    ========================================================================== */
 
-strong {
-  @apply font-medium;
+.highlight {
+  @apply text-red-500;
 }
