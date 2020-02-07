@@ -37,11 +37,11 @@ class SkillsController extends ApiController
             return $this->respondedNotFound('Project not found');
         }
 
-//        return $this->respond([
-//            'data' => $transformer->transformItem($skill)
-//        ]);
         return $this->respond([
-            'data' => $skill->root_category
+            'data' => $transformer->transformItem($skill)
         ]);
+//        return $this->respond([
+//            'data' => $skill->root_category
+//        ]);
     }
 }
