@@ -34,11 +34,6 @@ class ProjectsController extends ApiController
     {
         $project = Project::find($id);
 
-        foreach ($project->skills as $skill) {
-            $pivotModel = $skill->pivot;
-            $categoryName = $skill->pivot->category_name;
-        }
-
         if (!$project) {
             return $this->respondedNotFound('Project not found');
         }

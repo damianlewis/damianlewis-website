@@ -31,10 +31,7 @@ class CategoriesController extends ApiController
      */
     public function show(int $id, CategoriesTransformer $transformer): JsonResponse
     {
-//        $category = Category::find($id);
-        $category = Category::root()
-            ->where('name', Category::CATEGORY_NAME_SKILLS)
-            ->first();
+        $category = Category::find($id);
 
         if (!$category) {
             return $this->respondedNotFound('Project not found');
