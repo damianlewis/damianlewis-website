@@ -13,7 +13,7 @@ description = "Displays a list of projects."
                 <h4 class="text-grey-900 text-center mt-8">{{ project.title }}</h4>
             </div>
 
-            <a class="c-button mt-16" href="{{ project.url }}">View project</a>
+            <a class="c-button mt-16" href="{{ project.link.uri }}" rel="{{ project.link.rel }}">View project</a>
         </div>
     {% endfor %}
 </div>

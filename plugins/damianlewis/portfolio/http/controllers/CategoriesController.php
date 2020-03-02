@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Http\Controllers;
 
-use DamianLewis\Portfolio\Classes\ApiController;
+use DamianLewis\Api\Classes\ApiController;
 use DamianLewis\Portfolio\Classes\Transformers\CategoriesTransformer;
 use DamianLewis\Portfolio\Models\Category;
 use Illuminate\Http\JsonResponse;
@@ -19,9 +19,7 @@ class CategoriesController extends ApiController
     {
         $categories = Category::root()->get();
 
-        return $this->respond([
-            'data' => $transformer->transformCollection($categories)
-        ]);
+        return $this->respondWithCollection($categories, $transformer);
     }
 
     /**
@@ -32,16 +30,21 @@ class CategoriesController extends ApiController
     public function show(int $id, CategoriesTransformer $transformer): JsonResponse
     {
         $category = Category::find($id);
+//        $category = Category::active()
+//            ->visible()
+//            ->where('id', $id)
+//            ->first();
 
         if (!$category) {
-            return $this->respondedNotFound('Project not found');
+            return $this->respondedNotFound('Category not found');
         }
 
-        return $this->respond([
-            'data' => $transformer->transformItem($category)
-        ]);
+//        return $this->respond([
+//            'data' => $transformer->transformItem($category)
+//        ]);
 //        return $this->respond([
 //            'data' => $category->flattened_skills
 //        ]);
+        return $this->respondWithItem($category, $transformer);
     }
 }

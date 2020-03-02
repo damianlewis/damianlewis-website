@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Components;
 
+use DamianLewis\Api\Components\TransformerComponent;
 use DamianLewis\Portfolio\Classes\Transformers\ClientLogosTransformer;
 use DamianLewis\Portfolio\Models\Client;
-use DamianLewis\Transformer\Components\TransformerComponent;
 use October\Rain\Database\Collection;
 
 class ClientLogos extends TransformerComponent
@@ -43,17 +43,12 @@ class ClientLogos extends TransformerComponent
         ];
     }
 
-
-    public function init(): void
-    {
-        $this->transformer = resolve(ClientLogosTransformer::class);
-    }
-
     public function onRun(): void
     {
+        $transformer = resolve(ClientLogosTransformer::class);
         $clients = $this->getClients();
 
-        $this->page['logos'] = $this->transformCollection($clients);
+        $this->page['logos'] = $this->transformCollection($clients, $transformer);
     }
 
     /**

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Components;
 
+use DamianLewis\Api\Components\TransformerComponent;
 use DamianLewis\Portfolio\Classes\Transformers\CategoriesTransformer;
 use DamianLewis\Portfolio\Models\Category;
-use DamianLewis\Transformer\Components\TransformerComponent;
 use October\Rain\Database\Collection;
 
 class CategorisedSkills extends TransformerComponent
@@ -19,16 +19,12 @@ class CategorisedSkills extends TransformerComponent
         ];
     }
 
-    public function init()
-    {
-        $this->transformer = resolve(CategoriesTransformer::class);
-    }
-
     public function onRun(): void
     {
+        $transformer = resolve(CategoriesTransformer::class);
         $rootCategories = $this->getRootCategories();
 
-        $this->page['rootCategories'] = $this->transformCollection($rootCategories);
+        $this->page['rootCategories'] = $this->transformCollection($rootCategories, $transformer);
     }
 
     /**

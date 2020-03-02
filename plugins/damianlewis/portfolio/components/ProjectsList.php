@@ -5,18 +5,14 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Components;
 
 use Cms\Classes\Page;
+use DamianLewis\Api\Components\TransformerComponent;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectListTransformer;
 use DamianLewis\Portfolio\Models\Project;
-use DamianLewis\Transformer\Components\TransformerComponent;
+use Illuminate\Pagination\LengthAwarePaginator;
 use October\Rain\Database\Collection;
 
 class ProjectsList extends TransformerComponent
 {
-    /**
-     * @var ProjectListTransformer
-     */
-    protected $transformer;
-
     /**
      * @var array
      */
@@ -56,6 +52,11 @@ class ProjectsList extends TransformerComponent
                 'type' => 'checkbox',
                 'default' => true
             ],
+            'projectPage' => [
+                'title' => 'Project page',
+                'description' => 'The page used to display the project details.',
+                'type' => 'dropdown'
+            ],
             'limit' => [
                 'title' => 'Maximum',
                 'description' => 'Maximum number of projects to display.',
@@ -63,25 +64,39 @@ class ProjectsList extends TransformerComponent
                 'validationPattern' => '^[\d]*$',
                 'validationMessage' => 'The value can only contain numbers.',
             ],
-            'projectPage' => [
-                'title' => 'Project page',
-                'description' => 'The page used to display the project details.',
-                'type' => 'dropdown'
+            'usePagination' => [
+                'group' => 'Pagination',
+                'title' => 'Use pagination',
+                'description' => 'Display projects.',
+                'type' => 'checkbox',
+                'default' => false
+            ],
+            'pageNumber' => [
+                'group' => 'Pagination',
+                'title' => 'Page number',
+                'description' => 'This value is used to determine the current page.',
+                'type' => 'string',
+                'default' => '{{ :page }}'
             ]
         ];
     }
 
-    public function init(): void
-    {
-        $this->transformer = resolve(ProjectListTransformer::class);
-    }
-
     public function onRun(): void
     {
-        $projects = $this->getProjects();
+        $transformer = resolve(ProjectListTransformer::class);
+        $transformer->setBasePath($this->property('projectPage'));
+        $transformer->setResourceId('slug');
+//        $transformer->useAbsolutePath();
 
-        $this->transformer->setBasePath($this->property('projectPage'));
-        $this->page['projects'] = $this->projects = $this->transformCollection($projects);
+        if ($this->property('usePagination')) {
+            $projects = $this->getPaginatedProjects();
+            $transformedProjects = $this->transformPagination($projects, $transformer);
+        } else {
+            $projects = $this->getProjects();
+            $transformedProjects = $this->transformCollection($projects, $transformer);
+        }
+
+        $this->page['projects'] = $this->projects = $transformedProjects;
     }
 
     /**
@@ -130,5 +145,23 @@ class ProjectsList extends TransformerComponent
         ];
 
         return Project::frontEndCollection($options)->get();
+    }
+
+    /**
+     * Returns an ordered collection of paginated projects from the database.
+     *
+     * @return LengthAwarePaginator
+     */
+    protected function getPaginatedProjects(): LengthAwarePaginator
+    {
+        $options = [
+            'orderBy' => $this->property('orderBy'),
+            'orderDirection' => $this->property('orderDirection')
+        ];
+
+        $currentPage = (int) $this->property('pageNumber');
+        $limit = (int) $this->property('limit');
+
+        return Project::frontEndCollection()->paginate($limit, $currentPage);
     }
 }

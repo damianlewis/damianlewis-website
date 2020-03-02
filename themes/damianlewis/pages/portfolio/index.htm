@@ -29,19 +29,19 @@ projectPage = "portfolio/additional-project"
     {% partial 'common/hero' %}
 {% endif %}
 
-{% if featuredProjectsList.projects|length > 0 %}
+{% if featuredProjectsList.projects.data %}
     <div class="[ c-container c-container--wave ]">
         <div class="c-container__inner mx-auto md:pb-32 lg:pt-28 lg:pb-40 xl:pt-32 xl:pb-52">
-            {% partial 'portfolio/projects' projects=featuredProjectsList.projects %}
+            {% partial 'portfolio/projects' projects=featuredProjectsList.projects.data %}
         </div>
     </div>
 {% endif %}
 
-{% if nonFeaturedProjectsList.projects|length > 0 %}
+{% if nonFeaturedProjectsList.projects.data %}
     <div class="[ c-container c-container--tint ]">
         <div class="c-container__inner mx-auto pt-24 lg:pt-32">
             <div class="flex flex-col items-center">
-                {% partial 'portfolio/additional_projects' projects=nonFeaturedProjectsList.projects %}
+                {% partial 'portfolio/additional_projects' projects=nonFeaturedProjectsList.projects.data %}
             </div>
         </div>
     </div>
