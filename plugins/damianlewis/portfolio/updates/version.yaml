@@ -5,24 +5,24 @@
     - create_skills_table.php
     - create_projects_table.php
     - seed_attributes.php
-#    - seed_categories.php
-#    - Seed dummy projects
-#    - seed_dummy_projects.php
+    - seed_categories.php
+    - Seed dummy projects
+    - seed_dummy_projects.php
 1.0.2:
     - Create Clients table
     - create_clients_table.php
-#    - Seed dummy clients
-#    - seed_dummy_clients.php
+    - Seed dummy clients
+    - seed_dummy_clients.php
 1.0.3:
     - Create Testimonials table
     - create_testimonials_table.php
-#    - Seed dummy testimonials
-#    - seed_dummy_testimonials.php
+    - Seed dummy testimonials
+    - seed_dummy_testimonials.php
 1.0.4:
     - Create Services table
     - create_services_table.php
-#    - Seed dummy services
-#    - seed_dummy_services.php
+    - Seed dummy services
+    - seed_dummy_services.php
 1.0.5:
     - Flag services that should be included in services list
     - add_is_listed_column_to_services_table.php

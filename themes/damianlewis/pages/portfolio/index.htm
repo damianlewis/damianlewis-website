@@ -8,7 +8,7 @@ robot_index = "index"
 robot_follow = "follow"
 
 [pageHero]
-id = 1
+id = 4
 
 [projectsList featuredProjectsList]
 orderBy = "sort_order"
@@ -16,14 +16,16 @@ orderDirection = "asc"
 featured = 1
 notFeatured = 0
 projectPage = "portfolio/project"
+pageNumber = "{{ :page }}"
 
 [projectsList nonFeaturedProjectsList]
 orderBy = "sort_order"
 orderDirection = "asc"
 featured = 0
 notFeatured = 1
-limit = 6
 projectPage = "portfolio/additional-project"
+limit = 6
+pageNumber = "{{ :page }}"
 ==
 {% if hero %}
     {% partial 'common/hero' %}
