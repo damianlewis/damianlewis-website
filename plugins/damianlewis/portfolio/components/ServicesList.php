@@ -4,18 +4,13 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Components;
 
+use DamianLewis\Api\Components\TransformerComponent;
 use DamianLewis\Portfolio\Classes\Transformers\ServicesTransformer;
 use DamianLewis\Portfolio\Models\Service;
-use DamianLewis\Transformer\Components\TransformerComponent;
 use October\Rain\Database\Collection;
 
 class ServicesList extends TransformerComponent
 {
-    /**
-     * @var ServicesTransformer
-     */
-    protected $transformer;
-
     public function componentDetails(): array
     {
         return [
@@ -54,18 +49,13 @@ class ServicesList extends TransformerComponent
         ];
     }
 
-    public function init(): void
-    {
-        $this->transformer = resolve(ServicesTransformer::class);
-    }
-
     public function onRun()
     {
+        $transformer = resolve(ServicesTransformer::class);
+        $transformer->setIncludeIcon($this->property('includeIcon') == true);
         $services = $this->getServices();
 
-        $this->transformer->setIncludeIcon($this->property('includeIcon') == true);
-
-        $this->page['services'] = $this->transformCollection($services);
+        $this->page['services'] = $this->transformCollection($services, $transformer);
     }
 
     /**

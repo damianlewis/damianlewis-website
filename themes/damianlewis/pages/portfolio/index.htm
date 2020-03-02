@@ -8,7 +8,7 @@ robot_index = "index"
 robot_follow = "follow"
 
 [pageHero]
-id = 1
+id = 4
 
 [projectsList featuredProjectsList]
 orderBy = "sort_order"
@@ -16,32 +16,34 @@ orderDirection = "asc"
 featured = 1
 notFeatured = 0
 projectPage = "portfolio/project"
+pageNumber = "{{ :page }}"
 
 [projectsList nonFeaturedProjectsList]
 orderBy = "sort_order"
 orderDirection = "asc"
 featured = 0
 notFeatured = 1
-limit = 6
 projectPage = "portfolio/additional-project"
+limit = 6
+pageNumber = "{{ :page }}"
 ==
 {% if hero %}
     {% partial 'common/hero' %}
 {% endif %}
 
-{% if featuredProjectsList.projects|length > 0 %}
+{% if featuredProjectsList.projects.data %}
     <div class="[ c-container c-container--wave ]">
         <div class="c-container__inner mx-auto md:pb-32 lg:pt-28 lg:pb-40 xl:pt-32 xl:pb-52">
-            {% partial 'portfolio/projects' projects=featuredProjectsList.projects %}
+            {% partial 'portfolio/projects' projects=featuredProjectsList.projects.data %}
         </div>
     </div>
 {% endif %}
 
-{% if nonFeaturedProjectsList.projects|length > 0 %}
+{% if nonFeaturedProjectsList.projects.data %}
     <div class="[ c-container c-container--tint ]">
         <div class="c-container__inner mx-auto pt-24 lg:pt-32">
             <div class="flex flex-col items-center">
-                {% partial 'portfolio/additional_projects' projects=nonFeaturedProjectsList.projects %}
+                {% partial 'portfolio/additional_projects' projects=nonFeaturedProjectsList.projects.data %}
             </div>
         </div>
     </div>

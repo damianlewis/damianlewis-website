@@ -4,23 +4,25 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
+use DamianLewis\Api\Classes\Transformer;
+use DamianLewis\Api\Classes\TransformerInterface;
 use DamianLewis\Portfolio\Models\Skill;
-use DamianLewis\Transformer\Classes\CanTransform;
-use DamianLewis\Transformer\Classes\Transformer;
-use DamianLewis\Transformer\Classes\TransformerInterface;
+use League\Fractal\Resource\Collection;
 use Model;
 
 class SkillTransformer extends Transformer implements TransformerInterface
 {
-    use CanTransform;
+    protected $defaultIncludes = [
+        'skills'
+    ];
 
     /**
      * @inheritDoc
      */
-    public function transformItem(Model $item): array
+    public function transform(Model $item): ?array
     {
         if (!$item instanceof Skill) {
-            return [];
+            return null;
         }
 
         $data = $item->only([
@@ -29,9 +31,19 @@ class SkillTransformer extends Transformer implements TransformerInterface
 
         $data = array_merge($data, [
             'isProjectOnly' => $item->is_project_only === true,
-            'skills' => $this->transformCollectionOrNull($this, $item->getChildren())
         ]);
 
         return $data;
+    }
+
+    /**
+     * Includes the related skills in the transformed data.
+     *
+     * @param  Skill  $skill
+     * @return Collection
+     */
+    protected function includeSkills(Skill $skill): Collection
+    {
+        return $this->collection($skill->getChildren(), resolve(SkillTransformer::class));
     }
 }

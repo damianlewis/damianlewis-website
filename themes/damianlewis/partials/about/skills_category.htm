@@ -7,7 +7,7 @@ description = "Template for a skills category."
     {% for skill in skills %}
         {% if not skill.isProjectOnly %}
             <li class="skill sm:w-1/2 xl:w-1/3">
-                {% partial 'common/accordion_list' name=skill.name list=skill.skills %}
+                {% partial 'common/accordion_list' name=skill.name list=skill.skills.data %}
             </li>
         {% endif %}
     {% endfor %}

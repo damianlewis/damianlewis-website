@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DamianLewis\Pages\Components;
 
+use DamianLewis\Api\Components\TransformerComponent;
 use DamianLewis\Pages\Classes\Transformers\HeroTransformer;
 use DamianLewis\Pages\Models\Hero;
-use DamianLewis\Transformer\Components\TransformerComponent;
 
 class PageHero extends TransformerComponent
 {
@@ -30,18 +30,14 @@ class PageHero extends TransformerComponent
         ];
     }
 
-    public function init(): void
-    {
-        $this->transformer = resolve(HeroTransformer::class);
-    }
-
     public function onRun(): void
     {
+        $transformer = resolve(HeroTransformer::class);
         $id = (int) $this->property('id');
         $hero = $this->getHeroById($id);
 
         if ($hero !== null) {
-            $this->page['hero'] = $this->transformItem($hero);
+            $this->page['hero'] = $this->transformItem($hero, $transformer);
         }
     }
 

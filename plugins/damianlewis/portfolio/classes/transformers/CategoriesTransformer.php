@@ -4,40 +4,54 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
+use DamianLewis\Api\Classes\Transformer;
+use DamianLewis\Api\Classes\TransformerInterface;
 use DamianLewis\Portfolio\Models\Category;
-use DamianLewis\Shared\Classes\HasRelation;
-use DamianLewis\Transformer\Classes\CanTransform;
-use DamianLewis\Transformer\Classes\Transformer;
-use DamianLewis\Transformer\Classes\TransformerInterface;
+use League\Fractal\Resource\Collection;
 use Model;
 
 class CategoriesTransformer extends Transformer implements TransformerInterface
 {
-    use CanTransform;
-    use HasRelation;
+    protected $defaultIncludes = [
+        'categories',
+        'skills'
+    ];
 
     /**
      * @inheritDoc
      */
-    public function transformItem(Model $item): array
+    public function transform(Model $item): ?array
     {
         if (!$item instanceof Category) {
-            return [];
+            return null;
         }
 
         $data = $item->only([
             'name'
         ]);
 
-        $skills = $this->getRelation($item, 'skills');
-
-        $skillTransformer = resolve(SkillTransformer::class);
-
-        $data = array_merge($data, [
-            'categories' => $this->transformCollectionOrNull($this, $item->getChildren()),
-            'skills' => $this->transformCollectionOrNull($skillTransformer, $skills)
-        ]);
-
         return $data;
+    }
+
+    /**
+     * Includes the related categories in the transformed data.
+     *
+     * @param  Category  $category
+     * @return Collection
+     */
+    protected function includeCategories(Category $category): Collection
+    {
+        return $this->collection($category->getChildren(), $this);
+    }
+
+    /**
+     * Includes the related skills in the transformed data.
+     *
+     * @param  Category  $category
+     * @return Collection
+     */
+    protected function includeSkills(Category $category): Collection
+    {
+        return $this->collection($category->skills, resolve(SkillTransformer::class));
     }
 }

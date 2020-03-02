@@ -5,18 +5,12 @@ declare(strict_types=1);
 namespace DamianLewis\Portfolio\Components;
 
 use Cms\Classes\Page;
+use DamianLewis\Api\Components\TransformerComponent;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectItemTransformer;
 use DamianLewis\Portfolio\Models\Project;
-use DamianLewis\Transformer\Components\TransformerComponent;
-use October\Rain\Database\Collection;
 
 class FeaturedProject extends TransformerComponent
 {
-    /**
-     * @var ProjectItemTransformer
-     */
-    protected $transformer;
-
     /**
      * @var array
      */
@@ -47,11 +41,6 @@ class FeaturedProject extends TransformerComponent
         ];
     }
 
-    public function init(): void
-    {
-        $this->transformer = resolve(ProjectItemTransformer::class);
-    }
-
     public function onRun(): void
     {
         if ($this->property('id') !== null) {
@@ -62,8 +51,9 @@ class FeaturedProject extends TransformerComponent
         }
 
         if ($project !== null) {
-            $this->transformer->setBasePath($this->property('projectPage'));
-            $this->page['project'] = $this->project = $this->transformItem($project);
+            $transformer = resolve(ProjectItemTransformer::class);
+            $transformer->setBasePath($this->property('projectPage'));
+            $this->page['project'] = $this->project = $this->transformItem($project, $transformer);
         }
     }
 

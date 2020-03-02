@@ -4,49 +4,48 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
+use DamianLewis\Api\Classes\Transformer;
+use DamianLewis\Api\Classes\TransformerInterface;
+use DamianLewis\Api\Classes\Transformers\ImageTransformer;
+use DamianLewis\Api\Classes\UriGenerator;
 use DamianLewis\Portfolio\Models\Project;
-use DamianLewis\Shared\Classes\UrlGenerator;
-use DamianLewis\Transformer\Classes\CanTransform;
-use DamianLewis\Transformer\Classes\Transformer;
-use DamianLewis\Transformer\Classes\TransformerInterface;
-use DamianLewis\Transformer\Classes\Transformers\FileTransformer;
 use Model;
 
 class ProjectItemTransformer extends Transformer implements TransformerInterface
 {
-    use CanTransform;
-    use UrlGenerator;
+    use UriGenerator;
 
     /**
-     * @var FileTransformer
+     * @var ImageTransformer
      */
-    protected $fileTransformer;
+    protected $imageTransformer;
 
     public function __construct()
     {
-        $this->fileTransformer = resolve(FileTransformer::class);
+        $this->imageTransformer = resolve(ImageTransformer::class);
     }
 
     /**
      * @inheritDoc
      */
-    public function transformItem(Model $item): array
+    public function transform(Model $item): ?array
     {
         if (!$item instanceof Project) {
-            return [];
+            return null;
         }
 
         $data = $item->only([
             'title'
         ]);
 
-        $slug = $item->slug;
-
         $data = array_merge($data, [
             'text' => $item->summary,
-            'previewImage' => $this->transformItemOrNull($this->fileTransformer, $item->preview_image),
-            'mockupImage' => $this->transformItemOrNull($this->fileTransformer, $item->mockup_multiple_image),
-            'url' => $this->getUrlOrNull($slug, [$slug])
+            'previewImage' => $this->transformFile($item->preview_image, $this->imageTransformer),
+            'mockupImage' => $this->transformFile($item->mockup_multiple_image, $this->imageTransformer),
+            'link' => [
+                'rel' => 'self',
+                'uri' => $this->getUri([$item->{$this->resourceId}])
+            ]
         ]);
 
         return $data;

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 use DamianLewis\Portfolio\Models\Testimonial;
 use Faker\Generator;
+use Illuminate\Database\Eloquent\Factory;
+
+/** @var Factory $factory */
 
 $factory->define(Testimonial::class, function (Generator $faker) {
     return [

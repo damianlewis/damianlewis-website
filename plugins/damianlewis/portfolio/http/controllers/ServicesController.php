@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Http\Controllers;
 
-use DamianLewis\Portfolio\Classes\ApiController;
+use DamianLewis\Api\Classes\ApiController;
 use DamianLewis\Portfolio\Classes\Transformers\ServicesTransformer;
 use DamianLewis\Portfolio\Models\Service;
 use Illuminate\Http\JsonResponse;
@@ -21,9 +21,7 @@ class ServicesController extends ApiController
 
         $services = Service::all();
 
-        return $this->respond([
-            'data' => $transformer->transformCollection($services)
-        ]);
+        return $this->respondWithCollection($services, $transformer);
     }
 
     /**
@@ -38,11 +36,9 @@ class ServicesController extends ApiController
         $service = Service::find($id);
 
         if (!$service) {
-            return $this->respondedNotFound('Project not found');
+            return $this->respondedNotFound('Service not found');
         }
 
-        return $this->respond([
-            'data' => $transformer->transformItem($service)
-        ]);
+        return $this->respondWithItem($service, $transformer);
     }
 }

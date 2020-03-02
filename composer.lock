@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43e6cba7dd3503d55d8093910eb198ff",
+    "content-hash": "6589b641291c7650d8810eb1e103d9fd",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -259,6 +259,44 @@
                 "issues": "https://github.com/damianlewis/oc-agent-plugin/issues"
             },
             "time": "2019-12-04T15:30:24+00:00"
+        },
+        {
+            "name": "damianlewis/oc-api-plugin",
+            "version": "v0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/damianlewis/oc-api-plugin.git",
+                "reference": "bbfb11009d5452cf5c554bb034596c5c0379d715"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/damianlewis/oc-api-plugin/zipball/bbfb11009d5452cf5c554bb034596c5c0379d715",
+                "reference": "bbfb11009d5452cf5c554bb034596c5c0379d715",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "laravel/framework": "5.5.*",
+                "league/fractal": "^0.19.2",
+                "october/system": "^1.0",
+                "php": ">= 7.1"
+            },
+            "type": "october-plugin",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Damian Lewis",
+                    "email": "damian@damianlewis.co.uk"
+                }
+            ],
+            "description": "API plugin for October CMS.",
+            "support": {
+                "source": "https://github.com/damianlewis/oc-api-plugin/tree/v0.3.0",
+                "issues": "https://github.com/damianlewis/oc-api-plugin/issues"
+            },
+            "time": "2020-03-02T11:06:19+00:00"
         },
         {
             "name": "damianlewis/oc-contact-plugin",
@@ -2423,6 +2461,70 @@
             ],
             "description": "Flysystem adapter for Rackspace",
             "time": "2016-03-11T12:13:42+00:00"
+        },
+        {
+            "name": "league/fractal",
+            "version": "0.19.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/fractal.git",
+                "reference": "06dc15f6ba38f2dde2f919d3095d13b571190a7c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/06dc15f6ba38f2dde2f919d3095d13b571190a7c",
+                "reference": "06dc15f6ba38f2dde2f919d3095d13b571190a7c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.5",
+                "illuminate/contracts": "~5.0",
+                "mockery/mockery": "~0.9",
+                "pagerfanta/pagerfanta": "~1.0.0",
+                "phpunit/phpunit": "^4.8.35 || ^7.5",
+                "squizlabs/php_codesniffer": "~1.5|~2.0|~3.4",
+                "zendframework/zend-paginator": "~2.3"
+            },
+            "suggest": {
+                "illuminate/pagination": "The Illuminate Pagination component.",
+                "pagerfanta/pagerfanta": "Pagerfanta Paginator",
+                "zendframework/zend-paginator": "Zend Framework Paginator"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.13-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Fractal\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Phil Sturgeon",
+                    "email": "me@philsturgeon.uk",
+                    "homepage": "http://philsturgeon.uk/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Handle the output of complex data structures ready for API output.",
+            "homepage": "http://fractal.thephpleague.com/",
+            "keywords": [
+                "api",
+                "json",
+                "league",
+                "rest"
+            ],
+            "time": "2020-01-24T23:17:29+00:00"
         },
         {
             "name": "linkorb/jsmin-php",

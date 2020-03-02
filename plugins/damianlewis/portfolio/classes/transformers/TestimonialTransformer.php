@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
+use DamianLewis\Api\Classes\Transformer;
+use DamianLewis\Api\Classes\TransformerInterface;
+use DamianLewis\Api\Classes\Transformers\ImageTransformer;
 use DamianLewis\Portfolio\Models\Testimonial;
-use DamianLewis\Transformer\Classes\CanTransform;
-use DamianLewis\Transformer\Classes\Transformer;
-use DamianLewis\Transformer\Classes\TransformerInterface;
-use DamianLewis\Transformer\Classes\Transformers\FileTransformer;
 use Model;
 
 class TestimonialTransformer extends Transformer implements TransformerInterface
 {
-    use CanTransform;
-
     /**
      * @var bool
      */
@@ -23,10 +20,10 @@ class TestimonialTransformer extends Transformer implements TransformerInterface
     /**
      * @inheritDoc
      */
-    public function transformItem(Model $item): array
+    public function transform(Model $item): ?array
     {
         if (!$item instanceof Testimonial) {
-            return [];
+            return null;
         }
 
         $data = $item->only([
@@ -35,10 +32,10 @@ class TestimonialTransformer extends Transformer implements TransformerInterface
             'quote'
         ]);
 
-        $fileTransformer = resolve(FileTransformer::class);
+        $imageTransformer = resolve(ImageTransformer::class);
 
         $data = array_merge($data, [
-            'image' => $this->transformItemOrNull($fileTransformer, $item->image)
+            'image' => $this->transformFile($item->image, $imageTransformer)
         ]);
 
         if ($this->includeRating === true) {
@@ -48,6 +45,11 @@ class TestimonialTransformer extends Transformer implements TransformerInterface
         return $data;
     }
 
+    /**
+     * Set to true to include the rating in the transformed data.
+     *
+     * @param  bool  $isIncluded
+     */
     public function setIncludeRating(bool $isIncluded): void
     {
         $this->includeRating = $isIncluded;

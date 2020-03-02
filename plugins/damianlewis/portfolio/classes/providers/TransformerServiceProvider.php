@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Providers;
 
+use DamianLewis\Api\Classes\Transformers\ImageTransformer;
 use DamianLewis\Portfolio\Classes\Transformers\CategoriesTransformer;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectListTransformer;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectTransformer;
@@ -14,8 +15,12 @@ use October\Rain\Support\ServiceProvider;
 
 class TransformerServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
+        $this->app->bind(ImageTransformer::class, function () {
+            return new ImageTransformer();
+        });
+
         $this->app->bind(ProjectListTransformer::class, function () {
             return new ProjectListTransformer();
         });

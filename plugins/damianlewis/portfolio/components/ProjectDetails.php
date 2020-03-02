@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Components;
 
+use DamianLewis\Api\Components\TransformerComponent;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectTransformer;
 use DamianLewis\Portfolio\Models\Project;
-use DamianLewis\Transformer\Components\TransformerComponent;
 
 class ProjectDetails extends TransformerComponent
 {
@@ -18,16 +18,12 @@ class ProjectDetails extends TransformerComponent
         ];
     }
 
-    public function init(): void
-    {
-        $this->transformer = resolve(ProjectTransformer::class);
-    }
-
     public function onRun(): void
     {
+        $transformer = resolve(ProjectTransformer::class);
         $project = $this->getProjectBySlug($this->param('slug'));
 
-        $this->page['project'] = $this->transformItem($project);
+        $this->page['project'] = $this->transformItem($project, $transformer);
     }
 
     /**
