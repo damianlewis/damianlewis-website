@@ -21,16 +21,16 @@ class ProjectsController extends ApiController
     public function index(Request $request, ProjectListTransformer $transformer): JsonResponse
     {
 //        $paginator = Project::paginate(3);
-//        $projects = Project::all();
+        $projects = Project::all();
 //        $projects = Project::frontEndCollection()->get();
-        $paginator = Project::frontEndCollection()->paginate(3);
+//        $paginator = Project::frontEndCollection()->paginate(3);
 
         $transformer->setBasePath($request->path());
 //        $transformer->setResourceId('id');
         $transformer->useAbsolutePath();
 
-        return $this->respondWithPagination($paginator, $transformer);
-//        return $this->respondWithCollection($projects, $transformer);
+//        return $this->respondWithPagination($paginator, $transformer);
+        return $this->respondWithCollection($projects, $transformer);
     }
 
     /**
