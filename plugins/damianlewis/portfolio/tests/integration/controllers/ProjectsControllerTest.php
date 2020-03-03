@@ -37,10 +37,11 @@ class ProjectsControllerTest extends ApiTestCase
         $response = $this->get($this->getApiEndpoint('projects/1'));
 
         $response->assertStatus(200);
-        $response->assertExactJson([
+        $response->assertJson([
             'data' => [
                 'title' => $project->title,
-                'description' => $project->description
+                'text' => $project->description,
+                'tagLine'=> $project->tag_line
             ]
         ]);
     }

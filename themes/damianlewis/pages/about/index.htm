@@ -28,11 +28,11 @@ includeCompletedDate = 1
             {% content 'about/background.htm' %}
         </div>
 
-        {% if qualifications %}
+        {% if qualifications.data %}
             <div class="mt-20">
                 {% partial 'headings/h3_as_h4' heading='Qualifications' %}
                 <ul class="c-layout-x-8">
-                    {% for qualification in qualifications %}
+                    {% for qualification in qualifications.data %}
                         <li>
                             <div class="[ c-text c-text--large ] text-grey-600">{{ qualification.title }}</div>
                             <div class="[ c-text c-text--small ] text-grey-600">Awarded: {{ qualification.score }}</div>
