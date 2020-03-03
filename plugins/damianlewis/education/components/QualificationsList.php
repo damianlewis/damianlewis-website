@@ -4,18 +4,13 @@ declare(strict_types=1);
 
 namespace Damianlewis\Education\Components;
 
+use DamianLewis\Api\Components\TransformerComponent;
 use DamianLewis\Education\Classes\Transformers\QualificationsTransformer;
 use DamianLewis\Education\Models\Qualification;
-use DamianLewis\Transformer\Components\TransformerComponent;
 use October\Rain\Database\Collection;
 
 class QualificationsList extends TransformerComponent
 {
-    /**
-     * @var QualificationsTransformer
-     */
-    protected $transformer;
-
     public function componentDetails(): array
     {
         return [
@@ -47,18 +42,14 @@ class QualificationsList extends TransformerComponent
         ];
     }
 
-    public function init(): void
-    {
-        $this->transformer = resolve(QualificationsTransformer::class);
-    }
-
     public function onRun(): void
     {
+        $transformer = resolve(QualificationsTransformer::class);
+        $transformer->setIncludeCompletedDate($this->property('includeCompletedDate') == true);
         $qualifications = $this->getQualifications();
 
-        $this->transformer->setIncludeCompletedDate($this->property('includeCompletedDate') == true);
 
-        $this->page['qualifications'] = $this->transformCollection($qualifications);
+        $this->page['qualifications'] = $this->transformCollection($qualifications, $transformer);
     }
 
     /**
