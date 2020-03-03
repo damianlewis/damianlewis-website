@@ -4,25 +4,33 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Http\Controllers;
 
-use DamianLewis\Portfolio\Classes\ApiController;
+use DamianLewis\Api\Classes\ApiController;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectListTransformer;
 use DamianLewis\Portfolio\Classes\Transformers\ProjectTransformer;
 use DamianLewis\Portfolio\Models\Project;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ProjectsController extends ApiController
 {
     /**
+     * @param  Request  $request
      * @param  ProjectListTransformer  $transformer
      * @return JsonResponse
      */
-    public function index(ProjectListTransformer $transformer): JsonResponse
+    public function index(Request $request, ProjectListTransformer $transformer): JsonResponse
     {
-        $projects = Project::all();
+//        $paginator = Project::paginate(3);
+//        $projects = Project::all();
+//        $projects = Project::frontEndCollection()->get();
+        $paginator = Project::frontEndCollection()->paginate(3);
 
-        return $this->respond([
-            'data' => $transformer->transformCollection($projects)
-        ]);
+        $transformer->setBasePath($request->path());
+//        $transformer->setResourceId('id');
+        $transformer->useAbsolutePath();
+
+        return $this->respondWithPagination($paginator, $transformer);
+//        return $this->respondWithCollection($projects, $transformer);
     }
 
     /**
@@ -33,14 +41,16 @@ class ProjectsController extends ApiController
     public function show(int $id, ProjectTransformer $transformer): JsonResponse
     {
         $project = Project::find($id);
+//        $project = Project::active()
+//            ->visible()
+//            ->where('id', $id)
+//            ->first();
 
         if (!$project) {
             return $this->respondedNotFound('Project not found');
         }
 
-        return $this->respond([
-            'data' => $transformer->transformItem($project)
-        ]);
+        return $this->respondWithItem($project, $transformer);
     }
 
 }

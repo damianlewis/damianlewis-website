@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Components;
 
+use DamianLewis\Api\Components\TransformerComponent;
 use DamianLewis\Portfolio\Classes\Transformers\TestimonialTransformer;
 use DamianLewis\Portfolio\Models\Testimonial;
-use DamianLewis\Transformer\Components\TransformerComponent;
 
 class FeaturedTestimonial extends TransformerComponent
 {
-    /**
-     * @var TestimonialTransformer
-     */
-    protected $transformer;
-
     public function componentDetails(): array
     {
         return [
@@ -35,18 +30,14 @@ class FeaturedTestimonial extends TransformerComponent
         ];
     }
 
-    public function init(): void
-    {
-        $this->transformer = resolve(TestimonialTransformer::class);
-    }
-
     public function onRun(): void
     {
         $testimonial = $this->getFirstFeaturedTestimonial();
 
         if ($testimonial !== null) {
-            $this->transformer->setIncludeRating($this->property('includeRating') == true);
-            $this->page['testimonial'] = $this->transformItem($testimonial);
+            $transformer = resolve(TestimonialTransformer::class);
+            $transformer->setIncludeRating($this->property('includeRating') == true);
+            $this->page['testimonial'] = $this->transformItem($testimonial, $transformer);
         }
     }
 

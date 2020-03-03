@@ -7,7 +7,10 @@ use DamianLewis\Portfolio\Models\Attribute;
 use DamianLewis\Portfolio\Models\Category;
 use DamianLewis\Portfolio\Models\Project;
 use Faker\Generator;
+use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Http\UploadedFile;
+
+/** @var Factory $factory */
 
 $factory->define(Project::class, function (Generator $faker) {
     $faker->addProvider(new BlogArticleFaker($faker));

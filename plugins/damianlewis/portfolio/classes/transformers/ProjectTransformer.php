@@ -4,54 +4,98 @@ declare(strict_types=1);
 
 namespace DamianLewis\Portfolio\Classes\Transformers;
 
+use DamianLewis\Api\Classes\Transformer;
+use DamianLewis\Api\Classes\TransformerInterface;
+use DamianLewis\Api\Classes\Transformers\ImageTransformer;
 use DamianLewis\Portfolio\Models\Project;
-use DamianLewis\Shared\Classes\HasRelation;
-use DamianLewis\Transformer\Classes\CanTransform;
-use DamianLewis\Transformer\Classes\Transformer;
-use DamianLewis\Transformer\Classes\TransformerInterface;
-use DamianLewis\Transformer\Classes\Transformers\FileTransformer;
+use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 use Model;
 
 class ProjectTransformer extends Transformer implements TransformerInterface
 {
-    use CanTransform;
-    use HasRelation;
+    protected $defaultIncludes = [
+        'skills',
+        'technologies',
+        'testimonial'
+    ];
+
+    /**
+     * @var SkillTransformer
+     */
+    private $skillTransformer;
+
+    /**
+     * ProjectTransformer constructor.
+     */
+    public function __construct()
+    {
+        $this->skillTransformer = resolve(SkillTransformer::class);
+    }
 
     /**
      * @inheritDoc
      */
-    public function transformItem(Model $item): array
+    public function transform(Model $item): ?array
     {
         if (!$item instanceof Project) {
-            return [];
+            return null;
         }
 
         $data = $item->only([
             'title'
         ]);
 
-        $fileTransformer = resolve(FileTransformer::class);
-        $skillTransformer = resolve(SkillTransformer::class);
-        $testimonialTransformer = resolve(TestimonialTransformer::class);
-
-        $skills = $this->getRelation($item, 'skills');
-        $technologies = $this->getRelation($item, 'technologies');
-        $testimonial = $this->getRelation($item, 'testimonial')->first();
+        $imageTransformer = resolve(ImageTransformer::class);
 
         $data = array_merge($data, [
             'text' => $item->description,
             'tagLine' => $item->tag_line,
-            'skills' => $this->transformCollectionOrNull($skillTransformer, $skills),
-            'technologies' => $this->transformCollectionOrNull($skillTransformer, $technologies),
-            'testimonial' => $this->transformItemOrNull($testimonialTransformer, $testimonial),
-            'mobileImage' => $this->transformItemOrNull($fileTransformer, $item->mobile_full_frame_image),
-            'tabletImage' => $this->transformItemOrNull($fileTransformer, $item->tablet_full_frame_image),
-            'desktopImage' => $this->transformItemOrNull($fileTransformer, $item->desktop_full_frame_image),
-            'mockupImage' => $this->transformItemOrNull($fileTransformer, $item->mockup_multiple_in_sequence_image),
-            'previewImage' => $this->transformItemOrNull($fileTransformer, $item->preview_image),
-            'additionalImages' => $this->transformCollectionOrNull($fileTransformer, $item->design_images)
+            'mobileImage' => $this->transformFile($item->mobile_full_frame_image, $imageTransformer),
+            'tabletImage' => $this->transformFile($item->tablet_full_frame_image, $imageTransformer),
+            'desktopImage' => $this->transformFile($item->desktop_full_frame_image, $imageTransformer),
+            'mockupImage' => $this->transformFile($item->mockup_multiple_in_sequence_image, $imageTransformer),
+            'previewImage' => $this->transformFile($item->preview_image, $imageTransformer),
+            'additionalImages' => $this->transformFiles($item->design_images, $imageTransformer),
         ]);
 
         return $data;
+    }
+
+    /**
+     * Includes the related skills in the transformed data.
+     *
+     * @param  Project  $project
+     * @return Collection
+     */
+    protected function includeSkills(Project $project): Collection
+    {
+        return $this->collection($project->skills, $this->skillTransformer);
+    }
+
+    /**
+     * Includes the related technologies in the transformed data.
+     *
+     * @param  Project  $project
+     * @return Collection
+     */
+    protected function includeTechnologies(Project $project): Collection
+    {
+        return $this->collection($project->technologies, $this->skillTransformer);
+    }
+
+    /**
+     * Includes the related testimonial in the transformed data.
+     *
+     * @param  Project  $project
+     * @return Item|null
+     */
+    protected function includeTestimonial(Project $project): ?Item
+    {
+        if ($project->testimonial !== null) {
+            return $this->item($project->testimonial, resolve(TestimonialTransformer::class));
+        }
+
+        return null;
     }
 }

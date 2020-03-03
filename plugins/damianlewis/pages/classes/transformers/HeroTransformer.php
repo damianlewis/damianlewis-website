@@ -4,23 +4,21 @@ declare(strict_types=1);
 
 namespace DamianLewis\Pages\Classes\Transformers;
 
+use DamianLewis\Api\Classes\Transformer;
+use DamianLewis\Api\Classes\TransformerInterface;
+use DamianLewis\Api\Classes\Transformers\ImageTransformer;
 use DamianLewis\Pages\Models\Hero;
-use DamianLewis\Transformer\Classes\CanTransform;
-use DamianLewis\Transformer\Classes\TransformerInterface;
-use DamianLewis\Transformer\Classes\Transformers\FileTransformer;
 use Model;
 
-class HeroTransformer implements TransformerInterface
+class HeroTransformer extends Transformer implements TransformerInterface
 {
-    use CanTransform;
-
     /**
      * @inheritDoc
      */
-    public function transformItem(Model $item): array
+    public function transform(Model $item): ?array
     {
         if (!$item instanceof Hero) {
-            return [];
+            return null;
         }
 
         $data = $item->only([
@@ -28,12 +26,12 @@ class HeroTransformer implements TransformerInterface
             'body'
         ]);
 
-        $fileTransformer = resolve(FileTransformer::class);
+        $imageTransformer = resolve(ImageTransformer::class);
 
         $data = array_merge($data, [
-            'image' => $this->transformItemOrNull($fileTransformer, $item->image),
-            'bgTablet' => $this->transformItemOrNull($fileTransformer, $item->background_image_tablet),
-            'bgMobile' => $this->transformItemOrNull($fileTransformer, $item->background_image_mobile)
+            'image' => $this->transformFile($item->image, $imageTransformer),
+            'bgTablet' => $this->transformFile($item->background_image_tablet, $imageTransformer),
+            'bgMobile' => $this->transformFile($item->background_image_mobile, $imageTransformer),
         ]);
 
         return $data;

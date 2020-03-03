@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 use DamianLewis\SocialMedia\Models\Link;
 use Faker\Generator;
+use Illuminate\Database\Eloquent\Factory;
+
+/** @var Factory $factory */
 
 $factory->define(Link::class, function (Generator $faker) {
     return [

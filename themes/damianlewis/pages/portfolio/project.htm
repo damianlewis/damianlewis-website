@@ -57,14 +57,14 @@ function onEnd()
             <img class="mt-16 xl:mt-32" src="{{ project.mockupImage.path }}" alt="{{ project.mockupImage.title }}">
         {% endif %}
 
-        {% if project.skills or project.technologies %}
+        {% if project.skills.data or project.technologies.data %}
             <div class="c-layout-x-8 mt-16">
-                {% if project.skills %}
-                    {% partial 'common/attributes' attributes=project.skills icon='assets/icons/skills.svg'|theme %}
+                {% if project.skills.data %}
+                    {% partial 'common/attributes' attributes=project.skills.data icon='assets/icons/skills.svg'|theme %}
                 {% endif %}
 
-                {% if project.technologies %}
-                    {% partial 'common/attributes' attributes=project.technologies icon='assets/icons/technology.svg'|theme %}
+                {% if project.technologies.data %}
+                    {% partial 'common/attributes' attributes=project.technologies.data icon='assets/icons/technology.svg'|theme %}
                 {% endif %}
             </div>
         {% endif %}

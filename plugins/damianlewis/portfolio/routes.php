@@ -1,7 +1,8 @@
 <?php
 Route::group([
+    'prefix' => 'api/v1',
     'namespace' => 'DamianLewis\Portfolio\Http\Controllers',
-    'prefix' => 'api/v1'
+    'middleware' => 'api'
 ], function () {
     Route::resource('projects', 'ProjectsController', ['only' => ['index', 'show']]);
     Route::resource('categories', 'CategoriesController', ['only' => ['index', 'show']]);

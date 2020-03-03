@@ -24,10 +24,10 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function boot()
-    {
-        App::register(TransformerServiceProvider::class);
-    }
+//    public function boot()
+//    {
+//        App::register(TransformerServiceProvider::class);
+//    }
 
     public function registerSettings(): array
     {
