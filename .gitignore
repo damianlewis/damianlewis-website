@@ -1,9 +1,0 @@
-/bootstrap/compiled.php
-/vendor
-/tmp
-.env
-_ide_helper.php
-.phpstorm.meta.php
-CHANGELOG.md
-CODE_OF_CONDUCT.md
-SECURITY.md
