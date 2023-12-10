@@ -60,7 +60,7 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 NavigationGroup::make()
                     ->label('Technology')
-                    ->icon('heroicon-s-cube')
+                    ->icon('heroicon-o-cube')
                     ->collapsed(),
             ])
             ->plugins([
