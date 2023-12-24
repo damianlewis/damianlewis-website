@@ -7,6 +7,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -18,7 +19,8 @@ class User extends Authenticatable implements FilamentUser
         HasFactory,
         HasRoles,
         HasUlids,
-        Notifiable;
+        Notifiable,
+        SoftDeletes;
 
     /**
      * @var array<int, string>
