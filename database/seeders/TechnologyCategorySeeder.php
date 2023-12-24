@@ -13,16 +13,16 @@ class TechnologyCategorySeeder extends Seeder
     {
         DB::table((new TechnologyCategory)->getTable())->delete();
 
-        $technologies = [
+        $categories = [
             'Frontend',
             'Backend',
             'Software',
         ];
 
         TechnologyCategory::factory()
-            ->count(count($technologies))
+            ->count(count($categories))
             ->sequence(fn (Sequence $sequence) => [
-                'name' => $technologies[$sequence->index],
+                'name' => $categories[$sequence->index],
             ])
             ->enabled()
             ->create();
