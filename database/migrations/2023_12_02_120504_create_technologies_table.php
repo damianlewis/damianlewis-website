@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('enabled')->default(false);
             $table->unsignedInteger(config('eloquent-sortable.order_column_name'));
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table($modelTable, function (Blueprint $table) use ($modelTable) {

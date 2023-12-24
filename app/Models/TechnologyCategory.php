@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\SoftCascade;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Mews\Purifier\Casts\CleanHtml;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
@@ -14,6 +16,8 @@ class TechnologyCategory extends Model implements Sortable
 {
     use HasFactory,
         HasUlids,
+        SoftCascade,
+        SoftDeletes,
         SortableTrait;
 
     protected $casts = [
@@ -25,6 +29,10 @@ class TechnologyCategory extends Model implements Sortable
         'name',
         'description',
         'enabled',
+    ];
+
+    protected array $softCascade = [
+        'technologies',
     ];
 
     protected static function booted(): void

@@ -36,11 +36,17 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ForceDeleteAction;
+use Filament\Tables\Actions\ForceDeleteBulkAction;
+use Filament\Tables\Actions\RestoreAction;
+use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Validation\Rules\Exists;
 
 class TechnologyResource extends Resource
@@ -195,18 +201,26 @@ class TechnologyResource extends Resource
                     ->searchable()
                     ->preload(),
                 EnabledFilter::make(),
+                TrashedFilter::make(),
             ])
             ->actions([
                 ViewAction::make()
                     ->iconButton(),
                 EditAction::make()
-                    ->iconButton(),
+                    ->iconButton()
+                    ->hidden(fn (Technology $record): bool => $record->trashed()),
                 DeleteAction::make()
+                    ->iconButton(),
+                RestoreAction::make()
+                    ->iconButton(),
+                ForceDeleteAction::make()
                     ->iconButton(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
                 ]),
             ])
             ->defaultSort('created_at', 'desc');
@@ -219,5 +233,13 @@ class TechnologyResource extends Resource
             'create' => CreateTechnology::route('/create'),
             'edit' => EditTechnology::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }
