@@ -16,7 +16,6 @@ use App\Filament\Tables\Columns\UpdatedAtTextColumn;
 use App\Models\Role;
 use App\Models\User;
 use Exception;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
@@ -24,7 +23,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
-use Filament\Infolists\Components\Grid as InfolistGrid;
 use Filament\Infolists\Components\Group as InfolistGroup;
 use Filament\Infolists\Components\Section as InfolistSection;
 use Filament\Infolists\Components\TextEntry;
@@ -52,116 +50,101 @@ class UserResource extends Resource
     {
         return $infolist
             ->schema([
-                InfolistGrid::make([
-                    'md' => 3,
-                ])
+                InfolistGroup::make()
                     ->schema([
-                        InfolistGroup::make()
+                        InfolistSection::make('Details')
                             ->schema([
-                                InfolistSection::make('Details')
-                                    ->schema([
-                                        TextEntry::make('name')
-                                            ->color('gray'),
-                                        TextEntry::make('email')
-                                            ->color('gray'),
-                                    ]),
-                            ])
-                            ->columnSpan([
-                                'md' => 2,
+                                TextEntry::make('name')
+                                    ->color('gray'),
+                                TextEntry::make('email')
+                                    ->color('gray'),
                             ]),
-                        InfolistGroup::make()
+                    ])
+                    ->columnSpan(['lg' => 2]),
+                InfolistGroup::make()
+                    ->schema([
+                        InfolistSection::make()
                             ->schema([
-                                InfolistSection::make()
-                                    ->schema([
-                                        CreatedAtTextEntry::make()
-                                            ->color('gray'),
-                                        UpdatedAtTextEntry::make()
-                                            ->color('gray'),
-                                        DateTimeTextEntry::make('email_verified_at')
-                                            ->label('Email Verified')
-                                            ->color('gray')
-                                            ->hidden(fn (User $record): bool => $record->email_verified_at === null),
-                                    ]),
-                                InfolistSection::make()
-                                    ->schema([
-                                        TextEntry::make('roles.name')
-                                            ->label('Roles')
-                                            ->formatStateUsing(fn ($state): string => Str::headline($state))
-                                            ->badge(),
-                                    ]),
-                            ])
-                            ->columnSpan([
-                                'md' => 1,
+                                CreatedAtTextEntry::make()
+                                    ->color('gray'),
+                                UpdatedAtTextEntry::make()
+                                    ->color('gray'),
+                                DateTimeTextEntry::make('email_verified_at')
+                                    ->label('Email Verified')
+                                    ->color('gray')
+                                    ->hidden(fn (User $record): bool => $record->email_verified_at === null),
                             ]),
-                    ]),
-            ]);
+                        InfolistSection::make()
+                            ->schema([
+                                TextEntry::make('roles.name')
+                                    ->label('Roles')
+                                    ->formatStateUsing(fn ($state): string => Str::headline($state))
+                                    ->badge(),
+                            ]),
+                    ])
+                    ->columnSpan(['lg' => 1]),
+            ])
+            ->columns(3);
     }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Grid::make([
-                    'md' => 3,
-                ])
+                Group::make()
                     ->schema([
-                        Group::make()
+                        Section::make('Details')
                             ->schema([
-                                Section::make('Details')
-                                    ->schema([
-                                        TextInput::make('name')
-                                            ->required()
-                                            ->maxLength(255),
-                                        TextInput::make('email')
-                                            ->email()
-                                            ->required()
-                                            ->unique(ignoreRecord: true)
-                                            ->maxLength(255),
-                                        TextInput::make('password')
-                                            ->password()
-                                            ->dehydrated(fn (?string $state): bool => filled($state))
-                                            ->required(fn (string $operation): bool => $operation === 'create')
-                                            ->confirmed()
-                                            ->maxLength(255)
-                                            ->live(),
-                                        TextInput::make('password_confirmation')
-                                            ->password()
-                                            ->dehydrated(fn (?string $state): bool => filled($state))
-                                            ->required(fn (string $operation): bool => $operation === 'create')
-                                            ->maxLength(255)
-                                            ->hidden(fn (Get $get): bool => empty($get('password'))),
-                                    ]),
-                            ])
-                            ->columnSpan([
-                                'md' => 2,
+                                TextInput::make('name')
+                                    ->required()
+                                    ->maxLength(255),
+                                TextInput::make('email')
+                                    ->email()
+                                    ->required()
+                                    ->unique(ignoreRecord: true)
+                                    ->maxLength(255),
+                                TextInput::make('password')
+                                    ->password()
+                                    ->dehydrated(fn (?string $state): bool => filled($state))
+                                    ->required(fn (string $operation): bool => $operation === 'create')
+                                    ->confirmed()
+                                    ->maxLength(255)
+                                    ->live(),
+                                TextInput::make('password_confirmation')
+                                    ->password()
+                                    ->dehydrated(fn (?string $state): bool => filled($state))
+                                    ->required(fn (string $operation): bool => $operation === 'create')
+                                    ->maxLength(255)
+                                    ->hidden(fn (Get $get): bool => empty($get('password'))),
                             ]),
-                        Group::make()
+                    ])
+                    ->columnSpan(['lg' => 2]),
+                Group::make()
+                    ->schema([
+                        Section::make()
                             ->schema([
-                                Section::make()
-                                    ->schema([
-                                        CreatedAtPlaceholder::make(),
-                                        UpdatedAtPlaceholder::make(),
-                                        Placeholder::make('email_verified_at')
-                                            ->label('Email Verified')
-                                            ->content(fn (User $record): string => $record->email_verified_at?->format('d/m/Y H:i'))
-                                            ->hidden(fn (User $record): bool => $record->email_verified_at === null),
-                                    ])
-                                    ->hiddenOn('create'),
-                                Section::make('Roles')
-                                    ->schema([
-                                        Select::make('roles')
-                                            ->hiddenLabel()
-                                            ->relationship('roles', 'name')
-                                            ->getOptionLabelFromRecordUsing(fn (Role $record): string => Str::headline($record->name))
-                                            ->multiple()
-                                            ->preload()
-                                            ->searchable(),
-                                    ]),
+                                CreatedAtPlaceholder::make(),
+                                UpdatedAtPlaceholder::make(),
+                                Placeholder::make('email_verified_at')
+                                    ->label('Email Verified')
+                                    ->content(fn (User $record): string => $record->email_verified_at?->format('d/m/Y H:i'))
+                                    ->hidden(fn (User $record): bool => $record->email_verified_at === null),
                             ])
-                            ->columnSpan([
-                                'md' => 1,
+                            ->hiddenOn('create'),
+                        Section::make('Roles')
+                            ->schema([
+                                Select::make('roles')
+                                    ->hiddenLabel()
+                                    ->relationship('roles', 'name')
+                                    ->getOptionLabelFromRecordUsing(fn (Role $record): string => Str::headline($record->name))
+                                    ->multiple()
+                                    ->preload()
+                                    ->searchable(),
                             ]),
-                    ]),
-            ]);
+                    ])
+                    ->columnSpan(['lg' => 1]),
+            ])
+            ->columns(3);
     }
 
     /**
