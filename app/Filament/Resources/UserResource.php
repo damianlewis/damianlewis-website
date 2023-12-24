@@ -76,9 +76,8 @@ class UserResource extends Resource
                             ]),
                         InfolistSection::make()
                             ->schema([
-                                TextEntry::make('roles.name')
+                                TextEntry::make('roles.display_name')
                                     ->label('Roles')
-                                    ->formatStateUsing(fn ($state): string => Str::headline($state))
                                     ->badge(),
                             ]),
                     ])
@@ -135,8 +134,7 @@ class UserResource extends Resource
                             ->schema([
                                 Select::make('roles')
                                     ->hiddenLabel()
-                                    ->relationship('roles', 'name')
-                                    ->getOptionLabelFromRecordUsing(fn (Role $record): string => Str::headline($record->name))
+                                    ->relationship('roles', 'display_name')
                                     ->multiple()
                                     ->preload()
                                     ->searchable(),
@@ -162,8 +160,8 @@ class UserResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->toggleable(),
-                TextColumn::make('roles.name')
-                    ->formatStateUsing(fn ($state): string => Str::headline($state))
+                TextColumn::make('roles.display_name')
+                    ->label('Roles')
                     ->badge()
                     ->toggleable(),
                 DateTimeTextColumn::make('email_verified_at')
