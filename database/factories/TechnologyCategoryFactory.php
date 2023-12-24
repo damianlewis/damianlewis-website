@@ -16,6 +16,7 @@ class TechnologyCategoryFactory extends Factory
         return [
             'name' => Faker::uniqueName(random_int(1, 3)),
             'description' => Faker::htmlParagraphs(random_int(1, 3)),
+            'enabled' => false,
         ];
     }
 
