@@ -4,8 +4,6 @@ namespace App\Filament\Resources\TechnologyCategoryResource\RelationManagers;
 
 use App\Filament\Forms\Components\EnabledSection;
 use App\Filament\Forms\Components\TimestampsSection;
-use App\Filament\Infolists\Components\EnabledSection as InfolistEnabledSection;
-use App\Filament\Infolists\Components\TimestampsSection as InfolistTimestampsSection;
 use App\Filament\Resources\TechnologyResource;
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
 use App\Filament\Tables\Columns\EnabledIconColumn;
@@ -20,10 +18,6 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Infolists\Components\Grid as InfolistGrid;
-use Filament\Infolists\Components\Group as InfolistGroup;
-use Filament\Infolists\Components\Section as InfolistSection;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Actions\CreateAction;
@@ -38,36 +32,7 @@ class TechnologiesRelationManager extends RelationManager
 
     public function infolist(Infolist $infolist): Infolist
     {
-        return $infolist
-            ->schema([
-                InfolistGrid::make([
-                    'md' => 3,
-                ])
-                    ->schema([
-                        InfolistGroup::make()
-                            ->schema([
-                                InfolistSection::make('Details')
-                                    ->schema([
-                                        TextEntry::make('name')
-                                            ->color('gray'),
-                                        TextEntry::make('parent.name')
-                                            ->color('gray')
-                                            ->visible(fn (Technology $record) => $record->hasParent()),
-                                    ]),
-                            ])
-                            ->columnSpan([
-                                'md' => 2,
-                            ]),
-                        InfolistGroup::make()
-                            ->schema([
-                                InfolistTimestampsSection::make(),
-                                InfolistEnabledSection::make(),
-                            ])
-                            ->columnSpan([
-                                'md' => 1,
-                            ]),
-                    ]),
-            ]);
+        return TechnologyResource::infolist($infolist);
     }
 
     public function form(Form $form): Form
