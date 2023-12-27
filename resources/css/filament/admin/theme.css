@@ -1,3 +1,9 @@
 @import '/vendor/filament/filament/resources/css/theme.css';
 
 @config 'tailwind.config.js';
+
+@layer components {
+    .fi-fo-placeholder {
+        @apply text-gray-500 dark:text-gray-400;
+    }
+}
