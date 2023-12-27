@@ -27,6 +27,10 @@ class TechnologyInfolist
                 Group::make()
                     ->schema([
                         DatesSection::make(),
+                        Section::make('Category')
+                            ->schema(
+                                self::getCategorySchema(),
+                            ),
                         Section::make('Parent')
                             ->schema(
                                 self::getParentSchema(),
@@ -46,6 +50,14 @@ class TechnologyInfolist
         return [
             TextEntry::make('name')
                 ->color('gray'),
+            TextEntry::make('slug')
+                ->color('gray'),
+        ];
+    }
+
+    public static function getCategorySchema(): array
+    {
+        return [
             TextEntry::make('category.name')
                 ->color('gray'),
         ];

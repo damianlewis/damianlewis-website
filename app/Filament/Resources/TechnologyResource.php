@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TechnologyResource\Pages\CreateTechnology;
 use App\Filament\Resources\TechnologyResource\Pages\EditTechnology;
 use App\Filament\Resources\TechnologyResource\Pages\ListTechnologies;
+use App\Filament\Resources\TechnologyResource\Pages\ViewTechnology;
 use App\Filament\Resources\TechnologyResource\TechnologyForm;
 use App\Filament\Resources\TechnologyResource\TechnologyInfolist;
 use App\Filament\Resources\TechnologyResource\TechnologyTable;
@@ -46,6 +47,7 @@ class TechnologyResource extends Resource
         return [
             'index' => ListTechnologies::route('/'),
             'create' => CreateTechnology::route('/create'),
+            'view' => ViewTechnology::route('/{record}'),
             'edit' => EditTechnology::route('/{record}/edit'),
         ];
     }
