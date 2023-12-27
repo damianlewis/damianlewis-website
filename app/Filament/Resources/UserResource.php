@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages\CreateUser;
 use App\Filament\Resources\UserResource\Pages\EditUser;
 use App\Filament\Resources\UserResource\Pages\ListUsers;
+use App\Filament\Resources\UserResource\Pages\ViewUsers;
 use App\Filament\Resources\UserResource\UserForm;
 use App\Filament\Resources\UserResource\UserInfolist;
 use App\Filament\Resources\UserResource\UserTable;
@@ -46,6 +47,7 @@ class UserResource extends Resource
         return [
             'index' => ListUsers::route('/'),
             'create' => CreateUser::route('/create'),
+            'view' => ViewUsers::route('/{record}'),
             'edit' => EditUser::route('/{record}/edit'),
         ];
     }
