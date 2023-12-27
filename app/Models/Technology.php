@@ -27,6 +27,7 @@ class Technology extends Model implements Sortable
         'technology_category_id',
         'parent_id',
         'name',
+        'slug',
         'enabled',
     ];
 

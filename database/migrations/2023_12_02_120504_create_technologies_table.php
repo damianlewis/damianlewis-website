@@ -19,6 +19,7 @@ return new class extends Migration
                 ->constrained()
                 ->nullOnDelete();
             $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->boolean('enabled')->default(false);
             $table->unsignedInteger(config('eloquent-sortable.order_column_name'));
             $table->timestamps();
