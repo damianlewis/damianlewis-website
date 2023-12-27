@@ -6,10 +6,10 @@ use Closure;
 use Filament\Infolists\Components\Section;
 use Illuminate\Contracts\Support\Htmlable;
 
-class TimestampsSection extends Section
+class DatesSection extends Section
 {
     public static function make(
-        string|array|Htmlable|Closure|null $heading = null
+        string|array|Htmlable|Closure|null $heading = 'Dates'
     ): static {
         return parent::make($heading)
             ->schema([
@@ -17,6 +17,9 @@ class TimestampsSection extends Section
                     ->color('gray'),
                 UpdatedAtTextEntry::make()
                     ->color('gray'),
-            ]);
+                DeletedAtTextEntry::make()
+                    ->color('gray'),
+            ])
+            ->columns();
     }
 }

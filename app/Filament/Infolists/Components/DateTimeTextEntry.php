@@ -10,6 +10,6 @@ class DateTimeTextEntry extends TextEntry
         string $name
     ): static {
         return parent::make($name)
-            ->dateTime('d M Y H:i');
+            ->dateTime('j M Y H:i');
     }
 }
