@@ -38,7 +38,7 @@ class UserForm
             ->columns(3);
     }
 
-    private static function getDetailsSchema(): array
+    public static function getDetailsSchema(): array
     {
         return [
             TextInput::make('name')
@@ -65,7 +65,7 @@ class UserForm
         ];
     }
 
-    private static function getRolesSchema(): array
+    public static function getRolesSchema(): array
     {
         return [
             Select::make('roles')
