@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateTechnology extends CreateRecord
 {
     protected static string $resource = TechnologyResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return self::getResource()::getUrl('edit', ['record' => $this->getRecord()]);
+    }
 }
