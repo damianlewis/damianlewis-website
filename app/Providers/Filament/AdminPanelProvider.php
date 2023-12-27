@@ -62,6 +62,7 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Technology')
                     ->icon('heroicon-o-cube')
                     ->collapsed(),
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/admin/theme.css');
     }
 }
