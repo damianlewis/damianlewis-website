@@ -6,6 +6,7 @@ use App\Models\TechnologyCategory;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class TechnologyCategorySeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class TechnologyCategorySeeder extends Seeder
             ->count(count($categories))
             ->sequence(fn (Sequence $sequence) => [
                 'name' => $categories[$sequence->index],
+                'slug' => Str::slug($categories[$sequence->index]),
             ])
             ->enabled()
             ->create();

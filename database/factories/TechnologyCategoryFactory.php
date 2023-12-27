@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Helpers\Faker;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class TechnologyCategoryFactory extends Factory
 {
@@ -13,8 +14,11 @@ class TechnologyCategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $name = Faker::uniqueName(random_int(1, 3));
+
         return [
-            'name' => Faker::uniqueName(random_int(1, 3)),
+            'name' => $name,
+            'slug' => Str::slug($name),
             'description' => Faker::htmlParagraphs(random_int(1, 3)),
             'enabled' => false,
         ];

@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create((new TechnologyCategory)->getTable(), function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->boolean('enabled')->default(false);
             $table->unsignedInteger(config('eloquent-sortable.order_column_name'));

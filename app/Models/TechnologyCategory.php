@@ -27,6 +27,7 @@ class TechnologyCategory extends Model implements Sortable
 
     protected $fillable = [
         'name',
+        'slug',
         'description',
         'enabled',
     ];
