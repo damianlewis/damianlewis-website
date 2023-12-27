@@ -27,8 +27,6 @@ class TechnologyCategoryResource extends Resource
 
     protected static ?string $navigationLabel = 'Categories';
 
-    protected static ?string $recordTitleAttribute = 'name';
-
     public static function infolist(Infolist $infolist): Infolist
     {
         return TechnologyCategoryInfolist::make($infolist);

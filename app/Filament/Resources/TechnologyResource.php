@@ -23,8 +23,6 @@ class TechnologyResource extends Resource
 
     protected static ?string $navigationGroup = 'Technology';
 
-    protected static ?string $recordTitleAttribute = 'name';
-
     public static function infolist(Infolist $infolist): Infolist
     {
         return TechnologyInfolist::make($infolist);
