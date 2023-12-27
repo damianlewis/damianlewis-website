@@ -25,7 +25,7 @@ class TechnologyFactory extends Factory
 
     public function enabled(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (array $attributes): array => [
             'enabled' => true,
         ]);
     }
