@@ -11,6 +11,7 @@ class EnabledIconColumn extends IconColumn
     ): static {
         return parent::make($name)
             ->boolean()
-            ->sortable();
+            ->sortable()
+            ->toggleable();
     }
 }
