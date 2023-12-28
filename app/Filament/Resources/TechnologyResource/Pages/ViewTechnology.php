@@ -37,11 +37,11 @@ class ViewTechnology extends ViewRecord
                     return null;
                 })
                 ->before(function (Technology $record): void {
-                    if ($record->parent()->doesntExist() && $record->parent_id !== null) {
+                    if ($record->doesntHaveParent() && $record->parent_id !== null) {
                         $record->parent_id = null;
                     }
 
-                    if ($record->parent()->exists() && $record->parent->technology_category_id !== $record->technology_category_id) {
+                    if ($record->hasParent() && $record->parent->technology_category_id !== $record->technology_category_id) {
                         $record->parent_id = null;
                     }
                 }),

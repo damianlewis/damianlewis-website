@@ -102,6 +102,11 @@ class Technology extends Model implements Sortable
         return $this->parent()->exists();
     }
 
+    public function doesntHaveParent(): bool
+    {
+        return $this->parent()->doesntExist();
+    }
+
     public function hasChildren(): bool
     {
         return $this->children()->exists();
