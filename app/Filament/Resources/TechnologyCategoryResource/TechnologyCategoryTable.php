@@ -43,7 +43,8 @@ class TechnologyCategoryTable
             ])
             ->filters([
                 EnabledFilter::make(),
-                TrashedFilter::make(),
+                TrashedFilter::make()
+                    ->native(false),
             ])
             ->actions([
                 ViewAction::make()

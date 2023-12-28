@@ -61,7 +61,8 @@ class TechnologyTable
                     ->searchable()
                     ->preload(),
                 EnabledFilter::make(),
-                TrashedFilter::make(),
+                TrashedFilter::make()
+                    ->native(false),
             ])
             ->actions([
                 ViewAction::make()
