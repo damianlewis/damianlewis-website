@@ -35,7 +35,8 @@ class TechnologyInfolist
                         Section::make('Parent')
                             ->schema(
                                 self::getParentSchema(),
-                            ),
+                            )
+                            ->visible(fn (Technology $record) => $record->hasParent()),
                         Section::make('Settings')
                             ->schema(
                                 self::getSettingsSchema(),
@@ -68,8 +69,7 @@ class TechnologyInfolist
     {
         return [
             TextEntry::make('parent.name')
-                ->color('gray')
-                ->visible(fn (Technology $record) => $record->hasParent()),
+                ->color('gray'),
         ];
     }
 
