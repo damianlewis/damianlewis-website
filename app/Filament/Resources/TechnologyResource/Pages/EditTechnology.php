@@ -14,12 +14,7 @@ class EditTechnology extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make()
-                ->after(function (Technology $record) {
-                    if ($record->hasChildren()) {
-                        $record->children->each(fn (Technology $child) => $child->update(['parent_id' => null]));
-                    }
-                }),
+            DeleteAction::make(),
         ];
     }
 }
