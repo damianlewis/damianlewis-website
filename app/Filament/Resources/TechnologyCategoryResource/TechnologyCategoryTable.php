@@ -14,10 +14,6 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ForceDeleteAction;
-use Filament\Tables\Actions\ForceDeleteBulkAction;
-use Filament\Tables\Actions\RestoreAction;
-use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
@@ -57,16 +53,10 @@ class TechnologyCategoryTable
                     ->hidden(fn (TechnologyCategory $record): bool => $record->trashed()),
                 DeleteAction::make()
                     ->iconButton(),
-                RestoreAction::make()
-                    ->iconButton(),
-                ForceDeleteAction::make()
-                    ->iconButton(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
                 ]),
             ])
             ->reorderable(config('eloquent-sortable.order_column_name'))
