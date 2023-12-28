@@ -30,7 +30,8 @@ class TechnologyInfolist
                         Section::make('Category')
                             ->schema(
                                 self::getCategorySchema(),
-                            ),
+                            )
+                            ->visible(fn (Technology $record) => $record->hasCategory()),
                         Section::make('Parent')
                             ->schema(
                                 self::getParentSchema(),

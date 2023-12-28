@@ -55,6 +55,12 @@ class Technology extends Model implements Sortable
         return $this->hasMany(__CLASS__, 'parent_id');
     }
 
+    public function hasCategory(): bool
+    {
+        //        return $this->category()->exists();
+        return $this->category !== null;
+    }
+
     public function hasParent(): bool
     {
         //        return $this->children()->exists();
