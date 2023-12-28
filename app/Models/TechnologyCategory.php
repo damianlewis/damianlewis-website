@@ -3,11 +3,16 @@
 namespace App\Models;
 
 use App\Traits\SoftCascade;
+use Database\Factories\TechnologyCategoryFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Mews\Purifier\Casts\CleanHtml;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
@@ -21,21 +26,21 @@ use Spatie\EloquentSortable\SortableTrait;
  * @property array|null $description
  * @property bool $enabled
  * @property int $order_column
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Technology> $technologies
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Collection<int, Technology> $technologies
  *
- * @method static \Database\Factories\TechnologyCategoryFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|TechnologyCategory newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TechnologyCategory newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TechnologyCategory onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|TechnologyCategory ordered(string $direction = 'asc')
- * @method static \Illuminate\Database\Eloquent\Builder|TechnologyCategory query()
- * @method static \Illuminate\Database\Eloquent\Builder|TechnologyCategory withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|TechnologyCategory withoutTrashed()
+ * @method static TechnologyCategoryFactory factory($count = null, $state = [])
+ * @method static Builder|TechnologyCategory newModelQuery()
+ * @method static Builder|TechnologyCategory newQuery()
+ * @method static Builder|TechnologyCategory onlyTrashed()
+ * @method static Builder|TechnologyCategory ordered(string $direction = 'asc')
+ * @method static Builder|TechnologyCategory query()
+ * @method static Builder|TechnologyCategory withTrashed()
+ * @method static Builder|TechnologyCategory withoutTrashed()
  *
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class TechnologyCategory extends Model implements Sortable
 {

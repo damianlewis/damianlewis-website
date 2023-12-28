@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Support\Carbon;
 use Spatie\Permission\Models\Permission as SpatiePermission;
 
 /**
@@ -13,21 +17,21 @@ use Spatie\Permission\Models\Permission as SpatiePermission;
  * @property string|null $display_name
  * @property string|null $description
  * @property string $guard_name
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Permission> $permissions
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection<int, Permission> $permissions
+ * @property-read Collection<int, Role> $roles
+ * @property-read Collection<int, User> $users
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Permission permission($permissions, $without = false)
- * @method static \Illuminate\Database\Eloquent\Builder|Permission query()
- * @method static \Illuminate\Database\Eloquent\Builder|Permission role($roles, $guard = null, $without = false)
- * @method static \Illuminate\Database\Eloquent\Builder|Permission withoutPermission($permissions)
- * @method static \Illuminate\Database\Eloquent\Builder|Permission withoutRole($roles, $guard = null)
+ * @method static Builder|Permission newModelQuery()
+ * @method static Builder|Permission newQuery()
+ * @method static Builder|Permission permission($permissions, $without = false)
+ * @method static Builder|Permission query()
+ * @method static Builder|Permission role($roles, $guard = null, $without = false)
+ * @method static Builder|Permission withoutPermission($permissions)
+ * @method static Builder|Permission withoutRole($roles, $guard = null)
  *
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Permission extends SpatiePermission
 {
