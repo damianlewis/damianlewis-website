@@ -22,7 +22,7 @@ class ViewTechnology extends ViewRecord
                 ->hidden(fn (Technology $record): bool => $record->trashed()),
             RestoreAction::make()
                 ->form(function (Technology $record): ?array {
-                    if ($record->category()->doesntExist()) {
+                    if ($record->doesntHaveCategory()) {
                         return [
                             Select::make('technology_category_id')
                                 ->label('Category')
