@@ -4,6 +4,7 @@ namespace App\Filament\Resources\TechnologyResource;
 
 use App\Filament\Forms\Components\DatesSection;
 use App\Filament\Forms\Components\EnabledToggle;
+use App\Filament\Resources\TechnologyCategoryResource\RelationManagers\TechnologiesRelationManager;
 use App\Models\Technology;
 use App\Models\TechnologyCategory;
 use Closure;
@@ -29,7 +30,8 @@ class TechnologyForm
                         Section::make('Category')
                             ->schema(
                                 self::getCategorySchema()
-                            ),
+                            )
+                            ->hiddenOn(TechnologiesRelationManager::class),
                         Section::make('Details')
                             ->schema(
                                 self::getDetailsSchema()
