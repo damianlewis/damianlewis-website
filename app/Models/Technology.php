@@ -85,8 +85,7 @@ class Technology extends Model implements Sortable
 
     public function hasCategory(): bool
     {
-        //        return $this->category()->exists();
-        return $this->category !== null;
+        return $this->category()->exists();
     }
 
     public function hasParent(): bool
