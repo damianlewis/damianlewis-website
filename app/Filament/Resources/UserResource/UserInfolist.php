@@ -30,7 +30,7 @@ class UserInfolist
                             ->schema([
                                 TextEntry::make('roles.display_name')
                                     ->label('Name')
-                                    ->hiddenLabel(fn (User $record): bool => $record->roles->isEmpty())
+                                    ->hiddenLabel(fn (User $record): bool => $record->hasAnyRole())
                                     ->color('gray')
                                     ->default('No roles assigned'),
                             ]),

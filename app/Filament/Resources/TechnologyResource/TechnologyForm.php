@@ -46,7 +46,7 @@ class TechnologyForm
                                 self::getParentSchema()
                             )
                             ->hidden(
-                                fn (?Technology $record) => $record?->hasChildren()
+                                fn (?Technology $record): bool => $record?->hasChildren()
                             ),
                         Section::make('Settings')
                             ->schema(

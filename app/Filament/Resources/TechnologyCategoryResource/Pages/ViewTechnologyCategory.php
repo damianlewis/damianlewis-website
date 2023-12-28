@@ -17,7 +17,7 @@ class ViewTechnologyCategory extends ViewRecord
     {
         return [
             EditAction::make()
-                ->hidden(fn (TechnologyCategory $record) => $record->trashed()),
+                ->hidden(fn (TechnologyCategory $record): bool => $record->trashed()),
             RestoreAction::make(),
             ForceDeleteAction::make(),
         ];

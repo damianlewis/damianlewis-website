@@ -31,12 +31,12 @@ class TechnologyInfolist
                             ->schema(
                                 self::getCategorySchema(),
                             )
-                            ->visible(fn (Technology $record) => $record->hasCategory()),
+                            ->visible(fn (Technology $record): bool => $record->hasCategory()),
                         Section::make('Parent')
                             ->schema(
                                 self::getParentSchema(),
                             )
-                            ->visible(fn (Technology $record) => $record->hasParent()),
+                            ->visible(fn (Technology $record): bool => $record->hasParent()),
                         Section::make('Settings')
                             ->schema(
                                 self::getSettingsSchema(),

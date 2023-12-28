@@ -19,7 +19,7 @@ class ViewTechnology extends ViewRecord
     {
         return [
             EditAction::make()
-                ->hidden(fn (Technology $record) => $record->trashed()),
+                ->hidden(fn (Technology $record): bool => $record->trashed()),
             RestoreAction::make()
                 ->form(function (Technology $record): ?array {
                     if ($record->category()->doesntExist()) {
@@ -36,7 +36,7 @@ class ViewTechnology extends ViewRecord
 
                     return null;
                 })
-                ->before(function (Technology $record) {
+                ->before(function (Technology $record): void {
                     if ($record->parent()->doesntExist() && $record->parent_id !== null) {
                         $record->parent_id = null;
                     }
