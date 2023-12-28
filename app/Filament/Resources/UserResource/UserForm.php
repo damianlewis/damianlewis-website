@@ -42,6 +42,7 @@ class UserForm
     {
         return [
             TextInput::make('name')
+                ->autofocus(fn (string $operation): bool => $operation === 'create')
                 ->required()
                 ->maxLength(255),
             TextInput::make('email')

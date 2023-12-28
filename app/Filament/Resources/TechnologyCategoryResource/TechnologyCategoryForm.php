@@ -44,6 +44,7 @@ class TechnologyCategoryForm
     {
         return [
             TextInput::make('name')
+                ->autofocus(fn (string $operation): bool => $operation === 'create')
                 ->autocapitalize('words')
                 ->required()
                 ->unique(ignoreRecord: true)
