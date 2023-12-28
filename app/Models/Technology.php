@@ -90,14 +90,12 @@ class Technology extends Model implements Sortable
 
     public function hasParent(): bool
     {
-        //        return $this->children()->exists();
-        return $this->parent !== null;
+        return $this->parent()->exists();
     }
 
     public function hasChildren(): bool
     {
-        //        return $this->children()->exists();
-        return $this->children->isNotEmpty();
+        return $this->children()->exists();
     }
 
     public function buildSortQuery(): Builder
