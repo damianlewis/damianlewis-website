@@ -12,6 +12,34 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
+/**
+ * App\Models\Technology
+ *
+ * @property string $id
+ * @property string|null $technology_category_id
+ * @property string|null $parent_id
+ * @property string $name
+ * @property string $slug
+ * @property bool $enabled
+ * @property int $order_column
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\TechnologyCategory|null $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Technology> $children
+ * @property-read Technology|null $parent
+ *
+ * @method static \Database\Factories\TechnologyFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Technology newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Technology newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Technology onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Technology ordered(string $direction = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Technology query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Technology withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Technology withoutTrashed()
+ *
+ * @mixin \Eloquent
+ */
 class Technology extends Model implements Sortable
 {
     use HasFactory,
