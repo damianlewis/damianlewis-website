@@ -17,4 +17,16 @@ class EditTechnology extends EditRecord
             DeleteAction::make(),
         ];
     }
+
+    protected function beforeSave(): void
+    {
+        /** @var Technology $record */
+        $record = $this->getRecord();
+
+        if ($record->isDirty('technology_category_id') && $record->hasChildren()) {
+            $record->children()->update([
+                'parent_id' => null,
+            ]);
+        }
+    }
 }
