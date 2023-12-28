@@ -5,6 +5,7 @@ namespace App\Filament\Infolists\Components;
 use Closure;
 use Filament\Infolists\Components\Section;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Model;
 
 class DatesSection extends Section
 {
@@ -18,7 +19,8 @@ class DatesSection extends Section
                 UpdatedAtTextEntry::make()
                     ->color('gray'),
                 DeletedAtTextEntry::make()
-                    ->color('gray'),
+                    ->color('gray')
+                    ->visible(fn (Model $record): bool => $record->trashed()),
             ])
             ->columns();
     }

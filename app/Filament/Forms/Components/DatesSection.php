@@ -5,6 +5,7 @@ namespace App\Filament\Forms\Components;
 use Closure;
 use Filament\Forms\Components\Section;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Model;
 
 class DatesSection extends Section
 {
@@ -15,7 +16,8 @@ class DatesSection extends Section
             ->schema([
                 CreatedAtPlaceholder::make(),
                 UpdatedAtPlaceholder::make(),
-                DeletedAtPlaceholder::make(),
+                DeletedAtPlaceholder::make()
+                    ->visible(fn (Model $record): bool => $record->trashed()),
             ])
             ->hiddenOn('create')
             ->columns();
