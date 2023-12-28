@@ -6,6 +6,7 @@ use App\Filament\Forms\Components\EnabledSection;
 use App\Filament\Forms\Components\TimestampsSection;
 use App\Filament\Resources\TechnologyResource;
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
+use App\Filament\Tables\Columns\DeletedAtTextColumn;
 use App\Filament\Tables\Columns\EnabledIconColumn;
 use App\Filament\Tables\Columns\SortOrderTextColumn;
 use App\Filament\Tables\Columns\UpdatedAtTextColumn;
@@ -106,14 +107,22 @@ class TechnologiesRelationManager extends RelationManager
                 TextColumn::make('name')
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('slug')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('parent.name')
                     ->sortable()
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('category.name')
+                    ->sortable()
+                    ->searchable(),
                 EnabledIconColumn::make(),
                 SortOrderTextColumn::make(),
                 CreatedAtTextColumn::make(),
                 UpdatedAtTextColumn::make(),
+                DeletedAtTextColumn::make(),
             ])
             ->headerActions([
                 CreateAction::make(),
