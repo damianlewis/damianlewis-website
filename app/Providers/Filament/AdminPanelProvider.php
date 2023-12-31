@@ -11,6 +11,9 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Support\Facades\FilamentView;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -65,6 +68,21 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-o-cube')
                     ->collapsed(),
             ]);
+    }
+
+    public function boot(): void
+    {
+        ViewAction::configureUsing(
+            static fn (ViewAction $action): ViewAction => $action->iconButton()
+        );
+
+        EditAction::configureUsing(
+            static fn (EditAction $action): EditAction => $action->iconButton()
+        );
+
+        DeleteAction::configureUsing(
+            static fn (DeleteAction $action): DeleteAction => $action->iconButton()
+        );
     }
 
     public function register(): void

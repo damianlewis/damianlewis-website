@@ -65,13 +65,10 @@ class TechnologyTable
                     ->native(false),
             ])
             ->actions([
-                ViewAction::make()
-                    ->iconButton(),
+                ViewAction::make(),
                 EditAction::make()
-                    ->iconButton()
                     ->hidden(fn (Technology $record): bool => $record->trashed()),
-                DeleteAction::make()
-                    ->iconButton(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([

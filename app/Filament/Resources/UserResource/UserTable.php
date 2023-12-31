@@ -45,12 +45,9 @@ class UserTable
                     ->preload(),
             ])
             ->actions([
-                ViewAction::make()
-                    ->iconButton(),
-                EditAction::make()
-                    ->iconButton(),
-                DeleteAction::make()
-                    ->iconButton(),
+                ViewAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
