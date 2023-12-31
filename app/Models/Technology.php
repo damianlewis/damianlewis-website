@@ -112,6 +112,18 @@ class Technology extends Model implements Sortable
         return $this->children()->exists();
     }
 
+    public function enable(): void
+    {
+        $this->enabled = true;
+        $this->save();
+    }
+
+    public function disable(): void
+    {
+        $this->enabled = false;
+        $this->save();
+    }
+
     public function buildSortQuery(): Builder
     {
         return static::query()

@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\TechnologyResource;
 
 use App\Filament\Resources\TechnologyCategoryResource\RelationManagers\TechnologiesRelationManager;
+use App\Filament\Tables\Actions\DisableBulkAction;
+use App\Filament\Tables\Actions\EnableBulkAction;
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
 use App\Filament\Tables\Columns\DeletedAtTextColumn;
 use App\Filament\Tables\Columns\EnabledIconColumn;
@@ -72,6 +74,8 @@ class TechnologyTable
             ])
             ->bulkActions([
                 BulkActionGroup::make([
+                    EnableBulkAction::make(),
+                    DisableBulkAction::make(),
                     DeleteBulkAction::make(),
                 ]),
             ])

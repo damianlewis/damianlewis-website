@@ -79,4 +79,16 @@ class TechnologyCategory extends Model implements Sortable
     {
         return $this->hasMany(Technology::class);
     }
+
+    public function enable(): void
+    {
+        $this->enabled = true;
+        $this->save();
+    }
+
+    public function disable(): void
+    {
+        $this->enabled = false;
+        $this->save();
+    }
 }

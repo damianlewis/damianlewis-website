@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\TechnologyCategoryResource;
 
+use App\Filament\Tables\Actions\DisableBulkAction;
+use App\Filament\Tables\Actions\EnableBulkAction;
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
 use App\Filament\Tables\Columns\DeletedAtTextColumn;
 use App\Filament\Tables\Columns\EnabledIconColumn;
@@ -54,6 +56,8 @@ class TechnologyCategoryTable
             ])
             ->bulkActions([
                 BulkActionGroup::make([
+                    EnableBulkAction::make(),
+                    DisableBulkAction::make(),
                     DeleteBulkAction::make(),
                 ]),
             ])
