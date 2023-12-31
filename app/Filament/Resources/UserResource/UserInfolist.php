@@ -43,7 +43,8 @@ class UserInfolist
     {
         return [
             TextEntry::make('name'),
-            TextEntry::make('email'),
+            TextEntry::make('email')
+                ->copyable(),
         ];
     }
 }

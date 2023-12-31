@@ -27,6 +27,7 @@ class UserTable
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('email')
+                    ->copyable()
                     ->sortable()
                     ->searchable()
                     ->toggleable(),
