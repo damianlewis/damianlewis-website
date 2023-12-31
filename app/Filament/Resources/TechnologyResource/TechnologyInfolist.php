@@ -58,14 +58,16 @@ class TechnologyInfolist
     public static function getCategorySchema(): array
     {
         return [
-            TextEntry::make('category.name'),
+            TextEntry::make('category.name')
+                ->label('Name'),
         ];
     }
 
     public static function getParentSchema(): array
     {
         return [
-            TextEntry::make('parent.name'),
+            TextEntry::make('parent.name')
+                ->label('Name'),
         ];
     }
 
