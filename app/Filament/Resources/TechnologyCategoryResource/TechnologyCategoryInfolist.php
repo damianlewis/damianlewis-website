@@ -42,7 +42,7 @@ class TechnologyCategoryInfolist
             TextEntry::make('name'),
             TextEntry::make('slug'),
             TextEntry::make('description')
-                ->html(),
+                ->prose(),
         ];
     }
 
