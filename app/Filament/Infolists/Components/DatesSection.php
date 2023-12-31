@@ -14,12 +14,9 @@ class DatesSection extends Section
     ): static {
         return parent::make($heading)
             ->schema([
-                CreatedAtTextEntry::make()
-                    ->color('gray'),
-                UpdatedAtTextEntry::make()
-                    ->color('gray'),
+                CreatedAtTextEntry::make(),
+                UpdatedAtTextEntry::make(),
                 DeletedAtTextEntry::make()
-                    ->color('gray')
                     ->visible(fn (Model $record): bool => $record->trashed()),
             ])
             ->columns();

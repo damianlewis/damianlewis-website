@@ -31,7 +31,6 @@ class UserInfolist
                                 TextEntry::make('roles.display_name')
                                     ->label('Name')
                                     ->hiddenLabel(fn (User $record): bool => $record->hasAnyRole())
-                                    ->color('gray')
                                     ->default('No roles assigned'),
                             ]),
                     ])
@@ -43,10 +42,8 @@ class UserInfolist
     public static function getDetailsSchema(): array
     {
         return [
-            TextEntry::make('name')
-                ->color('gray'),
-            TextEntry::make('email')
-                ->color('gray'),
+            TextEntry::make('name'),
+            TextEntry::make('email'),
         ];
     }
 }

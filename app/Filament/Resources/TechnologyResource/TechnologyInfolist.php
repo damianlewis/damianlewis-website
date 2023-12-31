@@ -50,26 +50,22 @@ class TechnologyInfolist
     public static function getDetailsSchema(): array
     {
         return [
-            TextEntry::make('name')
-                ->color('gray'),
-            TextEntry::make('slug')
-                ->color('gray'),
+            TextEntry::make('name'),
+            TextEntry::make('slug'),
         ];
     }
 
     public static function getCategorySchema(): array
     {
         return [
-            TextEntry::make('category.name')
-                ->color('gray'),
+            TextEntry::make('category.name'),
         ];
     }
 
     public static function getParentSchema(): array
     {
         return [
-            TextEntry::make('parent.name')
-                ->color('gray'),
+            TextEntry::make('parent.name'),
         ];
     }
 

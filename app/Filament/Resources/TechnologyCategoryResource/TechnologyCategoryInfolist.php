@@ -39,13 +39,10 @@ class TechnologyCategoryInfolist
     public static function getDetailsSchema(): array
     {
         return [
-            TextEntry::make('name')
-                ->color('gray'),
-            TextEntry::make('slug')
-                ->color('gray'),
+            TextEntry::make('name'),
+            TextEntry::make('slug'),
             TextEntry::make('description')
-                ->html()
-                ->color('gray'),
+                ->html(),
         ];
     }
 
