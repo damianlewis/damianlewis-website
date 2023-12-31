@@ -48,6 +48,7 @@ class TechnologyCategoryTable
                 TrashedFilter::make()
                     ->native(false),
             ])
+            ->persistFiltersInSession()
             ->actions([
                 ViewAction::make(),
                 EditAction::make()

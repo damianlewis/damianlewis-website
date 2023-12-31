@@ -45,6 +45,7 @@ class UserTable
                     ->searchable()
                     ->preload(),
             ])
+            ->persistFiltersInSession()
             ->actions([
                 ViewAction::make(),
                 EditAction::make(),
