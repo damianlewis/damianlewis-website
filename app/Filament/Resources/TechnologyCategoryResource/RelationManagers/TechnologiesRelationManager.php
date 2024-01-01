@@ -48,9 +48,6 @@ class TechnologiesRelationManager extends RelationManager
                     ->sortable()
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('category.name')
-                    ->sortable()
-                    ->searchable(),
                 EnabledIconColumn::make(),
                 SortOrderTextColumn::make(),
                 CreatedAtTextColumn::make(),
