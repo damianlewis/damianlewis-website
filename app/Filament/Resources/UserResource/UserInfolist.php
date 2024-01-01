@@ -27,12 +27,9 @@ class UserInfolist
                     ->schema([
                         DatesSection::make(),
                         Section::make('Roles')
-                            ->schema([
-                                TextEntry::make('roles.display_name')
-                                    ->label('Name')
-                                    ->hiddenLabel(fn (User $record): bool => $record->hasAnyRole())
-                                    ->default('No roles assigned'),
-                            ]),
+                            ->schema(
+                                self::getRolesSchema()
+                            ),
                     ])
                     ->columnSpan(['lg' => 1]),
             ])
@@ -45,6 +42,16 @@ class UserInfolist
             TextEntry::make('name'),
             TextEntry::make('email')
                 ->copyable(),
+        ];
+    }
+
+    public static function getRolesSchema(): array
+    {
+        return [
+            TextEntry::make('roles.display_name')
+                ->label('Name')
+                ->hiddenLabel(fn (User $record): bool => $record->hasAnyRole())
+                ->default('No roles assigned'),
         ];
     }
 }
