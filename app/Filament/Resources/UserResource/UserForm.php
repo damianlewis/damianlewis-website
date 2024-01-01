@@ -2,7 +2,10 @@
 
 namespace App\Filament\Resources\UserResource;
 
+use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
+use App\Models\User;
+use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -34,6 +37,9 @@ class UserForm
                             ),
                     ])
                     ->columnSpan(['lg' => 1]),
+                Actions::make(
+                    self::generateFormDataAction($form)
+                ),
             ])
             ->columns(3);
     }
@@ -75,6 +81,23 @@ class UserForm
                 ->multiple()
                 ->preload()
                 ->searchable(),
+        ];
+    }
+
+    public static function generateFormDataAction(Form $form): array
+    {
+        return [
+            GenerateFormDataAction::makeFor(
+                form: $form,
+                data: [
+                    ...User::factory()
+                        ->unverified()
+                        ->make()
+                        ->toArray(),
+                    'password' => 'secret',
+                    'password_confirmation' => 'secret',
+                ],
+            ),
         ];
     }
 }

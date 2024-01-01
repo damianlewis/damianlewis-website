@@ -2,8 +2,11 @@
 
 namespace App\Filament\Resources\TechnologyCategoryResource;
 
+use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
 use App\Filament\Forms\Components\EnabledToggle;
+use App\Models\TechnologyCategory;
+use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
@@ -36,6 +39,9 @@ class TechnologyCategoryForm
                             ),
                     ])
                     ->columnSpan(['lg' => 1]),
+                Actions::make(
+                    self::generateFormDataAction($form)
+                ),
             ])
             ->columns(3);
     }
@@ -78,6 +84,18 @@ class TechnologyCategoryForm
     {
         return [
             EnabledToggle::make(),
+        ];
+    }
+
+    public static function generateFormDataAction(Form $form): array
+    {
+        return [
+            GenerateFormDataAction::makeFor(
+                form: $form,
+                data: TechnologyCategory::factory()
+                    ->make()
+                    ->toArray(),
+            ),
         ];
     }
 }

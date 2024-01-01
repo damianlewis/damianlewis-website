@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources\TechnologyResource;
 
+use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
 use App\Filament\Forms\Components\EnabledToggle;
 use App\Filament\Resources\TechnologyCategoryResource\RelationManagers\TechnologiesRelationManager;
 use App\Models\Technology;
 use App\Models\TechnologyCategory;
 use Closure;
+use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -54,6 +56,9 @@ class TechnologyForm
                             ),
                     ])
                     ->columnSpan(['lg' => 1]),
+                Actions::make(
+                    self::generateFormDataAction($form)
+                ),
             ])
             ->columns(3);
     }
@@ -139,6 +144,19 @@ class TechnologyForm
     {
         return [
             EnabledToggle::make(),
+        ];
+    }
+
+    public static function generateFormDataAction(Form $form): array
+    {
+        return [
+            GenerateFormDataAction::makeFor(
+                form: $form,
+                data: Technology::factory()
+                    ->make()
+                    ->makeVisible('password')
+                    ->toArray(),
+            ),
         ];
     }
 }
