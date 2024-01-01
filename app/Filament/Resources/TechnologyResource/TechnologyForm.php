@@ -5,11 +5,15 @@ namespace App\Filament\Resources\TechnologyResource;
 use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
 use App\Filament\Forms\Components\EnabledToggle;
+use App\Filament\Resources\TechnologyCategoryResource;
 use App\Filament\Resources\TechnologyCategoryResource\RelationManagers\TechnologiesRelationManager;
+use App\Filament\Resources\TechnologyCategoryResource\TechnologyCategoryForm;
 use App\Models\Technology;
 use App\Models\TechnologyCategory;
 use Closure;
 use Filament\Forms\Components\Actions;
+use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -17,6 +21,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Support\Enums\MaxWidth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Exists;
@@ -91,6 +96,29 @@ class TechnologyForm
                 ->relationship('category', 'name')
                 ->searchable()
                 ->preload()
+                ->createOptionForm([
+                    Grid::make(3)
+                        ->schema([
+                            Group::make()
+                                ->schema([
+                                    TechnologyCategoryForm::getDetailsSection(),
+                                ])
+                                ->columnSpan(['lg' => 2]),
+                            Group::make()
+                                ->schema([
+                                    TechnologyCategoryForm::getSettingsSection(),
+                                ])
+                                ->columnSpan(['lg' => 1]),
+                        ]),
+                ])
+                ->createOptionModalHeading(
+                    __('filament-panels::resources/pages/create-record.title', [
+                        'label' => Str::headline(TechnologyCategoryResource::getModelLabel()),
+                    ])
+                )
+                ->createOptionAction(fn (Action $action): Action => $action
+                    ->modalWidth(MaxWidth::FiveExtraLarge)
+                )
                 ->live()
                 ->afterStateUpdated(
                     fn (Set $set) => $set('parent_id', null)
