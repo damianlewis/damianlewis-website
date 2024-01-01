@@ -29,31 +29,19 @@ class TechnologyForm
             ->schema([
                 Group::make()
                     ->schema([
-                        Section::make('Category')
-                            ->schema(
-                                self::getCategorySchema()
-                            )
+                        self::getCategorySection()
                             ->hiddenOn(TechnologiesRelationManager::class),
-                        Section::make('Details')
-                            ->schema(
-                                self::getDetailsSchema()
-                            ),
+                        self::getDetailsSection(),
                     ])
                     ->columnSpan(['lg' => 2]),
                 Group::make()
                     ->schema([
                         DatesSection::make(),
-                        Section::make('Parent')
-                            ->schema(
-                                self::getParentSchema()
-                            )
+                        self::getParentSection()
                             ->hidden(
                                 fn (?Technology $record): bool => (bool) $record?->hasChildren()
                             ),
-                        Section::make('Settings')
-                            ->schema(
-                                self::getSettingsSchema()
-                            ),
+                        self::getSettingsSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
                 Actions::make(
@@ -61,6 +49,38 @@ class TechnologyForm
                 ),
             ])
             ->columns(3);
+    }
+
+    public static function getCategorySection(): Section
+    {
+        return Section::make('Category')
+            ->schema(
+                self::getCategorySchema()
+            );
+    }
+
+    public static function getDetailsSection(): Section
+    {
+        return Section::make('Details')
+            ->schema(
+                self::getDetailsSchema()
+            );
+    }
+
+    public static function getParentSection(): Section
+    {
+        return Section::make('Parent')
+            ->schema(
+                self::getParentSchema()
+            );
+    }
+
+    public static function getSettingsSection(): Section
+    {
+        return Section::make('Settings')
+            ->schema(
+                self::getSettingsSchema()
+            );
     }
 
     public static function getCategorySchema(): array

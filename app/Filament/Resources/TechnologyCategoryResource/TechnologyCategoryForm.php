@@ -24,19 +24,13 @@ class TechnologyCategoryForm
             ->schema([
                 Group::make()
                     ->schema([
-                        Section::make('Details')
-                            ->schema(
-                                self::getDetailsSchema()
-                            ),
+                        self::getDetailsSection(),
                     ])
                     ->columnSpan(['lg' => 2]),
                 Group::make()
                     ->schema([
                         DatesSection::make(),
-                        Section::make('Settings')
-                            ->schema(
-                                self::getSettingsSchema()
-                            ),
+                        self::getSettingsSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
                 Actions::make(
@@ -44,6 +38,22 @@ class TechnologyCategoryForm
                 ),
             ])
             ->columns(3);
+    }
+
+    public static function getDetailsSection(): Section
+    {
+        return Section::make('Details')
+            ->schema(
+                self::getDetailsSchema()
+            );
+    }
+
+    public static function getSettingsSection(): Section
+    {
+        return Section::make('Settings')
+            ->schema(
+                self::getSettingsSchema()
+            );
     }
 
     public static function getDetailsSchema(): array

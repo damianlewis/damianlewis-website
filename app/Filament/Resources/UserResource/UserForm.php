@@ -22,19 +22,13 @@ class UserForm
             ->schema([
                 Group::make()
                     ->schema([
-                        Section::make('Details')
-                            ->schema(
-                                self::getDetailsSchema()
-                            ),
+                        self::getDetailsSection(),
                     ])
                     ->columnSpan(['lg' => 2]),
                 Group::make()
                     ->schema([
                         DatesSection::make(),
-                        Section::make('Roles')
-                            ->schema(
-                                self::getRolesSchema()
-                            ),
+                        self::getRolesSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
                 Actions::make(
@@ -42,6 +36,22 @@ class UserForm
                 ),
             ])
             ->columns(3);
+    }
+
+    public static function getDetailsSection(): Section
+    {
+        return Section::make('Details')
+            ->schema(
+                self::getDetailsSchema()
+            );
+    }
+
+    public static function getRolesSection(): Section
+    {
+        return Section::make('Roles')
+            ->schema(
+                self::getRolesSchema()
+            );
     }
 
     public static function getDetailsSchema(): array
