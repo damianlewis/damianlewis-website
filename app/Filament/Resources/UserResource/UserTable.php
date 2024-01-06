@@ -17,7 +17,7 @@ class UserTable extends ResourceTable
      */
     public static function make(Table $table): Table
     {
-        return $table
+        return parent::make($table)
             ->columns([
                 TextColumn::make('name')
                     ->sortable()
