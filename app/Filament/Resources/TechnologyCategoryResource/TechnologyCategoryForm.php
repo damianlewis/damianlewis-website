@@ -61,19 +61,28 @@ class TechnologyCategoryForm extends ResourceForm
     {
         return [
             TextInput::make('name')
-                ->autofocus(fn (string $operation): bool => $operation === 'create')
+                ->autofocus(
+                    fn (string $operation): bool => $operation === 'create'
+                )
                 ->autocapitalize('words')
                 ->required()
                 ->unique(ignoreRecord: true)
                 ->maxLength(255)
                 ->live(onBlur: true)
-                ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state): void {
-                    if (($get('slug') ?? '') !== Str::slug($old)) {
-                        return;
-                    }
+                ->afterStateUpdated(
+                    function (
+                        Get $get,
+                        Set $set,
+                        ?string $old,
+                        ?string $state,
+                    ): void {
+                        if (($get('slug') ?? '') !== Str::slug($old)) {
+                            return;
+                        }
 
-                    $set('slug', Str::slug($state));
-                }),
+                        $set('slug', Str::slug($state));
+                    }
+                ),
             TextInput::make('slug')
                 ->required()
                 ->rule('alpha_dash')
@@ -87,7 +96,6 @@ class TechnologyCategoryForm extends ResourceForm
                 ])
                 ->nullable()
                 ->maxLength(65535),
-
         ];
     }
 

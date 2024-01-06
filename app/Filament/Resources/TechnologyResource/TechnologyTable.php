@@ -71,7 +71,9 @@ class TechnologyTable extends ResourceTable
             ->actions([
                 ViewAction::make(),
                 EditAction::make()
-                    ->hidden(fn (Technology $record): bool => $record->trashed()),
+                    ->hidden(
+                        fn (Technology $record): bool => $record->trashed()
+                    ),
                 DeleteAction::make(),
             ])
             ->bulkActions([

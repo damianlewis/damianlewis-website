@@ -64,7 +64,9 @@ class TechnologiesRelationManager extends RelationManager
                     ->modalWidth(MaxWidth::FiveExtraLarge),
                 EditAction::make()
                     ->modalWidth(MaxWidth::FiveExtraLarge)
-                    ->hidden(fn (Technology $record): bool => $record->trashed()),
+                    ->hidden(
+                        fn (Technology $record): bool => $record->trashed()
+                    ),
                 DeleteAction::make(),
             ])
             ->headerActions([

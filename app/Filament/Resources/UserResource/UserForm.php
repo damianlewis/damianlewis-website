@@ -59,7 +59,9 @@ class UserForm extends ResourceForm
     {
         return [
             TextInput::make('name')
-                ->autofocus(fn (string $operation): bool => $operation === 'create')
+                ->autofocus(
+                    fn (string $operation): bool => $operation === 'create'
+                )
                 ->required()
                 ->maxLength(255),
             TextInput::make('email')
@@ -70,16 +72,24 @@ class UserForm extends ResourceForm
             TextInput::make('password')
                 ->password()
                 ->autocomplete(false)
-                ->dehydrated(fn (?string $state): bool => filled($state))
-                ->required(fn (string $operation): bool => $operation === 'create')
+                ->dehydrated(
+                    fn (?string $state): bool => filled($state)
+                )
+                ->required(
+                    fn (string $operation): bool => $operation === 'create'
+                )
                 ->maxLength(255)
                 ->rule(Password::defaults())
                 ->confirmed()
                 ->live(),
             TextInput::make('password_confirmation')
                 ->password()
-                ->dehydrated(fn (?string $state): bool => filled($state))
-                ->hidden(fn (Get $get): bool => empty($get('password'))),
+                ->dehydrated(
+                    fn (?string $state): bool => filled($state)
+                )
+                ->hidden(
+                    fn (Get $get): bool => empty($get('password'))
+                ),
         ];
     }
 

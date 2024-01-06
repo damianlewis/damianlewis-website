@@ -117,8 +117,8 @@ class TechnologyForm extends ResourceForm
                         'label' => Str::headline(TechnologyCategoryResource::getModelLabel()),
                     ])
                 )
-                ->createOptionAction(fn (Action $action): Action => $action
-                    ->modalWidth(MaxWidth::FiveExtraLarge)
+                ->createOptionAction(
+                    fn (Action $action): Action => $action->modalWidth(MaxWidth::FiveExtraLarge)
                 )
                 ->live()
                 ->afterStateUpdated(
@@ -141,13 +141,20 @@ class TechnologyForm extends ResourceForm
                 ->unique(ignoreRecord: true)
                 ->maxLength(255)
                 ->live(onBlur: true)
-                ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state): void {
-                    if (($get('slug') ?? '') !== Str::slug($old)) {
-                        return;
-                    }
+                ->afterStateUpdated(
+                    function (
+                        Get $get,
+                        Set $set,
+                        ?string $old,
+                        ?string $state,
+                    ): void {
+                        if (($get('slug') ?? '') !== Str::slug($old)) {
+                            return;
+                        }
 
-                    $set('slug', Str::slug($state));
-                }),
+                        $set('slug', Str::slug($state));
+                    }
+                ),
             TextInput::make('slug')
                 ->required()
                 ->rule('alpha_dash')
@@ -166,7 +173,11 @@ class TechnologyForm extends ResourceForm
                 ->relationship(
                     name: 'parent',
                     titleAttribute: 'name',
-                    modifyQueryUsing: fn (Builder $query, ?Technology $record, Get $get): Builder => $query
+                    modifyQueryUsing: fn (
+                        Builder $query,
+                        ?Technology $record,
+                        Get $get,
+                    ): Builder => $query
                         ->whereNull('parent_id')
                         ->whereNot($technology->getKeyName(), $record?->getKey())
                         ->where('technology_category_id', $get('technology_category_id'))
@@ -176,13 +187,21 @@ class TechnologyForm extends ResourceForm
                 ->nullable()
                 ->exists(
                     column: $technology->getKeyName(),
-                    modifyRuleUsing: fn (Exists $rule, ?Technology $record, Get $get): Exists => $rule
+                    modifyRuleUsing: fn (
+                        Exists $rule,
+                        ?Technology $record,
+                        Get $get,
+                    ): Exists => $rule
                         ->whereNull('parent_id')
                         ->whereNot($technology->getKeyName(), $record?->getKey())
                         ->where('technology_category_id', $get('technology_category_id'))
                 )
                 ->rule(
-                    fn (?Technology $record): Closure => static fn (string $attribute, string $value, Closure $fail): ?string => $record?->hasChildren()
+                    fn (?Technology $record): Closure => static fn (
+                        string $attribute,
+                        string $value,
+                        Closure $fail
+                    ): ?string => $record?->hasChildren()
                         ? $fail($record->name . ' can\'t have a parent as it is already a parent')
                         : null
                 ),
