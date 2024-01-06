@@ -4,6 +4,7 @@ namespace App\Filament\Resources\UserResource;
 
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
 use App\Filament\Tables\Columns\UpdatedAtTextColumn;
+use App\Filament\Tables\ResourceTable;
 use Exception;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
@@ -14,7 +15,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
-class UserTable
+class UserTable extends ResourceTable
 {
     /**
      * @throws Exception
@@ -45,17 +46,6 @@ class UserTable
                     ->searchable()
                     ->preload(),
             ])
-            ->persistFiltersInSession()
-            ->actions([
-                ViewAction::make(),
-                EditAction::make(),
-                DeleteAction::make(),
-            ])
-            ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ])
-            ->defaultSort('created_at', 'desc');
+            ->persistFiltersInSession();
     }
 }

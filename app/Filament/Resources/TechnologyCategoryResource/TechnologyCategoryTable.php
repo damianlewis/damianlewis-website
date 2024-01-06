@@ -10,6 +10,7 @@ use App\Filament\Tables\Columns\EnabledIconColumn;
 use App\Filament\Tables\Columns\SortOrderTextColumn;
 use App\Filament\Tables\Columns\UpdatedAtTextColumn;
 use App\Filament\Tables\Filters\EnabledFilter;
+use App\Filament\Tables\ResourceTable;
 use App\Models\TechnologyCategory;
 use Exception;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -21,14 +22,14 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class TechnologyCategoryTable
+class TechnologyCategoryTable extends ResourceTable
 {
     /**
      * @throws Exception
      */
     public static function make(Table $table): Table
     {
-        return $table
+        return parent::make($table)
             ->columns([
                 TextColumn::make('name')
                     ->sortable()
