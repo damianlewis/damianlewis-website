@@ -4,6 +4,7 @@ namespace App\Filament\Resources\UserResource;
 
 use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
+use App\Filament\Forms\ResourceForm;
 use App\Models\User;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Group;
@@ -14,7 +15,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Illuminate\Validation\Rules\Password;
 
-class UserForm
+class UserForm extends ResourceForm
 {
     public static function make(Form $form): Form
     {

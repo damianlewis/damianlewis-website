@@ -5,6 +5,7 @@ namespace App\Filament\Resources\TechnologyResource;
 use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
 use App\Filament\Forms\Components\EnabledToggle;
+use App\Filament\Forms\ResourceForm;
 use App\Filament\Resources\TechnologyCategoryResource;
 use App\Filament\Resources\TechnologyCategoryResource\RelationManagers\TechnologiesRelationManager;
 use App\Filament\Resources\TechnologyCategoryResource\TechnologyCategoryForm;
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Exists;
 
-class TechnologyForm
+class TechnologyForm extends ResourceForm
 {
     public static function make(Form $form): Form
     {

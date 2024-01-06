@@ -5,6 +5,7 @@ namespace App\Filament\Resources\TechnologyCategoryResource;
 use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
 use App\Filament\Forms\Components\EnabledToggle;
+use App\Filament\Forms\ResourceForm;
 use App\Models\TechnologyCategory;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Group;
@@ -16,7 +17,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 
-class TechnologyCategoryForm
+class TechnologyCategoryForm extends ResourceForm
 {
     public static function make(Form $form): Form
     {
