@@ -5,6 +5,7 @@ namespace App\Filament\Resources\TechnologyResource\Pages;
 use App\Filament\Resources\TechnologyResource;
 use App\Models\Technology;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditTechnology extends EditRecord
@@ -14,6 +15,7 @@ class EditTechnology extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            ViewAction::make(),
             DeleteAction::make(),
         ];
     }
