@@ -42,6 +42,9 @@ class UserForm extends ResourceForm
     public static function getDetailsSection(): Section
     {
         return Section::make('Details')
+            ->description(
+                self::help()
+            )
             ->schema(
                 self::getDetailsSchema()
             );
@@ -50,6 +53,9 @@ class UserForm extends ResourceForm
     public static function getRolesSection(): Section
     {
         return Section::make('Roles')
+            ->description(
+                self::help()
+            )
             ->schema(
                 self::getRolesSchema()
             );

@@ -60,6 +60,9 @@ class TechnologyForm extends ResourceForm
     public static function getCategorySection(): Section
     {
         return Section::make('Category')
+            ->description(
+                self::help()
+            )
             ->schema(
                 self::getCategorySchema()
             );
@@ -68,6 +71,9 @@ class TechnologyForm extends ResourceForm
     public static function getDetailsSection(): Section
     {
         return Section::make('Details')
+            ->description(
+                self::help()
+            )
             ->schema(
                 self::getDetailsSchema()
             );
@@ -76,6 +82,9 @@ class TechnologyForm extends ResourceForm
     public static function getParentSection(): Section
     {
         return Section::make('Parent')
+            ->description(
+                self::help()
+            )
             ->schema(
                 self::getParentSchema()
             );
@@ -84,6 +93,9 @@ class TechnologyForm extends ResourceForm
     public static function getSettingsSection(): Section
     {
         return Section::make('Settings')
+            ->description(
+                self::help()
+            )
             ->schema(
                 self::getSettingsSchema()
             );

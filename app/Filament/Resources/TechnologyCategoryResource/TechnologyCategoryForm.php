@@ -44,6 +44,9 @@ class TechnologyCategoryForm extends ResourceForm
     public static function getDetailsSection(): Section
     {
         return Section::make('Details')
+            ->description(
+                self::help()
+            )
             ->schema(
                 self::getDetailsSchema()
             );
@@ -52,6 +55,9 @@ class TechnologyCategoryForm extends ResourceForm
     public static function getSettingsSection(): Section
     {
         return Section::make('Settings')
+            ->description(
+                self::help()
+            )
             ->schema(
                 self::getSettingsSchema()
             );
