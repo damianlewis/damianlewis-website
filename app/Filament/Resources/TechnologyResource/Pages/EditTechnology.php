@@ -2,23 +2,13 @@
 
 namespace App\Filament\Resources\TechnologyResource\Pages;
 
+use App\Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\TechnologyResource;
 use App\Models\Technology;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\ViewAction;
-use Filament\Resources\Pages\EditRecord;
 
 class EditTechnology extends EditRecord
 {
     protected static string $resource = TechnologyResource::class;
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            ViewAction::make(),
-            DeleteAction::make(),
-        ];
-    }
 
     protected function beforeSave(): void
     {
