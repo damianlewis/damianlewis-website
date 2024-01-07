@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\TechnologyCategoryResource\Pages;
 
+use App\Filament\Resources\Pages\ViewRecord;
 use App\Filament\Resources\TechnologyCategoryResource;
 use App\Models\TechnologyCategory;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
-use Filament\Resources\Pages\ViewRecord;
 
 class ViewTechnologyCategory extends ViewRecord
 {
