@@ -12,6 +12,7 @@ use App\Models\Technology;
 use Exception;
 use Filament\Forms\Form;
 use Filament\Infolists\Infolist;
+use Filament\Resources\Pages\ViewRecord;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Support\Enums\MaxWidth;
 use Filament\Tables\Actions\CreateAction;
@@ -73,7 +74,10 @@ class TechnologiesRelationManager extends RelationManager
                 CreateAction::make()
                     ->modalWidth(MaxWidth::FiveExtraLarge),
             ])
-            ->reorderable(config('eloquent-sortable.order_column_name'))
+            ->reorderable(
+                config('eloquent-sortable.order_column_name'),
+                fn (RelationManager $livewire, Table $table): bool => ! is_subclass_of($this->getPageClass(), ViewRecord::class)
+            )
             ->defaultSort(config('eloquent-sortable.order_column_name'));
     }
 }
