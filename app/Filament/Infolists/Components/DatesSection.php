@@ -17,7 +17,9 @@ class DatesSection extends Section
                 CreatedAtTextEntry::make(),
                 UpdatedAtTextEntry::make(),
                 DeletedAtTextEntry::make()
-                    ->visible(fn (Model $record): bool => $record->trashed()),
+                    ->visible(
+                        fn (Model $record): bool => method_exists($record, 'trashed') && $record->trashed()
+                    ),
             ])
             ->columns();
     }

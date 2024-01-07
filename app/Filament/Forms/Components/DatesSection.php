@@ -17,7 +17,9 @@ class DatesSection extends Section
                 CreatedAtPlaceholder::make(),
                 UpdatedAtPlaceholder::make(),
                 DeletedAtPlaceholder::make()
-                    ->visible(fn (Model $record): bool => $record->trashed()),
+                    ->visible(
+                        fn (Model $record): bool => method_exists($record, 'trashed') && $record->trashed()
+                    ),
             ])
             ->hiddenOn('create')
             ->columns();
