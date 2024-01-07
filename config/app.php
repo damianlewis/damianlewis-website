@@ -187,4 +187,12 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Additional Application Configuration
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'generate_form_data' => env('APP_GENERATE_FORM_DATA', false),
 ];
