@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\UserResource;
 
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
+use App\Filament\Tables\Columns\NameTextColumn;
 use App\Filament\Tables\Columns\UpdatedAtTextColumn;
 use App\Filament\Tables\ResourceTable;
 use Exception;
@@ -19,9 +20,7 @@ class UserTable extends ResourceTable
     {
         return parent::make($table)
             ->columns([
-                TextColumn::make('name')
-                    ->sortable()
-                    ->searchable(),
+                NameTextColumn::make(),
                 TextColumn::make('email')
                     ->copyable()
                     ->sortable()

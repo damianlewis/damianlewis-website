@@ -8,6 +8,8 @@ use App\Filament\Tables\Actions\EnableBulkAction;
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
 use App\Filament\Tables\Columns\DeletedAtTextColumn;
 use App\Filament\Tables\Columns\EnabledIconColumn;
+use App\Filament\Tables\Columns\NameTextColumn;
+use App\Filament\Tables\Columns\SlugTextColumn;
 use App\Filament\Tables\Columns\UpdatedAtTextColumn;
 use App\Filament\Tables\Filters\EnabledFilter;
 use App\Filament\Tables\ResourceTable;
@@ -32,13 +34,8 @@ class TechnologyTable extends ResourceTable
     {
         return parent::make($table)
             ->columns([
-                TextColumn::make('name')
-                    ->sortable()
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->sortable()
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                NameTextColumn::make(),
+                SlugTextColumn::make(),
                 TextColumn::make('parent.name')
                     ->sortable()
                     ->searchable()
