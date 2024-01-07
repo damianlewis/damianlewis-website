@@ -6,12 +6,12 @@ use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
 use App\Filament\Forms\Components\EnabledToggle;
 use App\Filament\Forms\Components\NameTextInput;
+use App\Filament\Forms\Components\SimpleRichEditor;
 use App\Filament\Forms\Components\SlugTextInput;
 use App\Filament\Forms\ResourceForm;
 use App\Models\TechnologyCategory;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Group;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 
@@ -60,14 +60,8 @@ class TechnologyCategoryForm extends ResourceForm
                 )
                 ->autocapitalize('words'),
             SlugTextInput::make(),
-            RichEditor::make('description')
-                ->disableToolbarButtons([
-                    'attachFiles',
-                    'blockquote',
-                    'codeBlock',
-                ])
-                ->nullable()
-                ->maxLength(65535),
+            SimpleRichEditor::make('description')
+                ->nullable(),
         ];
     }
 
