@@ -36,18 +36,14 @@ class TechnologyForm extends ResourceForm
             ->schema([
                 Group::make()
                     ->schema([
-                        self::getCategorySection()
-                            ->hiddenOn(TechnologiesRelationManager::class),
+                        self::getCategorySection(),
                         self::getDetailsSection(),
                     ])
                     ->columnSpan(['lg' => 2]),
                 Group::make()
                     ->schema([
                         DatesSection::make(),
-                        self::getParentSection()
-                            ->hidden(
-                                fn (?Technology $record): bool => (bool) $record?->hasChildren()
-                            ),
+                        self::getParentSection(),
                         self::getSettingsSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
@@ -69,14 +65,18 @@ class TechnologyForm extends ResourceForm
     {
         return Section::make('Details')
             ->description(self::help())
-            ->schema(self::getDetailsSchema());
+            ->schema(self::getDetailsSchema())
+            ->hiddenOn(TechnologiesRelationManager::class);
     }
 
     public static function getParentSection(): Section
     {
         return Section::make('Parent')
             ->description(self::help())
-            ->schema(self::getParentSchema());
+            ->schema(self::getParentSchema())
+            ->hidden(
+                fn (?Technology $record): bool => (bool) $record?->hasChildren()
+            );
     }
 
     public static function getSettingsSection(): Section
