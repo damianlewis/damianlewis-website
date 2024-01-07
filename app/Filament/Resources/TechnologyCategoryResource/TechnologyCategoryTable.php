@@ -7,6 +7,8 @@ use App\Filament\Tables\Actions\EnableBulkAction;
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
 use App\Filament\Tables\Columns\DeletedAtTextColumn;
 use App\Filament\Tables\Columns\EnabledIconColumn;
+use App\Filament\Tables\Columns\NameTextColumn;
+use App\Filament\Tables\Columns\SlugTextColumn;
 use App\Filament\Tables\Columns\SortOrderTextColumn;
 use App\Filament\Tables\Columns\UpdatedAtTextColumn;
 use App\Filament\Tables\Filters\EnabledFilter;
@@ -18,7 +20,6 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -31,13 +32,8 @@ class TechnologyCategoryTable extends ResourceTable
     {
         return parent::make($table)
             ->columns([
-                TextColumn::make('name')
-                    ->sortable()
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->sortable()
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                NameTextColumn::make(),
+                SlugTextColumn::make(),
                 EnabledIconColumn::make(),
                 SortOrderTextColumn::make(),
                 CreatedAtTextColumn::make(),

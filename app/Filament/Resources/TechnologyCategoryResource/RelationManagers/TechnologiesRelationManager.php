@@ -6,6 +6,8 @@ use App\Filament\Resources\TechnologyResource;
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
 use App\Filament\Tables\Columns\DeletedAtTextColumn;
 use App\Filament\Tables\Columns\EnabledIconColumn;
+use App\Filament\Tables\Columns\NameTextColumn;
+use App\Filament\Tables\Columns\SlugTextColumn;
 use App\Filament\Tables\Columns\SortOrderTextColumn;
 use App\Filament\Tables\Columns\UpdatedAtTextColumn;
 use App\Models\Technology;
@@ -43,13 +45,8 @@ class TechnologiesRelationManager extends RelationManager
     {
         return TechnologyResource::table($table)
             ->columns([
-                TextColumn::make('name')
-                    ->sortable()
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->sortable()
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                NameTextColumn::make(),
+                SlugTextColumn::make(),
                 TextColumn::make('parent.name')
                     ->sortable()
                     ->searchable()
