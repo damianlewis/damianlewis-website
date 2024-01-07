@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 class DisableBulkAction extends BulkAction
 {
-    public static function make(
-        ?string $name = 'disabled'
-    ): static {
+    public static function make(?string $name = 'disabled'): static
+    {
         return parent::make($name)
             ->label('Disable selected')
             ->icon('heroicon-o-x-circle')

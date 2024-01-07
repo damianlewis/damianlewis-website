@@ -60,45 +60,29 @@ class TechnologyForm extends ResourceForm
     public static function getCategorySection(): Section
     {
         return Section::make('Category')
-            ->description(
-                self::help()
-            )
-            ->schema(
-                self::getCategorySchema()
-            );
+            ->description(self::help())
+            ->schema(self::getCategorySchema());
     }
 
     public static function getDetailsSection(): Section
     {
         return Section::make('Details')
-            ->description(
-                self::help()
-            )
-            ->schema(
-                self::getDetailsSchema()
-            );
+            ->description(self::help())
+            ->schema(self::getDetailsSchema());
     }
 
     public static function getParentSection(): Section
     {
         return Section::make('Parent')
-            ->description(
-                self::help()
-            )
-            ->schema(
-                self::getParentSchema()
-            );
+            ->description(self::help())
+            ->schema(self::getParentSchema());
     }
 
     public static function getSettingsSection(): Section
     {
         return Section::make('Settings')
-            ->description(
-                self::help()
-            )
-            ->schema(
-                self::getSettingsSchema()
-            );
+            ->description(self::help())
+            ->schema(self::getSettingsSchema());
     }
 
     public static function getCategorySchema(): array
@@ -154,12 +138,7 @@ class TechnologyForm extends ResourceForm
                 ->maxLength(255)
                 ->live(onBlur: true)
                 ->afterStateUpdated(
-                    function (
-                        Get $get,
-                        Set $set,
-                        ?string $old,
-                        ?string $state,
-                    ): void {
+                    function (Get $get, Set $set, ?string $old, ?string $state): void {
                         if (($get('slug') ?? '') !== Str::slug($old)) {
                             return;
                         }
@@ -185,35 +164,35 @@ class TechnologyForm extends ResourceForm
                 ->relationship(
                     name: 'parent',
                     titleAttribute: 'name',
-                    modifyQueryUsing: fn (
-                        Builder $query,
-                        ?Technology $record,
-                        Get $get,
-                    ): Builder => $query
+                    modifyQueryUsing: fn (Builder $query, ?Technology $record, Get $get): Builder => $query
                         ->whereNull('parent_id')
-                        ->whereNot($technology->getKeyName(), $record?->getKey())
-                        ->where('technology_category_id', $get('technology_category_id'))
+                        ->whereNot(
+                            $technology->getKeyName(),
+                            $record?->getKey()
+                        )
+                        ->where(
+                            'technology_category_id',
+                            $get('technology_category_id')
+                        )
                 )
                 ->searchable()
                 ->preload()
                 ->nullable()
                 ->exists(
                     column: $technology->getKeyName(),
-                    modifyRuleUsing: fn (
-                        Exists $rule,
-                        ?Technology $record,
-                        Get $get,
-                    ): Exists => $rule
+                    modifyRuleUsing: fn (Exists $rule, ?Technology $record, Get $get): Exists => $rule
                         ->whereNull('parent_id')
-                        ->whereNot($technology->getKeyName(), $record?->getKey())
-                        ->where('technology_category_id', $get('technology_category_id'))
+                        ->whereNot(
+                            $technology->getKeyName(),
+                            $record?->getKey()
+                        )
+                        ->where(
+                            'technology_category_id',
+                            $get('technology_category_id')
+                        )
                 )
                 ->rule(
-                    fn (?Technology $record): Closure => static fn (
-                        string $attribute,
-                        string $value,
-                        Closure $fail
-                    ): ?string => $record?->hasChildren()
+                    fn (?Technology $record): Closure => static fn (string $attribute, string $value, Closure $fail): ?string => $record?->hasChildren()
                         ? $fail($record->name . ' can\'t have a parent as it is already a parent')
                         : null
                 ),

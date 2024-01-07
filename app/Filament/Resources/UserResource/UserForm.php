@@ -32,9 +32,7 @@ class UserForm extends ResourceForm
                         self::getRolesSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
-                Actions::make(
-                    self::generateFormDataAction($form)
-                ),
+                Actions::make(self::generateFormDataAction($form)),
             ])
             ->columns(3);
     }
@@ -42,23 +40,15 @@ class UserForm extends ResourceForm
     public static function getDetailsSection(): Section
     {
         return Section::make('Details')
-            ->description(
-                self::help()
-            )
-            ->schema(
-                self::getDetailsSchema()
-            );
+            ->description(self::help())
+            ->schema(self::getDetailsSchema());
     }
 
     public static function getRolesSection(): Section
     {
         return Section::make('Roles')
-            ->description(
-                self::help()
-            )
-            ->schema(
-                self::getRolesSchema()
-            );
+            ->description(self::help())
+            ->schema(self::getRolesSchema());
     }
 
     public static function getDetailsSchema(): array
@@ -78,9 +68,7 @@ class UserForm extends ResourceForm
             TextInput::make('password')
                 ->password()
                 ->autocomplete(false)
-                ->dehydrated(
-                    fn (?string $state): bool => filled($state)
-                )
+                ->dehydrated(fn (?string $state): bool => filled($state))
                 ->required(
                     fn (string $operation): bool => $operation === 'create'
                 )
@@ -90,12 +78,8 @@ class UserForm extends ResourceForm
                 ->live(),
             TextInput::make('password_confirmation')
                 ->password()
-                ->dehydrated(
-                    fn (?string $state): bool => filled($state)
-                )
-                ->hidden(
-                    fn (Get $get): bool => empty($get('password'))
-                ),
+                ->dehydrated(fn (?string $state): bool => filled($state))
+                ->hidden(fn (Get $get): bool => empty($get('password'))),
         ];
     }
 

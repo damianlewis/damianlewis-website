@@ -6,9 +6,8 @@ use Filament\Infolists\Components\TextEntry;
 
 class DateTimeTextEntry extends TextEntry
 {
-    public static function make(
-        string $name
-    ): static {
+    public static function make(string $name): static
+    {
         return parent::make($name)
             ->dateTime('j M Y H:i');
     }

@@ -19,32 +19,24 @@ class TechnologyInfolist
                 Group::make()
                     ->schema([
                         Section::make('Details')
-                            ->schema(
-                                self::getDetailsSchema()
-                            ),
+                            ->schema(self::getDetailsSchema()),
                     ])
                     ->columnSpan(['lg' => 2]),
                 Group::make()
                     ->schema([
                         DatesSection::make(),
                         Section::make('Category')
-                            ->schema(
-                                self::getCategorySchema(),
-                            )
+                            ->schema(self::getCategorySchema())
                             ->visible(
                                 fn (Technology $record): bool => $record->hasCategory()
                             ),
                         Section::make('Parent')
-                            ->schema(
-                                self::getParentSchema(),
-                            )
+                            ->schema(self::getParentSchema())
                             ->visible(
                                 fn (Technology $record): bool => $record->hasParent()
                             ),
                         Section::make('Settings')
-                            ->schema(
-                                self::getSettingsSchema(),
-                            ),
+                            ->schema(self::getSettingsSchema()),
                     ])
                     ->columnSpan(['lg' => 1]),
             ])

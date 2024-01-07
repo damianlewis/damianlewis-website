@@ -10,9 +10,8 @@ class EnabledFilter extends TernaryFilter
     /**
      * @throws Exception
      */
-    public static function make(
-        ?string $name = 'enabled'
-    ): static {
+    public static function make(?string $name = 'enabled'): static
+    {
         return parent::make($name)
             ->native(false)
             ->placeholder('All');

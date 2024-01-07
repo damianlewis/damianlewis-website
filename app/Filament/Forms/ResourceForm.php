@@ -25,9 +25,8 @@ class ResourceForm
         self::$showHelp = $showHelp;
     }
 
-    public static function help(
-        ?string $help = null
-    ): ?string {
+    public static function help(?string $help = null): ?string
+    {
         return self::showHelp() ? $help : null;
     }
 }

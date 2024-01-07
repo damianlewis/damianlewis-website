@@ -23,37 +23,33 @@ class ViewTechnology extends ViewRecord
                     fn (Technology $record): bool => $record->trashed()
                 ),
             RestoreAction::make()
-                ->form(
-                    function (Technology $record): ?array {
-                        if ($record->doesntHaveCategory()) {
-                            return [
-                                Select::make('technology_category_id')
-                                    ->label('Category')
-                                    ->relationship('category', 'name')
-                                    ->searchable()
-                                    ->preload()
-                                    ->required()
-                                    ->exists(
-                                        TechnologyCategory::class,
-                                        (new TechnologyCategory)->getKeyName()
-                                    ),
-                            ];
-                        }
-
-                        return null;
+                ->form(function (Technology $record): ?array {
+                    if ($record->doesntHaveCategory()) {
+                        return [
+                            Select::make('technology_category_id')
+                                ->label('Category')
+                                ->relationship('category', 'name')
+                                ->searchable()
+                                ->preload()
+                                ->required()
+                                ->exists(
+                                    TechnologyCategory::class,
+                                    (new TechnologyCategory)->getKeyName()
+                                ),
+                        ];
                     }
-                )
-                ->before(
-                    function (Technology $record): void {
-                        if ($record->doesntHaveParent() && $record->parent_id !== null) {
-                            $record->parent_id = null;
-                        }
 
-                        if ($record->hasParent() && $record->parent->technology_category_id !== $record->technology_category_id) {
-                            $record->parent_id = null;
-                        }
+                    return null;
+                })
+                ->before(function (Technology $record): void {
+                    if ($record->doesntHaveParent() && $record->parent_id !== null) {
+                        $record->parent_id = null;
                     }
-                ),
+
+                    if ($record->hasParent() && $record->parent->technology_category_id !== $record->technology_category_id) {
+                        $record->parent_id = null;
+                    }
+                }),
             ForceDeleteAction::make(),
         ];
     }

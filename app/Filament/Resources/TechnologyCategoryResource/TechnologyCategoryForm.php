@@ -34,9 +34,7 @@ class TechnologyCategoryForm extends ResourceForm
                         self::getSettingsSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
-                Actions::make(
-                    self::generateFormDataAction($form)
-                ),
+                Actions::make(self::generateFormDataAction($form)),
             ])
             ->columns(3);
     }
@@ -44,23 +42,15 @@ class TechnologyCategoryForm extends ResourceForm
     public static function getDetailsSection(): Section
     {
         return Section::make('Details')
-            ->description(
-                self::help()
-            )
-            ->schema(
-                self::getDetailsSchema()
-            );
+            ->description(self::help())
+            ->schema(self::getDetailsSchema());
     }
 
     public static function getSettingsSection(): Section
     {
         return Section::make('Settings')
-            ->description(
-                self::help()
-            )
-            ->schema(
-                self::getSettingsSchema()
-            );
+            ->description(self::help())
+            ->schema(self::getSettingsSchema());
     }
 
     public static function getDetailsSchema(): array
@@ -76,12 +66,7 @@ class TechnologyCategoryForm extends ResourceForm
                 ->maxLength(255)
                 ->live(onBlur: true)
                 ->afterStateUpdated(
-                    function (
-                        Get $get,
-                        Set $set,
-                        ?string $old,
-                        ?string $state,
-                    ): void {
+                    function (Get $get, Set $set, ?string $old, ?string $state): void {
                         if (($get('slug') ?? '') !== Str::slug($old)) {
                             return;
                         }

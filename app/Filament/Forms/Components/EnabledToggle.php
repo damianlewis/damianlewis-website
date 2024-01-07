@@ -6,9 +6,8 @@ use Filament\Forms\Components\Toggle;
 
 class EnabledToggle extends Toggle
 {
-    public static function make(
-        ?string $name = 'enabled',
-    ): static {
+    public static function make(?string $name = 'enabled'): static
+    {
         return parent::make($name)
             ->onColor('success')
             ->offColor('gray')

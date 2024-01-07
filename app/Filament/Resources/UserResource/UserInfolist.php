@@ -18,18 +18,14 @@ class UserInfolist
                 Group::make()
                     ->schema([
                         Section::make('Details')
-                            ->schema(
-                                self::getDetailsSchema()
-                            ),
+                            ->schema(self::getDetailsSchema()),
                     ])
                     ->columnSpan(['lg' => 2]),
                 Group::make()
                     ->schema([
                         DatesSection::make(),
                         Section::make('Roles')
-                            ->schema(
-                                self::getRolesSchema()
-                            ),
+                            ->schema(self::getRolesSchema()),
                     ])
                     ->columnSpan(['lg' => 1]),
             ])
@@ -50,9 +46,7 @@ class UserInfolist
         return [
             TextEntry::make('roles.display_name')
                 ->label('Name')
-                ->hiddenLabel(
-                    fn (User $record): bool => $record->hasAnyRole()
-                )
+                ->hiddenLabel(fn (User $record): bool => $record->hasAnyRole())
                 ->default('No roles assigned'),
         ];
     }

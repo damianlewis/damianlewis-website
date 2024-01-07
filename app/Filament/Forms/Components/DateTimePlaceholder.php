@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class DateTimePlaceholder extends Placeholder
 {
-    public static function make(
-        string $name,
-    ): static {
+    public static function make(string $name): static
+    {
         return parent::make($name)
-            ->content(fn (Model $record): ?string => $record->$name?->format('j M Y H:i'));
+            ->content(
+                fn (Model $record): ?string => $record->$name?->format('j M Y H:i')
+            );
     }
 }

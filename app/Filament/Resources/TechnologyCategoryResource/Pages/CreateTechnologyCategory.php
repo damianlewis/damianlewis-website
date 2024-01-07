@@ -11,11 +11,6 @@ class CreateTechnologyCategory extends CreateRecord
 
     protected function getRedirectUrl(): string
     {
-        return self::getResource()::getUrl(
-            'edit',
-            [
-                'record' => $this->getRecord(),
-            ]
-        );
+        return self::getResource()::getUrl('edit', ['record' => $this->getRecord()]);
     }
 }

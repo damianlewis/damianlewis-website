@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 class EnableBulkAction extends BulkAction
 {
-    public static function make(
-        ?string $name = 'enabled'
-    ): static {
+    public static function make(?string $name = 'enabled'): static
+    {
         return parent::make($name)
             ->label('Enable selected')
             ->icon('heroicon-o-check-circle')

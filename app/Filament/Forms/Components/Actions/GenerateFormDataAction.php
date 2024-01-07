@@ -10,7 +10,7 @@ class GenerateFormDataAction extends Action
     public static function makeFor(
         Form $form,
         array $data,
-        ?string $name = 'generate_form_data'
+        ?string $name = 'generate_form_data',
     ): static {
         return parent::make($name)
             ->action(fn () => $form->fill($data))

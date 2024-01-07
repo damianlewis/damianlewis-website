@@ -18,18 +18,14 @@ class TechnologyCategoryInfolist
                 Group::make()
                     ->schema([
                         Section::make('Details')
-                            ->schema(
-                                self::getDetailsSchema()
-                            ),
+                            ->schema(self::getDetailsSchema()),
                     ])
                     ->columnSpan(['lg' => 2]),
                 Group::make()
                     ->schema([
                         DatesSection::make(),
                         Section::make('Settings')
-                            ->schema(
-                                self::getSettingsSchema()
-                            ),
+                            ->schema(self::getSettingsSchema()),
                     ])
                     ->columnSpan(['lg' => 1]),
             ])
