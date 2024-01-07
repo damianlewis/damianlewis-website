@@ -9,6 +9,7 @@ use App\Filament\Tables\ResourceTable;
 use Exception;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class UserTable extends ResourceTable
@@ -39,6 +40,8 @@ class UserTable extends ResourceTable
                     ->multiple()
                     ->searchable()
                     ->preload(),
+                TrashedFilter::make()
+                    ->native(false),
             ])
             ->persistFiltersInSession();
     }
