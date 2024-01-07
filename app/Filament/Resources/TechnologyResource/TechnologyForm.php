@@ -5,6 +5,8 @@ namespace App\Filament\Resources\TechnologyResource;
 use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
 use App\Filament\Forms\Components\EnabledToggle;
+use App\Filament\Forms\Components\NameTextInput;
+use App\Filament\Forms\Components\SlugTextInput;
 use App\Filament\Forms\ResourceForm;
 use App\Filament\Resources\TechnologyCategoryResource;
 use App\Filament\Resources\TechnologyCategoryResource\RelationManagers\TechnologiesRelationManager;
@@ -18,7 +20,6 @@ use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -131,26 +132,9 @@ class TechnologyForm extends ResourceForm
     public static function getDetailsSchema(): array
     {
         return [
-            TextInput::make('name')
-                ->autocapitalize('words')
-                ->required()
-                ->unique(ignoreRecord: true)
-                ->maxLength(255)
-                ->live(onBlur: true)
-                ->afterStateUpdated(
-                    function (Get $get, Set $set, ?string $old, ?string $state): void {
-                        if (($get('slug') ?? '') !== Str::slug($old)) {
-                            return;
-                        }
-
-                        $set('slug', Str::slug($state));
-                    }
-                ),
-            TextInput::make('slug')
-                ->required()
-                ->rule('alpha_dash')
-                ->maxLength(255)
-                ->unique(ignoreRecord: true),
+            NameTextInput::forSlug()
+                ->autocapitalize('words'),
+            SlugTextInput::make(),
         ];
     }
 

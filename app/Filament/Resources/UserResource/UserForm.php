@@ -4,6 +4,7 @@ namespace App\Filament\Resources\UserResource;
 
 use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
+use App\Filament\Forms\Components\NameTextInput;
 use App\Filament\Forms\ResourceForm;
 use App\Models\User;
 use Filament\Forms\Components\Actions;
@@ -54,12 +55,10 @@ class UserForm extends ResourceForm
     public static function getDetailsSchema(): array
     {
         return [
-            TextInput::make('name')
+            NameTextInput::make()
                 ->autofocus(
                     fn (string $operation): bool => $operation === 'create'
-                )
-                ->required()
-                ->maxLength(255),
+                ),
             TextInput::make('email')
                 ->email()
                 ->required()
