@@ -144,7 +144,7 @@ class TechnologyForm extends ResourceForm
 
         return [
             Select::make('parent_id')
-                ->hiddenLabel()
+                ->label('Name')
                 ->relationship(
                     name: 'parent',
                     titleAttribute: 'name',
