@@ -2,6 +2,7 @@
 
 namespace App\Filament\Tables\Actions;
 
+use App\Contracts\EnableInterface;
 use Filament\Tables\Actions\BulkAction;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -14,7 +15,7 @@ class DisableBulkAction extends BulkAction
             ->icon('heroicon-o-x-circle')
             ->color('danger')
             ->action(function (Collection $records, BulkAction $action) {
-                $records->each->disable();
+                $records->each(fn (EnableInterface $record) => $record->disable());
 
                 $action->successNotificationTitle('Disabled');
                 $action->sendSuccessNotification();
