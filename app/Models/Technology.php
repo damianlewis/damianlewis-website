@@ -61,13 +61,13 @@ class Technology extends BaseModel implements EnableInterface, Sortable
         'enabled',
     ];
 
-    protected static function booted(): void
+    public function __construct(array $attributes = [])
     {
-        static::retrieved(static function (Technology $technology): void {
-            $technology->mergeFillable([
-                config('eloquent-sortable.order_column_name'),
-            ]);
-        });
+        parent::__construct($attributes);
+
+        $this->mergeFillable([
+            config('eloquent-sortable.order_column_name'),
+        ]);
     }
 
     public function category(): BelongsTo
