@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Contracts\EnableInterface;
+use App\Traits\HasEnabled;
 use Database\Factories\TechnologyFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -41,9 +43,10 @@ use Spatie\EloquentSortable\SortableTrait;
  *
  * @mixin Eloquent
  */
-class Technology extends BaseModel implements Sortable
+class Technology extends BaseModel implements EnableInterface, Sortable
 {
-    use HasFactory,
+    use HasEnabled,
+        HasFactory,
         SortableTrait;
 
     protected $casts = [
@@ -107,17 +110,6 @@ class Technology extends BaseModel implements Sortable
         return $this->children()->exists();
     }
 
-    public function enable(): void
-    {
-        $this->enabled = true;
-        $this->save();
-    }
-
-    public function disable(): void
-    {
-        $this->enabled = false;
-        $this->save();
-    }
 
     public function buildSortQuery(): Builder
     {
