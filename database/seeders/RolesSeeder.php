@@ -54,7 +54,9 @@ class RolesSeeder extends BaseSeeder
 
     private function deleteRedundantRoles(): void
     {
-        $this->findRedundantRoles()->each->delete();
+        $this->findRedundantRoles()->each(
+            fn (Role $role): ?bool => $role->delete()
+        );
     }
 
     private function findRedundantRoles(): EloquentCollection
