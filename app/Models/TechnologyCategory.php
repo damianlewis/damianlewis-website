@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Contracts\EnableInterface;
+use App\Traits\HasEnabled;
 use Database\Factories\TechnologyCategoryFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -38,9 +40,10 @@ use Spatie\EloquentSortable\SortableTrait;
  *
  * @mixin Eloquent
  */
-class TechnologyCategory extends BaseModel implements Sortable
+class TechnologyCategory extends BaseModel implements EnableInterface, Sortable
 {
-    use HasFactory,
+    use HasEnabled,
+        HasFactory,
         SortableTrait;
 
     protected $casts = [
@@ -71,17 +74,5 @@ class TechnologyCategory extends BaseModel implements Sortable
     public function technologies(): HasMany
     {
         return $this->hasMany(Technology::class);
-    }
-
-    public function enable(): void
-    {
-        $this->enabled = true;
-        $this->save();
-    }
-
-    public function disable(): void
-    {
-        $this->enabled = false;
-        $this->save();
     }
 }
