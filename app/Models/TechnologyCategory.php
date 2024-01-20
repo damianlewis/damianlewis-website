@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\SoftCascade;
+use App\Traits\CascadeDelete;
 use Database\Factories\TechnologyCategoryFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -44,9 +44,9 @@ use Spatie\EloquentSortable\SortableTrait;
  */
 class TechnologyCategory extends Model implements Sortable
 {
-    use HasFactory,
+    use CascadeDelete,
+        HasFactory,
         HasUlids,
-        SoftCascade,
         SoftDeletes,
         SortableTrait;
 
@@ -62,7 +62,7 @@ class TechnologyCategory extends Model implements Sortable
         'enabled',
     ];
 
-    protected array $softCascade = [
+    protected array $cascadeDelete = [
         'technologies',
     ];
 
