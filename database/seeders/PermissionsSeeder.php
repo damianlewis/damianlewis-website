@@ -73,7 +73,9 @@ class PermissionsSeeder extends BaseSeeder
 
     private function deleteRedundantPermissions(): void
     {
-        $this->findRedundantPermissions()->each->delete();
+        $this->findRedundantPermissions()->each(
+            fn (Permission $permission): ?bool => $permission->delete()
+        );
     }
 
     private function findRedundantPermissions(): EloquentCollection
