@@ -25,7 +25,7 @@ use Spatie\EloquentSortable\SortableTrait;
  * @property string $name
  * @property string $slug
  * @property bool $enabled
- * @property int $order_column
+ * @property int $sort_order
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
