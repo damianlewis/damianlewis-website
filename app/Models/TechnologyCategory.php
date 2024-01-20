@@ -55,7 +55,7 @@ class TechnologyCategory extends BaseModel implements Sortable
         'enabled',
     ];
 
-    protected array $cascadeDelete = [
+    protected array $cascadeDeleteRelationships = [
         'technologies',
     ];
 
