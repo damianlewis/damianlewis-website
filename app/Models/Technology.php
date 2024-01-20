@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\EnableInterface;
+use App\Events\TechnologyDeleting;
 use App\Traits\HasEnabled;
 use Database\Factories\TechnologyFactory;
 use Eloquent;
@@ -61,6 +62,10 @@ class Technology extends BaseModel implements EnableInterface, Sortable
         'enabled',
     ];
 
+    protected $dispatchesEvents = [
+        'deleting' => TechnologyDeleting::class,
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -100,16 +105,22 @@ class Technology extends BaseModel implements EnableInterface, Sortable
         return $this->parent()->exists();
     }
 
-    public function doesntHaveParent(): bool
-    {
-        return $this->parent()->doesntExist();
-    }
-
     public function hasChildren(): bool
     {
         return $this->children()->exists();
     }
 
+    public function removeParent(): void
+    {
+        $keyName = $this->parent()->getForeignKeyName();
+
+        if ($this->{$keyName} === null) {
+            return;
+        }
+
+        $this->{$keyName} = null;
+        $this->save();
+    }
 
     public function buildSortQuery(): Builder
     {
