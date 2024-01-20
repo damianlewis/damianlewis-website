@@ -124,7 +124,8 @@ class Technology extends BaseModel implements EnableInterface, Sortable
 
     public function buildSortQuery(): Builder
     {
-        return static::query()
-            ->where('technology_category_id', $this->technology_category_id);
+        $keyName = $this->category()->getForeignKeyName();
+
+        return static::query()->where($keyName, $this->{$keyName});
     }
 }
