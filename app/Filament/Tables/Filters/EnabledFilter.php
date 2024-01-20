@@ -13,7 +13,6 @@ class EnabledFilter extends TernaryFilter
     public static function make(?string $name = 'enabled'): static
     {
         return parent::make($name)
-            ->native(false)
-            ->placeholder('All');
+            ->native(false);
     }
 }
