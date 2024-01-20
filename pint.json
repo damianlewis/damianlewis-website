@@ -12,7 +12,6 @@
         "concat_space": {
             "spacing": "one"
         },
-        "Laravel/laravel_phpdoc_alignment": false,
         "no_superfluous_phpdoc_tags": false,
         "phpdoc_align": false
     },
