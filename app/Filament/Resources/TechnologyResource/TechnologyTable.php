@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\TechnologyResource;
 
-use App\Filament\Resources\TechnologyCategoryResource\RelationManagers\TechnologiesRelationManager;
 use App\Filament\Tables\Actions\DisableBulkAction;
 use App\Filament\Tables\Actions\EnableBulkAction;
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
@@ -53,8 +52,7 @@ class TechnologyTable extends ResourceTable
                     ->relationship('category', 'name')
                     ->multiple()
                     ->searchable()
-                    ->preload()
-                    ->hiddenOn(TechnologiesRelationManager::class),
+                    ->preload(),
                 SelectFilter::make('parent')
                     ->relationship('parent', 'name')
                     ->multiple()
