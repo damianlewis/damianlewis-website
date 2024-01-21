@@ -92,17 +92,21 @@ class Technology extends BaseModel implements EnableInterface, Sortable
 
     public function hasCategory(): bool
     {
-        return $this->category()->exists();
+        $foreignKeyName = $this->category()->getForeignKeyName();
+
+        return $this->{$foreignKeyName} !== null;
     }
 
     public function doesntHaveCategory(): bool
     {
-        return $this->category()->doesntExist();
+        return ! $this->hasCategory();
     }
 
     public function hasParent(): bool
     {
-        return $this->parent()->exists();
+        $foreignKeyName = $this->parent()->getForeignKeyName();
+
+        return $this->{$foreignKeyName} !== null;
     }
 
     public function hasChildren(): bool
