@@ -88,8 +88,12 @@ class TechnologyForm extends ResourceForm
 
     public static function getCategorySchema(): array
     {
+        $technology = new Technology();
+        $categoryForeignKeyName = $technology->category()->getForeignKeyName();
+        $parentForeignKeyName = $technology->parent()->getForeignKeyName();
+
         return [
-            Select::make('technology_category_id')
+            Select::make($categoryForeignKeyName)
                 ->hiddenLabel()
                 ->relationship('category', 'name')
                 ->searchable()
@@ -119,7 +123,7 @@ class TechnologyForm extends ResourceForm
                 )
                 ->live()
                 ->afterStateUpdated(
-                    fn (Set $set) => $set('parent_id', null)
+                    fn (Set $set) => $set($parentForeignKeyName, null)
                 )
                 ->required()
                 ->exists(
@@ -141,22 +145,24 @@ class TechnologyForm extends ResourceForm
     private static function getParentSchema(): array
     {
         $technology = new Technology();
+        $parentForeignKeyName = $technology->parent()->getForeignKeyName();
+        $categoryForeignKeyName = (new Technology)->category()->getForeignKeyName();
 
         return [
-            Select::make('parent_id')
+            Select::make($parentForeignKeyName)
                 ->label('Name')
                 ->relationship(
                     name: 'parent',
                     titleAttribute: 'name',
                     modifyQueryUsing: fn (Builder $query, ?Technology $record, Get $get): Builder => $query
-                        ->whereNull('parent_id')
+                        ->whereNull($parentForeignKeyName)
                         ->whereNot(
                             $technology->getKeyName(),
                             $record?->getKey()
                         )
                         ->where(
-                            'technology_category_id',
-                            $get('technology_category_id')
+                            $categoryForeignKeyName,
+                            $get($categoryForeignKeyName)
                         )
                 )
                 ->searchable()
@@ -165,14 +171,14 @@ class TechnologyForm extends ResourceForm
                 ->exists(
                     column: $technology->getKeyName(),
                     modifyRuleUsing: fn (Exists $rule, ?Technology $record, Get $get): Exists => $rule
-                        ->whereNull('parent_id')
+                        ->whereNull($parentForeignKeyName)
                         ->whereNot(
                             $technology->getKeyName(),
                             $record?->getKey()
                         )
                         ->where(
-                            'technology_category_id',
-                            $get('technology_category_id')
+                            $categoryForeignKeyName,
+                            $get($categoryForeignKeyName)
                         )
                 )
                 ->rule(
