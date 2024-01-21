@@ -58,15 +58,15 @@ class TechnologyForm extends ResourceForm
     {
         return Section::make('Category')
             ->description(self::help())
-            ->schema(self::getCategorySchema());
+            ->schema(self::getCategorySchema())
+            ->hiddenOn(TechnologiesRelationManager::class);
     }
 
     public static function getDetailsSection(): Section
     {
         return Section::make('Details')
             ->description(self::help())
-            ->schema(self::getDetailsSchema())
-            ->hiddenOn(TechnologiesRelationManager::class);
+            ->schema(self::getDetailsSchema());
     }
 
     public static function getParentSection(): Section
