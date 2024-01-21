@@ -15,10 +15,15 @@ class EditTechnology extends EditRecord
         /** @var Technology $record */
         $record = $this->getRecord();
 
-        if ($record->isDirty('technology_category_id') && $record->hasChildren()) {
-            $record->children()->update([
-                'parent_id' => null,
-            ]);
+        $categoryForeignKeyName = $record->category()->getForeignKeyName();
+
+        if ($record->isDirty($categoryForeignKeyName) && $record->hasChildrenWithTrashed()) {
+            $record->children()->withTrashed()->each(
+                function (Technology $child) use ($record, $categoryForeignKeyName): void {
+                    $child->{$categoryForeignKeyName} = $record->{$categoryForeignKeyName};
+                    $child->save();
+                }
+            );
         }
     }
 }

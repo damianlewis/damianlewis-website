@@ -110,6 +110,11 @@ class Technology extends BaseModel implements EnableInterface, Sortable
         return $this->children()->exists();
     }
 
+    public function hasChildrenWithTrashed(): bool
+    {
+        return $this->children()->withTrashed()->exists();
+    }
+
     public function removeParent(): void
     {
         $foreignKeyName = $this->parent()->getForeignKeyName();
