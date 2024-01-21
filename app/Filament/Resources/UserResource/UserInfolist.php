@@ -39,7 +39,10 @@ class UserInfolist
     public static function getRolesSection(): Section
     {
         return Section::make('Roles')
-            ->schema(self::getRolesSchema());
+            ->schema(self::getRolesSchema())
+            ->visible(
+                fn (User $record): bool => $record->roles()->exists()
+            );
     }
 
     public static function getDetailsSchema(): array
