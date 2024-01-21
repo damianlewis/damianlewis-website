@@ -86,7 +86,7 @@ class UserForm extends ResourceForm
     {
         return [
             Select::make('roles')
-                ->label('Name')
+                ->hiddenLabel()
                 ->relationship('roles', 'display_name')
                 ->multiple()
                 ->preload()
