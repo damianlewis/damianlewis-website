@@ -51,6 +51,7 @@ class TechnologiesRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return ResourceTable::make($table)
+            ->recordTitleAttribute('name')
             ->columns([
                 NameTextColumn::make(),
                 SlugTextColumn::make(),
