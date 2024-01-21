@@ -78,6 +78,12 @@ class TechnologiesRelationManager extends RelationManager
             ->actions([
                 ViewAction::make(),
                 EditAction::make()
+                    ->url(fn (Technology $record): string => TechnologyResource::getUrl(
+                        'edit',
+                        [
+                            'record' => $record,
+                        ]
+                    ))
                     ->hidden(
                         fn (Technology $record): bool => $record->trashed()
                     ),
