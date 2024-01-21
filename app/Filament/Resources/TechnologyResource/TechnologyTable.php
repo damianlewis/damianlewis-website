@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\TechnologyResource;
 
+use App\Filament\Resources\TechnologyCategoryResource;
+use App\Filament\Resources\TechnologyResource;
 use App\Filament\Tables\Actions\DisableBulkAction;
 use App\Filament\Tables\Actions\EnableBulkAction;
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
@@ -36,10 +38,29 @@ class TechnologyTable extends ResourceTable
                 NameTextColumn::make(),
                 SlugTextColumn::make(),
                 TextColumn::make('parent.name')
+                    ->color('primary')
+                    ->url(fn (Technology $record): ?string => $record->hasParent()
+                        ? TechnologyResource::getUrl(
+                            'view',
+                            [
+                                'record' => $record->parent,
+                            ]
+                        )
+                        : null
+                    )
                     ->sortable()
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('category.name')
+                    ->color('primary')
+                    ->url(
+                        fn (Technology $record): string => TechnologyCategoryResource::getUrl(
+                            'view',
+                            [
+                                'record' => $record->category,
+                            ]
+                        )
+                    )
                     ->sortable()
                     ->searchable(),
                 EnabledIconColumn::make(),
