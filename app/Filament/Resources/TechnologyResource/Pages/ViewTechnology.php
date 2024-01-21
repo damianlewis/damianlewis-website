@@ -26,7 +26,7 @@ class ViewTechnology extends ViewRecord
                 ->form(function (Technology $record): ?array {
                     if ($record->doesntHaveCategory()) {
                         return [
-                            Select::make('technology_category_id')
+                            Select::make($record->category()->getForeignKeyName())
                                 ->label('Category')
                                 ->relationship('category', 'name')
                                 ->searchable()

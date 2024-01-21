@@ -112,20 +112,20 @@ class Technology extends BaseModel implements EnableInterface, Sortable
 
     public function removeParent(): void
     {
-        $keyName = $this->parent()->getForeignKeyName();
+        $foreignKeyName = $this->parent()->getForeignKeyName();
 
-        if ($this->{$keyName} === null) {
+        if ($this->{$foreignKeyName} === null) {
             return;
         }
 
-        $this->{$keyName} = null;
+        $this->{$foreignKeyName} = null;
         $this->save();
     }
 
     public function buildSortQuery(): Builder
     {
-        $keyName = $this->category()->getForeignKeyName();
+        $foreignKeyName = $this->category()->getForeignKeyName();
 
-        return static::query()->where($keyName, $this->{$keyName});
+        return static::query()->where($foreignKeyName, $this->{$foreignKeyName});
     }
 }
