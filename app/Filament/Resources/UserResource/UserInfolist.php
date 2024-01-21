@@ -8,6 +8,7 @@ use Filament\Infolists\Components\Group;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
+use Filament\Support\Enums\FontFamily;
 
 class UserInfolist
 {
@@ -50,6 +51,7 @@ class UserInfolist
         return [
             TextEntry::make('name'),
             TextEntry::make('email')
+                ->fontFamily(FontFamily::Mono)
                 ->copyable(),
         ];
     }

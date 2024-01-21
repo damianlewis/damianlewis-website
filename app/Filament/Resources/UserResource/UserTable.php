@@ -7,6 +7,7 @@ use App\Filament\Tables\Columns\NameTextColumn;
 use App\Filament\Tables\Columns\UpdatedAtTextColumn;
 use App\Filament\Tables\ResourceTable;
 use Exception;
+use Filament\Support\Enums\FontFamily;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
@@ -23,6 +24,7 @@ class UserTable extends ResourceTable
             ->columns([
                 NameTextColumn::make(),
                 TextColumn::make('email')
+                    ->fontFamily(FontFamily::Mono)
                     ->copyable()
                     ->sortable()
                     ->searchable()
