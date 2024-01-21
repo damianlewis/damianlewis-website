@@ -23,7 +23,7 @@ class EditUser extends EditRecord
                 ->before(function (Action $action, User $record): void {
                     $title = match (true) {
                         $record->isBlocked() => 'User already blocked',
-                        $record->getKey() === auth()->id() => 'You cannot block yourself',
+                        $record->getKey() === auth()->id() => 'You can not block yourself',
                         default => null,
                     };
 
