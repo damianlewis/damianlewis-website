@@ -50,6 +50,8 @@ class TechnologiesRelationManager extends RelationManager
      */
     public function table(Table $table): Table
     {
+        $isViewPage = is_subclass_of($this->getPageClass(), ViewRecord::class);
+
         return ResourceTable::make($table)
             ->recordTitleAttribute('name')
             ->columns([
@@ -89,7 +91,7 @@ class TechnologiesRelationManager extends RelationManager
                     ),
                 DeleteAction::make(),
             ])
-            ->bulkActions([
+            ->bulkActions($isViewPage ? [] : [
                 BulkActionGroup::make([
                     EnableBulkAction::make(),
                     DisableBulkAction::make(),
@@ -101,7 +103,7 @@ class TechnologiesRelationManager extends RelationManager
             ])
             ->reorderable(
                 config('eloquent-sortable.order_column_name'),
-                fn (RelationManager $livewire, Table $table): bool => ! is_subclass_of($this->getPageClass(), ViewRecord::class)
+                fn (RelationManager $livewire, Table $table): bool => ! $isViewPage
             )
             ->defaultSort(config('eloquent-sortable.order_column_name'));
     }
