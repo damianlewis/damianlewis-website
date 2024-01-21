@@ -4,6 +4,7 @@ namespace App\Filament\Resources\TechnologyCategoryResource;
 
 use App\Filament\Infolists\Components\DatesSection;
 use App\Filament\Infolists\Components\EnabledIconEntry;
+use App\Filament\Infolists\Components\SlugTextEntry;
 use Filament\Infolists\Components\Group;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
@@ -46,7 +47,7 @@ class TechnologyCategoryInfolist
     {
         return [
             TextEntry::make('name'),
-            TextEntry::make('slug'),
+            SlugTextEntry::make(),
             TextEntry::make('description')
                 ->prose(),
         ];
