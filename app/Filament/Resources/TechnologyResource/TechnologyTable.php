@@ -76,7 +76,6 @@ class TechnologyTable extends ResourceTable
                     ->preload(),
                 SelectFilter::make('parent')
                     ->relationship('parent', 'name')
-                    ->multiple()
                     ->searchable()
                     ->preload(),
                 EnabledFilter::make(),
