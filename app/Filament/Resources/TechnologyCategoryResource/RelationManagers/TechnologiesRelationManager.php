@@ -20,7 +20,6 @@ use Filament\Forms\Form;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Support\Enums\MaxWidth;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
@@ -76,10 +75,8 @@ class TechnologiesRelationManager extends RelationManager
                     ->native(false),
             ])
             ->actions([
-                ViewAction::make()
-                    ->modalWidth(MaxWidth::FiveExtraLarge),
+                ViewAction::make(),
                 EditAction::make()
-                    ->modalWidth(MaxWidth::FiveExtraLarge)
                     ->hidden(
                         fn (Technology $record): bool => $record->trashed()
                     ),
@@ -93,8 +90,7 @@ class TechnologiesRelationManager extends RelationManager
                 ]),
             ])
             ->headerActions([
-                CreateAction::make()
-                    ->modalWidth(MaxWidth::FiveExtraLarge),
+                CreateAction::make(),
             ])
             ->reorderable(
                 config('eloquent-sortable.order_column_name'),
