@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\UserResource;
 
 use App\Filament\Infolists\Components\DatesSection;
+use App\Filament\Infolists\Components\DateTimeTextEntry;
 use App\Models\User;
 use Filament\Infolists\Components\Group;
 use Filament\Infolists\Components\Section;
@@ -24,6 +25,7 @@ class UserInfolist
                 Group::make()
                     ->schema([
                         DatesSection::make(),
+                        self::getStatuesDatesSection(),
                         self::getRolesSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
@@ -35,6 +37,14 @@ class UserInfolist
     {
         return Section::make('Details')
             ->schema(self::getDetailsSchema());
+    }
+
+    public static function getStatuesDatesSection(): Section
+    {
+        return Section::make('Status')
+            ->schema(self::getStatuesDatesSchema())
+            ->columns()
+            ->visible(fn (User $record): bool => $record->isBlocked());
     }
 
     public static function getRolesSection(): Section
@@ -53,6 +63,16 @@ class UserInfolist
             TextEntry::make('email')
                 ->fontFamily(FontFamily::Mono)
                 ->copyable(),
+        ];
+    }
+
+    public static function getStatuesDatesSchema(): array
+    {
+        return [
+            DateTimeTextEntry::make('blocked_at')
+                ->label('Blocked')
+                ->visible(fn (User $record): bool => $record->isBlocked()),
+
         ];
     }
 

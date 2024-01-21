@@ -30,6 +30,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon|null $email_verified_at
  * @property mixed $password
  * @property string|null $remember_token
+ * @property Carbon|null $blocked_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
@@ -68,6 +69,7 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'blocked_at',
     ];
 
     /**
@@ -84,13 +86,40 @@ class User extends Authenticatable implements FilamentUser
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'blocked_at' => 'datetime',
     ];
 
     public function canAccessPanel(Panel $panel): bool
     {
+        if ($this->isBlocked()) {
+            return false;
+        }
+
         return $this->hasRole([
             'super_admin',
             'admin',
         ]);
+    }
+
+    public function isBlocked(): bool
+    {
+        return $this->blocked_at !== null;
+    }
+
+    public function isNotBlocked(): bool
+    {
+        return ! $this->isBlocked();
+    }
+
+    public function block(): void
+    {
+        $this->blocked_at = now();
+        $this->save();
+    }
+
+    public function unblock(): void
+    {
+        $this->blocked_at = null;
+        $this->save();
     }
 }

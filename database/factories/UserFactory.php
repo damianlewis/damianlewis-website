@@ -38,4 +38,11 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function blocked(): static
+    {
+        return $this->state(fn (array $attributes): array => [
+            'blocked_at' => now(),
+        ]);
+    }
 }

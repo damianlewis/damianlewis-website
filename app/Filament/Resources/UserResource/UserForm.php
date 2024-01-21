@@ -4,6 +4,7 @@ namespace App\Filament\Resources\UserResource;
 
 use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
+use App\Filament\Forms\Components\DateTimePlaceholder;
 use App\Filament\Forms\Components\NameTextInput;
 use App\Filament\Forms\ResourceForm;
 use App\Models\User;
@@ -30,6 +31,7 @@ class UserForm extends ResourceForm
                 Group::make()
                     ->schema([
                         DatesSection::make(),
+                        self::getStatusDatesSection(),
                         self::getRolesSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
@@ -43,6 +45,16 @@ class UserForm extends ResourceForm
         return Section::make('Details')
             ->description(self::help())
             ->schema(self::getDetailsSchema());
+    }
+
+    public static function getStatusDatesSection(): Section
+    {
+        return Section::make('Status')
+            ->description(self::help())
+            ->schema(self::getStatuesDatesSchema())
+            ->columns()
+            ->hiddenOn('create')
+            ->visible(fn (User $record) => $record->isBlocked());
     }
 
     public static function getRolesSection(): Section
@@ -79,6 +91,15 @@ class UserForm extends ResourceForm
                 ->password()
                 ->dehydrated(fn (?string $state): bool => filled($state))
                 ->hidden(fn (Get $get): bool => empty($get('password'))),
+        ];
+    }
+
+    public static function getStatuesDatesSchema(): array
+    {
+        return [
+            DateTimePlaceholder::make('blocked_at')
+                ->label('Blocked')
+                ->visible(fn (User $record) => $record->isBlocked()),
         ];
     }
 
