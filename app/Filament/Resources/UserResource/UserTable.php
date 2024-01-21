@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\UserResource;
 
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
+use App\Filament\Tables\Columns\DeletedAtTextColumn;
 use App\Filament\Tables\Columns\NameTextColumn;
 use App\Filament\Tables\Columns\UpdatedAtTextColumn;
 use App\Filament\Tables\ResourceTable;
@@ -35,6 +36,7 @@ class UserTable extends ResourceTable
                     ->toggleable(),
                 CreatedAtTextColumn::make(),
                 UpdatedAtTextColumn::make(),
+                DeletedAtTextColumn::make(),
             ])
             ->filters([
                 SelectFilter::make('role')
