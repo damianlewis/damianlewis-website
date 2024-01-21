@@ -150,7 +150,7 @@ class TechnologyForm extends ResourceForm
 
         return [
             Select::make($parentForeignKeyName)
-                ->label('Name')
+                ->hiddenLabel()
                 ->relationship(
                     name: 'parent',
                     titleAttribute: 'name',
