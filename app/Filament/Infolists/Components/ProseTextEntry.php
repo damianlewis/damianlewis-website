@@ -3,7 +3,6 @@
 namespace App\Filament\Infolists\Components;
 
 use Filament\Infolists\Components\TextEntry;
-use Filament\Support\Enums\FontFamily;
 
 class ProseTextEntry extends TextEntry
 {
