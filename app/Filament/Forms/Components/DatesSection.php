@@ -22,6 +22,7 @@ class DatesSection extends Section
                     ),
             ])
             ->hiddenOn('create')
+            ->visible(fn (?Model $record): bool => $record !== null)
             ->columns();
     }
 }

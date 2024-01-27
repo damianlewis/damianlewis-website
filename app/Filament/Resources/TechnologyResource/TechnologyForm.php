@@ -103,9 +103,12 @@ class TechnologyForm extends ResourceForm
                 ->relationship('category', 'name')
                 ->searchable()
                 ->preload()
-                ->createOptionForm([
+                ->createOptionForm(fn (Form $form) => [
                     Grid::make(3)
-                        ->schema(TechnologyCategoryForm::getFormSchema()),
+                        ->schema([
+                            ...TechnologyCategoryForm::getFormSchema(),
+                            Actions::make(TechnologyCategoryForm::getFormActions($form)),
+                        ]),
                 ])
                 ->createOptionModalHeading(
                     __('filament-panels::resources/pages/create-record.title', [
