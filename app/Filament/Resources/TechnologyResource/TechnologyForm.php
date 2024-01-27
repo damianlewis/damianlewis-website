@@ -48,7 +48,7 @@ class TechnologyForm extends ResourceForm
                     ])
                     ->columnSpan(['lg' => 1]),
                 Actions::make(
-                    self::generateFormDataAction($form)
+                    self::getFormActions($form)
                 ),
             ])
             ->columns(3);
@@ -193,7 +193,7 @@ class TechnologyForm extends ResourceForm
         ];
     }
 
-    public static function generateFormDataAction(Form $form): array
+    public static function getFormActions(Form $form): array
     {
         return [
             GenerateFormDataAction::makeFor(

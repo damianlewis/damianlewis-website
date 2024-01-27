@@ -35,7 +35,7 @@ class UserForm extends ResourceForm
                         self::getRolesSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
-                Actions::make(self::generateFormDataAction($form)),
+                Actions::make(self::getFormActions($form)),
             ])
             ->columns(3);
     }
@@ -115,7 +115,7 @@ class UserForm extends ResourceForm
         ];
     }
 
-    public static function generateFormDataAction(Form $form): array
+    public static function getFormActions(Form $form): array
     {
         return [
             GenerateFormDataAction::makeFor(

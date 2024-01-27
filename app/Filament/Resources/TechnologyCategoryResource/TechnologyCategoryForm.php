@@ -32,7 +32,7 @@ class TechnologyCategoryForm extends ResourceForm
                         self::getSettingsSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
-                Actions::make(self::generateFormDataAction($form)),
+                Actions::make(self::getFormActions($form)),
             ])
             ->columns(3);
     }
@@ -72,7 +72,7 @@ class TechnologyCategoryForm extends ResourceForm
         ];
     }
 
-    public static function generateFormDataAction(Form $form): array
+    public static function getFormActions(Form $form): array
     {
         return [
             GenerateFormDataAction::makeFor(
