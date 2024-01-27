@@ -156,14 +156,11 @@ class TechnologyForm extends ResourceForm
                     titleAttribute: 'name',
                     modifyQueryUsing: fn (Builder $query, ?Technology $record, Get $get): Builder => $query
                         ->whereNull($parentForeignKeyName)
-                        ->whereNot(
-                            $technology->getKeyName(),
-                            $record?->getKey()
-                        )
                         ->where(
                             $categoryForeignKeyName,
                             $get($categoryForeignKeyName)
-                        )
+                        ),
+                    ignoreRecord: true
                 )
                 ->searchable()
                 ->preload()
