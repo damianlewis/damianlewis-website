@@ -105,18 +105,7 @@ class TechnologyForm extends ResourceForm
                 ->preload()
                 ->createOptionForm([
                     Grid::make(3)
-                        ->schema([
-                            Group::make()
-                                ->schema([
-                                    TechnologyCategoryForm::getDetailsSection(),
-                                ])
-                                ->columnSpan(['lg' => 2]),
-                            Group::make()
-                                ->schema([
-                                    TechnologyCategoryForm::getSettingsSection(),
-                                ])
-                                ->columnSpan(['lg' => 1]),
-                        ]),
+                        ->schema(TechnologyCategoryForm::getFormSchema()),
                 ])
                 ->createOptionModalHeading(
                     __('filament-panels::resources/pages/create-record.title', [

@@ -14,12 +14,15 @@ class GenerateFormDataAction extends Action
     ): static {
         return parent::make($name)
             ->action(fn () => $form->fill($data))
-            ->visible(function (string $operation): bool {
+            ->visible(function () use ($form): bool {
                 if (! config('app.generate_form_data')) {
                     return false;
                 }
 
-                return ! ($operation !== 'create' || ! app()->environment('local'));
+                $operation = $form->getOperation();
+
+                return ($operation === 'create' || $operation === 'createOption')
+                    && app()->environment('local');
             });
     }
 }
