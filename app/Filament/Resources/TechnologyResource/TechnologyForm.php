@@ -116,7 +116,8 @@ class TechnologyForm extends ResourceForm
                     ])
                 )
                 ->createOptionAction(
-                    fn (Action $action): Action => $action->modalWidth(MaxWidth::FiveExtraLarge)
+                    fn (Action $action): Action => $action
+                        ->modalWidth(MaxWidth::FiveExtraLarge)
                 )
                 ->live()
                 ->afterStateUpdated(
