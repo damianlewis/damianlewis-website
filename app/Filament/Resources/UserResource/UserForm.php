@@ -7,6 +7,7 @@ use App\Filament\Forms\Components\DatesSection;
 use App\Filament\Forms\Components\DateTimePlaceholder;
 use App\Filament\Forms\Components\NameTextInput;
 use App\Filament\Forms\ResourceForm;
+use App\Models\Role;
 use App\Models\User;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Group;
@@ -118,7 +119,9 @@ class UserForm extends ResourceForm
                 ->relationship('roles', 'display_name')
                 ->multiple()
                 ->preload()
-                ->searchable(),
+                ->searchable()
+                ->nullable()
+                ->exists(Role::class, (new Role)->getKeyName()),
         ];
     }
 

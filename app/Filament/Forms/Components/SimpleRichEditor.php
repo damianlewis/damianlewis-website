@@ -14,6 +14,7 @@ class SimpleRichEditor extends RichEditor
                 'blockquote',
                 'codeBlock',
             ])
+            ->string()
             ->maxLength(65535);
     }
 }

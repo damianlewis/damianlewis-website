@@ -13,6 +13,7 @@ class NameTextInput extends TextInput
     {
         return parent::make($name)
             ->required()
+            ->string()
             ->maxLength(255);
     }
 

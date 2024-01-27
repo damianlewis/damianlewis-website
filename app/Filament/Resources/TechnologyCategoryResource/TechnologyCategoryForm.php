@@ -68,7 +68,8 @@ class TechnologyCategoryForm extends ResourceForm
                 ->autocapitalize('words'),
             SlugTextInput::make(),
             SimpleRichEditor::make('description')
-                ->nullable(),
+                ->nullable()
+                ->string(),
         ];
     }
 
