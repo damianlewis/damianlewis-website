@@ -27,6 +27,31 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
 {
+    public function register(): void
+    {
+        parent::register();
+
+        FilamentView::registerRenderHook(
+            'panels::body.end',
+            static fn (): string => Blade::render("@vite('resources/js/app.js')")
+        );
+    }
+
+    public function boot(): void
+    {
+        ViewAction::configureUsing(
+            static fn (ViewAction $action): ViewAction => $action->iconButton()
+        );
+
+        EditAction::configureUsing(
+            static fn (EditAction $action): EditAction => $action->iconButton()
+        );
+
+        DeleteAction::configureUsing(
+            static fn (DeleteAction $action): DeleteAction => $action->iconButton()
+        );
+    }
+
     public function panel(Panel $panel): Panel
     {
         return $panel
@@ -68,30 +93,5 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-o-cube')
                     ->collapsed(),
             ]);
-    }
-
-    public function boot(): void
-    {
-        ViewAction::configureUsing(
-            static fn (ViewAction $action): ViewAction => $action->iconButton()
-        );
-
-        EditAction::configureUsing(
-            static fn (EditAction $action): EditAction => $action->iconButton()
-        );
-
-        DeleteAction::configureUsing(
-            static fn (DeleteAction $action): DeleteAction => $action->iconButton()
-        );
-    }
-
-    public function register(): void
-    {
-        parent::register();
-
-        FilamentView::registerRenderHook(
-            'panels::body.end',
-            static fn (): string => Blade::render("@vite('resources/js/app.js')")
-        );
     }
 }
