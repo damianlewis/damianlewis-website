@@ -86,6 +86,7 @@ class UserForm extends ResourceForm
                 ->maxLength(255),
             TextInput::make('password')
                 ->password()
+                ->revealable()
                 ->autocomplete(false)
                 ->dehydrated(fn (?string $state): bool => filled($state))
                 ->required(
@@ -97,6 +98,7 @@ class UserForm extends ResourceForm
                 ->live(),
             TextInput::make('password_confirmation')
                 ->password()
+                ->revealable()
                 ->dehydrated(fn (?string $state): bool => filled($state))
                 ->hidden(fn (Get $get): bool => empty($get('password'))),
         ];
