@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Password::defaults(fn () => $this->app->isProduction()
+        Password::defaults(fn (): Password => $this->app->isProduction()
             ? Password::min(12)
                 ->mixedCase()
                 ->numbers()
