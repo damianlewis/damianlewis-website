@@ -23,21 +23,28 @@ class UserForm extends ResourceForm
     {
         return $form
             ->schema([
-                Group::make()
-                    ->schema([
-                        self::getDetailsSection(),
-                    ])
-                    ->columnSpan(['lg' => 2]),
-                Group::make()
-                    ->schema([
-                        DatesSection::make(),
-                        self::getStatusDatesSection(),
-                        self::getRolesSection(),
-                    ])
-                    ->columnSpan(['lg' => 1]),
+                ...self::getFormSchema(),
                 Actions::make(self::getFormActions($form)),
             ])
             ->columns(3);
+    }
+
+    public static function getFormSchema(): array
+    {
+        return [
+            Group::make()
+                ->schema([
+                    self::getDetailsSection(),
+                ])
+                ->columnSpan(['lg' => 2]),
+            Group::make()
+                ->schema([
+                    DatesSection::make(),
+                    self::getStatusDatesSection(),
+                    self::getRolesSection(),
+                ])
+                ->columnSpan(['lg' => 1]),
+        ];
     }
 
     public static function getDetailsSection(): Section

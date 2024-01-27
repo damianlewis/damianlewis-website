@@ -34,24 +34,29 @@ class TechnologyForm extends ResourceForm
     {
         return $form
             ->schema([
-                Group::make()
-                    ->schema([
-                        self::getCategorySection(),
-                        self::getDetailsSection(),
-                    ])
-                    ->columnSpan(['lg' => 2]),
-                Group::make()
-                    ->schema([
-                        DatesSection::make(),
-                        self::getParentSection(),
-                        self::getSettingsSection(),
-                    ])
-                    ->columnSpan(['lg' => 1]),
-                Actions::make(
-                    self::getFormActions($form)
-                ),
+                ...self::getFormSchema(),
+                Actions::make(self::getFormActions($form)),
             ])
             ->columns(3);
+    }
+
+    public static function getFormSchema(): array
+    {
+        return [
+            Group::make()
+                ->schema([
+                    self::getCategorySection(),
+                    self::getDetailsSection(),
+                ])
+                ->columnSpan(['lg' => 2]),
+            Group::make()
+                ->schema([
+                    DatesSection::make(),
+                    self::getParentSection(),
+                    self::getSettingsSection(),
+                ])
+                ->columnSpan(['lg' => 1]),
+        ];
     }
 
     public static function getCategorySection(): Section
