@@ -89,6 +89,12 @@ class Skill extends BaseModel implements EnableInterface, Sortable
     {
         return $this->hasMany(__CLASS__, 'parent_id');
     }
+    public function hasParent(): bool
+    {
+        $foreignKeyName = $this->parent()->getForeignKeyName();
+
+        return $this->{$foreignKeyName} !== null;
+    }
 
     public function removeParent(): void
     {
