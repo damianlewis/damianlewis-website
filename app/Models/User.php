@@ -24,6 +24,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection as SpatieMediaCollection;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -56,6 +57,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|User withoutPermission($permissions)
  * @method static Builder|User withoutRole($roles, $guard = null)
  * @method static Builder|User withoutTrashed()
+ *
+ * @property-read SpatieMediaCollection<int, Media> $media
  *
  * @mixin Eloquent
  */
