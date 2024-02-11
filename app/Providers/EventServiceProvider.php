@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\SkillDeleting;
 use App\Events\TechnologyDeleting;
+use App\Listeners\DetachParentSkillFromChildren;
 use App\Listeners\DetachParentTechnologyFromChildren;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
@@ -17,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         TechnologyDeleting::class => [
             DetachParentTechnologyFromChildren::class,
+        ],
+        SkillDeleting::class => [
+            DetachParentSkillFromChildren::class,
         ],
     ];
 

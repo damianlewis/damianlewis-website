@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\EnableInterface;
+use App\Events\SkillDeleting;
 use App\Traits\HasEnabled;
 use Database\Factories\SkillFactory;
 use Eloquent;
@@ -61,6 +62,10 @@ class Skill extends BaseModel implements EnableInterface, Sortable
         'enabled',
     ];
 
+    protected $dispatchesEvents = [
+        'deleting' => SkillDeleting::class,
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -83,6 +88,18 @@ class Skill extends BaseModel implements EnableInterface, Sortable
     public function children(): HasMany
     {
         return $this->hasMany(__CLASS__, 'parent_id');
+    }
+
+    public function removeParent(): void
+    {
+        $foreignKeyName = $this->parent()->getForeignKeyName();
+
+        if ($this->{$foreignKeyName} === null) {
+            return;
+        }
+
+        $this->{$foreignKeyName} = null;
+        $this->save();
     }
 
     public function buildSortQuery(): Builder
