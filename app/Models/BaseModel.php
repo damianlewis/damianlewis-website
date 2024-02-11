@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 abstract class BaseModel extends Model
 {
-    use CascadeDelete,
+    use CascadeDelete, // Included in base model so that the $cascadeDeleteRelationships property is available to override in child models
         HasUlids,
         SoftDeletes;
 }
