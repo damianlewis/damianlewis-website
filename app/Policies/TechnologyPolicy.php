@@ -39,16 +39,6 @@ class TechnologyPolicy
         return $user->can('delete_any_technology');
     }
 
-    public function forceDelete(User $user, Technology $technology): bool
-    {
-        return $user->can('force_delete_technology');
-    }
-
-    public function forceDeleteAny(User $user): bool
-    {
-        return $user->can('force_delete_any_technology');
-    }
-
     public function restore(User $user, Technology $technology): bool
     {
         return $user->can('restore_technology');
@@ -57,6 +47,16 @@ class TechnologyPolicy
     public function restoreAny(User $user): bool
     {
         return $user->can('restore_any_technology');
+    }
+
+    public function forceDelete(User $user, Technology $technology): bool
+    {
+        return $user->can('force_delete_technology');
+    }
+
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force_delete_any_technology');
     }
 
     public function reorder(User $user): bool

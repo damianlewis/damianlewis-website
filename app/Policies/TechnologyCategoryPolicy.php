@@ -39,16 +39,6 @@ class TechnologyCategoryPolicy
         return $user->can('delete_any_technology_category');
     }
 
-    public function forceDelete(User $user, TechnologyCategory $technologyCategory): bool
-    {
-        return $user->can('force_delete_technology_category');
-    }
-
-    public function forceDeleteAny(User $user): bool
-    {
-        return $user->can('force_delete_any_technology_category');
-    }
-
     public function restore(User $user, TechnologyCategory $technologyCategory): bool
     {
         return $user->can('restore_technology_category');
@@ -57,6 +47,16 @@ class TechnologyCategoryPolicy
     public function restoreAny(User $user): bool
     {
         return $user->can('restore_any_technology_category');
+    }
+
+    public function forceDelete(User $user, TechnologyCategory $technologyCategory): bool
+    {
+        return $user->can('force_delete_technology_category');
+    }
+
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force_delete_any_technology_category');
     }
 
     public function reorder(User $user): bool

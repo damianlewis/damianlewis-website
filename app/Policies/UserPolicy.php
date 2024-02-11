@@ -38,16 +38,6 @@ class UserPolicy
         return $user->can('delete_any_user');
     }
 
-    public function forceDelete(User $user, User $userModel): bool
-    {
-        return $user->can('force_delete_user');
-    }
-
-    public function forceDeleteAny(User $user): bool
-    {
-        return $user->can('force_delete_any_user');
-    }
-
     public function restore(User $user, User $userModel): bool
     {
         return $user->can('restore_user');
@@ -56,5 +46,15 @@ class UserPolicy
     public function restoreAny(User $user): bool
     {
         return $user->can('restore_any_user');
+    }
+
+    public function forceDelete(User $user, User $userModel): bool
+    {
+        return $user->can('force_delete_user');
+    }
+
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force_delete_any_user');
     }
 }
