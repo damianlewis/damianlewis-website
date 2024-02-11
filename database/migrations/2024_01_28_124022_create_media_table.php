@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Media;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -8,10 +9,10 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
-            $table->id();
+        Schema::create((new Media)->getTable(), function (Blueprint $table) {
+            $table->ulid('id')->primary();
 
-            $table->morphs('model');
+            $table->ulidMorphs('model');
             $table->uuid('uuid')->nullable()->unique();
             $table->string('collection_name');
             $table->string('name');
