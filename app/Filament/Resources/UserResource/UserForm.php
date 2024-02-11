@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\UserResource;
 
+use App\Enums\Disk;
+use App\Enums\MediaCollection;
 use App\Filament\Forms\Components\Actions\GenerateFormDataAction;
 use App\Filament\Forms\Components\DatesSection;
 use App\Filament\Forms\Components\DateTimePlaceholder;
@@ -9,10 +11,12 @@ use App\Filament\Forms\Components\NameTextInput;
 use App\Filament\Forms\ResourceForm;
 use App\Models\Role;
 use App\Models\User;
+use Exception;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -20,6 +24,9 @@ use Illuminate\Validation\Rules\Password;
 
 class UserForm extends ResourceForm
 {
+    /**
+     * @throws Exception
+     */
     public static function make(Form $form): Form
     {
         return $form
@@ -30,6 +37,9 @@ class UserForm extends ResourceForm
             ->columns(3);
     }
 
+    /**
+     * @throws Exception
+     */
     public static function getFormSchema(): array
     {
         return [
@@ -42,6 +52,7 @@ class UserForm extends ResourceForm
                 ->schema([
                     DatesSection::make(),
                     self::getStatusDatesSection(),
+                    self::getAvatarSection(),
                     self::getRolesSection(),
                 ])
                 ->columnSpan(['lg' => 1]),
@@ -63,6 +74,16 @@ class UserForm extends ResourceForm
             ->columns()
             ->hiddenOn('create')
             ->visible(fn (User $record) => $record->isBlocked());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function getAvatarSection(): Section
+    {
+        return Section::make('Avatar')
+            ->description(self::help())
+            ->schema(self::getAvatarSchema());
     }
 
     public static function getRolesSection(): Section
@@ -110,6 +131,23 @@ class UserForm extends ResourceForm
             DateTimePlaceholder::make('blocked_at')
                 ->label('Blocked')
                 ->visible(fn (User $record) => $record->isBlocked()),
+        ];
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function getAvatarSchema(): array
+    {
+        return [
+            SpatieMediaLibraryFileUpload::make('avatar')
+                ->hiddenLabel()
+                ->disk(Disk::AvatarImages->value)
+                ->collection(MediaCollection::AvatarImages->value)
+                ->avatar()
+                ->imageEditor()
+                ->imageEditorMode(2)
+                ->maxSize(1024),
         ];
     }
 

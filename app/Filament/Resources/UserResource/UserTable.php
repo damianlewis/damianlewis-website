@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\UserResource;
 
+use App\Enums\MediaCollection;
+use App\Enums\MediaConversion;
 use App\Filament\Tables\Columns\CreatedAtTextColumn;
 use App\Filament\Tables\Columns\DeletedAtTextColumn;
 use App\Filament\Tables\Columns\NameTextColumn;
@@ -11,6 +13,7 @@ use App\Models\User;
 use Exception;
 use Filament\Support\Enums\FontFamily;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
@@ -28,6 +31,13 @@ class UserTable extends ResourceTable
         return parent::make($table)
             ->columns([
                 NameTextColumn::make(),
+                SpatieMediaLibraryImageColumn::make('avatar')
+                    ->collection(MediaCollection::AvatarImages->value)
+                    ->conversion(MediaConversion::Thumbnail->value)
+                    ->extraImgAttributes(fn (User $record): array => [
+                        'alt' => "{$record->name} avatar",
+                    ])
+                    ->circular(),
                 TextColumn::make('email')
                     ->fontFamily(FontFamily::Mono)
                     ->copyable()

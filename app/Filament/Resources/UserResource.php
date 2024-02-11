@@ -29,6 +29,9 @@ class UserResource extends Resource
         return UserInfolist::make($infolist);
     }
 
+    /**
+     * @throws Exception
+     */
     public static function form(Form $form): Form
     {
         return UserForm::make($form);

@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\Disk;
+
 return [
 
     /*
@@ -40,6 +42,14 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        Disk::AvatarImages->value => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/media/avatar/image'),
+            'url' => env('APP_URL') . '/media/avatar/image',
             'visibility' => 'public',
             'throw' => false,
         ],

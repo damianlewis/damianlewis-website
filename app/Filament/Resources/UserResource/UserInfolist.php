@@ -2,11 +2,14 @@
 
 namespace App\Filament\Resources\UserResource;
 
+use App\Enums\MediaCollection;
+use App\Enums\MediaConversion;
 use App\Filament\Infolists\Components\DatesSection;
 use App\Filament\Infolists\Components\DateTimeTextEntry;
 use App\Models\User;
 use Filament\Infolists\Components\Group;
 use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\SpatieMediaLibraryImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Support\Enums\FontFamily;
@@ -26,6 +29,7 @@ class UserInfolist
                     ->schema([
                         DatesSection::make(),
                         self::getStatuesDatesSection(),
+                        self::getAvatarSection(),
                         self::getRolesSection(),
                     ])
                     ->columnSpan(['lg' => 1]),
@@ -45,6 +49,12 @@ class UserInfolist
             ->schema(self::getStatuesDatesSchema())
             ->columns()
             ->visible(fn (User $record): bool => $record->isBlocked());
+    }
+
+    public static function getAvatarSection(): Section
+    {
+        return Section::make('Avatar')
+            ->schema(self::getAvatarSchema());
     }
 
     public static function getRolesSection(): Section
@@ -73,6 +83,20 @@ class UserInfolist
                 ->label('Blocked')
                 ->visible(fn (User $record): bool => $record->isBlocked()),
 
+        ];
+    }
+
+    public static function getAvatarSchema(): array
+    {
+        return [
+            SpatieMediaLibraryImageEntry::make('avatar')
+                ->hiddenLabel()
+                ->extraImgAttributes(fn (User $record): array => [
+                    'alt' => "{$record->name} avatar",
+                ])
+                ->collection(MediaCollection::AvatarImages->value)
+                ->conversion(MediaConversion::Thumbnail->value)
+                ->circular(),
         ];
     }
 

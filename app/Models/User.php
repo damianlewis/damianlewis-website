@@ -3,9 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\MediaCollection;
+use App\Enums\MediaConversion;
 use Database\Factories\UserFactory;
 use Eloquent;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -19,6 +22,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -53,12 +59,13 @@ use Spatie\Permission\Traits\HasRoles;
  *
  * @mixin Eloquent
  */
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia
 {
     use HasApiTokens,
         HasFactory,
         HasRoles,
         HasUlids,
+        InteractsWithMedia,
         Notifiable,
         SoftDeletes;
 
@@ -99,6 +106,21 @@ class User extends Authenticatable implements FilamentUser
             'super_admin',
             'admin',
         ]);
+    }
+
+    public function registerMediaConversions(?SpatieMedia $media = null): void
+    {
+        $this->addMediaConversion(MediaConversion::Thumbnail->value)
+            ->performOnCollections(MediaCollection::AvatarImages->value)
+            ->width(128)
+            ->height(128)
+            ->sharpen(10)
+            ->nonQueued();
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->getFirstMediaUrl(MediaCollection::AvatarImages->value, MediaConversion::Thumbnail->value);
     }
 
     public function isBlocked(): bool
