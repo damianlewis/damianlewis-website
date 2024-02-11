@@ -79,7 +79,8 @@ class SkillTable extends ResourceTable
                     ->relationship(
                         name: 'parent',
                         titleAttribute: 'name',
-                        modifyQueryUsing: fn (Builder $query): Builder => $query->whereHas('children')
+                        modifyQueryUsing: fn (Builder $query): Builder => $query
+                            ->whereHas('children')
                     )
                     ->searchable()
                     ->preload(),
