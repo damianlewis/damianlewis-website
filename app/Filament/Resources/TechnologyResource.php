@@ -24,6 +24,8 @@ class TechnologyResource extends Resource
 
     protected static ?string $navigationGroup = 'Technology';
 
+    protected static ?int $navigationSort = 2;
+
     public static function infolist(Infolist $infolist): Infolist
     {
         return TechnologyInfolist::make($infolist);
