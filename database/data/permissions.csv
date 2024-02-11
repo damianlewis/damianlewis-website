@@ -31,3 +31,14 @@ web,restore_any_technology,Restore Any Technology,Restore any technology,super_a
 web,force_delete_technology,Force Delete Technology,Force delete technology,super_admin
 web,force_delete_any_technology,Force Delete Any Technology,Force delete any technology,super_admin
 web,reorder_technology,Reorder Technology,Reorder technology,super_admin|admin
+web,view_skill_category,View Skill Category,View skill category,super_admin|admin
+web,view_any_skill_category,View Any Skill Category,View any skill category,super_admin|admin
+web,create_skill_category,Create Skill Category,Create skill category,super_admin|admin
+web,update_skill_category,Update Skill Category,Update skill category,super_admin|admin
+web,delete_skill_category,Delete Skill Category,Delete skill category,super_admin|admin
+web,delete_any_skill_category,Delete Any Skill Category,Delete any skill category,super_admin|admin
+web,restore_skill_category,Restore Skill Category,Restore skill category,super_admin|admin
+web,restore_any_skill_category,Restore Any Skill Category,Restore any skill category,super_admin|admin
+web,force_delete_skill_category,Force Delete Skill Category,Force delete skill category,super_admin
+web,force_delete_any_skill_category,Force Delete Any Skill Category,Force delete any skill category,super_admin
+web,reorder_skill_category,Reorder Skill Category,Reorder skill category,super_admin|admin
