@@ -42,3 +42,14 @@ web,restore_any_skill_category,Restore Any Skill Category,Restore any skill cate
 web,force_delete_skill_category,Force Delete Skill Category,Force delete skill category,super_admin
 web,force_delete_any_skill_category,Force Delete Any Skill Category,Force delete any skill category,super_admin
 web,reorder_skill_category,Reorder Skill Category,Reorder skill category,super_admin|admin
+web,view_skill,View Skill,View skill,super_admin|admin
+web,view_any_skill,View Any Skill,View any skill,super_admin|admin
+web,create_skill,Create Skill,Create skill,super_admin|admin
+web,update_skill,Update Skill,Update skill,super_admin|admin
+web,delete_skill,Delete Skill,Delete skill,super_admin|admin
+web,delete_any_skill,Delete Any Skill,Delete any skill,super_admin|admin
+web,restore_skill,Restore Skill,Restore skill,super_admin|admin
+web,restore_any_skill,Restore Any Skill,Restore any skill,super_admin|admin
+web,force_delete_skill,Force Delete Skill,Force delete skill,super_admin
+web,force_delete_any_skill,Force Delete Any Skill,Force delete any skill,super_admin
+web,reorder_skill,Reorder Skill,Reorder skill,super_admin|admin
