@@ -2,10 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\SkillResource\Pages\CreateSkill;
 use App\Filament\Resources\SkillResource\Pages\ListSkills;
+use App\Filament\Resources\SkillResource\SkillForm;
 use App\Filament\Resources\SkillResource\SkillTable;
 use App\Models\Skill;
 use Exception;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,6 +22,11 @@ class SkillResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
+    public static function form(Form $form): Form
+    {
+        return SkillForm::make($form);
+    }
+
     /**
      * @throws Exception
      */
@@ -31,6 +39,7 @@ class SkillResource extends Resource
     {
         return [
             'index' => ListSkills::route('/'),
+            'create' => CreateSkill::route('/create'),
         ];
     }
 
