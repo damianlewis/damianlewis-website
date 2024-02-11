@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SkillCategoryResource\Pages\CreateSkillCategory;
+use App\Filament\Resources\SkillCategoryResource\Pages\EditSkillCategory;
 use App\Filament\Resources\SkillCategoryResource\Pages\ListSkillCategories;
 use App\Filament\Resources\SkillCategoryResource\SkillCategoryForm;
 use App\Filament\Resources\SkillCategoryResource\SkillCategoryTable;
@@ -42,6 +43,7 @@ class SkillCategoryResource extends Resource
         return [
             'index' => ListSkillCategories::route('/'),
             'create' => CreateSkillCategory::route('/create'),
+            'edit' => EditSkillCategory::route('/{record}/edit'),
         ];
     }
 
