@@ -99,6 +99,10 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Technology')
                     ->icon('heroicon-o-cube')
                     ->collapsed(),
+                NavigationGroup::make()
+                    ->label('Skill')
+                    ->icon('heroicon-o-light-bulb')
+                    ->collapsed(),
             ]);
     }
 }
