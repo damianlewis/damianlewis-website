@@ -6,6 +6,7 @@ use App\Filament\Resources\SkillCategoryResource\Pages\CreateSkillCategory;
 use App\Filament\Resources\SkillCategoryResource\Pages\EditSkillCategory;
 use App\Filament\Resources\SkillCategoryResource\Pages\ListSkillCategories;
 use App\Filament\Resources\SkillCategoryResource\Pages\ViewSkillCategory;
+use App\Filament\Resources\SkillCategoryResource\RelationManagers\SkillsRelationManager;
 use App\Filament\Resources\SkillCategoryResource\SkillCategoryForm;
 use App\Filament\Resources\SkillCategoryResource\SkillCategoryInfolist;
 use App\Filament\Resources\SkillCategoryResource\SkillCategoryTable;
@@ -45,6 +46,13 @@ class SkillCategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return SkillCategoryTable::make($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            SkillsRelationManager::class,
+        ];
     }
 
     public static function getPages(): array

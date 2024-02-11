@@ -9,6 +9,7 @@ use App\Filament\Forms\Components\NameTextInput;
 use App\Filament\Forms\Components\SlugTextInput;
 use App\Filament\Forms\ResourceForm;
 use App\Filament\Resources\SkillCategoryResource;
+use App\Filament\Resources\SkillCategoryResource\RelationManagers\SkillsRelationManager;
 use App\Filament\Resources\SkillCategoryResource\SkillCategoryForm;
 use App\Models\Skill;
 use App\Models\SkillCategory;
@@ -62,7 +63,8 @@ class SkillForm extends ResourceForm
     {
         return Section::make('Category')
             ->description(self::help())
-            ->schema(self::getCategorySchema());
+            ->schema(self::getCategorySchema())
+            ->hiddenOn(SkillsRelationManager::class);
     }
 
     public static function getDetailsSection(): Section
