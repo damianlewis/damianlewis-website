@@ -19,7 +19,6 @@ web,restore_technology_category,Restore Technology Category,Restore technology c
 web,restore_any_technology_category,Restore Any Technology Category,Restore any technology category,super_admin|admin
 web,force_delete_technology_category,Force Delete Technology Category,Force delete technology category,super_admin
 web,force_delete_any_technology_category,Force Delete Any Technology Category,Force delete any technology category,super_admin
-web,replicate_technology_category,Replicate Technology Category,Replicate technology category,super_admin|admin
 web,reorder_technology_category,Reorder Technology Category,Reorder technology category,super_admin|admin
 web,view_technology,View Technology,View technology,super_admin|admin
 web,view_any_technology,View Any Technology,View any technology,super_admin|admin
@@ -31,5 +30,4 @@ web,restore_technology,Restore Technology,Restore technology,super_admin|admin
 web,restore_any_technology,Restore Any Technology,Restore any technology,super_admin|admin
 web,force_delete_technology,Force Delete Technology,Force delete technology,super_admin
 web,force_delete_any_technology,Force Delete Any Technology,Force delete any technology,super_admin
-web,replicate_technology,Replicate Technology,Replicate technology,super_admin|admin
 web,reorder_technology,Reorder Technology,Reorder technology,super_admin|admin

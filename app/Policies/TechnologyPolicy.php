@@ -58,11 +58,6 @@ class TechnologyPolicy
         return $user->can('restore_any_technology');
     }
 
-    public function replicate(User $user): bool
-    {
-        return $user->can('replicate_technology');
-    }
-
     public function reorder(User $user): bool
     {
         return $user->can('reorder_technology');

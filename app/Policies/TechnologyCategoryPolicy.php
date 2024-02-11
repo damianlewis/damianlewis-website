@@ -58,11 +58,6 @@ class TechnologyCategoryPolicy
         return $user->can('restore_any_technology_category');
     }
 
-    public function replicate(User $user): bool
-    {
-        return $user->can('replicate_technology_category');
-    }
-
     public function reorder(User $user): bool
     {
         return $user->can('reorder_technology_category');
