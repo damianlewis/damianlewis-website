@@ -25,6 +25,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class TechnologyTable extends ResourceTable
 {
@@ -75,7 +76,11 @@ class TechnologyTable extends ResourceTable
                     ->searchable()
                     ->preload(),
                 SelectFilter::make('parent')
-                    ->relationship('parent', 'name')
+                    ->relationship(
+                        name: 'parent',
+                        titleAttribute: 'name',
+                        modifyQueryUsing: fn (Builder $query): Builder => $query->whereHas('children')
+                    )
                     ->searchable()
                     ->preload(),
                 EnabledFilter::make(),
