@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\TechnologyCategory;
 use App\Models\User;
 
 // use Illuminate\Auth\Access\Response;
@@ -13,7 +14,7 @@ class TechnologyCategoryPolicy
         return $user->can('view_any_technology_category');
     }
 
-    public function view(User $user): bool
+    public function view(User $user, TechnologyCategory $technologyCategory): bool
     {
         return $user->can('view_technology_category');
     }
@@ -23,12 +24,12 @@ class TechnologyCategoryPolicy
         return $user->can('create_technology_category');
     }
 
-    public function update(User $user): bool
+    public function update(User $user, TechnologyCategory $technologyCategory): bool
     {
         return $user->can('update_technology_category');
     }
 
-    public function delete(User $user): bool
+    public function delete(User $user, TechnologyCategory $technologyCategory): bool
     {
         return $user->can('delete_technology_category');
     }
@@ -38,7 +39,7 @@ class TechnologyCategoryPolicy
         return $user->can('delete_any_technology_category');
     }
 
-    public function forceDelete(User $user): bool
+    public function forceDelete(User $user, TechnologyCategory $technologyCategory): bool
     {
         return $user->can('force_delete_technology_category');
     }
@@ -48,7 +49,7 @@ class TechnologyCategoryPolicy
         return $user->can('force_delete_any_technology_category');
     }
 
-    public function restore(User $user): bool
+    public function restore(User $user, TechnologyCategory $technologyCategory): bool
     {
         return $user->can('restore_technology_category');
     }
