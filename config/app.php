@@ -1,6 +1,35 @@
 <?php
 
+use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\ServiceProvider;
+
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Name
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's name in a notification or
+    | any other location as required by the application or its packages.
+    |
+    */
+
+    'name' => env('APP_NAME', 'Laravel'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Environment
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the "environment" your application is currently
+    | running in. This may determine how you prefer to configure various
+    | services the application utilizes. Set this in your ".env" file.
+    |
+    */
+
+    'env' => env('APP_ENV', 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -11,24 +40,9 @@ return [
     | stack traces will be shown on every error that occurs within your
     | application. If disabled, a simple generic error page is shown.
     |
-    | You can create a CMS page with route "/error" to set the contents
-    | of this page. Otherwise a default error page is shown.
-    |
     */
 
-    'debug' => env('APP_DEBUG', true),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Name
-    |--------------------------------------------------------------------------
-    |
-    | This value is the name of your application. This value is used when the
-    | framework needs to place the application's name in a notification or
-    | any other location as required by the application or its packages.
-    */
-
-    'name' => 'Damian Lewis',
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -43,6 +57,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'asset_url' => env('ASSET_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -51,14 +67,6 @@ return [
     | Here you may specify the default timezone for your application, which
     | will be used by the PHP date and date-time functions. We have gone
     | ahead and set this to a sensible default for you out of the box.
-    |
-    |
-    | -------- STOP! --------
-    | Before you change this value, consider carefully if that is actually
-    | what you want to do. It is HIGHLY recommended that this is always set
-    | to UTC (as your server & DB timezone should be as well) and instead you
-    | use cms.backendTimezone to set the default timezone used in the backend
-    | to display dates & times.
     |
     */
 
@@ -92,6 +100,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Faker Locale
+    |--------------------------------------------------------------------------
+    |
+    | This locale will be used by the Faker PHP library when generating fake
+    | data for your database seeds. For example, this will be used to get
+    | localized telephone numbers, street address information and more.
+    |
+    */
+
+    'faker_locale' => 'en_US',
+
+    /*
+    |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
     |
@@ -101,24 +122,27 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', ''),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
     /*
     |--------------------------------------------------------------------------
-    | Logging Configuration
+    | Maintenance Mode Driver
     |--------------------------------------------------------------------------
     |
-    | Here you may configure the log settings for your application. Out of
-    | the box, Laravel uses the Monolog PHP logging library. This gives
-    | you a variety of powerful log handlers / formatters to utilize.
+    | These configuration options determine the driver used to determine and
+    | manage Laravel's "maintenance mode" status. The "cache" driver will
+    | allow maintenance mode to be controlled across multiple machines.
     |
-    | Available Settings: "single", "daily", "syslog", "errorlog"
+    | Supported drivers: "file", "cache"
     |
     */
 
-    'log' => 'single',
+    'maintenance' => [
+        'driver' => 'file',
+        // 'store' => 'redis',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -131,12 +155,22 @@ return [
     |
     */
 
-    'providers' => array_merge(include(base_path('modules/system/providers.php')), [
+    'providers' => ServiceProvider::defaultProviders()->merge([
+        /*
+         * Package Service Providers...
+         */
 
-        // 'Illuminate\Html\HtmlServiceProvider', // Example
-
-        'System\ServiceProvider',
-    ]),
+        /*
+         * Application Service Providers...
+         */
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\Filament\AdminPanelProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
+    ])->toArray(),
 
     /*
     |--------------------------------------------------------------------------
@@ -149,10 +183,16 @@ return [
     |
     */
 
-    'aliases' => array_merge(include(base_path('modules/system/aliases.php')), [
+    'aliases' => Facade::defaultAliases()->merge([
+        // 'Example' => App\Facades\Example::class,
+    ])->toArray(),
 
-        // 'Str' => 'Illuminate\Support\Str', // Example
+    /*
+    |--------------------------------------------------------------------------
+    | Additional Application Configuration
+    |--------------------------------------------------------------------------
+    |
+    */
 
-    ]),
-
+    'generate_form_data' => env('APP_GENERATE_FORM_DATA', false),
 ];

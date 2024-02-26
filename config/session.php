@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 return [
 
     /*
@@ -12,7 +14,7 @@ return [
     | you may specify any of the other wonderful drivers provided here.
     |
     | Supported: "file", "cookie", "database", "apc",
-    |            "memcached", "redis", "array"
+    |            "memcached", "redis", "dynamodb", "array"
     |
     */
 
@@ -24,12 +26,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may specify the number of minutes that you wish the session
-    | to be allowed to remain idle for it is expired. If you want them
-    | to immediately expire when the browser closes, set it to zero.
+    | to be allowed to remain idle before it expires. If you want them
+    | to immediately expire on the browser closing, set that option.
     |
     */
 
-    'lifetime' => 120,
+    'lifetime' => env('SESSION_LIFETIME', 120),
 
     'expire_on_close' => false,
 
@@ -70,7 +72,7 @@ return [
     |
     */
 
-    'connection' => null,
+    'connection' => env('SESSION_CONNECTION'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,6 +86,21 @@ return [
     */
 
     'table' => 'sessions',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Session Cache Store
+    |--------------------------------------------------------------------------
+    |
+    | While using one of the framework's cache driven session backends you may
+    | list a cache store that should be used for these sessions. This value
+    | must match with one of the application's configured cache "stores".
+    |
+    | Affects: "apc", "dynamodb", "memcached", "redis"
+    |
+    */
+
+    'store' => env('SESSION_STORE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +126,10 @@ return [
     |
     */
 
-    'cookie' => 'october_session',
+    'cookie' => env(
+        'SESSION_COOKIE',
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_session'
+    ),
 
     /*
     |--------------------------------------------------------------------------
@@ -135,7 +155,7 @@ return [
     |
     */
 
-    'domain' => null,
+    'domain' => env('SESSION_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -144,11 +164,24 @@ return [
     |
     | By setting this option to true, session cookies will only be sent back
     | to the server if the browser has a HTTPS connection. This will keep
-    | the cookie from being sent to you if it can not be done securely.
+    | the cookie from being sent to you when it can't be done securely.
     |
     */
 
-    'secure' => false,
+    'secure' => env('SESSION_SECURE_COOKIE'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | HTTP Access Only
+    |--------------------------------------------------------------------------
+    |
+    | Setting this value to true will prevent JavaScript from accessing the
+    | value of the cookie and the cookie will only be accessible through
+    | the HTTP protocol. You are free to modify this option if needed.
+    |
+    */
+
+    'http_only' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -157,16 +190,12 @@ return [
     |
     | This option determines how your cookies behave when cross-site requests
     | take place, and can be used to mitigate CSRF attacks. By default, we
-    | do not enable this as other CSRF protection services are in place.
+    | will set this value to "lax" since this is a secure default value.
     |
-    | In the strict mode, the cookie is not sent with any cross-site usage
-    | even if the user follows a link to another website. Lax cookies are
-    | only sent with a top-level get request.
-    |
-    | Supported: "lax", "strict"
+    | Supported: "lax", "strict", "none", null
     |
     */
 
-    'same_site' => null,
+    'same_site' => 'lax',
 
 ];

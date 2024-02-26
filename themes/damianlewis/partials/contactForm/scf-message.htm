@@ -1,9 +1,0 @@
-{% flash%}
-
-    {% if flashSuccess==__SELF__ %}
-        <div class="alert{% if type == 'error' %} alert-error{% elseif type == 'danger' %} alert-danger{% endif %}">
-            {{ html_entity_decode(message)|nl2br }}
-        </div>
-    {% endif %}
-
-{% endflash %}

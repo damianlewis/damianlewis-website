@@ -1,0 +1,55 @@
+guard_name,name,display_name,description,roles
+web,view_user,View User,View user,super_admin
+web,view_any_user,View Any User,View any user,super_admin
+web,create_user,Create User,Create user,super_admin
+web,update_user,Update User,Update user,super_admin
+web,delete_user,Delete User,Delete user,super_admin
+web,delete_any_user,Delete Any User,Delete any user,super_admin
+web,restore_user,Restore User,Restore user,super_admin
+web,restore_any_user,Restore Any User,Restore any user,super_admin
+web,force_delete_user,Force Delete User,Force delete user,super_admin
+web,force_delete_any_user,Force Delete Any User,Force delete any user,super_admin
+web,view_technology_category,View Technology Category,View technology category,super_admin|admin
+web,view_any_technology_category,View Any Technology Category,View any technology category,super_admin|admin
+web,create_technology_category,Create Technology Category,Create technology category,super_admin|admin
+web,update_technology_category,Update Technology Category,Update technology category,super_admin|admin
+web,delete_technology_category,Delete Technology Category,Delete technology category,super_admin|admin
+web,delete_any_technology_category,Delete Any Technology Category,Delete any technology category,super_admin|admin
+web,restore_technology_category,Restore Technology Category,Restore technology category,super_admin|admin
+web,restore_any_technology_category,Restore Any Technology Category,Restore any technology category,super_admin|admin
+web,force_delete_technology_category,Force Delete Technology Category,Force delete technology category,super_admin
+web,force_delete_any_technology_category,Force Delete Any Technology Category,Force delete any technology category,super_admin
+web,reorder_technology_category,Reorder Technology Category,Reorder technology category,super_admin|admin
+web,view_technology,View Technology,View technology,super_admin|admin
+web,view_any_technology,View Any Technology,View any technology,super_admin|admin
+web,create_technology,Create Technology,Create technology,super_admin|admin
+web,update_technology,Update Technology,Update technology,super_admin|admin
+web,delete_technology,Delete Technology,Delete technology,super_admin|admin
+web,delete_any_technology,Delete Any Technology,Delete any technology,super_admin|admin
+web,restore_technology,Restore Technology,Restore technology,super_admin|admin
+web,restore_any_technology,Restore Any Technology,Restore any technology,super_admin|admin
+web,force_delete_technology,Force Delete Technology,Force delete technology,super_admin
+web,force_delete_any_technology,Force Delete Any Technology,Force delete any technology,super_admin
+web,reorder_technology,Reorder Technology,Reorder technology,super_admin|admin
+web,view_skill_category,View Skill Category,View skill category,super_admin|admin
+web,view_any_skill_category,View Any Skill Category,View any skill category,super_admin|admin
+web,create_skill_category,Create Skill Category,Create skill category,super_admin|admin
+web,update_skill_category,Update Skill Category,Update skill category,super_admin|admin
+web,delete_skill_category,Delete Skill Category,Delete skill category,super_admin|admin
+web,delete_any_skill_category,Delete Any Skill Category,Delete any skill category,super_admin|admin
+web,restore_skill_category,Restore Skill Category,Restore skill category,super_admin|admin
+web,restore_any_skill_category,Restore Any Skill Category,Restore any skill category,super_admin|admin
+web,force_delete_skill_category,Force Delete Skill Category,Force delete skill category,super_admin
+web,force_delete_any_skill_category,Force Delete Any Skill Category,Force delete any skill category,super_admin
+web,reorder_skill_category,Reorder Skill Category,Reorder skill category,super_admin|admin
+web,view_skill,View Skill,View skill,super_admin|admin
+web,view_any_skill,View Any Skill,View any skill,super_admin|admin
+web,create_skill,Create Skill,Create skill,super_admin|admin
+web,update_skill,Update Skill,Update skill,super_admin|admin
+web,delete_skill,Delete Skill,Delete skill,super_admin|admin
+web,delete_any_skill,Delete Any Skill,Delete any skill,super_admin|admin
+web,restore_skill,Restore Skill,Restore skill,super_admin|admin
+web,restore_any_skill,Restore Any Skill,Restore any skill,super_admin|admin
+web,force_delete_skill,Force Delete Skill,Force delete skill,super_admin
+web,force_delete_any_skill,Force Delete Any Skill,Force delete any skill,super_admin
+web,reorder_skill,Reorder Skill,Reorder skill,super_admin|admin
